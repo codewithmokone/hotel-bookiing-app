@@ -1,0 +1,60 @@
+/* Admin Login Styling */
+.adminLogin {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  
+  .login-container {
+    width: 578px;
+    height: 482px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #D1D1CF;
+  }
+  
+  .logo img{
+    width: 30px;
+    height: 30px;
+  }
+  
+  .login-lbl {
+    width: 203px;
+    color: black;
+    font-weight: bold;
+    text-align: start;
+    margin: 0 0 3px 0;
+  }
+  
+  .login-input {
+    width: 200px;
+    height: 30px;
+    margin: 0 0 15px 0;
+  }
+  
+  .login-btn {
+    color: black;
+    width: 150px;
+    height: 30px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .adminLogin-form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-heading {
+    color: black;
+  }
