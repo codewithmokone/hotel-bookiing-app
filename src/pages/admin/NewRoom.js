@@ -28,7 +28,7 @@ export const AdminHome = () => {
     const [numberOfRooms, setNumberOfRooms] = useState('');
     const [contact, setContact] = useState('');
     const [bedType, setBedType] = useState('');
-    const [file, setFile] = useState();
+    const [files, setFiles] = useState();
     const [imageUrl, setImageUrl] = useState('');
 
     const imageListRef = ref(storage, "hotelImages/")
@@ -38,14 +38,17 @@ export const AdminHome = () => {
         e.preventDefault()
 
         // upload image to firebase storage
-        const uploadImage = () => {
-            const imageRef = ref(storage, `hotelImages/${file.name + v4()}`);
-            uploadBytes(imageRef, file).then(() => {
-                getDownloadURL(imageRef).then((url) => {
-                console.log(url)
-                setImageUrl(url);
-                alert("Image Uploaded");
-            })})
+        const uploadImage = async () => {
+            for (let i = 0; i < files.legnth; i++) {
+                const imageRef = ref(storage, `hotelImages/${files[i].name + v4()}`);
+                const result = await uploadBytes(imageRef, files[i]).then(() => {
+                    getDownloadURL(imageRef).then((url) => {
+                        console.log(url)
+                        setImageUrl(url);
+                        alert("Image Uploaded");
+                    })
+                })
+            }
         }
         uploadImage();
 
@@ -69,7 +72,7 @@ export const AdminHome = () => {
 
         }
 
-        
+
     })
 
 
@@ -92,7 +95,7 @@ export const AdminHome = () => {
                 <form className="flex flex-row justify-center" >
                     <div className="left-side w-[450px] flex flex-col">
                         <img className="image" src={imageUrl} alt="" />
-                        <input className="my-0" type="file" onChange={(e) => {setFile(e.target.files[0])}} />
+                        <input className="my-0" type="file" multiple onChange={(e) => { setFiles(e.target.files[0]) }} />
                         <label className="text-base font-medium mx-0 my-2 mr-[30px]">Hotel</label>
                         <input
                             type="text"

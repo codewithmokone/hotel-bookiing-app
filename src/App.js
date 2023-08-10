@@ -13,6 +13,7 @@ import { UserAuthContextProvider } from './components/context/UserAuthContext';
 import ViewRoomDetails from './pages/client/ViewRoomDetails';
 import Gallery from './components/Gallery';
 import UploadGallery from './pages/admin/UploadGallery';
+import ViewRoom from './components/ViewRoom';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
+          <Route path="/roomview" element={<ViewRoom/>} />
           <Route path="/login" element={<LoginModal />} />
           <Route path="/register" element={<RegistModal />} />
 
