@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { DateRange } from 'react-date-range';
 import { format } from "date-fns";
 import 'react-date-range/dist/styles.css'; // main css file
@@ -82,29 +82,29 @@ export const Home = () => {
 
   // Opens the login modal
   const login = () => {
-    setOpenLoginModal(true); 
+    setOpenLoginModal(true);
   }
 
   // Closes the login modal
   const closeLogin = () => {
-    setOpenLoginModal(false); 
+    setOpenLoginModal(false);
   }
 
 
   // Opens the register modal
   const register = () => {
-    setOpenRegistModal(true);  
+    setOpenRegistModal(true);
   }
 
   // Closes the register modal
   const closeRegister = () => {
-    setOpenRegistModal(false); 
+    setOpenRegistModal(false);
   }
 
 
   return (
-    <div>
-      <div className="navbarsection">
+    <div className='min-h-screen'>
+      <div className="navbarsection ">
         {openLoginModal && <LoginModal closeLogin={closeLogin} />}
         {openRegistModal && <RegistModal closeRegister={closeRegister} />}
         <Navbar login={login} register={register} />
@@ -151,41 +151,43 @@ export const Home = () => {
 
           </div>
         </div>
-        <div>
-          <FeaturedRooms />
-        </div>
-        <div className=" flex flex-row h-auto ">
-          {/* Map Section */}
-          <div class="mapouter my-5">
-            <div class="gmap_canvas">
-              <iframe class="gmap_iframe"
-                width="100%"
-                frameborder="0"
-                scrolling="no"
-                marginheight="0"
-                marginwidth="0"
-                src="https://maps.google.com/maps?width=307&amp;height=600&amp;hl=en&amp;q=pretoria cbd&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
-              </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
+        <main>
+          <div>
+            <FeaturedRooms />
+          </div>
+          <div className=" flex flex-row h-auto ">
+            {/* Map Section */}
+            <div class="mapouter my-5">
+              <div class="gmap_canvas">
+                <iframe class="gmap_iframe"
+                  width="100%"
+                  frameborder="0"
+                  scrolling="no"
+                  marginheight="0"
+                  marginwidth="0"
+                  src="https://maps.google.com/maps?width=307&amp;height=600&amp;hl=en&amp;q=pretoria cbd&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
+              </div>
+            </div>
+            <div className="flex flex-col justify-start ml-5 my-3">
+              {searchResults.length ?
+                <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
+                :
+                <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
+              }
             </div>
           </div>
-          <div className="flex flex-col justify-start ml-5 my-3">
-            {searchResults.length ?
-              <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
-              :
-              <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
-            }
+          <div>
+            <Service />
           </div>
-        </div>
-        <div>
-          <Service />
-        </div>
-        {/* <div>
+          {/* <div>
           <Contact />
           </div> */}
+        </main>
       </div>
-      <div>
+      <footer>
         <Footer />
-      </div>
+      </footer>
     </div>
   )
 }

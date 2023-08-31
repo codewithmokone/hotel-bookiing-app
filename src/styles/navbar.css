@@ -1,37 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap');
 
-.logo {
-    font-size: 20px;
-    margin-left: 20px;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    top: 0;
 }
 
-.navItems {
-    color: black;
+Header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    background-color: #24252A;
 }
 
-.navItems a {
-    text-decoration: none;
-    margin-right: 10px;
-}
-
-.nav-btn {
+.logo {
+    width: 60%;
+    color: rgba(0,136,169,5);
     cursor: pointer;
-    margin: 0 10px;
+    margin-left: 30px;
+}
+
+.navItems{
+    width: 30%;
+}
+
+.galleryLink, .roomsLink, .registerBtn, .loginBtn {
+    display: inline-block;
+    padding: 0px 12px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+.galleryLink:hover, .roomsLink:hover, .registerBtn:hover {
+    color: rgba(0,136,169,0.8);
+}
+
+.loginBtn {
+    padding: 5px 12px;
+    background-color: rgba(0,136,169,1);
     border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
 }
 
-.reg-link {
-    font-size: 15px;
-    background: none;
+.loginBtn:hover {
+    background-color: rgba(0,136,169,0.8);
 }
 
-.login-link {
-    padding: 7px;
-    font-size: 15px;
-    margin: 0 0 0 5px;
-    border: 1px solid black;
-    border-radius: 15px;
-    background-color: black;
-}

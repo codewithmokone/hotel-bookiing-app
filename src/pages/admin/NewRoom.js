@@ -28,7 +28,7 @@ export const AdminHome = () => {
     const [numberOfRooms, setNumberOfRooms] = useState('');
     const [contact, setContact] = useState('');
     const [bedType, setBedType] = useState('');
-    const [files, setFiles] = useState();
+    const [files, setFiles] = useState('');
     const [imageUrl, setImageUrl] = useState('');
 
     const imageListRef = ref(storage, "hotelImages/")
@@ -38,19 +38,19 @@ export const AdminHome = () => {
         e.preventDefault()
 
         // upload image to firebase storage
-        const uploadImage = async () => {
-            for (let i = 0; i < files.legnth; i++) {
-                const imageRef = ref(storage, `hotelImages/${files[i].name + v4()}`);
-                const result = await uploadBytes(imageRef, files[i]).then(() => {
-                    getDownloadURL(imageRef).then((url) => {
-                        console.log(url)
-                        setImageUrl(url);
-                        alert("Image Uploaded");
-                    })
-                })
-            }
-        }
-        uploadImage();
+        // const uploadImage = async () => {
+            
+        //         const imageRef = ref(storage, `hotelImages/${files[0] + v4()}`);
+        //         const result = await uploadBytes(imageRef, files[0]).then(() => {
+        //             getDownloadURL(imageRef).then((url) => {
+        //                 console.log("urls", url)
+        //                 setImageUrl(url);
+        //                 alert("Image Uploaded");
+        //             })
+        //         })
+            
+        // }
+        // uploadImage();
 
         // saving data to firebase firestore db
         try {

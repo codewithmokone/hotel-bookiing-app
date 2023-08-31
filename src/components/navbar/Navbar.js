@@ -9,7 +9,6 @@ const Navbar = ({ login, register }) => {
 
     return (
         <div className="w-[1024px] h-[50px] flex items-center jusstify-center m-[auto] bg-slate-200">
-
             <div className="navContainer w-[1024px] flex items-center justify-between bg-slate-200 ">
                 <span className='font-bold ml-4 decoration-black text-lg ' >HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                 <nav className=" decoration-black flex items-center mr-[20px] ">

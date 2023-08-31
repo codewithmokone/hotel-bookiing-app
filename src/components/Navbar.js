@@ -8,17 +8,16 @@ import { Link } from 'react-router-dom';
 const Navbar = ({ login, register }) => {
 
     return (
-        <div className="navbar bg-gray-200 w-[1024px] m-auto h-[50px] flex items-center justify-center">
-            <div className='navContainer w-[1024px] flex items-center justify-between'>
-                <span className='logo text-sky-800 font-bold '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
-                <nav className="navItems mr-2 text-sky-800">
-                    <Link to="/gallery" className="mr-[10px] text-sky-800 font-semibold">Gallery</Link>
-                    <Link to="/rooms" className="mr-[10px] text-sky-800 font-semibold">Rooms</Link>
-                    <button className="reg-link text-sky-800 font-semibold" onClick={() => { register(true) }}>Register</button>
-                    <button className="login-link  text-sky-400 font-semibold" onClick={() => { login(true) }}>Login</button>
-
+        <div className="navbar w-[1024px] m-auto h-[70px] flex items-center justify-center">
+            <header className='navContainer w-[1024px] '>
+                <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
+                <nav className="navItems">
+                    <Link to="/gallery" className="galleryLink ">Gallery</Link>
+                    <Link to="/rooms" className="roomsLink ">Rooms</Link>
+                    <button className="registerBtn " onClick={() => { register(true) }}>Register</button>
+                    <button className="loginBtn " onClick={() => { login(true) }}>Login</button>
                 </nav>
-            </div>
+            </header>
         </div>
     )
 }
