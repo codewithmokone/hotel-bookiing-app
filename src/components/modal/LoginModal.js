@@ -8,12 +8,16 @@ import { useUserAuth } from '../../components/context/UserAuthContext';
 import { auth } from '../../config/firebase';
 
 
-const LoginModal = ({ closeLogin }) => {
+const LoginModal = ({ closeLogin, setOpenLoginModal }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+
+
     const { logIn } = useUserAuth();
+
+
     const navigate = useNavigate();
 
 
@@ -55,41 +59,46 @@ const LoginModal = ({ closeLogin }) => {
     }
 
 
+    const closeModal = () => {
+        setOpenLoginModal(false)
+    }
+
+
     return (
-        <div className="w-screen h-screen bg-sky-600 fixed flex flex-col items-center justify-center">
+        <div className="w-screen h-screen bg-[#24252A] fixed flex flex-col items-center justify-center">
             <div className="flex flex-col items-center justify-center rounded bg-white w-[500px] h-[500px]">
                 <div className="w-full bg-sky-400">
-                <button className="fixed top-1 bg-stone-700 p-3 rounded-xl text-sky-200 right-2" onClick={() => {closeLogin()}}> X </button>
+                <button className="fixed top-1 bg-[#0088a9] p-3 rounded-xl text-white right-2" onClick={() => closeModal()}> X </button>
                 </div>
                 
-                <h1 className=" text-center font-black text-2xl mb-10">Login</h1>
+                <h1 className=" text-center font-black text-2xl mb-2 text-[#0088a9]" >Login</h1>
                 <form className=" flex flex-col items-center justify-center w-80 " onSubmit={handleLogin}>
                     <label
                         htmlFor="email"
-                        className="w-72 font-medium"
+                        className="w-72 font-medium m-1"
                     >Email:</label>
                     <input
-                        className="mb-5 w-72 h-8"
+                        className="mb-5 w-72 h-8 rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
                         type="email"
-                        placeholder="Enter email"
+                        placeholder=" Enter email"
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                     <label
-                        className="w-72 font-medium"
+                        className="w-72 font-medium m-1 "
                         htmlFor="password"
                     >Password:</label>
                     <input
-                        className="mb-5 h-8 w-72"
+                        className="mb-5 h-8 w-72 rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
                         type="password"
-                        placeholder="Enter password"
+                        placeholder=" Enter password"
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                    <button className="text-white rounded-md h-8 mt-5 bg-sky-950 font-extrabold w-56 ">Login</button>
+                    <button className="text-white rounded-md h-8 mt-2 font-extrabold w-56 bg-[#0088a9] hover:bg-[]">Login</button>
                 </form>
                 {error && <span className=" text-red-600 ">{error}</span>}
-                <p className="mt-6">Don't have an account? <Link to="/register"><span className="text-sky-800 font-semibold">Register</span></Link></p>
+                <p className="mt-2 mb-10 ">Don't have an account? <Link to="/register"><span className="text-[#0088a9] no-underline  font-semibold">Register</span></Link></p>
             </div>
         </div>
     )

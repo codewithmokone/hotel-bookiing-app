@@ -24,18 +24,19 @@ const Search = ({ search }) => {
     const [openOptions, setOpenOptions] = useState(false)
 
     const fetchData = async () => {
+        
+        const q = query(
+            collectRoom,
+            where('price', '>=', parseInt(minPrice)),
+            where('price', '<=', parseInt(minPrice))
+        );
 
-        try {
-            const data = query(collection(db, "hotelRooms"), where("title", "==", searchInput));
-            const querySnapshot = await getDocs(data);
-            querySnapshot.forEach((doc) => {
-                search = (doc.data().title)})
-            setSearchResults(search)
-            console.log("Search data", searchResults)
-        } catch (err) {
-            console.log(err)
-        }
+        const querySnapshot = await getDocs(q);
+        const filteredData = querySnapshot.docs.map((doc) => doc.data());
 
+        console.log("filtered", filteredData);
+
+        setFilteredResults(filteredData)
     };
 
 
@@ -46,7 +47,7 @@ const Search = ({ search }) => {
                 <FontAwesomeIcon icon={faBed} className="headerIcon m-1 text-sky-800 " />
                 <input type="text" placeholder="Search rooms...." onChange={(e) => setSearchInput(e.target.value)} className="SearchInput m-1 outline-none" />
             </div>
-            <div className="m-3 flex flex-row items-center ml-[-30px]">
+            {/* <div className="m-3 flex flex-row items-center ml-[-30px]">
                 <FontAwesomeIcon icon={faCalendarDays} className="headerIcon m-1 text-sky-800" />
                 <span onClick={() => setOpenDate(!openDate)} className="cursor-pointer" >{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
                     date[0].endDate, "MM/dd/yyyy")}`}</span>
@@ -58,9 +59,9 @@ const Search = ({ search }) => {
                     className="	position: absolute bottom-[132px]"
                     minDate={new Date()}
                 />}
-            </div>
+            </div> */}
             <div className="m-3 flex flex-row items-center">
-                <FontAwesomeIcon icon={faPerson} className="headerIcon m-1 text-sky-800" />
+                {/* <FontAwesomeIcon icon={faPerson} className="headerIcon m-1 text-sky-800" />
                 <span onClick={() => setOpenOptions(!openOptions)}>select option</span>
                 {openOptions &&
                     <select>
@@ -68,10 +69,20 @@ const Search = ({ search }) => {
                         <option>2 Adult</option>
                         <option>Family</option>
                     </select>
-                }
+                } */}
+                <input 
+                    placeholder='Enter minimum price'
+                    type="number"
+                    onChange={fetchData}
+                />
+                <input 
+                placeholder='Enter maximum price'
+                    type="number"
+                    onChange={fetchData}
+                />
             </div>
             <div>
-                <button className="bg-sky-800 text-white p-1 mr-[-7px] rounded" onClick={fetchData}>Search</button>
+                <button className="bg-[#0088a9] text-white p-1 mr-[-7px] rounded" onClick={fetchData}>Search</button>
             </div>
 
         </div>

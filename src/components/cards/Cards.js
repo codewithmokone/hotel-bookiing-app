@@ -20,6 +20,8 @@ export const Cards = () => {
     const [rating, setRating] = useState(null);
     const [openModal, setOpenModal] = useState(false)
 
+    console.log(hotelRoomsRef);
+
     const navigate = useNavigate();
 
     // const data = useContext(CartContext);
@@ -43,7 +45,6 @@ export const Cards = () => {
         setOpenModal(true)
        
     }
-    console.log("2nd", data);
 
     const getRooms = async () => {
         try {
@@ -52,8 +53,8 @@ export const Cards = () => {
             const filteredData = data.docs.map((doc) => ({
                 ...doc.data(), id: doc.id,
             }));
-            console.log(filteredData);
             setRooms(filteredData);
+            console.log(data)
 
         } catch (err) {
             console.error(err);

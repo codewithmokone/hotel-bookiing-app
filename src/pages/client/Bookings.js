@@ -24,7 +24,7 @@ const Bookings = () => {
 
   return (
     <div className="flex flex-col">
-      <header>
+      <header className='flex flex-col'>
         <BookingsNavbar />
         <HeroSec />
       </header>

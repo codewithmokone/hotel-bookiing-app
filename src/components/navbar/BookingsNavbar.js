@@ -4,19 +4,18 @@ import { faBellConcierge, faRightFromBracket } from '@fortawesome/free-solid-svg
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-
 const Navbar = ({signOut}) => {
 
     return (
-        <div className="navbar bg-gray-200 w-[1024px] m-auto">
-            <div className='navContainer flex flex-row justify-between items-center h-[60px]'>
-                <span className='logo text-lg font-semibold'>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
+        <header className="navbar">
+            <div className='navContainer w-[1024px] flex justify-between items-center h-[60px]'>
+                <span className='logo'>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                 <nav className="navItems">
-                    <Link to='/clienthome'>Home</Link>
-                    <Link to="/" className="logout-link" onClick={signOut}><FontAwesomeIcon icon={faRightFromBracket} /> Logout</Link>
+                    <Link to='/clienthome' className='ml-[130px]'>Home</Link>
+                    <Link to="/" className='mr-[20px]' onClick={signOut}><FontAwesomeIcon icon={faRightFromBracket} /> Logout</Link>
                 </nav>
             </div>
-        </div>
+        </header>
     )
 }
 

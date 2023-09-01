@@ -46,16 +46,16 @@ const Gallery = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-300">
-            <header className="flex row w-[1024px] m-auto">
+        <div className="min-h-screen bg-">
+            <header className="w-[1024px] m-auto">
                 <Navbar />
             </header>
             <div>
                 <HeroSec />
             </div>
-            <main className="m-auto w-[1024px] flex flex-col  items-center justify-center mt-4 min-h-full">
+            <main className="m-auto w-[1024px] flex flex-col bg-gray-300  items-center justify-center mt-10 mb-5 min-h-full">
                 <div>
-                    <h2 className="font-bold text-[#0088a9]">Gallery</h2>
+                    <h2 className="font-bold text-[#0088a9] m-10">Gallery</h2>
                 </div>
                 <div className='flex flex-row flex-wrap justify-center'>
                     {images.map((image, index) => (
@@ -65,7 +65,7 @@ const Gallery = () => {
                     }
                 </div>
             </main>
-            <footer className='mt-4'>
+            <footer>
                 <Footer />
             </footer>
         </div>

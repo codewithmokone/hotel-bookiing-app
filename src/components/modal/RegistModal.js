@@ -31,31 +31,31 @@ export const Register = ({ closeRegister }) => {
 
 
     return (
-        <div className="modalBackground w-screen h-screen bg-sky-950 fixed flex justify-center items-center">
+        <div className="modalBackground w-screen h-screen bg-[#24252A] fixed flex justify-center items-center">
             <div  className="modalContainer flex flex-col items-center justify-center rounded">
                 <p>{error}</p>
-                <button className="mt-10-" onClick={() => {closeRegister()}}> X </button>
-                <h2 className="font-black text-2xl mt-4 mb-10 ">Register</h2>
+                <button className="fixed top-1 bg-[#0088a9] p-3 rounded-xl text-white right-2" onClick={() => closeRegister()}> X </button>
+                <h2 className="font-black text-2xl mt-4 mb-2 text-[#0088a9] ">Register</h2>
                 <form className="adminLogin-form flex flex-col items-center justify-center w-80" onSubmit={handleSubmit}>
-                    <label  className="w-72 font-medium" for="email">Email:</label>
+                    <label  className="w-72 m-1 font-medium" for="email">Email:</label>
                     <input 
-                        className="mb-5 h-8 w-72"
+                        className="mb-5 h-8 w-72 rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
                         type="email" 
                         placeholder="Enter email"
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    <label  className="w-72 font-medium" for="password">Password:</label>
-                    <input 
-                        className="mb-5 h-8 w-72" 
+                    <label  className="w-72 m-1 font-medium" for="password">Password:</label>
+                    <input
+                        className="mb-5 h-8 w-72 rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
                         type="password" 
                         placeholder="Enter password"
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                    <button className="text-white rounded-md h-8 mt-5 bg-sky-950 font-bold w-56 ">Register</button>
+                    <button className="text-white rounded-md h-8 mt-1 bg-[#0088a9] font-bold w-56 ">Register</button>
                 </form>
-                <p className="mt-6">Already have an account? <Link to="/login" ><span className="text-sky-800 font-semibold">Sign In</span></Link></p>
+                <p className="mt-6">Already have an account? <Link to="/login" ><span className="text-[#0088a9] font-semibold">Sign In</span></Link></p>
             </div>
         </div>
     )

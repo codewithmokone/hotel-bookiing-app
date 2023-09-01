@@ -8,15 +8,15 @@ import { Link } from 'react-router-dom';
 const Navbar = ({signOut}) => {
 
     return (
-        <div className="navbar bg-gray-200 w-[1024px] m-auto items-center justify-center">
-            <div className='navContainer flex flex-row justify-between items-center h-[60px]'>
-                <h1 className='logo text-sky-600 font-bold'>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</h1>
+        <header className="navbar">
+            <div className='navContainer w-[1024px] flex flex-row justify-between items-center h-[60px]'>
+                <span className='logo'>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                 <nav className="navItems">
-                    <Link to='/bookings' className="text-sky-600">Bookings</Link>
-                    <Link to="/" className="logout-link text-sky-600" onClick={signOut}><FontAwesomeIcon icon={faRightFromBracket} /> Logout</Link>
+                    <Link to='/bookings' className="mr-[10px]">Bookings</Link>
+                    <Link to="/" className="ml-[10px] mr-[30px] " onClick={signOut}><FontAwesomeIcon icon={faRightFromBracket} /> Logout</Link>
                 </nav>
             </div>
-        </div>
+        </header>
     )
 }
 

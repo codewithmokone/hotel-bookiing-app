@@ -9,18 +9,18 @@ const FeaturedRooms = () => {
     return (
         <div className="flex flex-col justify-center items-center h-[350px]">
             <div className="heading flex justify-center">
-                <h2 className=" text-xl font-bold mt-2 text-sky-600 border-b-2 border-sky-600 mb-8">Featured Rooms</h2>
+                <h2 className=" text-xl font-bold mt-2 text-[#0088a9] border-b-2 border-[#0088a9] mb-8">Featured Rooms</h2>
             </div>
             <div className="flex flex-row justify-evenly items-center">
-                <div className="h-[230px] w-[300px] bg-sky-800  rounded-md ">
+                <div className="h-[230px] w-[300px] bg-[#0088a9]  rounded-md ">
                     <img className="w-[300px] h-[200px]" src={fimage1} alt="" />
                     <p className="text-center text-white font-semibold mt-1">Family Deluxe</p>
                 </div>
-                <div className="h-[230px] w-[300px] bg-sky-800  mx-10  rounded-md ">
+                <div className="h-[230px] w-[300px] bg-[#0088a9]  mx-10  rounded-md ">
                     <img className="w-[300px] h-[200px]" src={fimage2} alt="" />
                     <p className="text-center text-white font-semibold mt-1">Standard Deluxe</p>
                 </div>
-                <div className="h-[230px] w-[300px] bg-sky-800  rounded-md">
+                <div className="h-[230px] w-[300px] bg-[#0088a9]  rounded-md">
                     <img className="w-[300px] h-[200px]" src={fimage3} alt="" />
                     <p className="text-center text-white font-semibold mt-1">Couples Deluxe</p>
                 </div>
