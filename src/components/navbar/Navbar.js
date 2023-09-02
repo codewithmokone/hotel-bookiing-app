@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Navbar = ({ login, register }) => {
 
     return (
-        <header className="w-[1024px] flex items-center jusstify-center bg-slate-200">
+        <header className="w-[1024px] flex items-center justify-center">
             <div className="navContainer w-[1024px] flex items-center justify-between bg-slate-200 ">
                 <span className='font-bold ml-4 decoration-black text-lg ' >HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                 <nav className=" decoration-black items-center mr-[20px] ">

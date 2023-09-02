@@ -125,9 +125,6 @@ const ViewModal = ({ closeEdit, selectedRoom }) => {
                                     onChange={(e) => setAddress(e.target.value)}
                                     required
                                 />
-
-                            </div>
-                            <div className="right-side flex flex-col w-[450px] mx-10 mt-6">
                                 <label className="text-base font-medium mx-0 my-2.5">Price</label>
                                 <input
                                     type="text"

@@ -70,11 +70,11 @@ const ViewRooms = () => {
         <>
             {openViewModal && <ViewModal selectedRoom={selectedRoom} handleDelete={handleDelete} closeEdit={closeEdit} />}
             <div className="flex flex-col justify-center items-center m-0">
-                <header>
+                <header className='flex flex-col'>
                     <NewRoomNavbar signOut={logout} />
                     <HeroSec />
                 </header>
-                <main className="m-0 w-[1024px] flex flex-row justify-center h-[400px]">
+                <main className="m-0 w-[1024px] flex flex-row justify-center h-[400px] bg-gray-300">
                     <table className="striped-table my-4 mx-8 w-[1024px] border h-[200px]">
                         <thead>
                             <tr className="border-b-2 border-t-2 border-sky-600 text-left ">

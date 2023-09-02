@@ -47,12 +47,10 @@ const Gallery = () => {
 
     return (
         <div className="min-h-screen bg-">
-            <header className="w-[1024px] m-auto">
+            <header className="w-[1024px] m-auto flex flex-col ">
                 <Navbar />
-            </header>
-            <div>
                 <HeroSec />
-            </div>
+            </header>
             <main className="m-auto w-[1024px] flex flex-col bg-gray-300  items-center justify-center mt-10 mb-5 min-h-full">
                 <div>
                     <h2 className="font-bold text-[#0088a9] m-10">Gallery</h2>

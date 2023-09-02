@@ -8,14 +8,13 @@ import { Link } from 'react-router-dom';
 const Navbar = ({signOut}) => {
 
     return (
-        <div className="navbar w-[1024px] h-[50px] flex items-center jusstify-center m-[auto] bg-slate-200">
-            <div className='navContainer w-[1024px] flex items-center justify-between bg-slate-200 '>
+        <div className="navbar w-[1024px] h-[70px] flex items-center jusstify-center m-[auto]">
+            <div className='navContainer w-[1024px] flex items-center justify-between'>
                 <span className='logo font-bold ml-4 decoration-black text-lg'>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                 <nav className="navItems">
-                    <Link to="/newroom">New Room</Link>
-                    <Link to="/uploadgallery">Bookings</Link>
-                    <Link to="/uploadgallery">Gallery</Link>
-                    <Link to="/" className="logout-link" onClick={signOut}>Log out</Link>
+                    <Link to="/newroom" className='no-underline' >New Room</Link>
+                    <Link to="/bookedrooms" className='no-underline'>Bookings</Link>
+                    <Link to="/" className="logout-link no-underline" onClick={signOut}>Log out</Link>
                 </nav>
             </div>
         </div>
