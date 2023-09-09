@@ -11,13 +11,17 @@ import { signOut } from 'firebase/auth';
 import { auth, db } from '../../config/firebase';
 import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from "firebase/storage";
+import { useNavigate } from 'react-router-dom';
+import EditRoom from './EditRoom';
 
-const ViewRooms = () => {
+const AdminHome = () => {
 
     const [rooms, setRooms] = useState();
     const [selectedRoom, setSelectedRoom] = useState();
     const [openViewModal, setViewModal] = useState(false)
 
+
+    const navigate = useNavigate();
     const storage = getStorage();
 
     const closeEdit = () => {
@@ -43,7 +47,7 @@ const ViewRooms = () => {
     const handleEdit = id => {
         const [room] = rooms.filter(room => room.id === id);
         setSelectedRoom(room);
-        setViewModal(true);
+        navigate(`/editroom/${id}`);
     };
 
     // handles deleting a room
@@ -68,7 +72,7 @@ const ViewRooms = () => {
 
     return (
         <>
-            {openViewModal && <ViewModal selectedRoom={selectedRoom} handleDelete={handleDelete} closeEdit={closeEdit} />}
+            {/* {openViewModal && <EditRoom selectedRoom={selectedRoom} handleDelete={handleDelete} closeEdit={closeEdit} />} */}
             <div className="flex flex-col justify-center items-center m-0">
                 <header className='flex flex-col'>
                     <NewRoomNavbar signOut={logout} />
@@ -135,4 +139,4 @@ const ViewRooms = () => {
     )
 }
 
-export default ViewRooms
+export default AdminHome

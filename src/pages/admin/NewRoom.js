@@ -11,7 +11,6 @@ import Footer from '../../components/Footer';
 // Firebase functions
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../config/firebase';
-
 import { storage } from '../../config/firebase';
 import { ref, uploadBytes, list, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
@@ -31,7 +30,7 @@ export const AdminHome = () => {
     const [contact, setContact] = useState('');
     const [bedType, setBedType] = useState('');
     const [files, setFiles] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
+    const [imageUrl, setImageUrl] = useState([]);
 
     const imageListRef = ref(storage, "hotelImages/")
 
@@ -40,22 +39,22 @@ export const AdminHome = () => {
         e.preventDefault()
 
         // upload image to firebase storage
-        // const uploadImage = async () => {
+        const uploadImage = async () => {
 
-        //         const imageRef = ref(storage, `hotelImages/${files[0] + v4()}`);
-        //         const result = await uploadBytes(imageRef, files[0]).then(() => {
-        //             getDownloadURL(imageRef).then((url) => {
-        //                 console.log("urls", url)
-        //                 setImageUrl(url);
-        //                 alert("Image Uploaded");
-        //             })
-        //         })
-
-        // }
-        // uploadImage();
+                const imageRef = ref(storage, `hotelImages/${files[0] + v4()}`);
+                const result = await uploadBytes(imageRef, files[0]).then(() => {
+                    getDownloadURL(imageRef).then((url) => {
+                        console.log("urls", url)
+                        setImageUrl(url);
+                        alert("Image Uploaded");
+                    })
+                })
+        }
+        uploadImage();
 
         // saving data to firebase firestore db
         try {
+
             const docRef = await addDoc(collection(db, "hotelRooms"), {
                 hotel: hotel,
                 title: title,
@@ -69,6 +68,19 @@ export const AdminHome = () => {
                 bedType: bedType,
                 roomImage: imageUrl
             });
+
+            setHotel('')
+            setTitle('')
+            setDescription('')
+            setAddress('')
+            setContact('')
+            setPrice('')
+            setNumberOfPeople('')
+            setNumberOfRooms('')
+            setRoomType('')
+            setBedType('')
+            setImageUrl('')
+
             alert('Successful');
         } catch (error) {
 

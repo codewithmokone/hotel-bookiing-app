@@ -1,54 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../config/firebase'
-import { useParams } from 'react-router-dom';
 import { collection, getDoc, doc, updateDoc } from 'firebase/firestore';
 
-const EditRoom = () => {
 
-    const { id } = useParams(); // Get the room ID from the URL
 
-    const [rooms, setRooms] = useState([]);
-    const [formData, setFormData] = useState('')
+const EditRoom = ({ closeEdit, selectedRoom }) => {
+
     const [imageUpload, setImageUpload] = useState();
-    const [hotel, setHotel] = useState(rooms.hotel);
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [address, setAddress] = useState('');
-    const [price, setPrice] = useState('');
-    const [numberOfPeople, setNumberOfPeople] = useState('');
-    const [contact, setContact] = useState('');
-    const [numberOfRooms, setNumberOfRooms] = useState('');
-    const [roomType, setRoomType] = useState('');
-    const [bedType, setBedType] = useState('');
-    const [roomImage, setRoomImage] = useState('')
-    const [imageUrl, setImageUrl] = useState('');
+    const [hotel, setHotel] = useState(selectedRoom.hotel);
+    const [title, setTitle] = useState(selectedRoom.title);
+    const [description, setDescription] = useState(selectedRoom.description);
+    const [address, setAddress] = useState(selectedRoom.address);
+    const [price, setPrice] = useState(selectedRoom.price);
+    const [numberOfPeople, setNumberOfPeople] = useState(selectedRoom.numberOfPeople);
+    const [contact, setContact] = useState(selectedRoom.contact);
+    const [numberOfRooms, setNumberOfRooms] = useState(selectedRoom.numberOfRooms);
+    const [roomType, setRoomType] = useState(selectedRoom.roomType);
+    const [bedType, setBedType] = useState(selectedRoom.bedType);
+    const [roomImage, setRoomImage] = useState(selectedRoom.roomImage)
+    const [imageUrl, setImageUrl] = useState(selectedRoom.imageUrl);
+    // const [] = useState(selectedRoom.);
 
+    // View and delete room section
+    const [rooms, setRooms] = useState([]);
 
-    console.log(hotel)
     // const hotelRoomRef = doc(db, "hotelRooms");
 
-    // const getRooms = async () => {
+    const getRooms = async () => {
 
-    //     try {
+        try {
 
-    //         const data = await getDoc(collection(db, "hotelRooms"));
-    //         const filteredData = data.docs.map((doc) => ({
-    //             ...doc.data(), id: doc.id,
-    //         }));
+            const data = await getDoc(collection(db, "hotelRooms"));
+            const filteredData = data.docs.map((doc) => ({
+                ...doc.data(), id: doc.id,
+            }));
             
-    //         setRooms(filteredData);
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...rooms,
-            [name]: value,
-        });
+            setRooms(filteredData);
+        } catch (err) {
+            console.error(err);
+        }
+        
     };
+
 
     // Update room  function
     const updateRoom = async (e) => {
@@ -70,11 +63,11 @@ const EditRoom = () => {
 
         try {
             // Update room in collection
-            await updateDoc(doc(db, "hotelRooms", id), room);
+            await updateDoc(doc(db, "hotelRooms", selectedRoom.id), room);
             console.log("Room updated")
 
         } catch (error) {
-            console.log(id)
+            console.log(selectedRoom.id)
             // console.log(rooms)
             console.log("Error updating room: ", error)
         }
@@ -87,32 +80,13 @@ const EditRoom = () => {
     }
 
     useEffect(() => {
-
-        const fetchRoomData = async () => {
-            try {
-                const roomDocRef = doc(db, 'hotelRooms', id);
-                const roomDocSnapshot = await getDoc(roomDocRef);
-
-                if (roomDocSnapshot.exists()) {
-                    const roomData = {id: roomDocSnapshot.id, ...roomDocSnapshot.data() };
-                    setRooms(roomData)
-                    setFormData(roomData)
-                } else{
-                    console.error('Room not found');
-                }
-            }catch(err){
-                console.log(err)
-            }
-        }
-
-        fetchRoomData();
-        // getRooms();
-    }, [id]);
+        getRooms();
+    }, []);
 
     return (
-        <div className="w-screen bg-sky-950 fixed flex items-center justify-center">
+        <div className="w-screen h-screen bg-sky-950 fixed flex items-center justify-center">
             <div className="flex flex-col items-center justify-center">
-                <h3 className="text-2xl m-[30px] text-white ">Update Room</h3>
+                <h3 className="text-2xl m-[30px] text-white ">Add New Room</h3>
                 <div>
                     <form className="flex flex-col items-center justify-center bg-slate-300" >
                         <div className="flex flex-row items-center justify-center m-auto">
@@ -123,16 +97,15 @@ const EditRoom = () => {
                                 <input
                                     type="text"
                                     placeholder=" Enter title..."
-                                    name='hotel'
-                                    value={formData.hotel}
-                                    onChange={handleChange}
+                                    value={hotel}
+                                    onChange={(e) => setHotel(e.target.value)}
                                     required
                                 />
                                 <label className="text-base font-medium mx-0 my-2 mr-[30px]">Title</label>
                                 <input
                                     type="text"
                                     placeholder=" Enter title..."
-                                    value={rooms.title}
+                                    value={title}
                                     onChange={(e) => setTitle(e.target.value)}
                                     required
                                 />
@@ -140,7 +113,7 @@ const EditRoom = () => {
                                 <input
                                     type="text"
                                     placeholder=" Enter description"
-                                    value={rooms.description}
+                                    value={description}
                                     onChange={(e) => setDescription(e.target.value)}
                                     required
                                 />
@@ -148,7 +121,7 @@ const EditRoom = () => {
                                 <input
                                     type="text"
                                     placeholder=" Enter address"
-                                    value={rooms.address}
+                                    value={address}
                                     onChange={(e) => setAddress(e.target.value)}
                                     required
                                 />
@@ -156,7 +129,7 @@ const EditRoom = () => {
                                 <input
                                     type="text"
                                     placeholder=" Enter price..."
-                                    value={rooms.price}
+                                    value={price}
                                     onChange={(e) => setPrice(e.target.value)}
                                     required
                                 />
@@ -164,7 +137,7 @@ const EditRoom = () => {
                                 <input
                                     type="text"
                                     placeholder=" Enter number of people"
-                                    value={rooms.numberOfPeople}
+                                    value={numberOfPeople}
                                     onChange={(e) => setNumberOfPeople(e.target.value)}
                                     required
                                 />
@@ -172,7 +145,7 @@ const EditRoom = () => {
                                 <input
                                     type="text"
                                     placeholder=" Enter contact details..."
-                                    value={rooms.contact}
+                                    value={contact}
                                     onChange={(e) => setContact(e.target.value)}
                                     required
                                 />
@@ -180,19 +153,19 @@ const EditRoom = () => {
                                 <input
                                     type="number"
                                     placeholder=" Enter contact details..."
-                                    value={rooms.numberOfRooms}
+                                    value={numberOfRooms}
                                     onChange={(e) => setNumberOfRooms(e.target.value)}
                                     required
                                 />
                                 <label className="text-base font-medium mx-0 my-2.5">Room type:</label>
-                                <select onChange={(e) => setRoomType(e.target.value)} value={rooms.roomType} className="w-[360px] h-[30px]">
+                                <select onChange={(e) => setRoomType(e.target.value)} value={roomType} className="w-[360px] h-[30px]">
                                     <option>Standard Double Room</option>
                                     <option>Suite</option>
                                     <option>Deluxe Room</option>
                                     <option>Accessible Room</option>
                                 </select>
                                 <label className="text-base font-medium mx-0 my-2.5">Bed type:</label>
-                                <select onChange={(e) => setBedType(e.target.value)} value={rooms.bedType} className="w-[360px] h-[30px]">
+                                <select onChange={(e) => setBedType(e.target.value)} value={bedType} className="w-[360px] h-[30px]">
                                     <option>Double Bed</option>
                                     <option>2 Beds</option>
                                     <option>King Bed</option>
@@ -203,7 +176,7 @@ const EditRoom = () => {
                         </div>
                         <div className="flex flex-row justify-evenly items-start w-[450px] ">
                             <button className=" font-bold rounded-md bg-sky-950 w-[100px] text-white mx-0 my-10" onClick={updateRoom}>Update</button>
-                            {/* <button className=" font-bold rounded-md bg-sky-950 w-[100px] text-white mx-0 my-10" onClick={closeEdit}>Close</button> */}
+                            <button className=" font-bold rounded-md bg-sky-950 w-[100px] text-white mx-0 my-10" onClick={closeEdit}>Close</button>
                         </div>
                     </form>
                 </div>

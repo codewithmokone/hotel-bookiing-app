@@ -43,10 +43,11 @@ export const Cards = () => {
         }
 
         setOpenModal(true)
-       
+
     }
 
     const getRooms = async () => {
+        
         try {
             const data = await getDocs(hotelRoomsRef);
 
@@ -62,11 +63,11 @@ export const Cards = () => {
     };
 
     useEffect(() => {
-        // const imageRef = ref(storage, `hotelImages/`);
-        // getDownloadURL(imageRef).then((url) => {
-        //     setRoomImage(url);
-        //     alert("Image Uploaded");
-        // })
+        const imageRef = ref(storage, `hotelImages/`);
+        getDownloadURL(imageRef).then((url) => {
+            setRoomImage(url);
+            alert("Image Uploaded");
+        })
 
         getRooms();
 

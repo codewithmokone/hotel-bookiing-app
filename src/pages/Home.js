@@ -10,7 +10,6 @@ import Header from '../components/HeroSec';
 import Footer from '../components/Footer';
 import Cards from '../components/cards/Cards';
 import SearchCard from '../components/cards/SearchCard'
-import LoginModal from '../components/modal/LoginModal';
 import RegistModal from '../components/modal/RegistModal';
 
 // import Contact from '../components/Contact';
@@ -21,7 +20,6 @@ import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
 
-  const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openRegistModal, setOpenRegistModal] = useState(false);
   const [searchResults, setSearchResults] = useState('');
   const [minPrice, setMinPrice] = useState('');
@@ -74,12 +72,7 @@ export const Home = () => {
 
   // Opens the login modal
   const login = () => {
-    setOpenLoginModal(true);
-  }
-
-  // Closes the login modal
-  const closeLogin = () => {
-    setOpenLoginModal(false);
+    navigate("/login")
   }
 
   // Opens the register modal
@@ -95,7 +88,6 @@ export const Home = () => {
   return (
     <div className='min-h-screen'>
       <header className='w-[1024px]'>
-        {openLoginModal && <LoginModal closeLogin={closeLogin} />}
         {openRegistModal && <RegistModal closeRegister={closeRegister} />}
         <Navbar login={login} register={register} />
       </header>
@@ -104,17 +96,17 @@ export const Home = () => {
       </div>
       <div className="main flex flex-col justify-center items-center w-[1024px] m-auto">
         <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
-          <div className="search-section rounded w-[550px] h-[40px] flex justify-between items-center border bg-white">
+          <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
             <div>
               <input
-                className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
+                className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
                 type="number"
                 value={minPrice}
                 placeholder='Enter minimum amount'
                 onChange={(e) => setMinPrice(e.target.value)}
               />
               <input
-                className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
+                className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
                 type="number"
                 value={maxPrice}
                 placeholder='Enter maximum amount'

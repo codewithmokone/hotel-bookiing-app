@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import Bookings from './pages/client/Bookings'
 import NoPage from './pages/NoPage';
 import NewRoom from './pages/admin/NewRoom';
-import LoginModal from '../src/components/modal/LoginModal';
+import Login from '../src/pages/Login';
 import RegistModal from '../src/components/modal/RegistModal';
 import ClientHome from './pages/client/ClientHome';
 import { Routes, Route } from 'react-router-dom';
@@ -14,6 +14,7 @@ import ViewRoomDetails from './pages/client/ViewRoomDetails';
 import Gallery from './pages/Gallery';
 import ViewRoom from './components/ViewRoom';
 import BookedRooms from './pages/admin/BookedRooms';
+import EditRoom from './pages/admin/EditRoom';
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/roomview" element={<ViewRoom/>} />
-          <Route path="/login" element={<LoginModal />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegistModal />} />
           <Route path="/adminhome" element={<AdminHome />} />
           <Route path='/newroom' element={<NewRoom />} />
@@ -35,6 +36,8 @@ function App() {
           <Route path='/viewroomdetails' element={<ProtectedRoute><ViewRoomDetails /></ProtectedRoute>} />
           <Route path="/adminhome" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
           <Route path='/newroom' element={<ProtectedRoute><NewRoom /></ProtectedRoute>} />
+          <Route path='/editroom/:id' element={<ProtectedRoute><EditRoom /></ProtectedRoute>} />
+
           <Route path='/bookedrooms' element={<BookedRooms />} />
 
 
