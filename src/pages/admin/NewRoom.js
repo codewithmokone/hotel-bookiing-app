@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/adminhome.css';
-import { faBed, faHotel, faUser } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Importing components
 import Navbar from '../../components/navbar/AdminNavbar';
@@ -12,7 +10,7 @@ import Footer from '../../components/Footer';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import { storage } from '../../config/firebase';
-import { ref, uploadBytes, list, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 
 
@@ -29,7 +27,7 @@ export const AdminHome = () => {
     const [numberOfRooms, setNumberOfRooms] = useState('');
     const [contact, setContact] = useState('');
     const [bedType, setBedType] = useState('');
-    const [files, setFiles] = useState('');
+    const [file, setFile] = useState('');
     const [imageUrl, setImageUrl] = useState([]);
 
     const imageListRef = ref(storage, "hotelImages/")
@@ -39,21 +37,16 @@ export const AdminHome = () => {
         e.preventDefault()
 
         // upload image to firebase storage
-        const uploadImage = async () => {
-
-                const imageRef = ref(storage, `hotelImages/${files[0] + v4()}`);
-                const result = await uploadBytes(imageRef, files[0]).then(() => {
-                    getDownloadURL(imageRef).then((url) => {
-                        console.log("urls", url)
-                        setImageUrl(url);
-                        alert("Image Uploaded");
-                    })
-                })
+        if(!file) {
+            alert('Please select an image.');
         }
-        uploadImage();
-
-        // saving data to firebase firestore db
-        try {
+        
+        const imageRef = ref(storage, `hotelImages/${file[0] + v4()}`)
+        try{
+            await uploadBytes(imageRef, file)
+            const url = await getDownloadURL(imageRef);
+            setImageUrl(url);
+            alert('Image Uploaded');
 
             const docRef = await addDoc(collection(db, "hotelRooms"), {
                 hotel: hotel,
@@ -63,10 +56,10 @@ export const AdminHome = () => {
                 contact: contact,
                 price: price,
                 numberOfPeople: numberOfPeople,
-                numberOfRoooms: numberOfRooms,
+                numberOfRooms: numberOfRooms,
                 roomType: roomType,
                 bedType: bedType,
-                roomImage: imageUrl
+                roomImage: url
             });
 
             setHotel('')
@@ -82,23 +75,11 @@ export const AdminHome = () => {
             setImageUrl('')
 
             alert('Successful');
-        } catch (error) {
 
+        }catch(err){
+            console.log("Error uploading an image. ", err)
         }
-
-
     })
-
-
-    // useEffect(() => {
-    //     list(imageListRef).then((response) => {
-    //         response.items.forEach((item) => {
-    //             getDownloadURL(item).then((url) => {
-    //                 setImageUrl((prev) => [...prev, url]);
-    //             })
-    //         })
-    //     })
-    // }, [])
 
     return (
         <div className='home-container min-h-screen'>
@@ -113,7 +94,7 @@ export const AdminHome = () => {
                 <form className="flex flex-row justify-center items-center " >
                     <div className="w-[450px] flex flex-col justify-center items-center">
                         <img className="image" src={imageUrl} alt="" />
-                        <input className="my-0" type="file" multiple onChange={(e) => { setFiles(e.target.files[0]) }} />
+                        <input className="my-0" type="file" multiple onChange={(e) => { setFile(e.target.files[0]) }} />
                         <label className="label text-base font-medium mx-0 my-2 mr-[30px]">Hotel</label>
                         <input
                             type="text"
