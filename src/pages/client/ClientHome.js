@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-
-// Components import
 import ClientNavbar from '../../components/navbar/ClientNavbar';
 import Header from '../../components/HeroSec';
 import Footer from '../../components/Footer';
 import Cards from '../../components/cards/Cards';
 import Service from '../../components/Service';
-
-// Firebase imports
 import { useUserAuth } from '../../components/context/UserAuthContext'
 import { auth, db } from '../../config/firebase';
 import FeaturedRooms from '../../components/FeaturedRooms';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-
 
 export const Home = () => {
 
@@ -85,7 +80,7 @@ export const Home = () => {
           <FeaturedRooms />
         </div>
         <div className="flex flex-row justify-between">
-          <div className="mapouter ml-5 my-5 w-[33%]">
+          <div className="mapouter ml-6 my-5 w-[30%]">
             <div class="gmap_canvas">
               <iframe class="gmap_iframe"
                 width="100%"

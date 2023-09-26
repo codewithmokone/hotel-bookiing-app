@@ -8,8 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { getDownloadURL, ref } from 'firebase/storage';
 import ViewRoom from '../ViewRoom';
 
-
-
 export const Cards = () => {
 
     const hotelRoomsRef = collection(db, "hotelRooms");
@@ -20,13 +18,10 @@ export const Cards = () => {
     const [rating, setRating] = useState(null);
     const [openModal, setOpenModal] = useState(false)
 
-    console.log(hotelRoomsRef);
-
     const navigate = useNavigate();
 
     // const data = useContext(CartContext);
-    // console.log(data)
-
+   
     const { dispatch } = useContext(CartContext);
 
     const handleNav = () => {
@@ -46,6 +41,7 @@ export const Cards = () => {
 
     }
 
+    // Handles fetching the rooms from firestore 
     const getRooms = async () => {
         
         try {
@@ -55,7 +51,6 @@ export const Cards = () => {
                 ...doc.data(), id: doc.id,
             }));
             setRooms(filteredData);
-            console.log(data)
 
         } catch (err) {
             console.error(err);
@@ -63,11 +58,6 @@ export const Cards = () => {
     };
 
     useEffect(() => {
-        const imageRef = ref(storage, `hotelImages/`);
-        getDownloadURL(imageRef).then((url) => {
-            setRoomImage(url);
-            alert("Image Uploaded");
-        })
 
         getRooms();
 
@@ -76,12 +66,11 @@ export const Cards = () => {
     return (
         <>
             {rooms.map((room, id) => (
-                <div className=" overflow-hidden flex flex-row justify-center my-2 border border-gray-300 w-[650px] h-[260px]" key={id}>
+                <div className=" overflow-hidden flex flex-row justify-center my-2 border w-[640px] h-[260px] shadow-sm bg-white shadow-black m-2 mb-1 border-white" key={id}>
                     <div className="image-container w-[40%] h-[200px] m-[10px]">
                         <img className="w-[300px] m-[10px] h-[200px]" src={room.roomImage} alt='roomImage' />
                     </div>
                     <div className="w-[55%] justify-center items-center ml-6 mt-1">
-
                         <table className=" w-[250px]" >
                             <tbody>
                             <tr>

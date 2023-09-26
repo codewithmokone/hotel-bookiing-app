@@ -1,5 +1,5 @@
 import React from 'react'
-import '../components/modal/stryle.css';
+// import '../components/modal/stryle.css';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { db } from '../config/firebase';
@@ -62,13 +62,12 @@ const Login = ( ) => {
 
     return (
         <div className="w-screen h-screen bg-[#24252A] fixed flex flex-col items-center justify-center">
-            <div className="flex flex-col items-center justify-center rounded bg-white w-[400px] h-[400px]">
+            <div className="flex flex-col items-center justify-center rounded bg-white w-[500px] h-[500px]">
                 <div className="w-full bg-sky-400">
                 <button className="fixed top-1 bg-[#0088a9] p-[7px] rounded-xl text-white right-2" onClick={closeLoginPage}> X </button>
                 </div>
-                
                 <h1 className=" text-center font-black text-2xl mb-2 text-[#0088a9]" >Login</h1>
-                <form className=" flex flex-col items-center justify-center w-80 " onSubmit={handleLogin}>
+                <form className=" flex flex-col items-center justify-center w-80" onSubmit={handleLogin}>
                     <label
                         htmlFor="email"
                         className="w-60 font-medium m-1"

@@ -3,16 +3,11 @@ import React, { useState } from 'react';
 // import 'react-date-range/dist/theme/default.css'; // theme css file
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../config/firebase';
-
-// Components and pages
 import Navbar from '../components/Navbar';
 import Header from '../components/HeroSec';
 import Footer from '../components/Footer';
 import Cards from '../components/cards/Cards';
 import SearchCard from '../components/cards/SearchCard'
-import RegistModal from '../components/modal/RegistModal';
-
-// import Contact from '../components/Contact';
 import Service from '../components/Service';
 import FeaturedRooms from '../components/FeaturedRooms';
 import { useNavigate } from 'react-router-dom';
@@ -20,15 +15,12 @@ import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
 
-  const [openRegistModal, setOpenRegistModal] = useState(false);
   const [searchResults, setSearchResults] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [filteredResults, setFilteredResults] = useState([]);
 
   const readingData = collection(db, "hotelRooms")
-
-  console.log(readingData)
 
   // Function returned from the useNavigate hook to programmatically navigate between pages
   const navigate = useNavigate()
@@ -77,18 +69,12 @@ export const Home = () => {
 
   // Opens the register modal
   const register = () => {
-    setOpenRegistModal(true);
-  }
-
-  // Closes the register modal
-  const closeRegister = () => {
-    setOpenRegistModal(false);
+    navigate("/register");
   }
 
   return (
     <div className='min-h-screen'>
       <header className='w-[1024px]'>
-        {openRegistModal && <RegistModal closeRegister={closeRegister} />}
         <Navbar login={login} register={register} />
       </header>
       <div>
@@ -124,19 +110,21 @@ export const Home = () => {
           </div>
           <div className=" flex flex-row h-auto ">
             {/* Map Section */}
-            <div class="mapouter my-5">
-              <div class="gmap_canvas">
-                <iframe class="gmap_iframe"
-                  width="100%"
-                  frameborder="0"
-                  scrolling="no"
-                  marginheight="0"
-                  marginwidth="0"
-                  src="https://maps.google.com/maps?width=307&amp;height=600&amp;hl=en&amp;q=pretoria cbd&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
-                </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
+            <div className='w-[30%] ml-6'>
+              <div class="mapouter my-5">
+                <div class="gmap_canvas">
+                  <iframe class="gmap_iframe"
+                    width="100%"
+                    frameborder="0"
+                    scrolling="no"
+                    marginheight="0"
+                    marginwidth="0"
+                    src="https://maps.google.com/maps?width=307&amp;height=600&amp;hl=en&amp;q=pretoria cbd&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                  </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
+                </div>
               </div>
             </div>
-            <div className="flex flex-col justify-start ml-5 my-3">
+            <div className="flex flex-col justify-start mr-4 my-3">
               {searchResults.length ?
                 <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
                 :

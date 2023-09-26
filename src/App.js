@@ -4,7 +4,7 @@ import Bookings from './pages/client/Bookings'
 import NoPage from './pages/NoPage';
 import NewRoom from './pages/admin/NewRoom';
 import Login from '../src/pages/Login';
-import RegistModal from '../src/components/modal/RegistModal';
+import Register from '../src/pages/Register';
 import ClientHome from './pages/client/ClientHome';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/context/ProtectedRoute';
@@ -26,7 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/roomview" element={<ViewRoom/>} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<RegistModal />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/adminhome" element={<AdminHome />} />
           <Route path='/newroom' element={<NewRoom />} />
 
