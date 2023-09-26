@@ -36,7 +36,7 @@ Header {
     margin-right: 30px;
 }
 
-.galleryLink, .roomsLink, .registerBtn, .loginBtn {
+.galleryLink, .roomsLink, .registerBtn, .loginBtn, .home, .newRoom, .bookings, .logout-link {
     display: inline-block;
     padding: 0px 12px;
     font-weight: 500;
@@ -45,7 +45,7 @@ Header {
     text-decoration: none;
 }
 
-.galleryLink:hover, .roomsLink:hover, .registerBtn:hover {
+.galleryLink:hover, .roomsLink:hover, .registerBtn:hover, .home:hover, .newRoom:hover, .bookings:hover, .logout-link:hover {
     color: rgba(0,136,169,0.8);
 }
 

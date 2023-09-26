@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/adminhome.css';
-
-// Importing components
-import Navbar from '../../components/navbar/AdminNavbar';
+import AdminNavbar from '../../components/navbar/AdminNavbar';
 import Header from '../../components/HeroSec';
 import Footer from '../../components/Footer';
-
-// Firebase functions
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import { storage } from '../../config/firebase';
@@ -84,7 +80,7 @@ export const AdminHome = () => {
     return (
         <div className='home-container min-h-screen'>
             <header className='flex flex-col '>
-                <Navbar />
+                <AdminNavbar />
                 <Header />
             </header>
             <div className="admin-main-section  w-[1024px] h-full flex flex-col items-center bg-gray-300 m-auto">

@@ -14,7 +14,7 @@ import ViewRoomDetails from './pages/client/ViewRoomDetails';
 import Gallery from './pages/Gallery';
 import ViewRoom from './components/ViewRoom';
 import BookedRooms from './pages/admin/BookedRooms';
-import EditRoom from './pages/admin/EditRoom';
+import UpdateRoom from './pages/admin/UpdateRoom';
 
 function App() {
 
@@ -27,8 +27,7 @@ function App() {
           <Route path="/roomview" element={<ViewRoom/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/adminhome" element={<AdminHome />} />
-          <Route path='/newroom' element={<NewRoom />} />
+          <Route path='/gallery' element={<Gallery />} />
 
           {/* Protected Routes */}
           <Route path='/clienthome' element={<ProtectedRoute><ClientHome /></ProtectedRoute>} />
@@ -36,12 +35,8 @@ function App() {
           <Route path='/viewroomdetails' element={<ProtectedRoute><ViewRoomDetails /></ProtectedRoute>} />
           <Route path="/adminhome" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
           <Route path='/newroom' element={<ProtectedRoute><NewRoom /></ProtectedRoute>} />
-          <Route path='/editroom/:id' element={<ProtectedRoute><EditRoom /></ProtectedRoute>} />
-
+          <Route path='/editroom/:id' element={<ProtectedRoute><UpdateRoom /></ProtectedRoute>} />
           <Route path='/bookedrooms' element={<BookedRooms />} />
-
-
-          <Route path='/gallery' element={<Gallery />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </CartContextProvider>

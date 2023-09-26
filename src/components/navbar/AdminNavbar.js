@@ -5,19 +5,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
 
-const Navbar = ({signOut}) => {
+const AdminNavbar = ({ signOut }) => {
 
     return (
-        <div className="navbar w-[1024px] flex items-center jusstify-center m-[auto]">
-            <div className=' w-[1024px] flex items-center justify-between bg-slate-200'>
-                <span className='logo '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
-                <nav className="navItems">
-                    <Link to="/adminhome">Home</Link>
-                    <Link to="/" className="logout-link" onClick={signOut}>Log out</Link>
+        <div className="navbar w-[1024px] h-[70px] flex items-center jusstify-center m-[auto]">
+            <div className='navContainer w-[1024px] flex items-center justify-between'>
+                <span className='logo font-bold ml-4 decoration-black text-lg w-[60%]'>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
+                <nav className=" w-[35%]">
+                    <Link to="/adminhome" className='home no-underline'>Home</Link>
+                    <Link to="/newroom" className='newRoom no-underline' >New Room</Link>
+                    <Link to="/bookedrooms" className='bookings no-underline'>Bookings</Link>
+                    <Link to="/" className="logout-link no-underline" onClick={signOut}>Log out</Link>
                 </nav>
             </div>
         </div>
     )
 }
 
-export default Navbar;
+export default AdminNavbar;

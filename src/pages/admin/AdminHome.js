@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
-
-// Components import
-import NewRoomNavbar from '../../components/navbar/NewRoomNavbar';
+import AdminNavbar from '../../components/navbar/AdminNavbar';
 import HeroSec from '../../components/HeroSec';
 import Footer from '../../components/Footer';
-import ViewModal from '../../components/modal/ViewModal';
-
-// Firebase import
 import { signOut } from 'firebase/auth';
 import { auth, db } from '../../config/firebase';
 import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import { useNavigate } from 'react-router-dom';
-import EditRoom from './EditRoom';
+// import UpdateRoom from './UpdateRoom';
 
 const AdminHome = () => {
 
@@ -28,6 +23,7 @@ const AdminHome = () => {
         setViewModal(false);
     }
 
+    // Handles login out the user
     const logout = async () => {
         try {
             await signOut(auth)
@@ -44,6 +40,7 @@ const AdminHome = () => {
         setRooms(rooms);
     }
 
+    // Handles the edit function
     const handleEdit = id => {
         const [room] = rooms.filter(room => room.id === id);
         setSelectedRoom(room);
@@ -75,7 +72,7 @@ const AdminHome = () => {
             {/* {openViewModal && <EditRoom selectedRoom={selectedRoom} handleDelete={handleDelete} closeEdit={closeEdit} />} */}
             <div className="flex flex-col justify-center items-center m-0">
                 <header className='flex flex-col'>
-                    <NewRoomNavbar signOut={logout} />
+                    <AdminNavbar signOut={logout} />
                     <HeroSec />
                 </header>
                 <main className="m-0 w-[1024px] flex flex-row justify-center h-[400px] bg-gray-300">

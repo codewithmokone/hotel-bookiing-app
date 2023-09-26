@@ -52,19 +52,19 @@ export const Home = () => {
         <ClientNavbar signOut={signOut} />
         <Header />
       </header>
-      <main className="main bg-white flex flex-col w-[1024px] m-auto ">
+      <main className="main bg-gray-300 flex flex-col w-[1024px] m-auto ">
         <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
-          <div className="search-section rounded w-[550px] h-[40px] flex justify-between items-center border bg-white">
+          <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
             <div>
               <input
-                className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
+                className='w-[215px] ml-[30px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                 type="number"
                 value={minPrice}
                 placeholder='Enter minimum amount'
                 onChange={(e) => setMinPrice(e.target.value)}
               />
               <input
-                className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
+                className='w-[215px] ml-[30px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                 type="number"
                 value={maxPrice}
                 placeholder='Enter maximum amount'
@@ -76,10 +76,10 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="m-auto">
+        <div className="m-auto bg-gray-300">
           <FeaturedRooms />
         </div>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between bg-gray-300">
           <div className="mapouter ml-6 my-5 w-[30%]">
             <div class="gmap_canvas">
               <iframe class="gmap_iframe"
@@ -92,10 +92,8 @@ export const Home = () => {
               </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
             </div>
           </div>
-          <div className="card-list flex flex-col justify-center items-center ml-5 my-3">
-            <ul className="card flex flex-col justify-between">
-              <li><Cards /></li>
-            </ul>
+          <div className="card-list flex flex-col justify-center items-center ml-5 my-3 mr-2">
+            <Cards />
           </div>
         </div>
         <div className="m-auto">
