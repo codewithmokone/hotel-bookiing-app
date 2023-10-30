@@ -67,6 +67,12 @@ const ViewRoomDetails = () => {
               <td><p className="text-xs font-bold my-1">Price: R {rooms.price}.00</p></td>
             </tr>
             <tr>
+              <td><p>Room Amenities:</p></td>
+              <td> {wifi && <li>WiFi</li>}</td>
+              <td> {tv && <li>TV</li>}</td>
+              <td> {airConditioning && <li>Air Conditioning</li>}</td>
+            </tr>
+            <tr>
               <td><button className=" text-sky-600 border p-1" onClick={nav}>Close</button></td>
               <td><button className=" text-sky-600 border p-1" onClick={() => { dispatch({ type: 'ADD_TO_CART', id: rooms.id, rooms }) }}>Reserve</button></td>
             </tr>

@@ -29,16 +29,13 @@ export const Cards = () => {
     }
    
     const handleView = (room) => {
-
         try {
             let selectedRoom = room;
             setData(selectedRoom);
         }catch (err){
             console.log(err)
         }
-
         setOpenModal(true)
-
     }
 
     // Handles fetching the rooms from firestore 
@@ -102,7 +99,7 @@ export const Cards = () => {
                 </div>
             ))
             }
-            {openModal && <ViewRoom data={data} />}
+            {openModal && <ViewRoom data={data} setOpenModal={setOpenModal} />}
         </>
     )
 }

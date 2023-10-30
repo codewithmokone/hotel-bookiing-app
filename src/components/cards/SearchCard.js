@@ -12,13 +12,10 @@ import { useNavigate } from 'react-router-dom';
 export const SearchCard = ({searchResults}) => {
 
     const hotelRoomsRef = collection(db, "hotelRooms");
-    const [rooms, setRooms] = useState([]);
+    const [rooms, setRooms] = useState(searchResults);
     const [rating, setRating] = useState(null);
 
     const navigate = useNavigate();
-
-    // const data = useContext(CartContext);
-    // console.log(data)
 
     const { dispatch } = useContext(CartContext);
 
@@ -40,7 +37,6 @@ export const SearchCard = ({searchResults}) => {
     const nav = () => {
         navigate("/viewroomdetails")
     }
-
 
     useEffect(() => {
         getRooms();

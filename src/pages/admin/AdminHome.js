@@ -54,10 +54,16 @@ const AdminHome = () => {
             const hotelRooms = doc(db, "hotelRooms", id);
             await deleteDoc(hotelRooms);
 
-            const desertRef = ref(storage, 'hotelImages');
-            deleteObject(desertRef).then(() => {
-                console.log("File deleted Succefully")
-            })
+            const roomIndex = rooms.findIndex(room => room.id === id);
+            if (roomIndex !== -1) {
+                const updatedRooms = [...rooms];
+                updatedRooms.splice(roomIndex, 1);
+                setRooms(updatedRooms);
+            }
+
+            const desertRef = ref(storage, 'hotelImages/' + id);
+            await deleteObject(desertRef);
+            console.log("File deleted Succefully")
         } catch (err) {
             console.log("An error occured")
         };
@@ -65,7 +71,7 @@ const AdminHome = () => {
 
     useEffect(() => {
         getRooms()
-    }, [rooms]);
+    }, []);
 
     return (
         <>
@@ -96,7 +102,7 @@ const AdminHome = () => {
                             {rooms ? (
                                 rooms.map((room, i) => (
                                     <tr key={room.id} className="my-6 flx flex-row justify-evenly border">
-                                        <td className="border"><img src={room.roomImage} className="w-[50px] h-[50px]"/></td>
+                                        <td className="border"><img src={room.roomImage} className="w-[50px] h-[50px]" /></td>
                                         <td className="border">{room.hotel}</td>
                                         <td className="border">{room.title}</td>
                                         <td className="border">{room.description}</td>

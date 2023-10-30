@@ -12,6 +12,7 @@ const Navbar = ({ login, register }) => {
             <header className='navContainer w-[1024px] '>
                 <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                 <nav className="navItems">
+                    <Link to="/" className="galleryLink ">Home</Link>
                     <Link to="/gallery" className="galleryLink ">Gallery</Link>
                     <Link to="/rooms" className="roomsLink ">Rooms</Link>
                     <button className="registerBtn " onClick={() => { register(true) }}>Register</button>

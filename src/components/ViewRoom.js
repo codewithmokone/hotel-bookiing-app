@@ -4,13 +4,20 @@ import CarouselImage from './CarouselImage';
 import { CartContext } from '../../src/components/context/CartContext';
 import { faBed, faUserGroup, faPhone, faHouse, faLocationDot }  from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
 
-const ViewRoom = ({ data }) => {
+const ViewRoom = ({ data, setOpenModal }) => {
 
     const [room, setRoom] = useState(data);
     const [index, setIndex] = useState(0);
 
     const { dispatch } = useContext(CartContext);
+
+    // const navigate = useNavigate()
+
+    const closeModal = () => {
+        setOpenModal(false)
+      }
 
     // const handleSelect = (selectedIndex) => {
     //     setIndex(selectedIndex);
@@ -45,6 +52,7 @@ const ViewRoom = ({ data }) => {
                 <div className=' flex flex-row mr-8 justify-end items-center '>
                     <p className='mr-6 mt-6 font-bold '><FontAwesomeIcon icon={faBed} className=" text-[#0088a9] text-lg font-bold" /> : {room.price}</p>
                     <button className='bg-[#0088a9] text-white w-[140px] h-[25px] rounded' onClick={() => { dispatch({ type: 'ADD_TO_CART', id: room.id, room }) }}>Reserve Room</button>
+                    <button className='bg-[#0088a9] text-white w-[140px] h-[25px] rounded ml-6' onClick={closeModal}>Close</button>
                 </div>
             </div>
         </div>

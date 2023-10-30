@@ -25,6 +25,11 @@ export const AdminHome = () => {
     const [bedType, setBedType] = useState('');
     const [file, setFile] = useState('');
     const [imageUrl, setImageUrl] = useState([]);
+    const [wifi, setWifi] = useState(false);
+    const [tv, setTv] = useState(false);
+    const [airConditioning, setAirConditioning] = useState(false);
+    const [checkInDate, setCheckInDate] = useState('');
+    const [checkOutDate, setCheckOutDate] = useState('');
 
     const imageListRef = ref(storage, "hotelImages/")
 
@@ -33,16 +38,21 @@ export const AdminHome = () => {
         e.preventDefault()
 
         // upload image to firebase storage
-        if(!file) {
-            alert('Please select an image.');
-        }
-        
+        // if(!file) {
+        //     alert('Please select an image.');
+        // }
+
+        // if (!hotel || !title || !price || !address || !description || !numberOfPeople || !numberOfRooms || !contact || !file) {
+        //     alert('Please fill out all required fields and select an image.');
+        //     return;
+        // }
+
         const imageRef = ref(storage, `hotelImages/${file[0] + v4()}`)
-        try{
+        try {
             await uploadBytes(imageRef, file)
             const url = await getDownloadURL(imageRef);
             setImageUrl(url);
-            alert('Image Uploaded');
+            console.log('Image Uploaded');
 
             const docRef = await addDoc(collection(db, "hotelRooms"), {
                 hotel: hotel,
@@ -55,6 +65,13 @@ export const AdminHome = () => {
                 numberOfRooms: numberOfRooms,
                 roomType: roomType,
                 bedType: bedType,
+                checkInTime: checkInDate,
+                checkOutTime: checkOutDate,
+                amenities: {
+                    wifi,
+                    tv,
+                    airConditioning,
+                  },
                 roomImage: url
             });
 
@@ -72,7 +89,7 @@ export const AdminHome = () => {
 
             alert('Successful');
 
-        }catch(err){
+        } catch (err) {
             console.log("Error uploading an image. ", err)
         }
     })
@@ -90,7 +107,7 @@ export const AdminHome = () => {
                 <form className="flex flex-row justify-center items-center " >
                     <div className="w-[450px] flex flex-col justify-center items-center">
                         <img className="image" src={imageUrl} alt="" />
-                        <input className="my-0" type="file" multiple onChange={(e) => { setFile(e.target.files[0]) }} />
+                        <input className="my-0" required type="file" multiple onChange={(e) => { setFile(e.target.files[0]) }} />
                         <label className="label text-base font-medium mx-0 my-2 mr-[30px]">Hotel</label>
                         <input
                             type="text"
@@ -138,7 +155,7 @@ export const AdminHome = () => {
                             placeholder=" Enter number of people"
                             onChange={(e) => setNumberOfPeople(e.target.value)}
                             required
-                        />  
+                        />
                         <label className="label text-base font-medium mx-0 my-2.5">Contact</label>
                         <input
                             type="number"
@@ -155,20 +172,58 @@ export const AdminHome = () => {
                             onChange={(e) => setNumberOfRooms(e.target.value)}
                             required
                         />
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={wifi}
+                                onChange={() => setWifi(!wifi)}
+                            />
+                            WiFi
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={tv}
+                                onChange={() => setTv(!tv)}
+                            />
+                            TV
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={airConditioning}
+                                onChange={() => setAirConditioning(!airConditioning)}
+                            />
+                            Air Conditioning
+                        </label>
+                        <label className="label text-base font-medium mx-0 my-2.5">Check-In Time</label>
+                        <input
+                            type="time"
+                            className='rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
+                            onChange={(e) => setCheckInDate(e.target.value)}
+                            required
+                        />
+
+                        <label className="label text-base font-medium mx-0 my-2.5">Check-Out Time</label>
+                        <input
+                            type="time"
+                            className='rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
+                            onChange={(e) => setCheckOutDate(e.target.value)}
+                            required
+                        />
                         <label className="label text-base font-medium mx-0 my-2.5">Room type:</label>
-                        <select onChange={(e) => setRoomType(e.target.value)} className="w-[600px] h-[30px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
+                        <select onChange={(e) => setRoomType(e.target.value)} required className="w-[600px] h-[30px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
                             <option>Family Deluxe</option>
                             <option>Singles Deluxe</option>
                             <option>Couples Deluxe</option>
                         </select>
                         <label className="label text-base font-medium mx-0 my-2.5">Bed type:</label>
-                        <select onChange={(e) => setBedType(e.target.value)} className="w-[600px] h-[30px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
+                        <select onChange={(e) => setBedType(e.target.value)} required className="w-[600px] h-[30px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
                             <option>2 Single Beds</option>
                             <option>Double Bed</option>
                             <option>King Bed</option>
                             <option>Queen Bed</option>
                         </select>
-
                         <button className=" text-white font-bold p-1 rounded-md bg-[#0088a9] w-[300px] mx-0 my-10" onClick={handleAdd}>Send</button>
                     </div>
                 </form>

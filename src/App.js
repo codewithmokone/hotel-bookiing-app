@@ -15,6 +15,7 @@ import Gallery from './pages/Gallery';
 import ViewRoom from './components/ViewRoom';
 import BookedRooms from './pages/admin/BookedRooms';
 import UpdateRoom from './pages/admin/UpdateRoom';
+import Rooms from './pages/Rooms';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path='/gallery' element={<Gallery />} />
+          <Route path='/rooms' element={<Rooms/>} />
 
           {/* Protected Routes */}
           <Route path='/clienthome' element={<ProtectedRoute><ClientHome /></ProtectedRoute>} />

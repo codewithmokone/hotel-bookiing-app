@@ -9,11 +9,15 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
 
-const Search = ({ search }) => {
+const Search = ({ searchResults }) => {
 
+    // State variables
     const [searchInput, setSearchInput] = useState('');
+    const [minPrice, setMinPrice] = useState('')
+    const [maxPrice, setMaxPrice] = useState('')
     const [searchResults, setSearchResults] = useState('');
     const [openDate, setOpenDate] = useState(false);
+    const [openOptions, setOpenOptions] = useState(false)
     const [date, setDate] = useState([
         {
             startDate: new Date(),
@@ -21,25 +25,31 @@ const Search = ({ search }) => {
             key: 'selection'
         }
     ]);
-    const [openOptions, setOpenOptions] = useState(false)
 
+    // Function to fetch data based on the specified criteria
     const fetchData = async () => {
         
-        const q = query(
-            collectRoom,
+         // Define a Firestore query based on price filters
+        const searchQuery = await getDocs(query(collection(db, "hotelRooms"),
             where('price', '>=', parseInt(minPrice)),
-            where('price', '<=', parseInt(minPrice))
-        );
+            where('price', '<=', parseInt(maxPrice))
+        ));
 
-        const querySnapshot = await getDocs(q);
+        // Fetch data based on the query
+        const querySnapshot = await getDocs(searchQuery);
         const filteredData = querySnapshot.docs.map((doc) => doc.data());
 
-        console.log("filtered", filteredData);
+        // Filter the data based on price range
+        const filteredResults = filteredData.filter((room) => {
+            const roomPrice = room.price;
+            return roomPrice >= parseInt(minPrice) && roomPrice <= parseInt(maxPrice);
+          });
 
-        setFilteredResults(filteredData)
+        console.log("filtered: ", filteredResults);
+
+        // Update the search results state
+        setSearchResults(filteredData)
     };
-
-
 
     return (
         <div className="search-section rounded w-[900px] h-[40px] flex items-center justify-between border p-[10px] bg-white">
@@ -47,38 +57,16 @@ const Search = ({ search }) => {
                 <FontAwesomeIcon icon={faBed} className="headerIcon m-1 text-sky-800 " />
                 <input type="text" placeholder="Search rooms...." onChange={(e) => setSearchInput(e.target.value)} className="SearchInput m-1 outline-none" />
             </div>
-            {/* <div className="m-3 flex flex-row items-center ml-[-30px]">
-                <FontAwesomeIcon icon={faCalendarDays} className="headerIcon m-1 text-sky-800" />
-                <span onClick={() => setOpenDate(!openDate)} className="cursor-pointer" >{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
-                    date[0].endDate, "MM/dd/yyyy")}`}</span>
-                {openDate && <DateRange
-                    editableDateInputs={true}
-                    onChange={item => setDate([item.selection])}
-                    moveRangeOnFirstSelection={false}
-                    ranges={date}
-                    className="	position: absolute bottom-[132px]"
-                    minDate={new Date()}
-                />}
-            </div> */}
             <div className="m-3 flex flex-row items-center">
-                {/* <FontAwesomeIcon icon={faPerson} className="headerIcon m-1 text-sky-800" />
-                <span onClick={() => setOpenOptions(!openOptions)}>select option</span>
-                {openOptions &&
-                    <select>
-                        <option>Adult</option>
-                        <option>2 Adult</option>
-                        <option>Family</option>
-                    </select>
-                } */}
                 <input 
                     placeholder='Enter minimum price'
                     type="number"
-                    onChange={fetchData}
+                    onChange={(e) => setMinPrice(e.target.value)}
                 />
                 <input 
                 placeholder='Enter maximum price'
                     type="number"
-                    onChange={fetchData}
+                    onChange={(e) => setMaxPrice(e.target.value)}
                 />
             </div>
             <div>

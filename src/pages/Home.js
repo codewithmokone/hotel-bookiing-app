@@ -18,47 +18,63 @@ export const Home = () => {
   const [searchResults, setSearchResults] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
-  const [filteredResults, setFilteredResults] = useState([]);
+  const [checkInDate, setCheckInDate] = useState('');
+  const [checkOutDate, setCheckOutDate] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const readingData = collection(db, "hotelRooms")
-
-  // Function returned from the useNavigate hook to programmatically navigate between pages
   const navigate = useNavigate()
 
-
-  // Handles search functionality
-  // const searchData = async () => {
-
-  //   try {
-  //     // Query the Firestore collection "hotelRooms" with a filter on the "title" field
-  //     const data = await getDocs(query(collection(db, "hotelRooms")
-  //       , where("title", "==", searchInput)));
-
-  //     // Map through the retrieved documents and create an array of objects with additional "id" field
-  //     setSearchResults(data.docs.map(doc => ({ ...doc.data(), id: doc.title })));
-
-  //     console.log("Search data", searchResults)
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-
-  // };
-
-  const fetchData = async () => {
+  const searchRoom = async () => {
+    setIsLoading(true)
 
     try {
-      const querySnapshot = await getDocs(query(collection(db, "hotelRooms"),
-        where('price', '>=', parseInt(minPrice)),
-        where('price', '<=', parseInt(maxPrice))
-      ));
+      // const roomsRef = collection(db, 'hotelRooms');
+      // const queryConditions = [
+      //   where('price', '>=', parseInt(minPrice)),
+      //   where('price', '<=', parseInt(maxPrice)),
+      // ]
 
-      const filteredData = querySnapshot.docs.map((doc) => doc.data());
+      // if (checkInDate && checkOutDate) {
+      //   queryConditions.push(
+      //     where('availableDates', 'array-contains', checkInDate),
+      //     where('availableDates', 'array-contains', checkOutDate)
+      //   );
+      // }
 
-      console.log("filtered", querySnapshot)
+      // const querySnapshot = await getDocs(query(roomsRef, ...queryConditions));
 
-      setFilteredResults(filteredData)
+      // const filteredData = querySnapshot.docs.map((doc) => doc.data());
+
+      // const filteredData = [];
+      // querySnapshot.forEach((doc) => {
+      //   const room = doc.data();
+      //   if (room.availableDates.includes(checkInDate) && room.availableDates.includes(checkOutDate)) {
+      //     filteredData.push(room);
+      //   }
+      // });
+
+      const checkInQuerySnapshot = await getDocs(
+        query(collection(db, 'hotelRooms'),
+          where('price', '>=', parseInt(minPrice)),
+          where('price', '<=', parseInt(maxPrice)),
+          where('availableDates', 'array-contains', checkInDate)
+        )
+      );
+
+      const availableRoomsOnCheckIn = checkInQuerySnapshot.docs.map((doc) => doc.data());
+
+      // Filter available rooms on the check-out date
+      const filteredData = availableRoomsOnCheckIn.filter((room) =>
+        room.availableDates.includes(checkOutDate)
+      );
+
+      console.log("Check availability: ", filteredData)
+
+      setSearchResults(filteredData)
     } catch (err) {
       console.log("Error fetching data:", err)
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -82,7 +98,7 @@ export const Home = () => {
       </div>
       <div className="main flex flex-col justify-center items-center w-[1024px] m-auto">
         <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
-          <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
+          <div className="search-section rounded w-[1000px] h-[40px] flex justify-between items-center border bg-white">
             <div>
               <input
                 className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
@@ -98,9 +114,23 @@ export const Home = () => {
                 placeholder='Enter maximum amount'
                 onChange={(e) => setMaxPrice(e.target.value)}
               />
+              <input
+                className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[150px]'
+                type="date"
+                value={checkInDate}
+                placeholder='Check-in date'
+                onChange={(e) => setCheckInDate(e.target.value)}
+              />
+              <input
+                className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[150px]'
+                type="date"
+                value={checkOutDate}
+                placeholder='Check-out date'
+                onChange={(e) => setCheckOutDate(e.target.value)}
+              />
               <button
                 className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
-                onClick={fetchData}>Search</button>
+                onClick={searchRoom}>Search</button>
             </div>
           </div>
         </div>
@@ -112,8 +142,8 @@ export const Home = () => {
             {/* Map Section */}
             <div className='w-[30%] ml-6'>
               <div class="mapouter my-5">
-                <div class="gmap_canvas">
-                  <iframe class="gmap_iframe"
+                <div className="gmap_canvas">
+                  <iframe className="gmap_iframe"
                     width="100%"
                     frameborder="0"
                     scrolling="no"

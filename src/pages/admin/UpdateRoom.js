@@ -118,7 +118,7 @@ const UpdateRoom = () => {
             <div className="flex flex-col items-center justify-center">
                 <h3 className="text-2xl m-[30px] text-white ">Update Room</h3>
                 <div>
-                    <form className="flex flex-col items-center justify-center bg-slate-300" >
+                    <form className="flex flex-col items-center justify-center bg-slate-300 m-auto" >
                         <div className="flex items-center justify-center m-auto">
                             <div className="left-side w-[900px] flex flex-col mx-10 my-10">
                                 <img className="image" src={rooms.roomImage} alt="" />
@@ -205,9 +205,9 @@ const UpdateRoom = () => {
 
                             </div>
                         </div>
-                        <div className="flex flex-row justify-evenly items-start w-[450px] ">
-                            <button className=" font-bold rounded-md bg-sky-950 w-[100px] text-white mx-0 my-10" onClick={updateRoom}>Update</button>
-                            <button className=" font-bold rounded-md bg-sky-950 w-[100px] text-white mx-0 my-10" onClick={closeUpdate}>Close</button>
+                        <div className="flex flex-row items-start w-[450px] ">
+                            <button className=" font-bold rounded-md bg-[#0088a9] w-[300px] mr-20 text-white mx-0 my-10" onClick={updateRoom}>Update</button>
+                            <button className=" font-bold rounded-md bg-[#0088a9] w-[300px] text-white mx-0 my-10" onClick={closeUpdate}>Close</button>
                         </div>
                     </form>
                 </div>
