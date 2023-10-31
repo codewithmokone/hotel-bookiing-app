@@ -36,18 +36,40 @@ const Rooms = () => {
                 where('price', '<=', parseInt(maxPrice)),
             ]
 
+            // if (checkInDate && checkOutDate) {
+            //   queryConditions.push(
+            //     where('availableDates', 'array-contains', checkInDate),
+            //     where('availableDates', 'array-contains', checkOutDate)
+            //   );
+            // }
+
+            // const querySnapshot = await getDocs(query(roomsRef, ...queryConditions));
+
+            // const filteredData = querySnapshot.docs.map((doc) => doc.data());
+
+            // setSearchResults(filteredData)
+
             if (checkInDate && checkOutDate) {
-              queryConditions.push(
-                where('availableDates', 'array-contains', checkInDate),
-                where('availableDates', 'array-contains', checkOutDate)
-              );
+                // Query for rooms available on the check-in date.
+                const checkInQuerySnapshot = await getDocs(
+                    query(roomsRef, ...queryConditions, where('availableDates', 'array-contains', checkInDate))
+                );
+                const availableRoomsOnCheckIn = checkInQuerySnapshot.docs.map((doc) => doc.data());
+    
+                // Filter available rooms on the check-out date.
+                const filteredData = availableRoomsOnCheckIn.filter((room) =>
+                    room.availableDates.includes(checkOutDate)
+                );
+                console.log(filteredData)
+                setSearchResults(filteredData);
+            } else {
+                // If no check-in and check-out dates are provided, perform a basic search.
+                const querySnapshot = await getDocs(query(roomsRef, ...queryConditions));
+                const filteredData = querySnapshot.docs.map((doc) => doc.data());
+    
+                setSearchResults(filteredData);
             }
 
-            const querySnapshot = await getDocs(query(roomsRef, ...queryConditions));
-
-            const filteredData = querySnapshot.docs.map((doc) => doc.data());
-
-            setSearchResults(filteredData)
         } catch (err) {
             console.log("Error fetching data:", err)
         } finally {

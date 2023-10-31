@@ -9,6 +9,7 @@ import { storage } from '../../config/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
+import { TextField } from '@mui/material';
 
 
 export const AdminHome = () => {
@@ -102,7 +103,7 @@ export const AdminHome = () => {
     })
 
     return (
-        <div className='home-container min-h-screen'>
+        <div className='home-container min-h-screen bg-gray-400'>
             <header className='flex flex-col '>
                 <AdminNavbar />
                 <Header />
@@ -111,26 +112,44 @@ export const AdminHome = () => {
 
                 <h3 className="text-[#0088a9] text-2xl m-[30px]">Add New Room</h3>
 
-                <form className="flex flex-row justify-center items-center " >
-                    <div className="w-[450px] flex flex-col justify-center items-center">
+                <form className="flex flex-row justify-center items-center border-2 w-[600px]" >
+                    <div className="w-[450px] flex flex-col justify-center items-center ">
                         <img className="image" src={imageUrl} alt="" />
                         <input className="my-0" required type="file" multiple onChange={(e) => { setFile(e.target.files[0]) }} />
                         <label className="label text-base font-medium mx-0 my-2 mr-[30px]">Hotel</label>
                         <input
                             type="text"
+                            size='normal'
                             className='rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                             placeholder=" Enter title..."
                             onChange={(e) => setHotel(e.target.value)}
                             required
                         />
-                        <label className="label text-base font-medium mx-0 my-2 mr-[30px]">Title</label>
-                        <input
-                            type="text"
-                            className='rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
-                            placeholder=" Enter title..."
+                        <TextField
+                            label="Title"
                             onChange={(e) => setTitle(e.target.value)}
                             required
+                            size='small'
+                            variant="filled"
+                            color="secondary"
+                            type="text"
+                            sx={{ mb: 3, width: 600 }}
+                            fullWidth
+                            value={title}
                         />
+                        <TextField
+                            label="Short Description"
+                            onChange={(e) => setIntroDescr(e.target.value)}
+                            required
+                            size='small'
+                            variant="filled"
+                            color="primary"
+                            type="text"
+                            sx={{ mb: 3, width: 600, color: 'white' }}
+                            fullWidth
+                            value={introDescr}
+                        />
+                      
                         <label className="label text-base font-medium mx-0 my-2.5">Short Description</label>
                         <input
                             type="text"
@@ -199,7 +218,7 @@ export const AdminHome = () => {
                             </div>
                             <div className="flex flex-row ml-[-260px] justify-center items-center ">
                                 <input
-                                    
+
                                     type="checkbox"
                                     checked={tv}
                                     onChange={() => setTv(!tv)}
