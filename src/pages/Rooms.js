@@ -36,39 +36,16 @@ const Rooms = () => {
                 where('price', '<=', parseInt(maxPrice)),
             ]
 
-            // if (checkInDate && checkOutDate) {
-            //   queryConditions.push(
-            //     where('availableDates', 'array-contains', checkInDate),
-            //     where('availableDates', 'array-contains', checkOutDate)
-            //   );
-            // }
+            if (checkInDate && checkOutDate) {
+              queryConditions.push(
+                where('availableDates', 'array-contains', checkInDate),
+                where('availableDates', 'array-contains', checkOutDate)
+              );
+            }
 
             const querySnapshot = await getDocs(query(roomsRef, ...queryConditions));
 
             const filteredData = querySnapshot.docs.map((doc) => doc.data());
-
-            // const filteredData = [];
-            // querySnapshot.forEach((doc) => {
-            //   const room = doc.data();
-            //   if (room.availableDates.includes(checkInDate) && room.availableDates.includes(checkOutDate)) {
-            //     filteredData.push(room);
-            //   }
-            // });
-
-            // const checkInQuerySnapshot = await getDocs(
-            //     query(collection(db, 'hotelRooms'),
-            //         where('price', '>=', parseInt(minPrice)),
-            //         where('price', '<=', parseInt(maxPrice)),
-            //         where('availableDates', 'array-contains', checkInDate)
-            //     )
-            // );
-
-            // const availableRoomsOnCheckIn = checkInQuerySnapshot.docs.map((doc) => doc.data());
-
-            // // Filter available rooms on the check-out date
-            // const filteredData = availableRoomsOnCheckIn.filter((room) =>
-            //     room.availableDates.includes(checkOutDate)
-            // );
 
             setSearchResults(filteredData)
         } catch (err) {
