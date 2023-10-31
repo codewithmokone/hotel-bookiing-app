@@ -16,6 +16,8 @@ import ViewRoom from './components/ViewRoom';
 import BookedRooms from './pages/admin/BookedRooms';
 import UpdateRoom from './pages/admin/UpdateRoom';
 import Rooms from './pages/Rooms';
+import ContactUs from './pages/ContactUs';
+import ReserveRoomForm from './pages/client/ReserveRoomForm';
 
 function App() {
 
@@ -30,6 +32,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path='/gallery' element={<Gallery />} />
           <Route path='/rooms' element={<Rooms/>} />
+          <Route path='/contactus' element={<ContactUs/>} />
 
           {/* Protected Routes */}
           <Route path='/clienthome' element={<ProtectedRoute><ClientHome /></ProtectedRoute>} />
@@ -39,6 +42,7 @@ function App() {
           <Route path='/newroom' element={<ProtectedRoute><NewRoom /></ProtectedRoute>} />
           <Route path='/editroom/:id' element={<ProtectedRoute><UpdateRoom /></ProtectedRoute>} />
           <Route path='/bookedrooms' element={<BookedRooms />} />
+          <Route path='/reserveroom' element={<ReserveRoomForm />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </CartContextProvider>

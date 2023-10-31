@@ -105,7 +105,7 @@ const AdminHome = () => {
                                         <td className="border"><img src={room.roomImage} className="w-[50px] h-[50px]" /></td>
                                         <td className="border">{room.hotel}</td>
                                         <td className="border">{room.title}</td>
-                                        <td className="border">{room.description}</td>
+                                        <td className="border">{room.introDescr}</td>
                                         <td className="border">{room.numberOfPeople}</td>
                                         <td className="border">{room.price}</td>
                                         <td className="border">{room.numberOfRooms}</td>

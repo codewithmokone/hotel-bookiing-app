@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../components/Navbar';
 import HeroSec from '../components/HeroSec';
 import Footer from '../components/Footer';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { storage } from '../config/firebase';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/navbar/Navbar';
 
 const Gallery = () => {
 
     const [images, setImages] = useState([])
 
-    const navigate = useNavigate()
-
-
-
+    // Handles fetching images from firebase storage
     const fetchImages = async () => {
 
         try {
@@ -32,15 +29,14 @@ const Gallery = () => {
     }
 
     useEffect(() => {
-
         fetchImages()
-
     }, [images])
+
 
     if (images.length === 0) {
         return (
-            <div className='flex justify-center items-center '>
-                <p>Loading Page</p>
+            <div className='flex flex-col h-[100vh] justify-center items-center '>
+               <p>Loading...</p>
             </div>
         )
     }

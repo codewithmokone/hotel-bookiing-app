@@ -8,6 +8,7 @@ import { db } from '../../config/firebase';
 import { storage } from '../../config/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 
 
 export const AdminHome = () => {
@@ -17,6 +18,7 @@ export const AdminHome = () => {
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [address, setAddress] = useState('');
+    const [introDescr, setIntroDescr] = useState('')
     const [description, setDescription] = useState('');
     const [numberOfPeople, setNumberOfPeople] = useState('');
     const [roomType, setRoomType] = useState('');
@@ -30,6 +32,8 @@ export const AdminHome = () => {
     const [airConditioning, setAirConditioning] = useState(false);
     const [checkInDate, setCheckInDate] = useState('');
     const [checkOutDate, setCheckOutDate] = useState('');
+
+    const navigate = useNavigate()
 
     const imageListRef = ref(storage, "hotelImages/")
 
@@ -57,6 +61,7 @@ export const AdminHome = () => {
             const docRef = await addDoc(collection(db, "hotelRooms"), {
                 hotel: hotel,
                 title: title,
+                introDescr: introDescr,
                 description: description,
                 address: address,
                 contact: contact,
@@ -71,7 +76,7 @@ export const AdminHome = () => {
                     wifi,
                     tv,
                     airConditioning,
-                  },
+                },
                 roomImage: url
             });
 
@@ -88,6 +93,8 @@ export const AdminHome = () => {
             setImageUrl('')
 
             alert('Successful');
+
+            navigate('/adminhome');
 
         } catch (err) {
             console.log("Error uploading an image. ", err)
@@ -122,6 +129,14 @@ export const AdminHome = () => {
                             className='rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                             placeholder=" Enter title..."
                             onChange={(e) => setTitle(e.target.value)}
+                            required
+                        />
+                        <label className="label text-base font-medium mx-0 my-2.5">Short Description</label>
+                        <input
+                            type="text"
+                            className='rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
+                            placeholder=" Enter description"
+                            onChange={(e) => setIntroDescr(e.target.value)}
                             required
                         />
                         <label className="label text-base font-medium mx-0 my-2.5">Description</label>
@@ -172,41 +187,44 @@ export const AdminHome = () => {
                             onChange={(e) => setNumberOfRooms(e.target.value)}
                             required
                         />
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={wifi}
-                                onChange={() => setWifi(!wifi)}
-                            />
-                            WiFi
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={tv}
-                                onChange={() => setTv(!tv)}
-                            />
-                            TV
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={airConditioning}
-                                onChange={() => setAirConditioning(!airConditioning)}
-                            />
-                            Air Conditioning
-                        </label>
-                        <label className="label text-base font-medium mx-0 my-2.5">Check-In Time</label>
+                        <label className="">Facilities</label>
+                        <div className="flex flex-col ml-[-75px] justify-start">
+                            <div className="flex flex-row ml-[-260px] justify-center items-center ">
+                                <input
+                                    type="checkbox"
+                                    checked={wifi}
+                                    onChange={() => setWifi(!wifi)}
+                                />
+                                <p>WiFi</p>
+                            </div>
+                            <div className="flex flex-row ml-[-260px] justify-center items-center ">
+                                <input
+                                    
+                                    type="checkbox"
+                                    checked={tv}
+                                    onChange={() => setTv(!tv)}
+                                />
+                                <p >TV</p>
+                            </div>
+                            <div className="flex flex-row ml-[-260px] justify-center items-center ">
+                                <input
+                                    type="checkbox"
+                                    checked={airConditioning}
+                                    onChange={() => setAirConditioning(!airConditioning)}
+                                />
+                                <p>Air Conditioning</p>
+                            </div>
+                        </div>
+                        <label className="label text-base font-medium mx-0 my-2.5">Check-In Date</label>
                         <input
-                            type="time"
+                            type="date"
                             className='rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                             onChange={(e) => setCheckInDate(e.target.value)}
                             required
                         />
-
-                        <label className="label text-base font-medium mx-0 my-2.5">Check-Out Time</label>
+                        <label className="label text-base font-medium mx-0 my-2.5">Check-Out Date</label>
                         <input
-                            type="time"
+                            type="date"
                             className='rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                             onChange={(e) => setCheckOutDate(e.target.value)}
                             required

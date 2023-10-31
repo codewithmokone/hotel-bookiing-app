@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-// import 'react-date-range/dist/styles.css'; // main css file
-// import 'react-date-range/dist/theme/default.css'; // theme css file
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import Navbar from '../components/Navbar';
 import Header from '../components/HeroSec';
 import Footer from '../components/Footer';
 import Cards from '../components/cards/Cards';
@@ -11,66 +8,34 @@ import SearchCard from '../components/cards/SearchCard'
 import Service from '../components/Service';
 import FeaturedRooms from '../components/FeaturedRooms';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/navbar/Navbar';
 
 
 export const Home = () => {
 
-  const [searchResults, setSearchResults] = useState('');
+  const [filterResults, setFilterResults] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
-  const [checkInDate, setCheckInDate] = useState('');
-  const [checkOutDate, setCheckOutDate] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate()
 
-  const searchRoom = async () => {
+  const filterRoom = async () => {
     setIsLoading(true)
 
     try {
-      // const roomsRef = collection(db, 'hotelRooms');
-      // const queryConditions = [
-      //   where('price', '>=', parseInt(minPrice)),
-      //   where('price', '<=', parseInt(maxPrice)),
-      // ]
-
-      // if (checkInDate && checkOutDate) {
-      //   queryConditions.push(
-      //     where('availableDates', 'array-contains', checkInDate),
-      //     where('availableDates', 'array-contains', checkOutDate)
-      //   );
-      // }
-
-      // const querySnapshot = await getDocs(query(roomsRef, ...queryConditions));
-
-      // const filteredData = querySnapshot.docs.map((doc) => doc.data());
-
-      // const filteredData = [];
-      // querySnapshot.forEach((doc) => {
-      //   const room = doc.data();
-      //   if (room.availableDates.includes(checkInDate) && room.availableDates.includes(checkOutDate)) {
-      //     filteredData.push(room);
-      //   }
-      // });
-
-      const checkInQuerySnapshot = await getDocs(
+      const querySnapshot = await getDocs(
         query(collection(db, 'hotelRooms'),
           where('price', '>=', parseInt(minPrice)),
           where('price', '<=', parseInt(maxPrice)),
-          where('availableDates', 'array-contains', checkInDate)
         )
       );
 
-      const availableRoomsOnCheckIn = checkInQuerySnapshot.docs.map((doc) => doc.data());
+       const filteredData = querySnapshot.docs.map((doc) => doc.data());
 
-      // Filter available rooms on the check-out date
-      const filteredData = availableRoomsOnCheckIn.filter((room) =>
-        room.availableDates.includes(checkOutDate)
-      );
+      console.log("Filter price: ", filteredData)
 
-      console.log("Check availability: ", filteredData)
-
-      setSearchResults(filteredData)
+      setFilterResults(filteredData)
     } catch (err) {
       console.log("Error fetching data:", err)
     } finally {
@@ -98,7 +63,7 @@ export const Home = () => {
       </div>
       <div className="main flex flex-col justify-center items-center w-[1024px] m-auto">
         <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
-          <div className="search-section rounded w-[1000px] h-[40px] flex justify-between items-center border bg-white">
+          <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
             <div>
               <input
                 className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
@@ -114,23 +79,9 @@ export const Home = () => {
                 placeholder='Enter maximum amount'
                 onChange={(e) => setMaxPrice(e.target.value)}
               />
-              <input
-                className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[150px]'
-                type="date"
-                value={checkInDate}
-                placeholder='Check-in date'
-                onChange={(e) => setCheckInDate(e.target.value)}
-              />
-              <input
-                className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[150px]'
-                type="date"
-                value={checkOutDate}
-                placeholder='Check-out date'
-                onChange={(e) => setCheckOutDate(e.target.value)}
-              />
               <button
                 className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
-                onClick={searchRoom}>Search</button>
+                onClick={filterRoom}>Search</button>
             </div>
           </div>
         </div>
@@ -141,10 +92,11 @@ export const Home = () => {
           <div className=" flex flex-row h-auto ">
             {/* Map Section */}
             <div className='w-[30%] ml-6'>
-              <div class="mapouter my-5">
+              <div class="mapouter my-5 mt-4">
                 <div className="gmap_canvas">
                   <iframe className="gmap_iframe"
                     width="100%"
+                    height="300"
                     frameborder="0"
                     scrolling="no"
                     marginheight="0"
@@ -155,8 +107,8 @@ export const Home = () => {
               </div>
             </div>
             <div className="flex flex-col justify-start mr-4 my-3">
-              {searchResults.length ?
-                <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
+              {filterResults.length ?
+                <ul className="flex flex-col justify-between"><li><SearchCard filterResults={filterResults} /></li></ul>
                 :
                 <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
               }

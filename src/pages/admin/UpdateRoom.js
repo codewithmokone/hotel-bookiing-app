@@ -12,6 +12,7 @@ const UpdateRoom = () => {
     const [imageUpload, setImageUpload] = useState();
     const [hotel, setHotel] = useState(rooms.hotel);
     const [title, setTitle] = useState('');
+    const [introDescr, setIntroDescr] = useState('')
     const [description, setDescription] = useState('');
     const [address, setAddress] = useState('');
     const [price, setPrice] = useState('');
@@ -23,6 +24,8 @@ const UpdateRoom = () => {
     const [roomImage, setRoomImage] = useState('')
     const [imageUrl, setImageUrl] = useState('');
 
+    const navigate = useNavigate()
+
     // const hotelRoomRef = doc(db, "hotelRooms");
 
     // const getRooms = async () => {
@@ -33,14 +36,14 @@ const UpdateRoom = () => {
     //         const filteredData = data.docs.map((doc) => ({
     //             ...doc.data(), id: doc.id,
     //         }));
-            
+
     //         setRooms(filteredData);
     //     } catch (err) {
     //         console.error(err);
     //     }
     // };
 
-    const navigate = useNavigate()
+   
 
     const closeUpdate = () => {
         navigate('/adminhome')
@@ -90,27 +93,26 @@ const UpdateRoom = () => {
         // })
     }
 
+    // Fetching data from firebase firestore
     const fetchRoomData = async () => {
         try {
             const roomDocRef = doc(db, 'hotelRooms', id);
             const roomDocSnapshot = await getDoc(roomDocRef);
 
             if (roomDocSnapshot.exists()) {
-                const roomData = {id: roomDocSnapshot.id, ...roomDocSnapshot.data() };
+                const roomData = { id: roomDocSnapshot.id, ...roomDocSnapshot.data() };
                 setRooms(roomData)
                 setFormData(roomData)
-            } else{
+            } else {
                 console.error('Room not found');
             }
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
 
     useEffect(() => {
-
         fetchRoomData();
-
     }, [id]);
 
     return (
@@ -138,6 +140,14 @@ const UpdateRoom = () => {
                                     placeholder=" Enter title..."
                                     value={rooms.title}
                                     onChange={(e) => setTitle(e.target.value)}
+                                    required
+                                />
+                                <label className="label text-base font-medium mx-0 my-2.5">Short Description</label>
+                                <input
+                                    type="text"
+                                    className='rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
+                                    placeholder=" Enter description"
+                                    onChange={(e) => setIntroDescr(e.target.value)}
                                     required
                                 />
                                 <label className="text-base font-medium mx-0 my-2.5">Description</label>

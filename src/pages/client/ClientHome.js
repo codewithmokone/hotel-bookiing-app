@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import ClientNavbar from '../../components/navbar/ClientNavbar';
 import Header from '../../components/HeroSec';
 import Footer from '../../components/Footer';
 import Cards from '../../components/cards/Cards';
@@ -9,28 +8,18 @@ import { useUserAuth } from '../../components/context/UserAuthContext'
 import { auth, db } from '../../config/firebase';
 import FeaturedRooms from '../../components/FeaturedRooms';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import Navbar from '../../components/navbar/Navbar';
+import SearchCard from '../../components/cards/SearchCard';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const Home = () => {
 
-  const [searchResults, setSearchResults] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [filteredResults, setFilteredResults] = useState([]);
 
-  const { logOut } = useUserAuth();
-
-  const signOut = async () => {
-    try {
-      await logOut(auth);
-      alert('Signed Out');
-      Navigate("/");
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
-  const fetchData = async () => {
+  const filterData = async () => {
 
     try {
       const querySnapshot = await getDocs(query(collection(db, "hotelRooms"),
@@ -48,58 +37,58 @@ export const Home = () => {
     }
   };
 
-  const searchRoom = async () => {
-    setIsLoading(true)
+  // const searchRoom = async () => {
+  //   setIsLoading(true)
 
-    try {
-      const querySnapshot = await getDocs(query(collection(db, "hotelRooms"),
-        where('price', '>=', parseInt(minPrice)),
-        where('price', '<=', parseInt(maxPrice))
-      ));
+  //   try {
+  //     const querySnapshot = await getDocs(query(collection(db, "hotelRooms"),
+  //       where('price', '>=', parseInt(minPrice)),
+  //       where('price', '<=', parseInt(maxPrice))
+  //     ));
 
-      const filteredData = querySnapshot.docs.map((doc) => doc.data());
+  //     const filteredData = querySnapshot.docs.map((doc) => doc.data());
 
-      console.log("filtered", filteredData)
+  //     console.log("filtered", filteredData)
 
-      setSearchResults(filteredData)
-    } catch (err) {
-      console.log("Error fetching data:", err)
-    } finally {
-      setIsLoading(false)
-    }
-  };
+  //     setSearchResults(filteredData)
+  //   } catch (err) {
+  //     console.log("Error fetching data:", err)
+  //   } finally {
+  //     setIsLoading(false)
+  //   }
+  // };
 
   return (
-    <div className='home-container bg-zinc-400 block h-auto'>
+    <div className=' home-container bg-zinc-400 block h-auto'>
       <header className="flex flex-col w-[1024px]">
-        <ClientNavbar signOut={signOut} />
+        <Navbar />
         <Header />
       </header>
       <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
-          <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
-            <div>
-              <input
-                className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
-                type="number"
-                value={minPrice}
-                placeholder='Enter minimum amount'
-                onChange={(e) => setMinPrice(e.target.value)}
-              />
-              <input
-                className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
-                type="number"
-                value={maxPrice}
-                placeholder='Enter maximum amount'
-                onChange={(e) => setMaxPrice(e.target.value)}
-              />
-              <button
-                className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
-                onClick={searchRoom}>Search</button>
-            </div>
+        <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
+          <div>
+            <input
+              className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+              type="number"
+              value={minPrice}
+              placeholder='Enter minimum amount'
+              onChange={(e) => setMinPrice(e.target.value)}
+            />
+            <input
+              className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+              type="number"
+              value={maxPrice}
+              placeholder='Enter maximum amount'
+              onChange={(e) => setMaxPrice(e.target.value)}
+            />
+            <button
+              className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
+              onClick={filterData}>Search</button>
           </div>
         </div>
+      </div>
       <main className="main bg-gray-300 flex flex-col w-[1024px] m-auto ">
-        <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
+        {/* <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
           <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
             <div>
               <input
@@ -121,7 +110,7 @@ export const Home = () => {
                 onClick={fetchData}>Search</button>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="m-auto bg-gray-300">
           <FeaturedRooms />
         </div>
@@ -139,7 +128,11 @@ export const Home = () => {
             </div>
           </div>
           <div className="card-list flex flex-col justify-center items-center ml-5 my-3 mr-2">
-            <Cards />
+            {filteredResults.length ?
+              <ul className="flex flex-col justify-between"><li><SearchCard filteredResults={filteredResults} /></li></ul>
+              :
+              <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
+            }
           </div>
         </div>
         <div className="m-auto">
