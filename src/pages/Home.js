@@ -54,7 +54,7 @@ export const Home = () => {
   }
 
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen bg-gray-100'>
       <header className='w-[1024px]'>
         <Navbar login={login} register={register} />
       </header>
@@ -85,7 +85,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <main className='bg-gray-300'>
+        <main className='bg-white'>
           <div>
             <FeaturedRooms />
           </div>

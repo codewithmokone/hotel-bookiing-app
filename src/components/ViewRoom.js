@@ -8,8 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { Divider } from '@mui/material';
-import { useEffect } from 'react';
-// import { useEffect } from 'react';
+
 
 const ViewRoom = ({ data, setOpenModal }) => {
 

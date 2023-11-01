@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { auth, db, storage } from '../../config/firebase'; // importing database from config file
+import { auth, db } from '../../config/firebase'; // importing database from config file
 import { collection, getDocs } from 'firebase/firestore'; // Firebase functions
 import { faBed, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CartContext } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
-import { getDownloadURL, ref } from 'firebase/storage';
 import ViewRoom from '../ViewRoom';
+import { Paper } from '@mui/material';
 
 export const Cards = () => {
 
@@ -14,8 +14,6 @@ export const Cards = () => {
 
     const [rooms, setRooms] = useState([]);
     const [data, setData] = useState('')
-    const [roomImage, setRoomImage] = useState('');
-    const [rating, setRating] = useState(null);
     const [openModal, setOpenModal] = useState(false)
 
     const navigate = useNavigate();
@@ -105,7 +103,8 @@ export const Cards = () => {
         return (
             <>
                 {rooms.map((room, id) => (
-                    <div className=" overflow-hidden flex flex-row justify-center my-2 border w-[640px] h-[260px] shadow-sm bg-white shadow-black m-2 mb-1 border-white" key={id}>
+                    <Paper elevation={5}>
+                        <div className=" overflow-hidden flex flex-row justify-center my-2 w-[640px] h-[260px]  m-2" key={id}>
                         <div className="image-container w-[40%] h-[200px] m-[10px]">
                             <img className="w-[300px] m-[10px] h-[200px]" src={room.roomImage} alt='roomImage' />
                         </div>
@@ -136,6 +135,7 @@ export const Cards = () => {
                             </table>
                         </div>
                     </div>
+                    </Paper>
                 ))
                 }
                 {openModal && <ViewRoom data={data} setOpenModal={setOpenModal} />}

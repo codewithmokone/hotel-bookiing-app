@@ -20,14 +20,13 @@ import { CartContext } from '../../components/context/CartContext';
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Paper, TextField } from '@mui/material';
-
-
+import { useUserAuth } from '../../components/context/UserAuthContext';
 
 const Bookings = () => {
 
   const { shoppingCart, dispatch, totalPrice, totalQty } = useContext(CartContext);
 
-  const user = auth.currentUser
+  const { user } = useUserAuth();
 
   const navigate = useNavigate()
 
@@ -40,9 +39,6 @@ const Bookings = () => {
   const [checkOutDate, setCheckOutDate] = useState('');
   const [file, setFile] = useState(shoppingCartArray.roomImage);
 
-  useEffect(() => {
-
-  }, [name, email, contact])
 
   // Handles the booking function
   const handleBookings = async () => {
@@ -88,22 +84,22 @@ const Bookings = () => {
 
 
   return (
-    <div className="flex flex-col h-[100vh]">
+    <div className="flex flex-col h-[100%] bg-gray-100">
       <header className='flex flex-col'>
         <Navbar />
         <HeroSec />
       </header>
-      <main className="m-auto w-[1024px] h-auto flex flex-col">
+      <main className="m-auto w-[1024px] h-auto flex flex-col bg-white">
         <div className='mt-10'>
           <h5>Please fill in your information</h5>
         </div>
         <div className=''>
           <Paper elevation={4} sx={{ width: 900, height: 320 }}>
-            <div className=' flex flex-col w-[900px] h-[300px] justify-center items-center mt-6'>
-              <label className='w-[600px] mt-2'>Name</label>
+            <div className=' flex flex-col w-[900px] h-[280px] justify-center items-center mt-6'>
+              <label className='w-[600px] mt-4'>Name</label>
               <TextField
                 size='small'
-                sx={{width: 600, height: 40., marginTop: -1}}
+                sx={{width: 600, height: 40., marginTop: -3}}
                 onChange={(e) => setName(e.target.value)}
                 required
                 fullWidth
@@ -112,7 +108,7 @@ const Bookings = () => {
                <TextField
                 value={email}
                 size='small'
-                sx={{width: 600, height: 40, marginTop: -1}}
+                sx={{width: 600, height: 40, marginTop: -3}}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 fullWidth
@@ -120,7 +116,7 @@ const Bookings = () => {
               <label className='w-[600px]'>Contact</label>
                <TextField
                 size='small'
-                sx={{width: 600, height: 40, marginTop: -1}}
+                sx={{width: 600, height: 40, marginTop: -3}}
                 onChange={(e) => setContact(e.target.value)}
                 required
                 fullWidth
@@ -128,31 +124,38 @@ const Bookings = () => {
             </div>
           </Paper>
           <Paper elevation={4} sx={{ width: 900 }}>
-            <div className='bg-gray-200 flex flex-col w-[900px] h-[220px] justify-center items-center mt-3'>
+            <div className=' flex flex-col w-[900px] h-[240px] justify-center items-center mt-3'>
               <label className="label text-base font-medium mx-0 my-2.5">Check-In Date</label>
-              <input
+              <TextField
+                value={checkOutDate}
                 type="date"
-                className=' border-2 h-[40px] focus:ring-[#0088a9] mb-3'
+                size='small'
+                sx={{width: 600, height: 40, marginTop: -1}}
                 onChange={(e) => setCheckInDate(e.target.value)}
                 required
+                fullWidth
               />
               <label className="label text-base font-medium mx-0 my-2.5">Check-Out Date</label>
-              <input
+
+               <TextField
+                value={checkOutDate}
                 type="date"
-                className=' border-2 h-[40px] focus:ring-[#0088a9] mb-3'
+                size='small'
+                sx={{width: 600, height: 40, marginTop: -1}}
                 onChange={(e) => setCheckOutDate(e.target.value)}
                 required
+                fullWidth
               />
             </div>
           </Paper>
           <Paper elevation={4} sx={{ width: 900, marginTop: 2, height: 200 }}>
-            <div className='bg-gray-200 h-[200px]'>
+            <div className=' h-[200px]'>
               <div className='w-[900px] flex justify-center items-center'>
-                <h6 className=' w-[600px] mt-2 '>Room Details:</h6>
+                <h6 className=' w-[600px] mt-4 '>Selected Room:</h6>
               </div>
-              <div className='mt-6'>
+              <div className='mt-4'>
                 {shoppingCart && shoppingCart.map(cart => (
-                  <Paper sx={{ width: 600, height: 100, justifyContent: 'center', alignItems: 'center' }}>
+                  <Paper elevation={5} sx={{ width: 600, height: 100, justifyContent: 'center', alignItems: 'center' }}>
                     <div className="flex flex-row justify-center items-center mb-[20px] h-[100px] w-[600px]" key={cart.id}>
                       <div>
                         <img className="w-[160px] h-[100px]" src={cart.roomImage} alt="not found" />
@@ -179,9 +182,6 @@ const Bookings = () => {
           {/* <span className="font-medium m-2">Quantity: {totalQty}</span><br /> */}
           <span className="font-medium m-2">Amount: R {totalPrice}.00</span><br />
           <button className="border bg-sky-400 p-1" onClick={handleBookings}>Place Bookings</button>
-        </div>
-        <div>
-          <Service />
         </div>
       </main>
       <footer>

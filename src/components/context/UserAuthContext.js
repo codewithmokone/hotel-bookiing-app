@@ -26,7 +26,8 @@ export function UserAuthContextProvider({ children }) {
 
     // Sign out function
     function logOut() {
-        return signOut(auth);
+        signOut(auth);
+        setUser('')
     }
 
     useEffect(() => {

@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
+
+// Firebase imports
 import { db } from '../config/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+
+// Components imports
 import Navbar from '../components/navbar/Navbar';
 import Header from '../components/HeroSec';
 import Footer from '../components/Footer';
-import { useNavigate } from 'react-router-dom';
-import SearchCard from '../components/cards/SearchCard';
-import { Card, CardActions, CardContent, CardMedia, Paper, Typography } from '@mui/material';
-// import ReserveRoomForm from './client/ReserveRoomForm';
 import ButtonComponent from '../components/ButtonComponent';
 import ViewRoom from '../components/ViewRoom';
-// import Button from '../components/Button';
+import SearchCard from '../components/cards/SearchCard';
+
+import { useNavigate } from 'react-router-dom';
+import { Card, CardActions, CardContent, CardMedia, Divider, Paper, Typography } from '@mui/material';
+import Service from '../components/Service';
 
 const Rooms = () => {
 
@@ -36,39 +40,11 @@ const Rooms = () => {
                 where('price', '<=', parseInt(maxPrice)),
             ]
 
-            // if (checkInDate && checkOutDate) {
-            //   queryConditions.push(
-            //     where('availableDates', 'array-contains', checkInDate),
-            //     where('availableDates', 'array-contains', checkOutDate)
-            //   );
-            // }
+            const querySnapshot = await getDocs(query(roomsRef, ...queryConditions));
+            const filteredData = querySnapshot.docs.map((doc) => doc.data());
 
-            // const querySnapshot = await getDocs(query(roomsRef, ...queryConditions));
+            setSearchResults(filteredData);
 
-            // const filteredData = querySnapshot.docs.map((doc) => doc.data());
-
-            // setSearchResults(filteredData)
-
-            if (checkInDate && checkOutDate) {
-                // Query for rooms available on the check-in date.
-                const checkInQuerySnapshot = await getDocs(
-                    query(roomsRef, ...queryConditions, where('availableDates', 'array-contains', checkInDate))
-                );
-                const availableRoomsOnCheckIn = checkInQuerySnapshot.docs.map((doc) => doc.data());
-    
-                // Filter available rooms on the check-out date.
-                const filteredData = availableRoomsOnCheckIn.filter((room) =>
-                    room.availableDates.includes(checkOutDate)
-                );
-                console.log(filteredData)
-                setSearchResults(filteredData);
-            } else {
-                // If no check-in and check-out dates are provided, perform a basic search.
-                const querySnapshot = await getDocs(query(roomsRef, ...queryConditions));
-                const filteredData = querySnapshot.docs.map((doc) => doc.data());
-    
-                setSearchResults(filteredData);
-            }
 
         } catch (err) {
             console.log("Error fetching data:", err)
@@ -78,8 +54,6 @@ const Rooms = () => {
     };
 
     const handleView = (room) => {
-
-        console.log("Rooms Component: ", room)
 
         try {
             let selectedRoom = room;
@@ -118,7 +92,7 @@ const Rooms = () => {
     }
 
     return (
-        <>
+        <div className='bg-gray-100'>
             <header className='w-[1024px] flex flex-col'>
                 <Navbar />
                 <Header />
@@ -162,43 +136,46 @@ const Rooms = () => {
                     </div>
                 </div>
             </header>
-            <main className='bg-gray-300 w-[1024px] h-[100vh] justify-center items-center'>
-                <div className="flex flex-col justify-center items-center mr-4">
+            <main className='bg-white w-[1024px]   justify-center items-center'>
+                <div className="flex flex-col min-h-[600px] justify-center items-center mr-4">
                     <h3 className='mt-6'>Our Rooms</h3>
                     {searchResults.length ?
                         <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
                         :
                         <div className="room-list flex flex-wrap justify-center items-center">
                             {rooms.map((room, index) => (
-                                <Card key={index} sx={{ maxWidth: 445, height: 300, marginTop: 3, marginLeft: 2, display: 'flex', flexDirection: 'row' }}>
-                                    <div className='w-[70%] h-[100%]'>
-                                        <CardMedia
-                                            sx={{ height: 300, width: 280 }}
-                                            image={room.roomImage}
-                                            title="green iguana"
-                                        />
-                                    </div>
-                                    <div className='w-30%] h-[100%] border-2'>
-                                        <CardContent sx={{ width: '100%', height: '50%' }}>
-                                            <Typography sx={{ width: '100%' }} gutterBottom variant="h6" component="div">{room.title}</Typography>
-                                            <Typography sx={{ width: '100%' }} variant="body2" color="text.secondary">Description: {room.introDescr}</Typography>
-                                        </CardContent>
-                                        <CardActions sx={{ width: '100%', height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                                            <ButtonComponent label="View" onClick={() => handleView(room)} />
-                                            <ButtonComponent label="Reserve"  />
-                                        </CardActions>
-                                    </div>
+                                <Card key={index} sx={{ maxWidth: 300, height: 400, marginTop: 3, marginLeft: 2, display: 'flex', flexDirection: 'column' }}>
+                                    <CardMedia
+                                        sx={{ height: 350, width: 300 }}
+                                        image={room.roomImage}
+                                        title={room.title}
+                                    />
+                                    <Divider />
+                                    <CardContent sx={{ width: '100%', height: '20%' }}>
+                                        <Typography sx={{ width: '100%', borderBottom: 1 }} gutterBottom variant="h6" component="div">{room.title}</Typography>
+                                        <Typography sx={{ width: '100%' }} variant="body2" color="text.secondary">{room.introDescr}</Typography>
+                                    </CardContent>
+                                    <CardContent sx={{ width: '100%', height: '10%', marginTop: 5 }}>
+                                        <Typography sx={{ width: '100%' }} variant="body2" color="text.secondary">R {room.price}.00</Typography>
+                                    </CardContent>
+                                    <CardActions sx={{ width: '100%', height: '30%', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                        <ButtonComponent label="View" onClick={() => handleView(room)} />
+                                        <ButtonComponent label="Reserve" />
+                                    </CardActions>
                                 </Card>
                             ))}
                         </div>
                     }
+                </div>
+                <div>
+                    <Service />
                 </div>
                 {openModal && <ViewRoom data={data} setOpenModal={setOpenModal} />}
             </main>
             <footer>
                 <Footer />
             </footer>
-        </>
+        </div>
     );
 };
 
