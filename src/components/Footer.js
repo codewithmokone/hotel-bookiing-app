@@ -20,7 +20,7 @@ export const Footer = () => {
                     <a href='#'><div><p>Security</p></div></a>
                 </div>
 
-                <div className="footerBotton">
+                <div className="footerBotton ">
                     <p>
                         @{new Date().getFullYear()}. All right reserved.
                     </p>

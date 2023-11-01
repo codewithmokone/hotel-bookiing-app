@@ -42,16 +42,6 @@ export const AdminHome = () => {
     const handleAdd = (async (e) => {
         e.preventDefault()
 
-        // upload image to firebase storage
-        // if(!file) {
-        //     alert('Please select an image.');
-        // }
-
-        // if (!hotel || !title || !price || !address || !description || !numberOfPeople || !numberOfRooms || !contact || !file) {
-        //     alert('Please fill out all required fields and select an image.');
-        //     return;
-        // }
-
         const imageRef = ref(storage, `hotelImages/${file[0] + v4()}`)
         try {
             await uploadBytes(imageRef, file)
@@ -150,14 +140,14 @@ export const AdminHome = () => {
                             value={introDescr}
                         />
                       
-                        <label className="label text-base font-medium mx-0 my-2.5">Short Description</label>
+                        {/* <label className="label text-base font-medium mx-0 my-2.5">Short Description</label>
                         <input
                             type="text"
                             className='rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                             placeholder=" Enter description"
                             onChange={(e) => setIntroDescr(e.target.value)}
                             required
-                        />
+                        /> */}
                         <label className="label text-base font-medium mx-0 my-2.5">Description</label>
                         <input
                             type="text"
@@ -234,7 +224,7 @@ export const AdminHome = () => {
                                 <p>Air Conditioning</p>
                             </div>
                         </div>
-                        <label className="label text-base font-medium mx-0 my-2.5">Check-In Date</label>
+                        {/* <label className="label text-base font-medium mx-0 my-2.5">Check-In Date</label>
                         <input
                             type="date"
                             className='rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
@@ -247,7 +237,7 @@ export const AdminHome = () => {
                             className='rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                             onChange={(e) => setCheckOutDate(e.target.value)}
                             required
-                        />
+                        /> */}
                         <label className="label text-base font-medium mx-0 my-2.5">Room type:</label>
                         <select onChange={(e) => setRoomType(e.target.value)} required className="w-[600px] h-[30px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
                             <option>Family Deluxe</option>

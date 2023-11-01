@@ -22,22 +22,23 @@ export const Cards = () => {
 
     const user = auth.currentUser
 
-    // const data = useContext(CartContext);
-
     const { dispatch } = useContext(CartContext);
-
-    const handleNav = () => {
-        navigate("/roomview")
-    }
 
     const handleView = (room) => {
         try {
             let selectedRoom = room;
             setData(selectedRoom);
+            // navigate("/roomview")
         } catch (err) {
             console.log(err)
         }
         setOpenModal(true)
+    }
+
+    // Handles reserve room function
+    const reserveRoom = (room) => {
+        dispatch({ type: 'ADD_TO_CART', id: room.id, room })
+        alert("Room added to bookings page")
     }
 
     // Handles fetching the rooms from firestore 
@@ -89,7 +90,7 @@ export const Cards = () => {
                                     </tr>
                                     <tr>
                                         <td><button className=" text-sky-600 border p-1" onClick={() => handleView(room)}>View More</button></td>
-                                        <td><button className=" text-sky-600 border p-1" onClick={() => { dispatch({ type: 'ADD_TO_CART', id: room.id, room }) }}>Reserve</button></td>
+                                        <td><button className=" text-sky-600 border p-1" onClick={reserveRoom}>Reserve</button></td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -16,9 +16,7 @@ export function UserAuthContextProvider({ children }) {
 
     // Login function
     const logIn = async (email, password) => {
-
         return signInWithEmailAndPassword(auth, email, password);
-        
     }
 
     // Sign up function
@@ -33,13 +31,14 @@ export function UserAuthContextProvider({ children }) {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-            
             setUser(currentuser);
         });
         return () => {
             unsubscribe();
         }
     }, []);
+
+    console.log(user);
 
     return (
         <userAuthContext.Provider value={{ user, logIn, signUp, logOut }}>

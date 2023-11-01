@@ -6,15 +6,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase';
 import { useUserAuth } from '../context/UserAuthContext';
 import { Avatar, Button, Menu, MenuItem } from '@mui/material';
+// import { faUser } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Navbar = ({ login, register }) => {
 
-    const user = auth.currentUser
+    const user = auth.currentUser;
 
     const { logOut } = useUserAuth();
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -49,15 +51,15 @@ const Navbar = ({ login, register }) => {
                         <div>
                             <Button
                                 id="basic-button"
-                                className='roomsLink'
                                 aria-controls={open ? 'basic-menu' : undefined}
                                 aria-haspopup="true"
                                 aria-expanded={open ? 'true' : undefined}
                                 onClick={handleClick}
-                                sx={{marginLeft: -3, width:20, height: 50}}
+                                sx={{marginLeft: -3, marginBottom: -2.5 ,width:20, borderWidth: 2,display:'flex', justifyContent: 'center', alignItems: 'center'}}
+                                size='small'
                             >
-                                Profile
-                                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
+                                <p>Profile</p>
+                                {/* <FontAwesomeIcon icon={faUser} className=" text-sky-600 text-lg font-bold" /> */}
                             </Button>
                             <Menu
                                 id="basic-menu"
@@ -68,6 +70,8 @@ const Navbar = ({ login, register }) => {
                                     'aria-labelledby': 'basic-button',
                                 }}
                             >
+                                {/* <MenuItem onClick={signOut}>Profile</MenuItem>
+                                <MenuItem onClick={signOut}>Order History</MenuItem> */}
                                 <MenuItem onClick={signOut}>Logout</MenuItem>
                             </Menu>
                         </div>
