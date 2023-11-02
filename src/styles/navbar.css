@@ -36,7 +36,7 @@ Header {
     margin-right: 30px;
 }
 
-.galleryLink, .roomsLink, .registerBtn, .loginBtn, .home, .newRoom, .bookings, .logout-link, .contactus {
+.galleryLink, .roomsLink, .registerBtn,.contactusLink, .loginBtn, .home, .newRoom, .bookings, .logout-link, .contactus {
     display: inline-block;
     padding: 0px 2px;
     font-weight: 500;

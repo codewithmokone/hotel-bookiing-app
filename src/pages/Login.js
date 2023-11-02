@@ -63,8 +63,8 @@ const Login = ( ) => {
     return (
         <div className="w-screen h-screen bg-[#24252A] fixed flex flex-col items-center justify-center">
             <div className="flex flex-col items-center justify-center rounded bg-white w-[500px] h-[500px]">
-                <div className="w-full bg-sky-400">
-                <button className="fixed top-1 bg-[#0088a9] p-[7px] rounded-xl text-white right-2" onClick={closeLoginPage}> X </button>
+                <div className="flex justify-end items-end mt-[8px] mr-[20px]">
+                <button className="rounded-xl font-bold text-2xl text-[#0088a9] w-[20]" onClick={closeLoginPage}> X </button>
                 </div>
                 <h1 className=" text-center font-black text-2xl mb-2 text-[#0088a9]" >Login</h1>
                 <form className=" flex flex-col items-center justify-center w-80" onSubmit={handleLogin}>

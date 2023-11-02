@@ -10,14 +10,13 @@ import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/context/ProtectedRoute';
 import { CartContextProvider } from './components/context/CartContext';
 import { UserAuthContextProvider } from './components/context/UserAuthContext';
-import ViewRoomDetails from './pages/client/ViewRoomDetails';
 import Gallery from './pages/Gallery';
 import ViewRoom from './components/ViewRoom';
 import BookedRooms from './pages/admin/BookedRooms';
 import UpdateRoom from './pages/admin/UpdateRoom';
 import Rooms from './pages/Rooms';
 import ContactUs from './pages/ContactUs';
-import ReserveRoomForm from './pages/client/ReserveRoomForm';
+import Dashboard from './pages/admin/Dashboard';
 
 function App() {
 
@@ -37,13 +36,13 @@ function App() {
           {/* Protected Routes */}
           <Route path='/clienthome' element={<ProtectedRoute><ClientHome /></ProtectedRoute>} />
           <Route path='/bookings' element={<ProtectedRoute><Bookings /></ProtectedRoute>} />
-          <Route path='/viewroomdetails' element={<ProtectedRoute><ViewRoomDetails /></ProtectedRoute>} />
+          <Route path='/roomview' element={<ProtectedRoute><ViewRoom /></ProtectedRoute>} />
           <Route path="/adminhome" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
           <Route path='/newroom' element={<ProtectedRoute><NewRoom /></ProtectedRoute>} />
           <Route path='/editroom/:id' element={<ProtectedRoute><UpdateRoom /></ProtectedRoute>} />
           <Route path='/bookedrooms' element={<BookedRooms />} />
-          <Route path='/reserveroom' element={<ReserveRoomForm />} />
           <Route path="*" element={<NoPage />} />
+           {/* <Route path='/dashboard' element={<Dashboard />} /> */}
         </Routes>
       </CartContextProvider>
     </UserAuthContextProvider>

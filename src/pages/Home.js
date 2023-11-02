@@ -31,7 +31,7 @@ export const Home = () => {
         )
       );
 
-       const filteredData = querySnapshot.docs.map((doc) => doc.data());
+      const filteredData = querySnapshot.docs.map((doc) => doc.data());
 
       console.log("Filter price: ", filteredData)
 
@@ -43,20 +43,10 @@ export const Home = () => {
     }
   };
 
-  // Opens the login modal
-  const login = () => {
-    navigate("/login")
-  }
-
-  // Opens the register modal
-  const register = () => {
-    navigate("/register");
-  }
-
   return (
-    <div className='min-h-screen bg-gray-100'>
+    <div className='min-h-screen bg-[#F5F5F5]'>
       <header className='w-[1024px]'>
-        <Navbar login={login} register={register} />
+        <Navbar />
       </header>
       <div>
         <Header />

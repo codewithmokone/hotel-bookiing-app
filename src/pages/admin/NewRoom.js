@@ -9,7 +9,7 @@ import { storage } from '../../config/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
-import { TextField } from '@mui/material';
+import { Alert, TextField } from '@mui/material';
 
 
 export const AdminHome = () => {
@@ -83,7 +83,8 @@ export const AdminHome = () => {
             setBedType('')
             setImageUrl('')
 
-            alert('Successful');
+            console.log('Successful');
+            <Alert severity="success">Room Added Successfully</Alert>
 
             navigate('/adminhome');
 

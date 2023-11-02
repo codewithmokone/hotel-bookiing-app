@@ -19,15 +19,13 @@ import { CartContext } from '../../components/context/CartContext';
 // Icon and styling import
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Paper, TextField } from '@mui/material';
+import { Alert, Paper, TextField } from '@mui/material';
 import { useUserAuth } from '../../components/context/UserAuthContext';
 
 const Bookings = () => {
 
   const { shoppingCart, dispatch, totalPrice, totalQty } = useContext(CartContext);
-
   const { user } = useUserAuth();
-
   const navigate = useNavigate()
 
   const shoppingCartArray = shoppingCart[0];
@@ -42,46 +40,51 @@ const Bookings = () => {
 
   // Handles the booking function
   const handleBookings = async () => {
-    const imageRef = ref(storage, `BookingImages/${file}`)
-    const docId = shoppingCartArray.id
 
-    try {
-      await uploadBytes(imageRef, file)
-      const url = await getDownloadURL(imageRef);
-      console.log('Image Uploaded');
+    if (user) {
+      const imageRef = ref(storage, `BookingImages/${file}`)
+      const docId = shoppingCartArray.id
 
-      const docRef = await addDoc(collection(db, "bookings"), {
-        userId: user.uid,
-        roomId: docId,
-        hotel: shoppingCartArray.hotel,
-        title: shoppingCartArray.title,
-        introDescr: shoppingCartArray.introDescr,
-        description: shoppingCartArray.description,
-        address: shoppingCartArray.address,
-        contact: shoppingCartArray.contact,
-        price: shoppingCartArray.price,
-        numberOfPeople: shoppingCartArray.numberOfPeople,
-        numberOfRooms: shoppingCartArray.numberOfRooms,
-        roomType: shoppingCartArray.roomType,
-        bedType: shoppingCartArray.bedType,
-        checkInDate: checkInDate,
-        checkOutDate: checkOutDate,
-        // amenities: {
-        //   wifi: shoppingCartArray.wifi,
-        //   tv: shoppingCartArray.tv,
-        //   airConditioning: shoppingCartArray.airConditioning
-        // },
-        roomImage: file
-      });
+      try {
+        // Uploading a image to firebase storage
+        await uploadBytes(imageRef, file)
+        const url = await getDownloadURL(imageRef);
+        console.log('Image Uploaded');
 
-      alert('Booking Successful');
-      navigate('/clienthome');
+        // Sends data to firestore booking collections 
+        const docRef = await addDoc(collection(db, "bookings"), {
+          userId: user.uid,
+          roomId: docId,
+          hotel: shoppingCartArray.hotel,
+          title: shoppingCartArray.title,
+          introDescr: shoppingCartArray.introDescr,
+          description: shoppingCartArray.description,
+          address: shoppingCartArray.address,
+          contact: shoppingCartArray.contact,
+          price: shoppingCartArray.price,
+          numberOfPeople: shoppingCartArray.numberOfPeople,
+          numberOfRooms: shoppingCartArray.numberOfRooms,
+          roomType: shoppingCartArray.roomType,
+          bedType: shoppingCartArray.bedType,
+          checkInDate: checkInDate,
+          checkOutDate: checkOutDate,
+          roomImage: file
+        });
 
-    } catch (err) {
-      console.log("Error uploading an image. ", err)
+        alert('Booking Successful');
+        navigate('/clienthome');
+
+      } catch (err) {
+        console.log("Error uploading an image. ", err)
+      }
+    } else {
+      <div>
+        <Alert variant="filled" severity="error">
+          Please login or signup to continue.
+        </Alert>
+      </div>
     }
   }
-
 
   return (
     <div className="flex flex-col h-[100%] bg-gray-100">
@@ -99,24 +102,26 @@ const Bookings = () => {
               <label className='w-[600px] mt-4'>Name</label>
               <TextField
                 size='small'
-                sx={{width: 600, height: 40., marginTop: -3}}
+                value={name}
+                sx={{ width: 600, height: 40., marginTop: -3 }}
                 onChange={(e) => setName(e.target.value)}
                 required
                 fullWidth
               />
               <label className='w-[600px]'>Email</label>
-               <TextField
+              <TextField
                 value={email}
                 size='small'
-                sx={{width: 600, height: 40, marginTop: -3}}
+                sx={{ width: 600, height: 40, marginTop: -3 }}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 fullWidth
               />
               <label className='w-[600px]'>Contact</label>
-               <TextField
+              <TextField
                 size='small'
-                sx={{width: 600, height: 40, marginTop: -3}}
+                value={contact}
+                sx={{ width: 600, height: 40, marginTop: -3 }}
                 onChange={(e) => setContact(e.target.value)}
                 required
                 fullWidth
@@ -130,18 +135,18 @@ const Bookings = () => {
                 value={checkOutDate}
                 type="date"
                 size='small'
-                sx={{width: 600, height: 40, marginTop: -1}}
+                sx={{ width: 600, height: 40, marginTop: -1 }}
                 onChange={(e) => setCheckInDate(e.target.value)}
                 required
                 fullWidth
               />
               <label className="label text-base font-medium mx-0 my-2.5">Check-Out Date</label>
 
-               <TextField
+              <TextField
                 value={checkOutDate}
                 type="date"
                 size='small'
-                sx={{width: 600, height: 40, marginTop: -1}}
+                sx={{ width: 600, height: 40, marginTop: -1 }}
                 onChange={(e) => setCheckOutDate(e.target.value)}
                 required
                 fullWidth
@@ -164,7 +169,6 @@ const Bookings = () => {
                         <h5>{cart.title}</h5>
                         <p>{cart.introDescr}</p>
                       </div>
-                      {/* <div>No. of people: {cart.numberOfPeople}</div> */}
                       <div className='w-[76px]  justify-center items-center'>
                         <p>R {cart.price}.00</p>
                       </div>
@@ -181,7 +185,7 @@ const Bookings = () => {
         <div className="my-10 flex flex-row ">
           {/* <span className="font-medium m-2">Quantity: {totalQty}</span><br /> */}
           <span className="font-medium m-2">Amount: R {totalPrice}.00</span><br />
-          <button className="border bg-sky-400 p-1" onClick={handleBookings}>Place Bookings</button>
+          <button className="border bg-sky-400 p-1" onClick={handleBookings}>Confirm Bookings</button>
         </div>
       </main>
       <footer>

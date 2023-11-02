@@ -13,6 +13,7 @@ function ButtonComponent({label, theme}) {
                 backgroundColor: 'green', 
                 color: 'white' 
               }}
+              
             >{label}</Button>
         )
       }

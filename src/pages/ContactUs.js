@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/HeroSec'
 import Footer from '../components/Footer'
-import { Button, Checkbox, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
+import { Button, Checkbox, FormControlLabel, Grid, Paper, TextField, Typography } from '@mui/material'
 import Navbar from '../components/navbar/Navbar'
 
 
 function ContactUs() {
+
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [contact, setContact] = useState('')
+    const [message, setMessage] = useState('')
+
     return (
-        <>
+        <div className='bg-[#F5F5F5]'>
             <header className='w-[1024px] flex flex-col'>
                 <Navbar />
                 <Header />
             </header>
-            <main className=' w-[1024px] h-[100vh] justify-center items-center'>
-                <div>
+            <main className=' w-[1024px] h-[100vh] bg-white  justify-center items-center'>
+                <div className=''>
                     <h3 className='text-center'>Let's get in touch.</h3>
                 </div>
-                <div className='flex justify-center items-center mt-6 '>
+                <div className='flex justify-center items-center mt-10 '>
                     <div>
                         <h5>Address</h5>
                         <p>486 Lynnwood</p>
@@ -34,108 +40,54 @@ function ContactUs() {
                     </div>
                 </div>
                 <div className='flex flex-col justify-center items-center mt-16'>
-                    <Grid container spacing={3} sx={{ width: '80%', marginLeft:12, backgroundColor: 'white'}}>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
+                    <Paper elevation={5} sx={{width:800, height:600}}>
+                        <form className='flex flex-col justify-center items-center mt-28' >
+                            <label className='w-[75%]'>Full Name:</label>
+                            <input
+                                className='block border h-[40px] my-2'
+                                onChange={(e) => setName(e.target.value)}
                                 required
-                                id="firstName"
-                                name="firstName"
-                                label="First name"
-                                fullWidth
-                                autoComplete="given-name"
-                                variant="standard"
+                                type="text"
+                                placeholder=' Name and surname'
+                                value={name}
                             />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
+                            <label className='w-[75%]'>Email:</label>
+                            <input
+                                className='block border h-[40px] my-2'
+                                onChange={(e) => setEmail(e.target.value)}
                                 required
-                                id="lastName"
-                                name="lastName"
-                                label="Last name"
-                                fullWidth
-                                autoComplete="family-name"
-                                variant="standard"
+                                type="email"
+                                value={email}
+                                placeholder=' you@mail.com'
                             />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
+                            <label className='w-[75%]'>Contact number:</label>
+                            <input
+                                className='block border h-[40px] my-2'
+                                onChange={(e) => setContact(e.target.value)}
                                 required
-                                id="address1"
-                                name="address1"
-                                label="Address line 1"
-                                fullWidth
-                                autoComplete="shipping address-line1"
-                                variant="standard"
+                                type="number"
+                                placeholder=' Contact'
+                                value={contact}
                             />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                id="address2"
-                                name="address2"
-                                label="Address line 2"
-                                fullWidth
-                                autoComplete="shipping address-line2"
-                                variant="standard"
+                            <label className='w-[75%]'>Message:</label>
+                            <textarea
+                                name="postContent" 
+                                rows={4} cols={79} 
+                                className='border w-[1000] border-[#0088a9]'
+                                placeholder=' Message'
+                                onChange={(e) => setContact(e.target.value)}
                             />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                required
-                                id="city"
-                                name="city"
-                                label="City"
-                                fullWidth
-                                autoComplete="shipping address-level2"
-                                variant="standard"
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                id="state"
-                                name="state"
-                                label="State/Province/Region"
-                                fullWidth
-                                variant="standard"
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                required
-                                id="zip"
-                                name="zip"
-                                label="Zip / Postal code"
-                                fullWidth
-                                autoComplete="shipping postal-code"
-                                variant="standard"
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                required
-                                id="country"
-                                name="country"
-                                label="Country"
-                                fullWidth
-                                autoComplete="shipping country"
-                                variant="standard"
-                            />
-                        </Grid>
-                        {/* <Grid item xs={12}>
-                            <FormControlLabel
-                                control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-                                label="Use this address for payment details"
-                            />
-                        </Grid> */}
-                        <Button>Send</Button>
-                    </Grid>
-                    
+                            <div className='flex flex-row justify-center items-center '>
+                                <button type="submit" className='w-[100px] h-[40px] rounded bg-[#0088a9] mt-6 text-[white]'>Send</button>
+                            </div>
+                        </form>
+                    </Paper>
                 </div>
-
             </main>
             <footer>
                 <Footer />
             </footer>
-        </>
+        </div>
     )
 }
 

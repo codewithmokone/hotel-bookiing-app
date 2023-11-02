@@ -12,7 +12,6 @@ const Gallery = () => {
 
     // Handles fetching images from firebase storage
     const fetchImages = async () => {
-
         try {
             const imageRef = ref(storage, 'hotelGallery/');
             const result = await listAll(imageRef);
@@ -42,18 +41,18 @@ const Gallery = () => {
     }
 
     return (
-        <div className="min-h-screen bg-">
+        <div className="bg-[#F5F5F5]">
             <header className="w-[1024px] m-auto flex flex-col ">
                 <Navbar />
                 <HeroSec />
             </header>
-            <main className="m-auto w-[1024px] flex flex-col bg-gray-300  items-center justify-center mt-10 mb-5 min-h-full">
+            <main className=" w-[1024px] flex flex-col bg-gray-300  items-center justify-center mt-10 mb-5 h-[70vh]">
                 <div>
-                    <h2 className="font-bold text-[#0088a9] m-10">Gallery</h2>
+                    <h2 className="font-bold text-[#0088a9] m-2">Gallery</h2>
                 </div>
                 <div className='flex flex-row flex-wrap justify-center'>
                     {images.map((image, index) => (
-                        <div key={index} className='shadow-sm bg-white shadow-black m-2 mb-2 border-white'>
+                        <div key={index} className='shadow-sm bg-white shadow-black  mb-4 border-white'>
                             <img className=" w-[300px] m-[10px] h-[250px]" src={image} alt='roomImage'  />
                         </div>))
                     }

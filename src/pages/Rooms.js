@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Firebase imports
 import { db } from '../config/firebase';
@@ -8,13 +9,13 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import Navbar from '../components/navbar/Navbar';
 import Header from '../components/HeroSec';
 import Footer from '../components/Footer';
-import ButtonComponent from '../components/ButtonComponent';
+import Service from '../components/Service';
 import ViewRoom from '../components/ViewRoom';
 import SearchCard from '../components/cards/SearchCard';
+import ButtonComponent from '../components/ButtonComponent';
 
-import { useNavigate } from 'react-router-dom';
-import { Card, CardActions, CardContent, CardMedia, Divider, Paper, Typography } from '@mui/material';
-import Service from '../components/Service';
+// Material ui imports
+import { Button, Card, CardActions, CardContent, CardMedia, Divider, Typography } from '@mui/material';
 
 const Rooms = () => {
 
@@ -23,12 +24,20 @@ const Rooms = () => {
     const [searchResults, setSearchResults] = useState('');
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
-    const [checkInDate, setCheckInDate] = useState('');
-    const [checkOutDate, setCheckOutDate] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [openModal, setOpenModal] = useState(false)
 
     const navigate = useNavigate()
+
+    // Opens the login page
+    const login = () => {
+        navigate("/login")
+    }
+
+    // Opens the register page
+    const register = () => {
+        navigate("/register");
+    }
 
     const searchRoom = async () => {
         setIsLoading(true)
@@ -92,13 +101,13 @@ const Rooms = () => {
     }
 
     return (
-        <div className='bg-gray-100'>
+        <div className='bg-white'>
             <header className='w-[1024px] flex flex-col'>
-                <Navbar />
+                <Navbar login={login} register={register} />
                 <Header />
                 <div className="main flex flex-col justify-center items-center w-[1024px] m-auto">
                     <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
-                        <div className="search-section rounded w-[1000px] h-[40px] flex justify-between items-center border bg-white">
+                        <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
                             <div>
                                 <input
                                     className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
@@ -114,20 +123,6 @@ const Rooms = () => {
                                     placeholder='Enter maximum amount'
                                     onChange={(e) => setMaxPrice(e.target.value)}
                                 />
-                                <input
-                                    className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[150px]'
-                                    type="date"
-                                    value={checkInDate}
-                                    placeholder='Check-in date'
-                                    onChange={(e) => setCheckInDate(e.target.value)}
-                                />
-                                <input
-                                    className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[150px]'
-                                    type="date"
-                                    value={checkOutDate}
-                                    placeholder='Check-out date'
-                                    onChange={(e) => setCheckOutDate(e.target.value)}
-                                />
                                 <button
                                     className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
                                     onClick={searchRoom}>Search</button>
@@ -136,7 +131,7 @@ const Rooms = () => {
                     </div>
                 </div>
             </header>
-            <main className='bg-white w-[1024px]   justify-center items-center'>
+            <main className='bg-gray-100 w-[1024px]   justify-center items-center'>
                 <div className="flex flex-col min-h-[600px] justify-center items-center mr-4">
                     <h3 className='mt-6'>Our Rooms</h3>
                     {searchResults.length ?
@@ -144,7 +139,7 @@ const Rooms = () => {
                         :
                         <div className="room-list flex flex-wrap justify-center items-center">
                             {rooms.map((room, index) => (
-                                <Card key={index} sx={{ maxWidth: 300, height: 400, marginTop: 3, marginLeft: 2, display: 'flex', flexDirection: 'column' }}>
+                                <Card elevation={5} key={index} sx={{ maxWidth: 300, height: 400, marginTop: 3, marginLeft: 2, display: 'flex', flexDirection: 'column' }}>
                                     <CardMedia
                                         sx={{ height: 350, width: 300 }}
                                         image={room.roomImage}
@@ -152,15 +147,14 @@ const Rooms = () => {
                                     />
                                     <Divider />
                                     <CardContent sx={{ width: '100%', height: '20%' }}>
-                                        <Typography sx={{ width: '100%', borderBottom: 1 }} gutterBottom variant="h6" component="div">{room.title}</Typography>
+                                        <Typography sx={{ width: '100%', borderBottom: 1, fontWeight: 700 }} gutterBottom variant="h6" component="div">{room.title}</Typography>
                                         <Typography sx={{ width: '100%' }} variant="body2" color="text.secondary">{room.introDescr}</Typography>
                                     </CardContent>
                                     <CardContent sx={{ width: '100%', height: '10%', marginTop: 5 }}>
-                                        <Typography sx={{ width: '100%' }} variant="body2" color="text.secondary">R {room.price}.00</Typography>
+                                        <Typography sx={{ width: '100%', fontWeight: 800 }} variant="body2" color="text.secondary">R {room.price}.00</Typography>
                                     </CardContent>
                                     <CardActions sx={{ width: '100%', height: '30%', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                        <ButtonComponent label="View" onClick={() => handleView(room)} />
-                                        <ButtonComponent label="Reserve" />
+                                        <Button label="View" onClick={() => handleView(room)}>View</Button>
                                     </CardActions>
                                 </Card>
                             ))}

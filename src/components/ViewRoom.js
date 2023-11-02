@@ -8,11 +8,13 @@ import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { Divider } from '@mui/material';
+import { useUserAuth } from './context/UserAuthContext';
 
 
 const ViewRoom = ({ data, setOpenModal }) => {
 
   const { dispatch } = useContext(CartContext);
+  const { user } = useUserAuth();
   const navigate = useNavigate()
 
   const [room, setRoom] = useState(data);
@@ -71,9 +73,13 @@ const ViewRoom = ({ data, setOpenModal }) => {
 
   // Handles the reservation function
   const handleReservation = () => {
-    dispatch({ type: 'ADD_TO_CART', id: room.id, room })
-    alert("Room added to bookings page")
-    navigate('/clienthome')
+    if(user){
+      dispatch({ type: 'ADD_TO_CART', id: room.id, room })
+      alert("Room added to bookings page")
+      navigate('/clienthome')
+    }
+    alert('Please login or register to continue.')
+   
   }
 
   return (

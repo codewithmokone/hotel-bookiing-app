@@ -7,6 +7,8 @@ import { auth, db } from '../../config/firebase';
 import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import { useNavigate } from 'react-router-dom';
+import { Button, Card, CardActions, CardContent, CardMedia, Divider, Paper, Typography } from '@mui/material';
+import ButtonComponent from '../../components/ButtonComponent';
 // import UpdateRoom from './UpdateRoom';
 
 const AdminHome = () => {
@@ -76,63 +78,40 @@ const AdminHome = () => {
     return (
         <>
             {/* {openViewModal && <EditRoom selectedRoom={selectedRoom} handleDelete={handleDelete} closeEdit={closeEdit} />} */}
-            <div className="flex flex-col justify-center items-center m-0">
+            <div className="flex flex-col justify-center bg-gray-100 items-center m-0">
                 <header className='flex flex-col'>
                     <AdminNavbar signOut={logout} />
                     <HeroSec />
                 </header>
-                <main className="m-0 w-[1024px] flex flex-row justify-center h-[400px] bg-gray-300">
-                    <table className="striped-table my-4 mx-8 w-[1024px] border h-[200px]">
-                        <thead>
-                            <tr className="border-b-2 border-t-2 border-sky-600 text-left ">
-                                <th className="border">Image</th>
-                                <th className="border">Hotel</th>
-                                <th className="border">Title</th>
-                                <th className="border">Descrip</th>
-                                <th className="border">No. Of Ppl</th>
-                                <th className="border">Price</th>
-                                <th className="border">No. Of Rooms</th>
-                                <th className="border">Room Type</th>
-                                <th colSpan={2} className="">
-                                    Actions
-                                </th>
+                <main className="w-[1024px] flex flex-col justify-center min-h-[50vh] bg-white">
+                    <div className='flex flex-col'>
+                        {rooms ? (
+                            rooms.map((room, i) => (
+                                <Card elevation={5} key={i} sx={{ width: 800, height: 100, marginTop: 3, marginLeft: 2, display: 'flex', flexDirection: 'row' }}>
+                                    <CardMedia
+                                        sx={{ height: 100, width: "100%" }}
+                                        image={room.roomImage}
+                                        title={room.title}
+                                    />
+                                    <CardContent sx={{ width: '150%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                                        <Typography sx={{ width: '100%', borderBottom: 1, fontWeight: 700, marginTop: -1 }} gutterBottom variant="h6" component="div">{room.title}</Typography>
+                                        <Typography sx={{ width: '100%', marginBottom: 5 }} variant="body2" color="text.secondary">{room.introDescr}</Typography>
+                                    </CardContent>
+                                    <CardContent sx={{ width: '50%' }}>
+                                        <Typography sx={{ width: '100%', fontWeight: 800 }} variant="body2" color="text.secondary">R {room.price}.00</Typography>
+                                    </CardContent>
+                                    <CardActions sx={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                        <Button label="Edit" onClick={() => { handleEdit(room.id) }}>Edit</Button>
+                                        <Button label="Delete" onClick={() => handleDelete(room.id)}>Delete</Button>
+                                    </CardActions>
+                                </Card>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan={7}>Loading...</td>
                             </tr>
-                        </thead>
-                        <tbody >
-                            {rooms ? (
-                                rooms.map((room, i) => (
-                                    <tr key={room.id} className="my-6 flx flex-row justify-evenly border">
-                                        <td className="border"><img src={room.roomImage} className="w-[50px] h-[50px]" /></td>
-                                        <td className="border">{room.hotel}</td>
-                                        <td className="border">{room.title}</td>
-                                        <td className="border">{room.introDescr}</td>
-                                        <td className="border">{room.numberOfPeople}</td>
-                                        <td className="border">{room.price}</td>
-                                        <td className="border">{room.numberOfRooms}</td>
-                                        <td className="border">{room.roomType} </td>
-                                        <td className="text-right">
-                                            <button
-                                                onClick={() => { handleEdit(room.id) }}
-                                                className="button muted-button mr-2"
-                                            >Edit
-                                            </button>
-                                        </td>
-                                        <td className="text-left">
-                                            <button
-                                                onClick={() => handleDelete(room.id)}
-                                                className="button muted-button"
-                                            >Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td colSpan={7}>Loading...</td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
+                        )}
+                    </div>
                 </main>
                 <footer>
                     <Footer />
