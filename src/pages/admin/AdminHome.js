@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Material ui components
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 
 // Firebase imports
@@ -12,8 +13,7 @@ import { getStorage, ref, deleteObject } from "firebase/storage";
 // Components imports
 import HeroSec from '../../components/HeroSec';
 import Footer from '../../components/Footer';
-import Navbar from '../../components/navbar/Navbar';
-// import UpdateRoom from './UpdateRoom';
+import AdminNavbar from '../../components/navbar/AdminNavbar';
 
 const AdminHome = () => {
 
@@ -84,11 +84,11 @@ const AdminHome = () => {
             {/* {openViewModal && <EditRoom selectedRoom={selectedRoom} handleDelete={handleDelete} closeEdit={closeEdit} />} */}
             <div className="home-container bg-zinc-400 block h-auto m-auto">
                 <header className='flex flex-col'>
-                    <Navbar />
+                    <AdminNavbar />
                     <HeroSec />
                 </header>
-                <main className="w-[1024px] flex flex-col justify-center min-h-[50vh] bg-white">
-                    <div className='flex flex-col'>
+                <main className="w-[1024px] flex flex-col justify-center m-auto min-h-[50vh] bg-white">
+                    <div className='flex flex-col m-auto'>
                         {rooms ? (
                             rooms.map((room, i) => (
                                 <Card elevation={5} key={i} sx={{ width: 800, height: 100, marginTop: 3, marginLeft: 2, display: 'flex', flexDirection: 'row' }}>
@@ -117,7 +117,7 @@ const AdminHome = () => {
                         )}
                     </div>
                 </main>
-                <footer className='m-0'>
+                <footer className='m-auto'>
                     <Footer />
                 </footer>
             </div>

@@ -15,10 +15,10 @@ const Navbar = () => {
     const [userRole, setUserRole] = useState()
 
     useEffect(() => {
-        if(user){
+        if (user) {
             fetchUserRole();
         }
-    },[user])
+    }, [user])
 
     const navigate = useNavigate();
 
@@ -73,7 +73,7 @@ const Navbar = () => {
     }
 
     // Renders the navbar ui according to the logged in user
-    if(userRole === 'Client') {
+    if (userRole === 'Client') {
         return (
             <div className="navbar w-[1024px] m-auto h-[70px] flex items-center justify-center">
                 <header className='navContainer w-[1024px] '>
@@ -116,49 +116,7 @@ const Navbar = () => {
                 </header>
             </div>
         )
-    } else if(userRole === 'Admin') {
-        return (
-            <div className="navbar w-[1024px] m-auto h-[70px] flex items-center justify-center">
-            <header className='navContainer w-[1024px] '>
-                <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
-                <nav className="adminNavItems flex justify-center">
-                    <Link to="/adminhome" className="adminHome mr-2">Home</Link>
-                    <Link to="/newroom" className="adminNewRoom mr-2">New Room</Link>
-                    <Link to="/bookedrooms" className="adminBookings mr-8">Bookings</Link>
-                    <div>
-                        <Button
-                            className='adminProfile'
-                            id="basic-button"
-                            aria-controls={open ? 'basic-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? 'true' : undefined}
-                            onClick={handleClick}
-                            sx={{ marginLeft: -3, marginBottom: -2.5, width: 20, borderWidth: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                            size='small'
-                        >
-                            <p>Profile</p>
-                            {/* <FontAwesomeIcon icon={faUser} className=" text-sky-600 text-lg font-bold" /> */}
-                        </Button>
-                        <Menu
-                            id="basic-menu"
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleClose}
-                            MenuListProps={{
-                                'aria-labelledby': 'basic-button',
-                            }}
-                        >
-                            {/* <MenuItem onClick={signOut}>Profile</MenuItem>
-                            <MenuItem onClick={signOut}>Order History</MenuItem> */}
-                            <MenuItem onClick={signOut}>Logout</MenuItem>
-                        </Menu>
-                    </div>
-
-                </nav>
-            </header>
-        </div>
-        )
-    } else{
+    } else {
         return (
             <div className="navbar w-[1024px] m-auto h-[80px] flex items-center justify-center">
                 <header className='navContainer w-[1024px] '>

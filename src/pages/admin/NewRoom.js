@@ -8,8 +8,8 @@ import { storage } from '../../config/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
-import { Alert, TextField } from '@mui/material';
-import Navbar from '../../components/navbar/Navbar';
+import { Alert } from '@mui/material';
+import AdminNavbar from '../../components/navbar/AdminNavbar';
 
 
 export const AdminHome = () => {
@@ -94,9 +94,9 @@ export const AdminHome = () => {
     })
 
     return (
-        <div className='home-container min-h-screen bg-gray-400'>
+        <div className='home-container min-h-screen m-auto bg-gray-400'>
             <header className='flex flex-col '>
-                <Navbar />
+                <AdminNavbar />
                 <Header />
             </header>
             <div className="admin-main-section  w-[1024px] h-full flex flex-col items-center bg-gray-300 m-auto">
@@ -225,7 +225,7 @@ export const AdminHome = () => {
                     </div>
                 </form>
             </div>
-            <footer>
+            <footer className='m-auto'>
                 <Footer />
             </footer>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../config/firebase'
 import { useNavigate, useParams } from 'react-router-dom';
-import { collection, getDoc, doc, updateDoc } from 'firebase/firestore';
+import { getDoc, doc, updateDoc } from 'firebase/firestore';
 
 const UpdateRoom = () => {
 
@@ -43,8 +43,6 @@ const UpdateRoom = () => {
     //     }
     // };
 
-   
-
     const closeUpdate = () => {
         navigate('/adminhome')
     }
@@ -85,8 +83,6 @@ const UpdateRoom = () => {
             // console.log(rooms)
             console.log("Error updating room: ", error)
         }
-
-
 
         // await updateDoc(hotelRoomRef, {
         //     ...room

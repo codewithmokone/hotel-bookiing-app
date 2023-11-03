@@ -35,7 +35,7 @@ const Login = ( ) => {
 
             let userRole = "";
 
-            const userRef = query(collection(db, "userRole"), where("userID", "==", userId));
+            const userRef = query(collection(db, "userRole"), where("userId", "==", userId));
             const querySnapshot = await getDocs(userRef);
 
             querySnapshot.forEach((doc) => {
@@ -44,18 +44,26 @@ const Login = ( ) => {
 
             console.log({ uid: auth.currentUser.uid, userRole })
 
-            if (uid.user && uid.user.uid) {
-                if (auth.currentUser.uid != null) {
-                    console.log("Login log: ",auth.currentUser.uid, userRole)
-                    if (auth.currentUser.uid === userRole) {
-                        navigate("/adminhome")
-                    } else {
-                        navigate("/clienthome")
-                    }
-                }
-            } else {
-                console.log("User doesn't exist")
+            if(userRole === "Admin"){
+                navigate("/adminhome")
+            }else if(userRole === "Client"){
+                navigate("/clienthome")
+            }else{
+                alert("Please enter the correct email/password")
             }
+                
+            // if (uid.user && uid.user.uid) {
+            //     if (auth.currentUser.uid != null) {
+            //         console.log("Login log: ",auth.currentUser.uid, userRole)
+            //         if (auth.currentUser.uid === userRole) {
+            //             navigate("/adminhome")
+            //         } else {
+            //             navigate("/clienthome")
+            //         }
+            //     }
+            // } else {
+            //     console.log("User doesn't exist")
+            // }
 
         } catch (err) {
             // setError()

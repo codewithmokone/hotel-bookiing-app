@@ -1,13 +1,13 @@
 import React from 'react'
 import HeroSec from '../../components/HeroSec'
 import Footer from '../../components/Footer'
-import Navbar from '../../components/navbar/Navbar'
+import AdminNavbar from '../../components/navbar/AdminNavbar'
 
 function BookedRooms() {
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen m-auto'>
         <header className='flex flex-col'>
-            <Navbar />
+            <AdminNavbar />
             <HeroSec />
         </header>
         <main>
@@ -17,7 +17,7 @@ function BookedRooms() {
             </div>
           </div>
         </main>
-        <footer>
+        <footer className='m-auto'>
             <Footer />
         </footer>
     </div>
