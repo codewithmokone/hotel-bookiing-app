@@ -42,7 +42,7 @@ function App() {
           <Route path='/editroom/:id' element={<ProtectedRoute><UpdateRoom /></ProtectedRoute>} />
           <Route path='/bookedrooms' element={<BookedRooms />} />
           <Route path="*" element={<NoPage />} />
-           {/* <Route path='/dashboard' element={<Dashboard />} /> */}
+          {/* <Route path='/dashboard' element={<Dashboard />} /> */}
         </Routes>
       </CartContextProvider>
     </UserAuthContextProvider>

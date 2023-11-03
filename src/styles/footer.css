@@ -10,9 +10,12 @@ footer {
     align-items: center;
     justify-content: center;
     background-color: #24252A;
+    border-bottom: 10;
+    border-color: rgba(0,136,169,1);
 }
 
 .footerContainer{
+    border: 2 solid green;
     display: flex;
     height: 250px;
     flex-direction: column;

@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import AdminNavbar from '../../components/navbar/AdminNavbar';
-import HeroSec from '../../components/HeroSec';
-import Footer from '../../components/Footer';
+import { useNavigate } from 'react-router-dom';
+
+import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+
+// Firebase imports
 import { signOut } from 'firebase/auth';
 import { auth, db } from '../../config/firebase';
 import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from "firebase/storage";
-import { useNavigate } from 'react-router-dom';
-import { Button, Card, CardActions, CardContent, CardMedia, Divider, Paper, Typography } from '@mui/material';
-import ButtonComponent from '../../components/ButtonComponent';
+
+// Components imports
+import HeroSec from '../../components/HeroSec';
+import Footer from '../../components/Footer';
+import Navbar from '../../components/navbar/Navbar';
 // import UpdateRoom from './UpdateRoom';
 
 const AdminHome = () => {
@@ -78,9 +82,9 @@ const AdminHome = () => {
     return (
         <>
             {/* {openViewModal && <EditRoom selectedRoom={selectedRoom} handleDelete={handleDelete} closeEdit={closeEdit} />} */}
-            <div className="flex flex-col justify-center bg-gray-100 items-center m-0">
+            <div className="home-container bg-zinc-400 block h-auto m-auto">
                 <header className='flex flex-col'>
-                    <AdminNavbar signOut={logout} />
+                    <Navbar />
                     <HeroSec />
                 </header>
                 <main className="w-[1024px] flex flex-col justify-center min-h-[50vh] bg-white">
@@ -113,7 +117,7 @@ const AdminHome = () => {
                         )}
                     </div>
                 </main>
-                <footer>
+                <footer className='m-0'>
                     <Footer />
                 </footer>
             </div>

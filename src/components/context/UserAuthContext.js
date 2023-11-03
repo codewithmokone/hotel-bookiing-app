@@ -13,7 +13,6 @@ export function UserAuthContextProvider({ children }) {
 
     const [user, setUser] = useState({});
 
-
     // Login function
     const logIn = async (email, password) => {
         return signInWithEmailAndPassword(auth, email, password);
@@ -37,9 +36,8 @@ export function UserAuthContextProvider({ children }) {
         return () => {
             unsubscribe();
         }
-    }, []);
 
-    console.log(user);
+    }, []);
 
     return (
         <userAuthContext.Provider value={{ user, logIn, signUp, logOut }}>

@@ -44,15 +44,13 @@ export const Home = () => {
   };
 
   return (
-    <div className='min-h-screen bg-[#F5F5F5]'>
-      <header className='w-[1024px]'>
+    <div className='home-container bg-zinc-400 block h-auto m-auto'>
+      <header className='w-[1024px] flex flex-col'>
         <Navbar />
-      </header>
-      <div>
         <Header />
-      </div>
+      </header>
       <div className="main flex flex-col justify-center items-center w-[1024px] m-auto">
-        <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
+        <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center m-0">
           <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
             <div>
               <input
@@ -112,7 +110,7 @@ export const Home = () => {
           </div> */}
         </main>
       </div>
-      <footer>
+      <footer className='m-auto'>
         <Footer />
       </footer>
     </div>

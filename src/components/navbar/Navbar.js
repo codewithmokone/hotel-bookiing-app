@@ -1,18 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../styles/navbar.css';
 import { faBellConcierge } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../../config/firebase';
+import { auth, db } from '../../config/firebase';
 import { useUserAuth } from '../context/UserAuthContext';
 import { Button, Menu, MenuItem } from '@mui/material';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
 const Navbar = () => {
 
     const { user, logOut } = useUserAuth();
     const [anchorEl, setAnchorEl] = useState(null);
+    const [userRole, setUserRole] = useState()
+
+    useEffect(() => {
+        if(user){
+            fetchUserRole();
+        }
+    },[user])
 
     const navigate = useNavigate();
+
+    // Fecthing the user role from firestore
+    const fetchUserRole = async () => {
+        try {
+            if (user) {
+                let userId = user.uid;
+                const userRef = query(collection(db, "userRole"), where("userId", "==", userId));
+                const querySnapshot = await getDocs(userRef);
+                querySnapshot.forEach((doc) => {
+                    setUserRole(doc.data()?.role)
+                })
+            }
+        } catch (err) {
+            // setError()
+            console.log(err.message);
+        }
+    }
 
     // Opens the login page
     const login = () => {
@@ -47,7 +72,8 @@ const Navbar = () => {
         }
     }
 
-    if (user) {
+    // Renders the navbar ui according to the logged in user
+    if(userRole === 'Client') {
         return (
             <div className="navbar w-[1024px] m-auto h-[70px] flex items-center justify-center">
                 <header className='navContainer w-[1024px] '>
@@ -90,25 +116,65 @@ const Navbar = () => {
                 </header>
             </div>
         )
-    } else {
+    } else if(userRole === 'Admin') {
+        return (
+            <div className="navbar w-[1024px] m-auto h-[70px] flex items-center justify-center">
+            <header className='navContainer w-[1024px] '>
+                <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
+                <nav className="adminNavItems flex justify-center">
+                    <Link to="/adminhome" className="adminHome mr-2">Home</Link>
+                    <Link to="/newroom" className="adminNewRoom mr-2">New Room</Link>
+                    <Link to="/bookedrooms" className="adminBookings mr-8">Bookings</Link>
+                    <div>
+                        <Button
+                            className='adminProfile'
+                            id="basic-button"
+                            aria-controls={open ? 'basic-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            onClick={handleClick}
+                            sx={{ marginLeft: -3, marginBottom: -2.5, width: 20, borderWidth: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                            size='small'
+                        >
+                            <p>Profile</p>
+                            {/* <FontAwesomeIcon icon={faUser} className=" text-sky-600 text-lg font-bold" /> */}
+                        </Button>
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                            }}
+                        >
+                            {/* <MenuItem onClick={signOut}>Profile</MenuItem>
+                            <MenuItem onClick={signOut}>Order History</MenuItem> */}
+                            <MenuItem onClick={signOut}>Logout</MenuItem>
+                        </Menu>
+                    </div>
+
+                </nav>
+            </header>
+        </div>
+        )
+    } else{
         return (
             <div className="navbar w-[1024px] m-auto h-[80px] flex items-center justify-center">
                 <header className='navContainer w-[1024px] '>
                     <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                     <nav className="navItems">
                         <Link to="/" className="home">Home</Link>
-                        <Link to="/gallery" className="galleryLink ">Gallery</Link>
+                        <Link to="/gallery" className="galleryLink">Gallery</Link>
                         <Link to="/rooms" className="roomsLink">Rooms</Link>
-                        <Link to="/contactus" className="contactusLink ">Contact Us</Link>
-                        <button className="registerBtn " onClick={() => { register(true) }}>Register</button>
-                        <button className="loginBtn ml-[10px] " onClick={() => { login(true) }}>Login</button>
+                        <Link to="/contactus" className="contactusLink">Contact Us</Link>
+                        <button className="registerBtn" onClick={() => { register(true) }}>Register</button>
+                        <button className="loginBtn " onClick={() => { login(true) }}>Login</button>
                     </nav>
                 </header>
             </div>
         )
     }
-
-
 }
 
 export default Navbar;

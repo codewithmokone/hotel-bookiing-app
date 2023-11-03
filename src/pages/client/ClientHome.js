@@ -59,12 +59,12 @@ export const Home = () => {
   // };
 
   return (
-    <div className=' home-container bg-zinc-400 block h-auto'>
+    <div className=' home-container bg-zinc-400 block h-auto m-auto'>
       <header className="flex flex-col w-[1024px]">
         <Navbar />
         <Header />
       </header>
-      <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
+      <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center m-auto">
         <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
           <div>
             <input
@@ -139,7 +139,7 @@ export const Home = () => {
           <Service />
         </div>
       </main>
-      <footer>
+      <footer className='m-auto'>
         <Footer />
       </footer>
     </div>

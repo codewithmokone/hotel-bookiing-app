@@ -31,19 +31,22 @@ const Login = ( ) => {
         try {
             let uid = await logIn(email, password);
 
-            let userRole = "empty";
+            let userId = auth.currentUser.uid
 
-            const userRef = query(collection(db, "userRole"), where("userID", "==", auth.currentUser.uid));
+            let userRole = "";
+
+            const userRef = query(collection(db, "userRole"), where("userID", "==", userId));
             const querySnapshot = await getDocs(userRef);
 
             querySnapshot.forEach((doc) => {
-                userRole = (doc.data().userID)
+                userRole = (doc.data().role)
             })
 
             console.log({ uid: auth.currentUser.uid, userRole })
 
             if (uid.user && uid.user.uid) {
                 if (auth.currentUser.uid != null) {
+                    console.log("Login log: ",auth.currentUser.uid, userRole)
                     if (auth.currentUser.uid === userRole) {
                         navigate("/adminhome")
                     } else {

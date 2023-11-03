@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 // import '../../src/components/modal/stryle.css'
 import { useUserAuth } from '../components/context/UserAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import { auth, db } from '../config/firebase';
+import { addDoc, collection } from 'firebase/firestore';
 
 export const Register = () => {
 
@@ -12,7 +14,7 @@ export const Register = () => {
     const { signUp } = useUserAuth();
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const handleSignUp = async (e) => {
         e.preventDefault()
 
         setError('');
@@ -20,12 +22,19 @@ export const Register = () => {
         try {
             await signUp(email, password);
             navigate("/login");
+           
+            const docRef = await addDoc(collection(db, "userRole"), {
+                userId: auth.currentUser.uid,
+                role: "Client",
+            });
+
             alert("Signed up successfully");
+
         } catch (e) {
             setError(e.message);
             console.log(e.message);
         } 
-    }   
+    }
 
     const handleClose = () => {
         navigate('/')
@@ -35,11 +44,11 @@ export const Register = () => {
         <div className="modalBackground w-screen h-screen bg-[#24252A] fixed flex justify-center items-center">
             <div  className="modalContainer flex flex-col items-center justify-center rounded bg-white  w-[500px] h-[500px]">
                 <p>{error}</p>
-                <div className='flex justify-end items-end mt-[8px] mr-[20px]'>
+                <div className='flex justify-end items-end mt-[-14px] mb-10 mr-[30px] w-[100%]'>
                 <button className="rounded-xl font-bold text-2xl text-[#0088a9] w-[20]" onClick={handleClose}> X </button>
                 </div>
                 <h2 className="font-black text-2xl mt-4 mb-2 text-[#0088a9] ">Register</h2>
-                <form className="adminLogin-form flex flex-col items-center justify-center w-80" onSubmit={handleSubmit}>
+                <form className="adminLogin-form flex flex-col items-center justify-center w-80" onSubmit={handleSignUp}>
                     <label  className="w-72 m-1 font-medium" for="email">Email:</label>
                     <input 
                         className="mb-5 h-8 w-72 rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
