@@ -63,8 +63,6 @@ const ViewRoom = ({ data, setOpenModal }) => {
         } else {
           alert('Room is not available for the selected dates.');
         }
-      } else {
-        alert('Room data not found in Firestore.');
       }
     } catch (error) {
       console.error('Error checking room availability:', error);

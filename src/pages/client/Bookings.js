@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Components imports
 import HeroSec from '../../components/HeroSec';
-import Service from '../../components/Service';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/navbar/Navbar';
 
 // Firebase imports
-import { auth, db, storage } from '../../config/firebase';
+import { db, storage } from '../../config/firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
@@ -96,7 +95,7 @@ const Bookings = () => {
         <div className='mt-10'>
           <h5>Please fill in your information</h5>
         </div>
-        <div className=''>
+        <div>
           <Paper elevation={4} sx={{ width: 900, height: 320 }}>
             <div className=' flex flex-col w-[900px] h-[280px] justify-center items-center mt-6'>
               <label className='w-[600px] mt-4'>Name</label>
@@ -190,7 +189,7 @@ const Bookings = () => {
         </div>
         <div className="my-10 flex flex-row ">
           {/* <span className="font-medium m-2">Quantity: {totalQty}</span><br /> */}
-          <span className="font-medium m-2">Amount: R {totalPrice}.00</span><br />
+          <span className="font-medium m-2">Amount: R{totalQty}+{totalPrice}.00</span><br />
           <button className="border bg-sky-400 p-1" onClick={handleBookings}>Confirm Bookings</button>
         </div>
       </main>

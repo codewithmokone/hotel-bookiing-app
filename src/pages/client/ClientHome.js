@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
 import Header from '../../components/HeroSec';
 import Footer from '../../components/Footer';
 import Cards from '../../components/cards/Cards';
 import Service from '../../components/Service';
-import { useUserAuth } from '../../components/context/UserAuthContext'
-import { auth, db } from '../../config/firebase';
+import { db } from '../../config/firebase';
 import FeaturedRooms from '../../components/FeaturedRooms';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import Navbar from '../../components/navbar/Navbar';
@@ -16,7 +14,7 @@ export const Home = () => {
 
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [filteredResults, setFilteredResults] = useState([]);
 
   const filterData = async () => {
