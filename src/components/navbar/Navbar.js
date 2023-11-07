@@ -6,38 +6,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../../config/firebase';
 import { useUserAuth } from '../context/UserAuthContext';
 import { Button, Menu, MenuItem } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 
 const Navbar = () => {
 
     const { user, logOut } = useUserAuth();
     const [anchorEl, setAnchorEl] = useState(null);
-    const [userRole, setUserRole] = useState()
-
-    useEffect(() => {
-        if (user) {
-            fetchUserRole();
-        }
-    }, [user])
 
     const navigate = useNavigate();
-
-    // Fecthing the user role from firestore
-    const fetchUserRole = async () => {
-        try {
-            if (user) {
-                let userId = user.uid;
-                const userRef = query(collection(db, "userRole"), where("userId", "==", userId));
-                const querySnapshot = await getDocs(userRef);
-                querySnapshot.forEach((doc) => {
-                    setUserRole(doc.data()?.role)
-                })
-            }
-        } catch (err) {
-            // setError()
-            console.log(err.message);
-        }
-    }
 
     // Opens the login page
     const login = () => {
@@ -73,7 +50,7 @@ const Navbar = () => {
     }
 
     // Renders the navbar ui according to the logged in user
-    if (userRole === 'Client') {
+    if (user) {
         return (
             <div className="navbar w-[1024px] m-auto h-[70px] flex items-center justify-center">
                 <header className='navContainer w-[1024px] '>
@@ -91,11 +68,10 @@ const Navbar = () => {
                                 aria-haspopup="true"
                                 aria-expanded={open ? 'true' : undefined}
                                 onClick={handleClick}
-                                sx={{ marginLeft: -3, marginBottom: -2.5, width: 20, borderWidth: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                                sx={{ marginRight: -3, marginLeft: -3, width: 20, borderWidth: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                                 size='small'
                             >
-                                <p>Profile</p>
-                                {/* <FontAwesomeIcon icon={faUser} className=" text-sky-600 text-lg font-bold" /> */}
+                                <AccountCircleIcon sx={{width:35, height:35, color: "#0088a9"}} />
                             </Button>
                             <Menu
                                 id="basic-menu"

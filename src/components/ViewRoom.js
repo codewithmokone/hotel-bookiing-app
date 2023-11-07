@@ -10,7 +10,6 @@ import { db } from '../config/firebase';
 import { Divider } from '@mui/material';
 import { useUserAuth } from './context/UserAuthContext';
 
-
 const ViewRoom = ({ data, setOpenModal }) => {
 
   const { dispatch } = useContext(CartContext);

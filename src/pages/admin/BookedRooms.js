@@ -5,6 +5,7 @@ import AdminNavbar from '../../components/navbar/AdminNavbar'
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../config/firebase'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function BookedRooms() {
 
@@ -42,7 +43,7 @@ function BookedRooms() {
                   <Accordion sx={{ width: 800 }}>
                     <AccordionSummary
                       key={index}
-                      expandIcon={<p>^</p>}
+                      expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
