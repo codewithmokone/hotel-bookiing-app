@@ -92,7 +92,7 @@ export const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col justify-start mr-4 my-3">
+            <div className="flex flex-col mr-4 ">
               {searchResults.length ?
                 <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
                 :

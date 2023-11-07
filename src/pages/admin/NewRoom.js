@@ -31,12 +31,8 @@ export const AdminHome = () => {
     const [wifi, setWifi] = useState(false);
     const [tv, setTv] = useState(false);
     const [airConditioning, setAirConditioning] = useState(false);
-    const [checkInDate, setCheckInDate] = useState('');
-    const [checkOutDate, setCheckOutDate] = useState('');
 
     const navigate = useNavigate()
-
-    const imageListRef = ref(storage, "hotelImages/")
 
     // handle for adding a room
     const handleAdd = (async (e) => {
@@ -61,8 +57,6 @@ export const AdminHome = () => {
                 numberOfRooms: numberOfRooms,
                 roomType: roomType,
                 bedType: bedType,
-                checkInTime: checkInDate,
-                checkOutTime: checkOutDate,
                 amenities: {
                     wifi,
                     tv,
@@ -101,16 +95,16 @@ export const AdminHome = () => {
             </header>
             <div className="admin-main-section  w-[1024px] h-full flex flex-col items-center bg-gray-300 m-auto">
                 <h3 className="text-[#0088a9] text-2xl m-[20px]">Add New Room</h3>
-                <form className="flex flex-row justify-center items-center w-[600px]" >
+                <form className="flex flex-row justify-center items-center w-[600px]" onSubmit={handleAdd} >
                     <div className="w-[450px] flex flex-col justify-center items-center ">
                         <div className='flex flex-col justify-center items-center'>
-                            <img className="image" src={imageUrl} alt="" required/>
-                            <input 
-                                className="border w-[230px]" 
-                                required 
-                                type="file" 
-                                multiple 
-                                onChange={(e) => { setFile(e.target.files[0]) }} 
+                            <img className="image" src={imageUrl} alt="" required />
+                            <input
+                                className="border w-[230px]"
+                                required
+                                type="file"
+                                multiple
+                                onChange={(e) => { setFile(e.target.files[0]) }}
                             />
                         </div>
                         <label className="label text-base font-medium mx-0 mt-4 mr-[30px]">Hotel</label>
@@ -189,31 +183,22 @@ export const AdminHome = () => {
                             required
                         />
                         <label className="ml-[-140px] font-semibold m-[10px] w-[100%]">Facilities</label>
-                        <div className="flex flex-col w-[600px] justify-start items-start">
-                            <div className="flex flex-row w-[100px] mt-2 justify-start items-center ml-[-20px] ">
-                                <input
-                                    type="checkbox"
-                                    checked={wifi}
-                                    onChange={() => setWifi(!wifi)}
-                                />
-                                 <label>Wifi</label>
-                            </div>
-                            <div className="flex flex-row w-[100px] mt-2 items-center ml-[-25px] ">
-                                <input
-                                    type="checkbox"
-                                    checked={tv}
-                                    onChange={() => setTv(!tv)}
-                                />
-                                <label >TV</label>
-                            </div>
-                            <div className="flex flex-row w-[150px] mt-1 items-center ml-[-13px] ">
-                                <input
-                                    type="checkbox"
-                                    checked={airConditioning}
-                                    onChange={() => setAirConditioning(!airConditioning)}
-                                />
-                                <label>Air Conditioning</label>
-                            </div>
+                        <div className="border flex flex-col justify-start items-start w-[300px] mt-2 ">
+                            <label className='ml-[-16px] flex flex-row w-[100px]'><input
+                                type="checkbox"
+                                checked={wifi}
+                                onChange={() => setWifi(!wifi)}
+                            />Wifi</label>
+                            <label className='flex flex-row ml-[-20px] mt-2 w-[100px]'><input
+                                type="checkbox"
+                                checked={tv}
+                                onChange={() => setTv(!tv)}
+                            />TV</label>
+                            <label className='border flex flex-row ml-[-8px] mt-2 w-[150px]'><input
+                                type="checkbox"
+                                checked={airConditioning}
+                                onChange={() => setAirConditioning(!airConditioning)}
+                            />Air Conditioning</label>
                         </div>
                         <label className="label text-base font-medium mt-3">Room type:</label>
                         <select onChange={(e) => setRoomType(e.target.value)} required className="w-[600px] h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
@@ -228,7 +213,7 @@ export const AdminHome = () => {
                             <option>King Bed</option>
                             <option>Queen Bed</option>
                         </select>
-                        <button className=" text-white font-bold p-1 rounded-md bg-[#0088a9] w-[300px] mx-0 my-10" onClick={handleAdd}>Send</button>
+                        <button className=" text-white font-bold p-1 rounded-md bg-[#0088a9] w-[300px] mx-0 my-10" type='submit'>Send</button>
                     </div>
                 </form>
             </div>

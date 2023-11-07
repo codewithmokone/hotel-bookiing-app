@@ -65,7 +65,7 @@ export const Cards = () => {
             <>
                 {rooms.map((room, id) => (
                     <Paper elevation={5}>
-                        <div className=" overflow-hidden flex flex-row justify-center my-2 border w-[640px] h-[260px] shadow-sm bg-white shadow-black m-2 mb-1 border-white" key={id}>
+                        <div className=" overflow-hidden flex flex-row justify-center my-2 border w-[580px] h-[260px] shadow-sm bg-white mb-1 border-white" key={id}>
                             <div className="image-container w-[40%] h-[200px] m-[10px]">
                                 <img className="w-[300px] m-[10px] h-[200px]" src={room.roomImage} alt='roomImage' />
                             </div>
