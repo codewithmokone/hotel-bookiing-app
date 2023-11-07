@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Firebase imports
 import { db } from '../config/firebase';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { Query, collection, getDocs, query, where } from 'firebase/firestore';
 
 // Components imports
 import Navbar from '../components/navbar/Navbar';
@@ -43,17 +43,18 @@ const Rooms = () => {
         setIsLoading(true)
 
         try {
-            const roomsRef = collection(db, 'hotelRooms');
-            const queryConditions = [
-                where('price', '>=', parseInt(minPrice)),
-                where('price', '<=', parseInt(maxPrice)),
-            ]
+            const querySnapshot = await getDocs(
+                query(collection(db, 'hotelRooms'),
+                  where('price', '>=', parseInt(minPrice)),
+                  where('price', '<=', parseInt(maxPrice)),
+                )
+              );
 
-            const querySnapshot = await getDocs(query(roomsRef, ...queryConditions));
             const filteredData = querySnapshot.docs.map((doc) => doc.data());
 
-            setSearchResults(filteredData);
+            console.log("Filter price: ", filteredData)
 
+            setSearchResults(filteredData);
 
         } catch (err) {
             console.log("Error fetching data:", err)
@@ -71,10 +72,6 @@ const Rooms = () => {
             console.log(err)
         }
         setOpenModal(true)
-    }
-
-    const handleReserve = () => {
-
     }
 
     useEffect(() => {
@@ -101,7 +98,7 @@ const Rooms = () => {
     }
 
     return (
-        <div className='bg-white'>
+        <div className='bg-[#F5F5F5]'>
             <header className='w-[1024px] flex flex-col'>
                 <Navbar login={login} register={register} />
                 <Header />
@@ -131,7 +128,7 @@ const Rooms = () => {
                     </div>
                 </div>
             </header>
-            <main className='bg-gray-100 w-[1024px]   justify-center items-center'>
+            <main className='bg-white w-[1024px]   justify-center items-center m-auto'>
                 <div className="flex flex-col min-h-[600px] justify-center items-center mr-4">
                     <h3 className='mt-6'>Our Rooms</h3>
                     {searchResults.length ?
@@ -166,7 +163,7 @@ const Rooms = () => {
                 </div>
                 {openModal && <ViewRoom data={data} setOpenModal={setOpenModal} />}
             </main>
-            <footer>
+            <footer className='m-auto'>
                 <Footer />
             </footer>
         </div>

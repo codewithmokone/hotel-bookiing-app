@@ -41,24 +41,24 @@ const Gallery = () => {
     }
 
     return (
-        <div className="bg-[#F5F5F5]">
+        <div className="bg-[#F5F5F5] m-auto" >
             <header className="w-[1024px] m-auto flex flex-col ">
                 <Navbar />
                 <HeroSec />
             </header>
-            <main className=" w-[1024px] flex flex-col bg-gray-300  items-center justify-center mt-10 mb-5 h-[70vh]">
+            <main className=" w-[1024px] flex flex-col m-auto bg-white  items-center justify-center h-[80vh]">
                 <div>
-                    <h2 className="font-bold text-[#0088a9] m-2">Gallery</h2>
+                    <h2 className="font-bold text-[#0088a9] m-10">Gallery</h2>
                 </div>
                 <div className='flex flex-row flex-wrap justify-center'>
                     {images.map((image, index) => (
                         <div key={index} className='shadow-sm bg-white shadow-black  mb-4 border-white'>
-                            <img className=" w-[300px] m-[10px] h-[250px]" src={image} alt='roomImage'  />
+                            <img className=" w-[300px] m-[14px] h-[250px]" src={image} alt='roomImage'  />
                         </div>))
                     }
                 </div>
             </main>
-            <footer>
+            <footer className='m-auto'>
                 <Footer />
             </footer>
         </div>

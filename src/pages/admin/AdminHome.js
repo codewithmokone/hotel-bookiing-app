@@ -82,13 +82,16 @@ const AdminHome = () => {
     return (
         <>
             {/* {openViewModal && <EditRoom selectedRoom={selectedRoom} handleDelete={handleDelete} closeEdit={closeEdit} />} */}
-            <div className="home-container bg-zinc-400 block h-auto m-auto">
+            <div className="home-container bg-[#F5F5F5] block h-auto m-auto">
                 <header className='flex flex-col'>
                     <AdminNavbar />
                     <HeroSec />
                 </header>
                 <main className="w-[1024px] flex flex-col justify-center m-auto min-h-[50vh] bg-white">
-                    <div className='flex flex-col m-auto'>
+                    <div className='flex justify-center items-center'>
+                        <h5 className='mt-6 font-bold text-[#0088a9]'>List of rooms</h5>
+                    </div>
+                    <div className='flex flex-col m-auto mb-[60px]'>
                         {rooms ? (
                             rooms.map((room, i) => (
                                 <Card elevation={5} key={i} sx={{ width: 800, height: 100, marginTop: 3, marginLeft: 2, display: 'flex', flexDirection: 'row' }}>
@@ -97,9 +100,9 @@ const AdminHome = () => {
                                         image={room.roomImage}
                                         title={room.title}
                                     />
-                                    <CardContent sx={{ width: '150%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                                    <CardContent sx={{ width: '150%', height: 100, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                                         <Typography sx={{ width: '100%', borderBottom: 1, fontWeight: 700, marginTop: -1 }} gutterBottom variant="h6" component="div">{room.title}</Typography>
-                                        <Typography sx={{ width: '100%', marginBottom: 5 }} variant="body2" color="text.secondary">{room.introDescr}</Typography>
+                                        <Typography sx={{ width: '100%', marginBottom: 1 }} variant="body2" color="text.secondary">{room.introDescr}</Typography>
                                     </CardContent>
                                     <CardContent sx={{ width: '50%' }}>
                                         <Typography sx={{ width: '100%', fontWeight: 800 }} variant="body2" color="text.secondary">R {room.price}.00</Typography>

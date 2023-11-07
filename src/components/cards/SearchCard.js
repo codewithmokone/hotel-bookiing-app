@@ -10,42 +10,42 @@ import { Paper } from '@mui/material';
 
 
 
-export const SearchCard = ({ filterResults }) => {
+export const SearchCard = ({ searchResults }) => {
 
-    const hotelRoomsRef = collection(db, "hotelRooms");
-    const [rooms, setRooms] = useState(filterResults);
+    // const hotelRoomsRef = collection(db, "hotelRooms");
+    // const [rooms, setRooms] = useState(searchResults);
     const [rating, setRating] = useState(null);
 
     const navigate = useNavigate();
 
     const { dispatch } = useContext(CartContext);
 
-    const getRooms = async () => {
-        try {
-            const data = await getDocs(hotelRoomsRef);
+    // const getRooms = async () => {
+    //     try {
+    //         const data = await getDocs(hotelRoomsRef);
 
-            const filteredData = data.docs.map((doc) => ({
-                ...doc.data(), id: doc.id,
-            }));
+    //         const filteredData = data.docs.map((doc) => ({
+    //             ...doc.data(), id: doc.id,
+    //         }));
 
-            setRooms(filteredData);
+    //         setRooms(filteredData);
 
-        } catch (err) {
-            console.error(err);
-        }
-    };
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // };
 
     const nav = () => {
         navigate("/viewroomdetails")
     }
 
-    useEffect(() => {
-        getRooms();
-    }, []);
+    // useEffect(() => {
+    //     getRooms();
+    // }, []);
 
     return (
         <>
-            {filterResults.map((room, id) => (
+            {searchResults.map((room, id) => (
                 <Paper>
                     <div className=" overflow-hidden flex flex-row justify-center my-2 border border-gray-300 w-[650px] h-[260px]" key={id}>
                         <div className="image-container w-[40%] h-[200px] m-[10px]">

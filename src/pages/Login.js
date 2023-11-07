@@ -74,7 +74,7 @@ const Login = ( ) => {
     return (
         <div className="w-screen h-screen bg-[#24252A] fixed flex flex-col items-center justify-center">
             <div className="flex flex-col items-center justify-center rounded bg-white w-[500px] h-[500px]">
-                <div className="flex justify-end items-end mt-[8px] mr-[20px]">
+                <div className="flex justify-end items-end mt-[8px]">
                 <button className="rounded-xl font-bold text-2xl text-[#0088a9] w-[20]" onClick={closeLoginPage}> X </button>
                 </div>
                 <h1 className=" text-center font-black text-2xl mb-2 text-[#0088a9]" >Login</h1>

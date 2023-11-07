@@ -13,7 +13,7 @@ import Navbar from '../components/navbar/Navbar';
 
 export const Home = () => {
 
-  const [filterResults, setFilterResults] = useState('');
+  const [searchResults, setSearchResults] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -33,9 +33,7 @@ export const Home = () => {
 
       const filteredData = querySnapshot.docs.map((doc) => doc.data());
 
-      console.log("Filter price: ", filteredData)
-
-      setFilterResults(filteredData)
+      setSearchResults(filteredData)
     } catch (err) {
       console.log("Error fetching data:", err)
     } finally {
@@ -44,7 +42,7 @@ export const Home = () => {
   };
 
   return (
-    <div className='home-container bg-zinc-400 block h-auto m-auto'>
+    <div className='home-container bg-[#F4F4F4] block h-auto m-auto'>
       <header className='w-[1024px] flex flex-col'>
         <Navbar />
         <Header />
@@ -95,8 +93,8 @@ export const Home = () => {
               </div>
             </div>
             <div className="flex flex-col justify-start mr-4 my-3">
-              {filterResults.length ?
-                <ul className="flex flex-col justify-between"><li><SearchCard filterResults={filterResults} /></li></ul>
+              {searchResults.length ?
+                <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
                 :
                 <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
               }

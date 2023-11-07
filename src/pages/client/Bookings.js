@@ -159,7 +159,9 @@ const Bookings = () => {
                 <h6 className=' w-[600px] mt-4 '>Selected Room:</h6>
               </div>
               <div className='mt-4'>
-                {shoppingCart && shoppingCart.map(cart => (
+                {shoppingCart ? 
+                <div>
+                     {shoppingCart.map(cart => (
                   <Paper elevation={5} sx={{ width: 600, height: 100, justifyContent: 'center', alignItems: 'center' }}>
                     <div className="flex flex-row justify-center items-center mb-[20px] h-[100px] w-[600px]" key={cart.id}>
                       <div>
@@ -178,6 +180,10 @@ const Bookings = () => {
                     </div>
                   </Paper>
                 ))}
+                </div> 
+                : 
+                <div> Room is not selected</div>
+              }
               </div>
             </div>
           </Paper>

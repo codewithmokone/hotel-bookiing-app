@@ -100,11 +100,19 @@ export const AdminHome = () => {
                 <Header />
             </header>
             <div className="admin-main-section  w-[1024px] h-full flex flex-col items-center bg-gray-300 m-auto">
-                <h3 className="text-[#0088a9] text-2xl m-[30px]">Add New Room</h3>
+                <h3 className="text-[#0088a9] text-2xl m-[20px]">Add New Room</h3>
                 <form className="flex flex-row justify-center items-center w-[600px]" >
                     <div className="w-[450px] flex flex-col justify-center items-center ">
-                        <img className="image" src={imageUrl} alt="" />
-                        <input className="my-0" required type="file" multiple onChange={(e) => { setFile(e.target.files[0]) }} />
+                        <div className='flex flex-col justify-center items-center'>
+                            <img className="image" src={imageUrl} alt="" required/>
+                            <input 
+                                className="border w-[230px]" 
+                                required 
+                                type="file" 
+                                multiple 
+                                onChange={(e) => { setFile(e.target.files[0]) }} 
+                            />
+                        </div>
                         <label className="label text-base font-medium mx-0 mt-4 mr-[30px]">Hotel</label>
                         <input
                             className='block border h-[40px] '
@@ -114,7 +122,7 @@ export const AdminHome = () => {
                             placeholder=' Hotel'
                             value={hotel}
                         />
-                         <label className="label text-base font-medium mx-0 mt-3 mr-[30px]">Title</label>
+                        <label className="label text-base font-medium mx-0 mt-3 mr-[30px]">Title</label>
                         <input
                             className='border h-[40px]'
                             onChange={(e) => setTitle(e.target.value)}
@@ -123,7 +131,7 @@ export const AdminHome = () => {
                             placeholder=' Title'
                             value={title}
                         />
-                         <label className="label text-base font-medium mt-3 ">Short Descr</label>
+                        <label className="label text-base font-medium mt-3 ">Short Descr</label>
                         <input
                             className='block border h-[40px]'
                             onChange={(e) => setIntroDescr(e.target.value)}
@@ -150,7 +158,7 @@ export const AdminHome = () => {
                         />
                         <label className="mt-3 label text-base font-medium">Price</label>
                         <input
-                            type="text"
+                            type="number"
                             className='border h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                             placeholder=" Enter price..."
                             onChange={(e) => setPrice(e.target.value)}
@@ -180,42 +188,41 @@ export const AdminHome = () => {
                             onChange={(e) => setNumberOfRooms(e.target.value)}
                             required
                         />
-                        <label className="">Facilities</label>
-                        <div className="flex flex-col ml-[-75px] justify-start">
-                            <div className="flex flex-row ml-[-260px] justify-center items-center ">
+                        <label className="ml-[-140px] font-semibold m-[10px] w-[100%]">Facilities</label>
+                        <div className="flex flex-col w-[600px] justify-start items-start">
+                            <div className="flex flex-row w-[100px] mt-2 justify-start items-center ml-[-20px] ">
                                 <input
                                     type="checkbox"
                                     checked={wifi}
                                     onChange={() => setWifi(!wifi)}
                                 />
-                                <p>WiFi</p>
+                                 <label>Wifi</label>
                             </div>
-                            <div className="flex flex-row ml-[-260px] justify-center items-center ">
+                            <div className="flex flex-row w-[100px] mt-2 items-center ml-[-25px] ">
                                 <input
-
                                     type="checkbox"
                                     checked={tv}
                                     onChange={() => setTv(!tv)}
                                 />
-                                <p >TV</p>
+                                <label >TV</label>
                             </div>
-                            <div className="flex flex-row ml-[-260px] justify-center items-center ">
+                            <div className="flex flex-row w-[150px] mt-1 items-center ml-[-13px] ">
                                 <input
                                     type="checkbox"
                                     checked={airConditioning}
                                     onChange={() => setAirConditioning(!airConditioning)}
                                 />
-                                <p>Air Conditioning</p>
+                                <label>Air Conditioning</label>
                             </div>
                         </div>
                         <label className="label text-base font-medium mt-3">Room type:</label>
-                        <select onChange={(e) => setRoomType(e.target.value)} required className="w-[600px] h-[30px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
+                        <select onChange={(e) => setRoomType(e.target.value)} required className="w-[600px] h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
                             <option>Family Deluxe</option>
                             <option>Singles Deluxe</option>
                             <option>Couples Deluxe</option>
                         </select>
                         <label className="label text-base font-medium mt-3">Bed type:</label>
-                        <select onChange={(e) => setBedType(e.target.value)} required className="w-[600px] h-[30px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
+                        <select onChange={(e) => setBedType(e.target.value)} required className="w-[600px] h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
                             <option>2 Single Beds</option>
                             <option>Double Bed</option>
                             <option>King Bed</option>

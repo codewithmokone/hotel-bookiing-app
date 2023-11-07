@@ -18,11 +18,11 @@ function ContactUs() {
                 <Navbar />
                 <Header />
             </header>
-            <main className=' w-[1024px] h-[100vh] bg-white  justify-center items-center'>
+            <main className=' w-[1024px] h-[100vh] bg-white m-auto justify-center items-center'>
                 <div className=''>
                     <h3 className='text-center'>Let's get in touch.</h3>
                 </div>
-                <div className='flex justify-center items-center mt-10 '>
+                <div className=' w-[800px] flex flex-row justify-between items-center m-auto '>
                     <div>
                         <h5>Address</h5>
                         <p>486 Lynnwood</p>
@@ -84,7 +84,7 @@ function ContactUs() {
                     </Paper>
                 </div>
             </main>
-            <footer>
+            <footer className='m-auto'>
                 <Footer />
             </footer>
         </div>

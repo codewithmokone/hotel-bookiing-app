@@ -10,10 +10,10 @@ function BookedRooms() {
             <AdminNavbar />
             <HeroSec />
         </header>
-        <main>
+        <main className='h-[50vh]'>
           <div>
             <div className='flex justify-center items-center'>
-              <h1 className='text-[#0088a9] font-bold'>Booked Rooms</h1>
+              <h5 className='text-[#0088a9] font-bold mt-10 '>Booked Rooms</h5>
             </div>
           </div>
         </main>
