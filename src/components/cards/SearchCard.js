@@ -54,7 +54,7 @@ export const SearchCard = ({ searchResults }) => {
                         <div className="w-[55%] justify-center items-center ml-6 mt-1">
                             <table className=" w-[250px]" >
                                 <tr>
-                                    <th className="mb-4"><h3 className="font-bold text-xl text-sky-600 mt-2 mb-1 mx-0 " >{room.hotel}</h3></th>
+                                    {/* <th className="mb-4"><h3 className="font-bold text-xl text-sky-600 mt-2 mb-1 mx-0 " >{room.hotel}</h3></th> */}
                                 </tr>
                                 <tr>
                                     <th className="mb-4"><h6 className="font-bold text-xl mt-1 mb-1" >{room.title}</h6></th>

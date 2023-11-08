@@ -26,7 +26,7 @@ const ConfirmBooking = ({ selectedRoom, checkInDate, checkOutDate }) => {
   };
 
   return (
-    <div className="confirm-booking-container">
+    <div className="confirm-booking-container m-auto">
       <h1>Confirm Your Booking</h1>
 
       {isBookingConfirmed ? (
@@ -43,7 +43,7 @@ const ConfirmBooking = ({ selectedRoom, checkInDate, checkOutDate }) => {
           </div>
         </div>
       ) : (
-        <div>
+        <div >
           {/* Display booking details for review */}
           <h2>Review Your Booking</h2>
           <p>Room: {bookingDetails.room}</p>

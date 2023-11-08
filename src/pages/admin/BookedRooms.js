@@ -26,12 +26,12 @@ function BookedRooms() {
 
 
   return (
-    <div className='min-h-screen m-auto bg-[#F5F5F5]'>
+    <div className='min-h-screen m-auto bg-[#F3F5F5]'>
       <header className='flex flex-col'>
         <AdminNavbar />
         <HeroSec />
       </header>
-      <main className='h-[50vh] w-[1024px] m-auto bg-[]'>
+      <main className='h-[50vh] w-[1024px] m-auto bg-white'>
         <div>
           <div className='flex justify-center items-center'>
             <h5 className='text-[#0088a9] font-bold mt-10 '>Booked Rooms</h5>

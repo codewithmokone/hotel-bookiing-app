@@ -86,23 +86,23 @@ const Bookings = () => {
   }
 
   return (
-    <div className="flex flex-col h-[100%] bg-gray-100">
+    <div className="flex flex-col h-[100%] bg-[#F3F5F5]">
       <header className='flex flex-col'>
         <Navbar />
         <HeroSec />
       </header>
       <main className="m-auto w-[1024px] h-auto flex flex-col bg-white">
-        <div className='mt-10'>
+        <div className='mt-10 flex justify-center items-center'>
           <h5>Please fill in your information</h5>
         </div>
-        <div>
+        <div className=' flex flex-col justify-center items-center mt-4'>
           <Paper elevation={4} sx={{ width: 900, height: 320 }}>
             <div className=' flex flex-col w-[900px] h-[280px] justify-center items-center mt-6'>
               <label className='w-[600px] mt-4'>Name</label>
               <TextField
                 size='small'
                 value={name}
-                sx={{ width: 600, height: 40., marginTop: -3 }}
+                sx={{ width: 600, height: 40 }}
                 onChange={(e) => setName(e.target.value)}
                 required
                 fullWidth
@@ -111,7 +111,7 @@ const Bookings = () => {
               <TextField
                 value={email}
                 size='small'
-                sx={{ width: 600, height: 40, marginTop: -3 }}
+                sx={{ width: 600, height: 40 }}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 fullWidth
@@ -120,15 +120,15 @@ const Bookings = () => {
               <TextField
                 size='small'
                 value={contact}
-                sx={{ width: 600, height: 40, marginTop: -3 }}
+                sx={{ width: 600, height: 40 }}
                 onChange={(e) => setContact(e.target.value)}
                 required
                 fullWidth
               />
             </div>
           </Paper>
-          <Paper elevation={4} sx={{ width: 900 }}>
-            <div className=' flex flex-col w-[900px] h-[240px] justify-center items-center mt-3'>
+          <Paper elevation={4} sx={{ width: 900, marginTop:2 }}>
+            <div className=' flex flex-col w-[900px] h-[240px] justify-center items-center'>
               <label className="label text-base font-medium mx-0 my-2.5">Check-In Date</label>
               <TextField
                 value={checkOutDate}
@@ -157,7 +157,7 @@ const Bookings = () => {
               <div className='w-[900px] flex justify-center items-center'>
                 <h6 className=' w-[600px] mt-4 '>Selected Room:</h6>
               </div>
-              <div className='mt-4'>
+              <div className='mt-4 flex justify-center items-center'>
                 {shoppingCart ? 
                 <div>
                      {shoppingCart.map(cart => (
@@ -187,13 +187,12 @@ const Bookings = () => {
             </div>
           </Paper>
         </div>
-        <div className="my-10 flex flex-row ">
-          {/* <span className="font-medium m-2">Quantity: {totalQty}</span><br /> */}
-          <span className="font-medium m-2">Amount: R{totalQty}+{totalPrice}.00</span><br />
+        <div className="my-10 flex flex-row justify-center items-center ">
+          <span className="font-medium m-2">Amount: R{totalPrice}.00</span><br />
           <button className="border bg-sky-400 p-1" onClick={handleBookings}>Confirm Bookings</button>
         </div>
       </main>
-      <footer>
+      <footer className='m-auto'>
         <Footer />
       </footer>
     </div>

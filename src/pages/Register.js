@@ -14,6 +14,7 @@ export const Register = () => {
     const { signUp } = useUserAuth();
     const navigate = useNavigate();
 
+    // Handles the signup function
     const handleSignUp = async (e) => {
         e.preventDefault()
 
@@ -36,6 +37,7 @@ export const Register = () => {
         } 
     }
 
+    // Handles closing the register modal
     const handleClose = () => {
         navigate('/')
     }

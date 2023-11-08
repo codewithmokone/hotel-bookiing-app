@@ -88,7 +88,7 @@ export const AdminHome = () => {
     })
 
     return (
-        <div className='home-container min-h-screen m-auto bg-gray-400'>
+        <div className='home-container min-h-screen m-auto bg-[#F4F5F5]'>
             <header className='flex flex-col '>
                 <AdminNavbar />
                 <Header />

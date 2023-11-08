@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase';
 import { useUserAuth } from '../context/UserAuthContext';
 import { Button, Menu, MenuItem } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function AdminNavbar() {
 
@@ -40,7 +41,7 @@ function AdminNavbar() {
         <div className="navbar w-[1024px] m-auto h-[70px] flex items-center justify-center">
             <header className='navContainer w-[1024px] '>
                 <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
-                <nav className="adminNavItems flex justify-center">
+                <nav className="flex flex-row justify-center items-center">
                     <Link to="/adminhome" className="adminHome mr-2">Home</Link>
                     <Link to="/newroom" className="adminNewRoom mr-2">New Room</Link>
                     <Link to="/bookedrooms" className="adminBookings mr-8">Bookings</Link>
@@ -52,11 +53,10 @@ function AdminNavbar() {
                             aria-haspopup="true"
                             aria-expanded={open ? 'true' : undefined}
                             onClick={handleClick}
-                            sx={{ marginLeft: -3, marginBottom: -2.5, width: 20, borderWidth: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                            sx={{ marginLeft: -4, width: 35, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                             size='small'
                         >
-                            <p>Profile</p>
-                            {/* <FontAwesomeIcon icon={faUser} className=" text-sky-600 text-lg font-bold" /> */}
+                            <AccountCircleIcon sx={{width:35, height:35, color: "#0088a9"}} />
                         </Button>
                         <Menu
                             id="basic-menu"

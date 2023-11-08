@@ -57,7 +57,7 @@ export const Home = () => {
   // };
 
   return (
-    <div className=' home-container bg-zinc-400 block h-auto m-auto'>
+    <div className=' home-container bg-[#F2F5F5] block h-auto m-auto'>
       <header className="flex flex-col w-[1024px]">
         <Navbar />
         <Header />
@@ -125,7 +125,7 @@ export const Home = () => {
               </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
             </div>
           </div>
-          <div className="card-list flex flex-col justify-center items-center ml-5 my-3 mr-2">
+          <div className="card-list flex flex-col justify-center items-center ml-2 my-3 mr-5">
             {filteredResults.length ?
               <ul className="flex flex-col justify-between"><li><SearchCard filteredResults={filteredResults} /></li></ul>
               :
