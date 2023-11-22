@@ -81,7 +81,7 @@ const ViewRoom = ({ data, setOpenModal }) => {
   }
 
   return (
-    <div className="room-view-container h-[100vh] m-auto fixed inset-0 bg-black 
+    <div className="room-view-container m-auto fixed inset-0 bg-black 
             bg-opacity-50 backdrop-blur-sm flex justify-center items-center ">
       <div className="bg-white h-[900px] w-[1024px] rounded flex flex-col justify-center items-center ">
         <div className='roomHearding flex flex-col '>

@@ -106,11 +106,11 @@ export const Cards = () => {
             <>
                 {rooms.map((room, id) => (
                     <Paper elevation={5}>
-                        <div className=" overflow-hidden flex flex-row justify-center my-2 w-[640px] h-[260px]  m-2" key={id}>
+                        <div className=" overflow-hidden flex flex-row justify-center my-4 w-[640px] h-[260px]  m-2" key={id}>
                             <div className="image-container w-[40%] h-[200px] m-[10px]">
                                 <img className="w-[300px] m-[10px] h-[200px]" src={room.roomImage} alt='roomImage' />
                             </div>
-                            <div className="w-[55%] justify-center items-center ml-6 mt-1">
+                            <div className="w-[55%] justify-center items-center ml-6 mt-2">
                                 <table className=" w-[250px] h-[100%]" >
                                     <tbody>
                                         <tr>
@@ -131,7 +131,7 @@ export const Cards = () => {
                                         </tr>
                                         <tr className='flex justify-between items-center'>
                                             <td><p className="text-xs font-bold my-1">Price: R {room.price}.00</p></td>
-                                            <td><button className=" text-sky-600 border p-1 ml-50" onClick={() => handleView(room)}>View More</button></td>
+                                            <td><button className=" text-sky-600 p-1 ml-50" onClick={() => handleView(room)}>View More</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
