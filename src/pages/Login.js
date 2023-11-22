@@ -50,19 +50,6 @@ const Login = () => {
             }else{
                 alert("Please enter the correct email/password")
             }
-                
-            // if (uid.user && uid.user.uid) {
-            //     if (auth.currentUser.uid != null) {
-            //         console.log("Login log: ",auth.currentUser.uid, userRole)
-            //         if (auth.currentUser.uid === userRole) {
-            //             navigate("/adminhome")
-            //         } else {
-            //             navigate("/clienthome")
-            //         }
-            //     }
-            // } else {
-            //     console.log("User doesn't exist")
-            // }
 
         } catch (err) {
             // setError()
@@ -73,28 +60,28 @@ const Login = () => {
     return (
         <div className="w-screen h-screen bg-[#24252A] fixed flex flex-col items-center justify-center">
             <div className="flex flex-col items-center justify-center rounded bg-white w-[500px] h-[500px]">
-                <div className="flex justify-end items-end mt-[-40px] mb-10 mr-2 w-[99%]">
+                <div className="flex justify-end items-end mt-[-10px] mb-2 mr-2 w-[99%]">
                 <button className="rounded-xl font-bold text-2xl text-[#0088a9] w-[20]" onClick={closeLoginPage}> X </button>
                 </div>
-                <h1 className=" text-center font-black text-2xl mb-2 text-[#0088a9] mt-[60px]" >Login</h1>
+                <h1 className=" text-center font-black text-2xl mb-4 text-[#0088a9] mt-[60px]" >Login</h1>
                 <form className=" flex flex-col items-center justify-center w-80" onSubmit={handleLogin}>
                     <label
                         htmlFor="email"
-                        className="w-60 font-medium m-1"
+                        className="w-80 font-medium m-1"
                     >Email:</label>
                     <input
-                        className="mb-4 w-60 h-8 rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
+                        className="mb-2 w-80 h-10 border rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
                         type="email"
                         placeholder=" Enter email"
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                     <label
-                        className="w-60 font-medium m-1 "
+                        className="w-80 font-medium m-1 "
                         htmlFor="password"
                     >Password:</label>
                     <input
-                        className="mb-4 h-8 w-60 rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
+                        className="mb-5 h-10 w-80 border rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
                         type="password"
                         placeholder=" Enter password"
                         onChange={(e) => setPassword(e.target.value)}

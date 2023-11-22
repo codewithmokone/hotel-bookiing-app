@@ -49,21 +49,21 @@ export const Register = () => {
                 <div className='flex justify-end items-end mt-[-14px] mb-10 mr-[30px] w-[100%]'>
                 <button className="rounded-xl font-bold text-2xl text-[#0088a9] w-[20]" onClick={handleClose}> X </button>
                 </div>
-                <h2 className="font-black text-2xl mt-4 mb-2 text-[#0088a9] ">Register</h2>
+                <h2 className="font-black text-2xl mt-4 mb-4 text-[#0088a9] ">Register</h2>
                 <form className="adminLogin-form flex flex-col items-center justify-center w-80" onSubmit={handleSignUp}>
-                    <label  className="w-72 m-1 font-medium" for="email">Email:</label>
+                    <label  className="block w-80 m-1 font-medium" for="email">Email:</label>
                     <input 
-                        className="mb-5 h-8 w-72 rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
+                        className="mb-3 h-10 w-80 rounded border focus:outline-none focus:ring focus:ring-[#0088a9]"
                         type="email" 
-                        placeholder="Enter email"
+                        placeholder=" Enter email"
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    <label  className="w-72 m-1 font-medium" for="password">Password:</label>
+                    <label  className="w-80 m-1 font-medium" for="password">Password:</label>
                     <input
-                        className="mb-5 h-8 w-72 rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
+                        className="mb-5 border h-10 w-80 rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
                         type="password" 
-                        placeholder="Enter password"
+                        placeholder=" Enter password"
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />

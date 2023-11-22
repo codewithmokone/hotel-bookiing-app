@@ -5,6 +5,7 @@ import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { storage } from '../config/firebase';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
+import { Paper } from '@mui/material';
 
 const Gallery = () => {
 
@@ -35,7 +36,7 @@ const Gallery = () => {
     if (images.length === 0) {
         return (
             <div className='flex flex-col h-[100vh] justify-center items-center '>
-               <p>Loading...</p>
+                <p>Loading...</p>
             </div>
         )
     }
@@ -46,15 +47,16 @@ const Gallery = () => {
                 <Navbar />
                 <HeroSec />
             </header>
-            <main className=" w-[1024px] flex flex-col m-auto bg-white  items-center justify-center h-[80vh]">
+            <main className=" w-[1024px] flex flex-col m-auto bg-white  items-center justify-center h-fit">
                 <div>
-                    <h2 className="font-bold text-[#0088a9] m-10">Gallery</h2>
+                    <h2 className="font-bold text-[#0088a9] mt-10">Gallery</h2>
                 </div>
-                <div className='flex flex-row flex-wrap justify-center'>
+                <div className='flex flex-row flex-wrap justify-center mb-10'>
                     {images.map((image, index) => (
-                        <div key={index} className='shadow-sm bg-white shadow-black  mb-4 border-white'>
-                            <img className=" w-[300px] m-[14px] h-[250px]" src={image} alt='roomImage'  />
-                        </div>))
+                        <Paper elevation={3} key={index} className=' bg-white m-2 border-white'>
+                                <img className=" w-[280px] m-[14px] h-[250px]" src={image} alt='roomImage' />
+                        </Paper>
+                    ))
                     }
                 </div>
             </main>
