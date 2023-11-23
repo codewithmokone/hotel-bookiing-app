@@ -5,7 +5,7 @@ import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { storage } from '../config/firebase';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
-import { Paper } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 
 const Gallery = () => {
 
@@ -42,28 +42,51 @@ const Gallery = () => {
     }
 
     return (
-        <div className="bg-[#F5F5F5] m-auto" >
-            <header className="w-[1024px] m-auto flex flex-col ">
-                <Navbar />
-                <HeroSec />
-            </header>
-            <main className=" w-[1024px] flex flex-col m-auto bg-white  items-center justify-center h-fit">
+        <Box 
+        sx={{
+            width: { sm: 786, md: 1024 },
+            display: 'flex',
+            flexDirection: 'column',
+            margin:'auto'
+          }}
+        //   className=' h-auto m-auto'
+        >
+            {/* className="bg-[#F5F5F5] m-auto" > */}
+            <Navbar />
+            <HeroSec />
+            <Box
+                sx={{
+                    width: { sm: 786, md: 1024 },
+                    height:{sm:"100%"}
+                }}
+                className=" flex flex-col m-auto bg-white  items-center justify-center h-screen"
+            >
                 <div>
                     <h2 className="font-bold text-[#0088a9] mt-10">Gallery</h2>
                 </div>
-                <div className='flex flex-row flex-wrap justify-center mb-10'>
-                    {images.map((image, index) => (
-                        <Paper elevation={3} key={index} className=' bg-white m-2 border-white'>
+                <Box
+                    sx={{
+                        width: { sm: 786, md: 1024 },
+                        display: 'flex',
+                        flexDirection: { sm: 'row', md: 'row' },
+                        justifyContent:'center',
+                        alignItems:'center',
+                        flexWrap: "wrap",
+                        marginBottom: 10,
+                    }}
+                    className=' mb-10'
+                >
+                    {
+                        images.map((image, index) => (
+                            <Paper elevation={3} key={index} className='w-[310px] bg-white m-2 border-white'>
                                 <img className=" w-[280px] m-[14px] h-[250px]" src={image} alt='roomImage' />
-                        </Paper>
-                    ))
+                            </Paper>
+                        ))
                     }
-                </div>
-            </main>
-            <footer className='m-auto'>
-                <Footer />
-            </footer>
-        </div>
+                </Box>
+            </Box>
+            <Footer />
+        </Box>
     )
 }
 

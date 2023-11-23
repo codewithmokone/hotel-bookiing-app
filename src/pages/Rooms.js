@@ -15,7 +15,7 @@ import SearchCard from '../components/cards/SearchCard';
 import ButtonComponent from '../components/ButtonComponent';
 
 // Material ui imports
-import { Button, Card, CardActions, CardContent, CardMedia, Divider, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Typography } from '@mui/material';
 
 const Rooms = () => {
 
@@ -45,10 +45,10 @@ const Rooms = () => {
         try {
             const querySnapshot = await getDocs(
                 query(collection(db, 'hotelRooms'),
-                  where('price', '>=', parseInt(minPrice)),
-                  where('price', '<=', parseInt(maxPrice)),
+                    where('price', '>=', parseInt(minPrice)),
+                    where('price', '<=', parseInt(maxPrice)),
                 )
-              );
+            );
 
             const filteredData = querySnapshot.docs.map((doc) => doc.data());
 
@@ -98,37 +98,52 @@ const Rooms = () => {
     }
 
     return (
-        <div className='bg-[#F5F5F5]'>
-            <header className='w-[1024px] flex flex-col'>
-                <Navbar login={login} register={register} />
-                <Header />
-                <div className="main flex flex-col justify-center items-center w-[1024px] m-auto">
-                    <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
-                        <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
-                            <div>
-                                <input
-                                    className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
-                                    type="number"
-                                    value={minPrice}
-                                    placeholder='Enter minimum amount'
-                                    onChange={(e) => setMinPrice(e.target.value)}
-                                />
-                                <input
-                                    className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
-                                    type="number"
-                                    value={maxPrice}
-                                    placeholder='Enter maximum amount'
-                                    onChange={(e) => setMaxPrice(e.target.value)}
-                                />
-                                <button
-                                    className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
-                                    onClick={searchRoom}>Search</button>
-                            </div>
-                        </div>
+        <Box
+            sx={{
+                width: { sm: 786, md: 1024 },
+                margin: 'auto',
+            }}
+            className='bg-[#F5F5F5]'
+        >
+
+            <Navbar />
+            <Header />
+            <Box
+                sx={{
+                    width:{sm:786, md:1024},
+                    height:60
+                }}
+                className=" bg-gray-500 flex justify-center items-center"
+            >
+                <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
+                    <div>
+                        <input
+                            className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+                            type="number"
+                            value={minPrice}
+                            placeholder='Enter minimum amount'
+                            onChange={(e) => setMinPrice(e.target.value)}
+                        />
+                        <input
+                            className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+                            type="number"
+                            value={maxPrice}
+                            placeholder='Enter maximum amount'
+                            onChange={(e) => setMaxPrice(e.target.value)}
+                        />
+                        <button
+                            className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
+                            onClick={searchRoom}>Search</button>
                     </div>
                 </div>
-            </header>
-            <main className='bg-white w-[1024px]   justify-center items-center m-auto'>
+            </Box>
+            <Box
+            sx={{
+                width:{sm:786, md:1024}
+            }}
+            className='bg-white justify-center items-center m-auto'
+            
+            >
                 <div className="flex flex-col min-h-[600px] justify-center items-center mr-4">
                     <h3 className='mt-6'>Our Rooms</h3>
                     {searchResults.length ?
@@ -162,11 +177,9 @@ const Rooms = () => {
                     <Service />
                 </div>
                 {openModal && <ViewRoom data={data} setOpenModal={setOpenModal} />}
-            </main>
-            <footer className='m-auto'>
-                <Footer />
-            </footer>
-        </div>
+            </Box>
+            <Footer />
+        </Box>
     );
 };
 

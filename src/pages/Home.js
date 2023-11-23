@@ -9,7 +9,7 @@ import Service from '../components/Service';
 import FeaturedRooms from '../components/FeaturedRooms';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
-
+import { Box } from '@mui/material';
 
 export const Home = () => {
 
@@ -42,40 +42,64 @@ export const Home = () => {
   };
 
   return (
-    <div className='home-container bg-[#F4F4F4] block h-auto m-auto'>
-      <header className='w-[1024px] flex flex-col'>
+    <Box
+      sx={{
+        width: { sm: 786, md: 1024 },
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent:'center',
+        alignItems:'center',
+        margin: "auto",
+      }}
+      className=' h-auto'
+    >
+      {/* <div className='home-container bg-[#F4F4F4] block h-auto m-auto'> */}
+      <Box sx={{ width: { sm: 786, md: 1024 } }}>
         <Navbar />
         <Header />
-      </header>
-      <div className="main flex flex-col justify-center items-center w-[1024px] m-auto">
-        <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center m-0">
-          <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
-            <div>
-              <input
-                className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
-                type="number"
-                value={minPrice}
-                placeholder='Enter minimum amount'
-                onChange={(e) => setMinPrice(e.target.value)}
-              />
-              <input
-                className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
-                type="number"
-                value={maxPrice}
-                placeholder='Enter maximum amount'
-                onChange={(e) => setMaxPrice(e.target.value)}
-              />
-              <button
-                className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
-                onClick={filterRoom}>Search</button>
-            </div>
-          </div>
-        </div>
-        <main className='bg-white'>
-          <div>
-            <FeaturedRooms />
-          </div>
-          <div className=" flex flex-row h-auto ">
+      </Box>
+      <Box sx={{ width: { sm: 786, md: 1024 } }} className=" flex flex-col justify-center items-center">
+        <Box sx={{
+          width: { sm: 786, md: 1024 },
+          height: 60,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+          className=" bg-gray-500 "
+        >
+          <Box sx={{ width: { sm: 600 }, height: 40, display: 'flex', flexDirection: { sm: "row", md: 'row' } }} className="search-section rounded flex justify-between items-center border bg-white">
+            <input
+              className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+              type="number"
+              value={minPrice}
+              placeholder='Enter minimum amount'
+              onChange={(e) => setMinPrice(e.target.value)}
+            />
+            <input
+              className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+              type="number"
+              value={maxPrice}
+              placeholder='Enter maximum amount'
+              onChange={(e) => setMaxPrice(e.target.value)}
+            />
+            <button
+              className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
+              onClick={filterRoom}>Search</button>
+          </Box>
+        </Box>
+        <Box className='bg-white'>
+          <FeaturedRooms />
+          <Box
+            sx={{
+              width: { sm: 786, md: 1024 },
+              height: { sm: 'auto' },
+              display: 'flex',
+              flexDirection: { sm: 'column', md: 'row' }
+            }}
+            className=" flex flex-row "
+          >
             {/* Map Section */}
             <div className='w-[30%] ml-6'>
               <div class="mapouter my-5 mt-4">
@@ -92,26 +116,29 @@ export const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col mr-4 ">
+            <Box
+              sx={{
+                width: { sm: 786, md: 1024 },
+                display: 'flex',
+                flexDirection: { sm: 'column', md: 'row' }
+              }}
+              className="flex flex-col mr-4 "
+            >
               {searchResults.length ?
                 <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
                 :
                 <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
               }
-            </div>
-          </div>
+            </Box>
+          </Box>
           <div>
             <Service />
           </div>
-          {/* <div>
-          <Contact />
-          </div> */}
-        </main>
-      </div>
-      <footer className='m-auto'>
-        <Footer />
-      </footer>
-    </div>
+        </Box>
+      </Box>
+      <Footer />
+      {/* </div> */}
+    </Box>
   )
 }
 export default Home;

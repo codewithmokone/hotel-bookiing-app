@@ -7,15 +7,7 @@
     top: 0;
 }
 
-Header {
-    width: 1024px;
-    display: flex;
-    flex-direction: row;
-    margin: auto;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #24252A;
-}
+
 
 .logo {
     width: 35%;
