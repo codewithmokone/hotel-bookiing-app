@@ -9,6 +9,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import Navbar from '../../components/navbar/Navbar';
 import SearchCard from '../../components/cards/SearchCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Box } from '@mui/material';
 
 export const Home = () => {
 
@@ -57,8 +58,8 @@ export const Home = () => {
   // };
 
   return (
-    <div className=' home-container bg-[#F2F5F5] block h-auto m-auto'>
-      <header className="flex flex-col w-[1024px]">
+    <Box className=' home-container bg-[#F2F5F5] block h-auto m-0'>
+      <header className="flex flex-col w-[1024px] m-auto">
         <Navbar />
         <Header />
       </header>
@@ -73,14 +74,14 @@ export const Home = () => {
               onChange={(e) => setMinPrice(e.target.value)}
             />
             <input
-              className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+              className='ml-[38px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
               type="number"
               value={maxPrice}
               placeholder='Enter maximum amount'
               onChange={(e) => setMaxPrice(e.target.value)}
             />
             <button
-              className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
+              className="bg-[#0088a9] text-white p-1 rounded ml-[40px] mr-10"
               onClick={filterData}>Search</button>
           </div>
         </div>
@@ -112,8 +113,17 @@ export const Home = () => {
         <div className="m-auto bg-gray-300">
           <FeaturedRooms />
         </div>
-        <div className="flex flex-row justify-between bg-gray-300">
-          <div className="mapouter ml-6 my-5 w-[30%]">
+        <Box
+          sx={{
+            width: { sm: 786, md: 1024 },
+            display: 'flex',
+            flexDirection: { sm: 786, md: 1024 },
+            justifyContent:'space-between',
+            // alignItems:'center'
+          }}
+          className="bg-gray"
+        >
+          <Box className="w-[40%]">
             <div className="gmap_canvas">
               <iframe className="gmap_iframe"
                 width="100%"
@@ -124,7 +134,7 @@ export const Home = () => {
                 src="https://maps.google.com/maps?width=307&amp;height=400&amp;hl=en&amp;q=pretoria cbd&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
               </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
             </div>
-          </div>
+          </Box>
           <div className="card-list flex flex-col justify-center items-center ml-2 my-3 mr-5">
             {filteredResults.length ?
               <ul className="flex flex-col justify-between"><li><SearchCard filteredResults={filteredResults} /></li></ul>
@@ -132,7 +142,7 @@ export const Home = () => {
               <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
             }
           </div>
-        </div>
+        </Box>
         <div className="m-auto">
           <Service />
         </div>
@@ -140,7 +150,7 @@ export const Home = () => {
       <footer className='m-auto'>
         <Footer />
       </footer>
-    </div>
+    </Box>
   )
 }
 

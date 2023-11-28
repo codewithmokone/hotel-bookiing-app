@@ -15,7 +15,7 @@ import SearchCard from '../components/cards/SearchCard';
 import ButtonComponent from '../components/ButtonComponent';
 
 // Material ui imports
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, TextField, Typography } from '@mui/material';
 
 const Rooms = () => {
 
@@ -100,7 +100,7 @@ const Rooms = () => {
     return (
         <Box
             sx={{
-                width: { sm: 786, md: 1024 },
+                width: {xs:400, sm: 786, md: 1024 },
                 margin: 'auto',
             }}
             className='bg-[#F5F5F5]'
@@ -110,7 +110,7 @@ const Rooms = () => {
             <Header />
             <Box
                 sx={{
-                    width:{sm:786, md:1024},
+                    width:{xs: 400, sm:786, md:1024},
                     height:60
                 }}
                 className=" bg-gray-500 flex justify-center items-center"
@@ -118,6 +118,7 @@ const Rooms = () => {
                 <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
                     <div>
                         <input
+                            sx={{width:{xs:50}}}
                             className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
                             type="number"
                             value={minPrice}
@@ -139,12 +140,18 @@ const Rooms = () => {
             </Box>
             <Box
             sx={{
-                width:{sm:786, md:1024}
+                width:{xs:400, sm:786, md:1024},
+                display:'flex',
+                flexDirection:{xs:'column'},
+                justifyContent:{xs:'center'},
+                marginBottom:{xs: 10}
             }}
             className='bg-white justify-center items-center m-auto'
             
             >
-                <div className="flex flex-col min-h-[600px] justify-center items-center mr-4">
+                <Box
+                sx={{marginBotton:{xs:10}}} 
+                className="flex flex-col min-h-[600px] justify-center items-center mr-4">
                     <h3 className='mt-6'>Our Rooms</h3>
                     {searchResults.length ?
                         <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
@@ -172,12 +179,10 @@ const Rooms = () => {
                             ))}
                         </div>
                     }
-                </div>
-                <div>
-                    <Service />
-                </div>
+                </Box>
                 {openModal && <ViewRoom data={data} setOpenModal={setOpenModal} />}
             </Box>
+            <Service />
             <Footer />
         </Box>
     );

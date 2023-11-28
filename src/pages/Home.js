@@ -44,14 +44,14 @@ export const Home = () => {
   return (
     <Box
       sx={{
-        width: { sm: 786, md: 1024 },
+        width: { sm: 786 },
         display: 'flex',
         flexDirection: 'column',
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         margin: "auto",
       }}
-      className=' h-auto'
+      className='h-auto'
     >
       {/* <div className='home-container bg-[#F4F4F4] block h-auto m-auto'> */}
       <Box sx={{ width: { sm: 786, md: 1024 } }}>
@@ -89,19 +89,27 @@ export const Home = () => {
               onClick={filterRoom}>Search</button>
           </Box>
         </Box>
-        <Box className='bg-white'>
+        <Box 
+        sx={{
+          height:{sm:'content'}
+        }}
+        className='bg-white'>
           <FeaturedRooms />
           <Box
             sx={{
-              width: { sm: 786, md: 1024 },
-              height: { sm: 'auto' },
+              width: { xs: 400, sm: 786, md: 1024 },
               display: 'flex',
               flexDirection: { sm: 'column', md: 'row' }
             }}
             className=" flex flex-row "
           >
             {/* Map Section */}
-            <div className='w-[30%] ml-6'>
+            <Box
+              sx={{
+                width: { xs: 400, sm: '100%', md: "30%" },
+                height: { sm: "fit-content" },
+              }}
+              className=' ml-6'>
               <div class="mapouter my-5 mt-4">
                 <div className="gmap_canvas">
                   <iframe className="gmap_iframe"
@@ -115,14 +123,14 @@ export const Home = () => {
                   </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
                 </div>
               </div>
-            </div>
+            </Box>
             <Box
               sx={{
-                width: { sm: 786, md: 1024 },
+                width: { sm: '100%', md: 680 },
                 display: 'flex',
-                flexDirection: { sm: 'column', md: 'row' }
+                flexDirection: { sm: 'column', md: 'row' },
               }}
-              className="flex flex-col mr-4 "
+              className="mr-4 "
             >
               {searchResults.length ?
                 <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>

@@ -14,7 +14,17 @@ function ContactUs() {
     const [message, setMessage] = useState('')
 
     return (
-        <Box className='bg-[#F5F5F5] h-fit flex flex-col items-center'>
+        <Box
+            sx={{
+            
+                display:'flex',
+                flexDirection:'column',
+                justifyContent:'center',
+                alignItems:'center',
+                margin:'auto',
+            }}
+            className='h-fit'
+        >
             <Navbar />
             <Header />
             <Box
@@ -23,28 +33,31 @@ function ContactUs() {
                     display: "flex",
                     flexDirection: { sm: 'column', md: 'column' },
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    backgroundColor:'whitesmoke'
                 }}
-                className=' h-full bg-white justify-center items-center'
+                className=' h-full'
             >
-                <div className=''>
-                    <h3 className='text-center'>Let's get in touch.</h3>
+                <div className='mt-6'>
+                    <h3 className='text-center font-semibold text-["green"]'>Let's get in touch.</h3>
                 </div>
 
                 <Box
                     sx={{
                         width: { sm: 786, md: 1024 },
                         display: 'flex',
-                        flexDirection: { sm: "column", md: "row" }
+                        flexDirection: { sm: "column", md: "column" },
+                        justifyContent: 'center',
+                        alignItems: 'center',
                     }}
-                    className='flex items-center ml-20 mb-10'>
+                    className='flex items-center mb-10'>
                     <Box
                         sx={{
-                            width:{sm:786, md:1024},
+                            width: { sm: 786, md: 1024 },
                             display: 'flex',
-                            flexDirection: { sm: 'row', md: 'column' },
-                            marginTop:{sm:5},
-                            justifyContent:{sm:"space-evenly"}
+                            flexDirection: { sm: 'row', md: 'row' },
+                            marginTop: { sm: 5 },
+                            justifyContent: { sm: "space-evenly" },
                         }}
                     >
                         <div>
@@ -63,7 +76,17 @@ function ContactUs() {
                             <p className='text-sm mt-[-12px]'>twitter</p>
                         </div>
                     </Box>
-                    <div className=' justify-center items-center mt-12 ml-[-140px]'>
+                    <Box
+                        sx={{
+                            width:{sm:786},
+                            display: 'flex',
+                            flexDirection: "column",
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginTop: 5,
+                        }}
+                    // className=' justify-center items-center mt-12 ml-[-140px]'
+                    >
                         <form className='w-[900px] flex flex-col justify-center items-center'>
                             <div className='block my-2'>
                                 <label className='block  my-1'>First Name:</label>
@@ -117,14 +140,12 @@ function ContactUs() {
                                     onChange={(e) => setMessage(e.target.value)}
                                 />
                             </div>
-                            <button className='w-[150px] h-[35px] bg-[#0088a9] rounded-xl text-white'>Send</button>
+                            <button className='w-[150px] h-[35px] bg-[#0088a9] rounded-xl text-white mt-6'>Send</button>
                         </form>
-                    </div>
+                    </Box>
                 </Box>
             </Box>
-
             <Footer />
-
         </Box>
     )
 }

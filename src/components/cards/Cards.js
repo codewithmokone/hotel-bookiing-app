@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { auth, db } from '../../config/firebase'; // importing database from config file
+import { db } from '../../config/firebase'; // importing database from config file
 import { collection, getDocs } from 'firebase/firestore'; // Firebase functions
 import { faBed, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,6 +14,7 @@ export const Cards = () => {
     const [rooms, setRooms] = useState([]);
     const [data, setData] = useState('')
     const [openModal, setOpenModal] = useState(false)
+    
 
     const hotelRoomsRef = collection(db, "hotelRooms");
     const { dispatch } = useContext(CartContext);
@@ -65,7 +66,7 @@ export const Cards = () => {
             <>
                 {rooms.map((room, id) => (
                     <Paper elevation={5}>
-                        <div className=" overflow-hidden flex flex-row justify-center my-2 border w-[640px] h-[260px] bg-white mb-1 " key={id}>
+                        <div className=" overflow-hidden flex flex-row justify-center my-4 border w-[640px] h-[240px] bg-white mb-1 " key={id}>
                             <div className="image-container w-[40%] h-[200px] m-[10px]">
                                 <img className="w-[300px] m-[10px] h-[200px]" src={room.roomImage} alt='roomImage' />
                             </div>
@@ -89,8 +90,8 @@ export const Cards = () => {
                                             <td><p className="text-xs font-bold">Price: R {room.price}.00</p></td>
                                         </tr>
                                         <tr>
-                                            <td><button className=" text-sky-600 border p-1" onClick={() => handleView(room)}>View More</button></td>
-                                            <td><button className=" text-sky-600 border p-1" onClick={reserveRoom}>Reserve</button></td>
+                                            <td><button className=" text-sky-600 p-1" onClick={() => handleView(room)}>View More</button></td>
+                                            <td><button className=" text-sky-600 p-1" onClick={() => reserveRoom(room)}>Reserve</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -106,8 +107,8 @@ export const Cards = () => {
             <>
                 {rooms.map((room, id) => (
                     <Paper elevation={5}>
-                        <div className=" overflow-hidden flex flex-row justify-center my-4 w-[640px] h-[260px]  m-2" key={id}>
-                            <div className="image-container w-[40%] h-[200px] m-[10px]">
+                        <div className=" overflow-hidden flex flex-row justify-center my-4 w-[620px] h-[240px]  m-2" key={id}>
+                            <div className="image-container w-[40%] h-[190px] m-[10px]">
                                 <img className="w-[300px] m-[10px] h-[200px]" src={room.roomImage} alt='roomImage' />
                             </div>
                             <div className="w-[55%] justify-center items-center ml-6 mt-2">
@@ -125,7 +126,7 @@ export const Cards = () => {
                                         <tr>
                                             <td><p className="text-xs font-bold mb-2">Room Type: {room.roomType}</p></td>
                                         </tr>
-                                        <tr>
+                                        <tr className='flex justify-between'>
                                             <td><p><FontAwesomeIcon icon={faBed} className=" text-sky-600 text-lg font-bold" /> : {room.bedType}</p></td>
                                             <td><p><FontAwesomeIcon icon={faUserGroup} className=" text-sky-600 text-sm font-medium" /> : {room.numberOfPeople}</p></td>
                                         </tr>

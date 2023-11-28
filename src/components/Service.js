@@ -10,8 +10,8 @@ const Service = () => {
     return (
         <Box
             sx={{
-                width: { sm: 786, md: 1024 },
-                height: { sm: 300, md: 300 },
+                width: { xs:400 ,sm: 786, md: 1024 },
+                height: {xs:500, sm: 300, md: 300 },
                 display: 'flex',
                 flexDirection: 'column'
             }}
@@ -25,37 +25,49 @@ const Service = () => {
                     width: { sm: 786, md: 1024 },
                     height: { sm: 300, md: 300 },
                     display: 'flex',
-                    flexDirection: {sm:'row', md:"row"}
+                    flexDirection: {xs:'row', sm:'row', md:"row"},
+                    flexWrap:{xs:"wrap"},
+                    justifyContent:'center'
                 }}
             >
-                <div className="flex flex-col items-center justify-center w-[200px]  mx-3">
+                <Box 
+                sx={{width:{xs:150}}}
+                className="flex flex-col items-center justify-center w-[200px]  mx-3">
                     <span className=" text-xl font-semibold mb-2 text-[#0088a9] "><FontAwesomeIcon icon={faCar} /></span>
                     <h6 className=" text-lg font-semibold text-[#0088a9] ">Car Hire</h6>
                     <p className=" text-center ">Lorem ipsum dolor sit amet, consectetur
                         adipiscing elit, sed do eiusmod tempor.
                     </p>
-                </div>
-                <div className="flex flex-col items-center justify-center  w-[200px]  mx-3">
+                </Box>
+                <Box 
+                sx={{width:{xs:150}}}
+                className="flex flex-col items-center justify-center  w-[200px]  mx-3">
                     <span className="  text-xl font-semibold mb-2 text-[#0088a9]"><FontAwesomeIcon icon={faPersonHiking} /></span>
                     <h6 className=" text-lg font-semibold text-[#0088a9] ">Free Hiking</h6>
                     <p className=" text-center ">Lorem ipsum dolor sit amet, consectetur
                         adipiscing elit, sed do eiusmod tempor.
                     </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[200px]  mx-3">
+                </Box>
+                <Box 
+                sx={{
+                    width:{xs:150},
+                }}
+                className="flex flex-col items-center justify-center w-[200px]  mx-3">
                     <span className="  text-xl font-semibold mb-2 text-[#0088a9]"><FontAwesomeIcon icon={faVanShuttle} /></span>
                     <h6 className=" text-lg font-semibold text-[#0088a9]">Free Shuttle</h6>
                     <p className=" text-center ">Lorem ipsum dolor sit amet, consectetur
                         adipiscing elit, sed do eiusmod tempor.
                     </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[200px] mx-3">
+                </Box>
+                <Box
+                sx={{width:{xs:150}}} 
+                className="flex flex-col items-center justify-center w-[200px] mx-3">
                     <span className=" text-xl font-semibold mb-2 text-[#0088a9]"><FontAwesomeIcon icon={faPersonBiking} /></span>
                     <h6 className=" text-lg font-semibold text-[#0088a9] ">Free Biking</h6>
                     <p className=" text-center ">Lorem ipsum dolor sit amet, consectetur
                         adipiscing elit, sed do eiusmod tempor.
                     </p>
-                </div>
+                </Box>
             </Box>
         </Box>
     )

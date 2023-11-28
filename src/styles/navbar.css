@@ -7,8 +7,6 @@
     top: 0;
 }
 
-
-
 .logo {
     width: 35%;
     font-size: large;
@@ -80,3 +78,14 @@
     background-color: rgba(0,136,169,0.8);
 }
 
+
+@media screen and (min-width: 480px) {
+    #leftsidebar {
+        width: 200px; 
+        float: left;
+    }
+
+    #main {
+        margin-left: 216px;
+    }
+  }

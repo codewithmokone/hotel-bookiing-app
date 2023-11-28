@@ -18,7 +18,7 @@ import { CartContext } from '../../components/context/CartContext';
 // Icon and styling import
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Alert, Paper, TextField } from '@mui/material';
+import { Box, Paper, TextField } from '@mui/material';
 import { useUserAuth } from '../../components/context/UserAuthContext';
 
 const Bookings = () => {
@@ -77,17 +77,20 @@ const Bookings = () => {
         console.log("Error uploading an image. ", err)
       }
     } else {
-      <div>
-        <Alert variant="filled" severity="error">
+        {/* <alert variant="filled" severity="error">
           Please login or signup to continue.
-        </Alert>
-      </div>
+        </alert> */}
+        alert("Please login or signup to continue.")
     }
   }
 
   return (
-    <div className="flex flex-col h-[100%] bg-[#F3F5F5]">
-      <header className='flex flex-col'>
+    <Box 
+    sx={{
+      width:{sm:786, md:1024}
+    }}
+    className="flex flex-col h-[100%] bg-[#F3F5F5] m-auto">
+      <header className='flex flex-col m-auto'>
         <Navbar />
         <HeroSec />
       </header>
@@ -95,7 +98,7 @@ const Bookings = () => {
         <div className='mt-10 flex justify-center items-center'>
           <h5>Please fill in your information</h5>
         </div>
-        <div className=' flex flex-col justify-center items-center mt-4'>
+        <Box className=' flex flex-col justify-center items-center mt-4'>
           <Paper elevation={4} sx={{ width: 900, height: 320 }}>
             <div className=' flex flex-col w-[900px] h-[280px] justify-center items-center mt-6'>
               <label className='w-[600px] mt-4'>Name</label>
@@ -186,16 +189,14 @@ const Bookings = () => {
               </div>
             </div>
           </Paper>
-        </div>
-        <div className="my-10 flex flex-row justify-center items-center ">
+        </Box>
+        <Box className="my-10 flex flex-row justify-center items-center ">
           <span className="font-medium m-2">Amount: R{totalPrice}.00</span><br />
           <button className="border bg-sky-400 p-1" onClick={handleBookings}>Confirm Bookings</button>
-        </div>
+        </Box>
       </main>
-      <footer className='m-auto'>
         <Footer />
-      </footer>
-    </div>
+    </Box>
   )
 }
 

@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../../styles/navbar.css';
 import { faBellConcierge } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth, db } from '../../config/firebase';
+import { auth } from '../../config/firebase';
 import { useUserAuth } from '../context/UserAuthContext';
 import { Box, Button, Menu, MenuItem } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+
 
 const Navbar = () => {
 
     const { user, logOut } = useUserAuth();
     const [anchorEl, setAnchorEl] = useState(null);
+    // const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const open = Boolean(anchorEl);
 
     const navigate = useNavigate();
 
@@ -26,7 +29,6 @@ const Navbar = () => {
         navigate("/register");
     }
 
-    const open = Boolean(anchorEl);
 
     // Opens user profile menu
     const handleClick = (event) => {
@@ -53,7 +55,7 @@ const Navbar = () => {
     if (user) {
         return (
             <Box sx={{
-                width: { sm: 786, md: 1024 },
+                width: { xs: 400, sm: 786, md: 1024 },
                 backgroundColor: "#24252A",
                 height: 80,
                 display: 'flex',
@@ -99,24 +101,26 @@ const Navbar = () => {
         )
     } else {
         return (
-            <Box sx={{
-                width: { sm: 786, md: 1024 },
-                backgroundColor: "#24252A",
-                height: 80,
-                display: 'flex',
-                alignItems: 'center'
-            }}
-            >
-                <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
-                <nav className="navItems">
-                    <Link to="/" className="home">Home</Link>
-                    <Link to="/gallery" className="galleryLink">Gallery</Link>
-                    <Link to="/rooms" className="roomsLink">Rooms</Link>
-                    <Link to="/contactus" className="contactusLink">Contact Us</Link>
-                    <button className="registerBtn" onClick={() => { register(true) }}>Register</button>
-                    <button className="loginBtn " onClick={() => { login(true) }}>Login</button>
-                </nav>
-            </Box>
+            <>
+                <Box sx={{
+                    width: { xs: 400, sm: 786, md: 1024 },
+                    backgroundColor: "#24252A",
+                    height: 80,
+                    display: 'flex',
+                    alignItems: 'center'
+                }}
+                >
+                    <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
+                    <nav className="navItems topnav" id="myTopnav" >
+                        <Link to="/" className="home">Home</Link>
+                        <Link to="/gallery" className="galleryLink">Gallery</Link>
+                        <Link to="/rooms" className="roomsLink">Rooms</Link>
+                        <Link to="/contactus" className="contactusLink">Contact Us</Link>
+                        <button className="registerBtn" onClick={() => { register(true) }}>Register</button>
+                        <button className="loginBtn " onClick={() => { login(true) }}>Login</button>
+                    </nav>
+                </Box>
+            </>
         )
     }
 }
