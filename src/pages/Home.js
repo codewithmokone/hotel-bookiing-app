@@ -56,7 +56,8 @@ export const Home = () => {
         <Navbar />
         <Header />
       </Box>
-      <Box sx={{ width: { xs: 400, sm: 786, md: 1024 } }} className=" flex flex-col justify-center items-center">
+      <Box sx={{ width: { xs: 400, sm: 786, md: 1024 } }}
+        className=" flex flex-col justify-center items-center">
         <Box sx={{
           width: { xs: 400, sm: 786, md: 1024 },
           height: 60,
@@ -119,17 +120,70 @@ export const Home = () => {
           <Box
             sx={{
               width: { xs: 400, sm: 786, md: 1024 },
+              height: { xs: 800 },
               display: 'flex',
-              flexDirection: { sm: 'column', md: 'row' },
+              flexDirection: { xs: 'column', sm: 'column', md: 'row' },
               margin: "auto"
             }}
             className=" flex flex-row "
           >
-            {/* Map Section */}
+            <Hidden xsDown>
+              <Box
+                sx={{
+                  width: { xs: 400, sm: '100%', md: "30%" },
+                  height: { xs: 200, sm: 400 },
+                  borderWidth: 4
+                }}
+                className=' ml-6'>
+                <div class="mapouter my-5 mt-4">
+                  <div className="gmap_canvas">
+                    <iframe className="gmap_iframe"
+                      width="100%"
+                      height="300"
+                      frameborder="0"
+                      scrolling="no"
+                      marginheight="0"
+                      marginwidth="0"
+                      src="https://maps.google.com/maps?width=307&amp;height=600&amp;hl=en&amp;q=pretoria cbd&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                    </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
+                  </div>
+                </div>
+              </Box>
+              <Box
+                sx={{
+                  width: { sm: '100%', md: 680 },
+                  display: 'flex',
+                  flexDirection: { xs: 'column', sm: 'column', md: 'row' },
+                }}
+                className="mr-4 "
+              >
+                {searchResults.length ?
+                  <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
+                  :
+                  <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
+                }
+              </Box>
+            </Hidden>
+            <Hidden smUp>
             <Box
               sx={{
+                width: { sm: '100%', md: 680 },
+                display: 'flex',
+                flexDirection: { xs: 'column', sm: 'column', md: 'row' },
+              }}
+              className="mr-4 "
+            >
+              {searchResults.length ?
+                <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
+                :
+                <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
+              }
+            </Box>
+            {/* <Box
+              sx={{
                 width: { xs: 400, sm: '100%', md: "30%" },
-                height: { sm: "fit-content" },
+                height: { xs: 200, sm: 400 },
+                borderWidth: 4
               }}
               className=' ml-6'>
               <div class="mapouter my-5 mt-4">
@@ -145,21 +199,9 @@ export const Home = () => {
                   </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
                 </div>
               </div>
-            </Box>
-            <Box
-              sx={{
-                width: { sm: '100%', md: 680 },
-                display: 'flex',
-                flexDirection: { sm: 'column', md: 'row' },
-              }}
-              className="mr-4 "
-            >
-              {searchResults.length ?
-                <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
-                :
-                <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
-              }
-            </Box>
+            </Box> */}
+            </Hidden>
+         
           </Box>
           <div>
             <Service />

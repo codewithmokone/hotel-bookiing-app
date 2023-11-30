@@ -4,37 +4,59 @@ import React from 'react'
 import fimage1 from '../images/home-images/Feat-room1.jpg'
 import fimage2 from '../images/home-images/Feat-room2.jpg'
 import fimage3 from '../images/home-images/Feat-room3.jpg'
-import { Box } from '@mui/material'
+import { Box, Hidden } from '@mui/material'
 
 const FeaturedRooms = () => {
     return (
         <Box
             sx={{
-                width: { sm: 786, md: 1024 },
-                height: {sm: 500 ,md:350},
+                width: { xs: 400, sm: 786, md: 1024 },
+                height: { sm: 500, md: 350 },
                 display: 'flex',
                 flexDirection: { sm: "column", md: 'column' },
                 justifyContent: 'center',
-                alignItems:'center'
+                alignItems: 'center'
             }}
             className="flex flex-col justify-center items-center"
         >
-            <div className="heading flex justify-center">
+            <Box className="heading flex justify-center">
                 <h2 className=" text-xl font-bold mt-2 text-[#0088a9] border-b-2 border-[#0088a9] mb-8">Featured Rooms</h2>
-            </div>
-            <Box sx={{ width: { sm: 786, md: 1024 }, display:'flex', flexDirection:{sm:'column'} }} className="flex flex-row justify-evenly items-center">
-                <div className="h-[230px] w-[300px] bg-[#0088a9]  rounded-md ">
-                    <img className="w-[300px] h-[200px]" src={fimage1} alt="" />
+            </Box>
+            <Box
+                sx={{
+                    width: { xs: 400, sm: 786, md: 1024 },
+                    height: { xs: 550, sm: 300, md: 300 }, display: 'flex',
+                    flexDirection: { xs: 'column', sm: 'row', md: 'row' },
+                    justifyContent: 'space-evenly',
+                    alignItems: 'center'
+                }}
+            >
+                <Box
+                    sx={{
+                        width: { xs: 360, sm: 786, md: 1024 },
+                        height: { xs: 'auto' },
+                        flexDirection: { xs: 'column', sm: 'column' },
+                        backgroundColor: '#0088a9'
+                    }}
+                    className=" rounded-md ">
+                    <img className="w-[360px] h-[120px]" src={fimage1} alt="" />
                     <p className="text-center text-white font-semibold mt-1">Family Deluxe</p>
-                </div>
-                <div className="h-[230px] w-[300px] bg-[#0088a9]  mx-10  rounded-md ">
-                    <img className="w-[300px] h-[200px]" src={fimage2} alt="" />
+                </Box>
+                <Box
+                    sx={{ width: { xs: 360, sm: 786, md: 1024 }, height: { xs: 'auto' } }}
+                    className=" bg-[#0088a9]  mx-10  rounded-md ">
+                    <img className="w-[360px] h-[120px]" src={fimage2} alt="" />
                     <p className="text-center text-white font-semibold mt-1">Standard Deluxe</p>
-                </div>
-                <div className="h-[230px] w-[300px] bg-[#0088a9]  rounded-md">
-                    <img className="w-[300px] h-[200px]" src={fimage3} alt="" />
+                </Box>
+                <Box
+                    sx={{
+                        width: { xs: 360, sm: 786, md: 1024 },
+                        height: { xs: 'auto' },
+                    }}
+                    className="bg-[#0088a9]  rounded-md">
+                    <img className="w-[360px] h-[120px]" src={fimage3} alt="" />
                     <p className="text-center text-white font-semibold mt-1">Couples Deluxe</p>
-                </div>
+                </Box>
             </Box>
         </Box>
     )
