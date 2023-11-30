@@ -9,7 +9,7 @@ import Service from '../components/Service';
 import FeaturedRooms from '../components/FeaturedRooms';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
-import { Box } from '@mui/material';
+import { Box, Hidden } from '@mui/material';
 
 export const Home = () => {
 
@@ -17,8 +17,6 @@ export const Home = () => {
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  const navigate = useNavigate()
 
   const filterRoom = async () => {
     setIsLoading(true)
@@ -58,9 +56,9 @@ export const Home = () => {
         <Navbar />
         <Header />
       </Box>
-      <Box sx={{ width: { sm: 786, md: 1024 } }} className=" flex flex-col justify-center items-center">
+      <Box sx={{ width: { xs: 400, sm: 786, md: 1024 } }} className=" flex flex-col justify-center items-center">
         <Box sx={{
-          width: { sm: 786, md: 1024 },
+          width: { xs: 400, sm: 786, md: 1024 },
           height: 60,
           display: 'flex',
           flexDirection: 'column',
@@ -69,37 +67,61 @@ export const Home = () => {
         }}
           className=" bg-gray-500 "
         >
-          <Box sx={{ width: { sm: 600 }, height: 40, display: 'flex', flexDirection: { sm: "row", md: 'row' } }} className="search-section rounded flex justify-between items-center border bg-white">
-            <input
-              className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
-              type="number"
-              value={minPrice}
-              placeholder='Enter minimum amount'
-              onChange={(e) => setMinPrice(e.target.value)}
-            />
-            <input
-              className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
-              type="number"
-              value={maxPrice}
-              placeholder='Enter maximum amount'
-              onChange={(e) => setMaxPrice(e.target.value)}
-            />
-            <button
-              className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
-              onClick={filterRoom}>Search</button>
-          </Box>
+          <Hidden smDown>
+            <Box sx={{ width: { sm: 600 }, height: 40, display: 'flex', flexDirection: { sm: "row", md: 'row' } }} className="search-section rounded flex justify-between items-center border bg-white">
+              <input
+                className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+                type="number"
+                value={minPrice}
+                placeholder='Enter minimum amount'
+                onChange={(e) => setMinPrice(e.target.value)}
+              />
+              <input
+                className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+                type="number"
+                value={maxPrice}
+                placeholder='Enter maximum amount'
+                onChange={(e) => setMaxPrice(e.target.value)}
+              />
+              <button
+                className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
+                onClick={filterRoom}>Search</button>
+            </Box>
+          </Hidden>
+          <Hidden smUp>
+            <Box sx={{ width: { xs: 400 }, height: 40, display: 'flex', flexDirection: { sm: "row", md: 'row' }, alignItems: 'center', justifyContent: "center" }} className="search-section rounded flex justify-between items-center">
+              <input
+                className=' border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[150px]'
+                type="number"
+                value={minPrice}
+                placeholder=' Minimum amount'
+                onChange={(e) => setMinPrice(e.target.value)}
+              />
+              <input
+                className='ml-[10px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[150px]'
+                type="number"
+                value={maxPrice}
+                placeholder=' Maximum amount'
+                onChange={(e) => setMaxPrice(e.target.value)}
+              />
+              <button
+                className="bg-[#0088a9] text-white p-1 rounded ml-[10px]"
+                onClick={filterRoom}>Search</button>
+            </Box>
+          </Hidden>
         </Box>
-        <Box 
-        sx={{
-          height:{sm:'content'}
-        }}
-        className='bg-white'>
+        <Box
+          sx={{
+            height: { sm: 'content' }
+          }}
+          className='bg-white'>
           <FeaturedRooms />
           <Box
             sx={{
               width: { xs: 400, sm: 786, md: 1024 },
               display: 'flex',
-              flexDirection: { sm: 'column', md: 'row' }
+              flexDirection: { sm: 'column', md: 'row' },
+              margin: "auto"
             }}
             className=" flex flex-row "
           >

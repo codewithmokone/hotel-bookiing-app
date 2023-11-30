@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase';
 import { useUserAuth } from '../context/UserAuthContext';
-import { Box, Button, Menu, MenuItem } from '@mui/material';
+import { Box, Button, Drawer, Hidden, Menu, MenuItem } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
@@ -102,24 +102,29 @@ const Navbar = () => {
     } else {
         return (
             <>
-                <Box sx={{
-                    width: { xs: 400, sm: 786, md: 1024 },
-                    backgroundColor: "#24252A",
-                    height: 80,
-                    display: 'flex',
-                    alignItems: 'center'
-                }}
-                >
-                    <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
-                    <nav className="navItems topnav" id="myTopnav" >
-                        <Link to="/" className="home">Home</Link>
-                        <Link to="/gallery" className="galleryLink">Gallery</Link>
-                        <Link to="/rooms" className="roomsLink">Rooms</Link>
-                        <Link to="/contactus" className="contactusLink">Contact Us</Link>
-                        <button className="registerBtn" onClick={() => { register(true) }}>Register</button>
-                        <button className="loginBtn " onClick={() => { login(true) }}>Login</button>
-                    </nav>
-                </Box>
+                <Hidden smDown implementation="css">
+                    <Box sx={{
+                        width: { xs: 400, sm: 786, md: 1024 },
+                        backgroundColor: "#24252A",
+                        height: 80,
+                        display: 'flex',
+                        alignItems: 'center'
+                    }}
+                    >
+                        <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
+                        <nav className="navItems topnav" id="myTopnav" >
+                            <Link to="/" className="home">Home</Link>
+                            <Link to="/gallery" className="galleryLink">Gallery</Link>
+                            <Link to="/rooms" className="roomsLink">Rooms</Link>
+                            <Link to="/contactus" className="contactusLink">Contact Us</Link>
+                            <button className="registerBtn" onClick={() => { register(true) }}>Register</button>
+                            <button className="loginBtn " onClick={() => { login(true) }}>Login</button>
+                        </nav>
+                    </Box>
+                </Hidden>
+                <Hidden>
+                  
+                </Hidden>
             </>
         )
     }
