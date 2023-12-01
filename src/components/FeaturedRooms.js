@@ -28,7 +28,8 @@ const FeaturedRooms = () => {
                     height: { xs: 550, sm: 300, md: 300 }, display: 'flex',
                     flexDirection: { xs: 'column', sm: 'row', md: 'row' },
                     justifyContent: 'space-evenly',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    marginTop: {sm:-6}
                 }}
             >
                 <Box
