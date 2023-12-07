@@ -7,6 +7,7 @@ import { auth } from '../../config/firebase';
 import { useUserAuth } from '../context/UserAuthContext';
 import { Box, Button, Drawer, Hidden, Menu, MenuItem } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import DrawerNavBar from './DrawerNavBar';
 
 
 const Navbar = () => {
@@ -122,8 +123,8 @@ const Navbar = () => {
                         </nav>
                     </Box>
                 </Hidden>
-                <Hidden>
-                  
+                <Hidden xsDown implementation="css">
+                  <DrawerNavBar />
                 </Hidden>
             </>
         )
