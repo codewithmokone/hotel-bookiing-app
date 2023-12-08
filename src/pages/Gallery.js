@@ -42,13 +42,14 @@ const Gallery = () => {
     }
 
     return (
-        <Box 
-        sx={{
-            width: { sm: 786, md: 1024 },
-            display: 'flex',
-            flexDirection: 'column',
-            margin:'auto'
-          }}
+        <Box
+            sx={{
+                width: {xs:400, sm: 786, md: 1024 },
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems:'center',
+                margin: 'auto'
+            }}
         //   className=' h-auto m-auto'
         >
             {/* className="bg-[#F5F5F5] m-auto" > */}
@@ -56,38 +57,45 @@ const Gallery = () => {
             <HeroSec />
             <Box
                 sx={{
-                    width: { sm: 786, md: 1024 },
-                    height:{sm:"100%"}
+                    width: {xs:400, sm: 786, md: 1024 },
+                    height: {xs:400, sm: "100%" }
                 }}
                 className=" flex flex-col m-auto bg-white  items-center justify-center h-screen"
             >
-                <div>
-                    <h2 className="font-bold text-[#0088a9] mt-10">Gallery</h2>
-                </div>
                 <Box
                     sx={{
-                        width: {xs: 400, sm: 600, md: 750 },
+                        marginTop: 4,
+                    }}
+                >
+                    <h2 className="font-bold text-[#0088a9]">Gallery</h2>
+                </Box>
+                <Box
+                    sx={{
+                        width: { xs: 400, sm: 700, md: 1024 },
                         display: 'flex',
-                        flexDirection: { sm: 'row', md: 'row' },
-                        justifyContent:'center',
-                        alignItems:'center',
-                        flexWrap: "wrap",
-                        marginBottom: 10,
+                        flexWrap:'wrap',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        // marginBottom: 10,
                     }}
                     className=' mb-10'
                 >
                     {
                         images.map((image, index) => (
                             <Paper
-                            sx={{
-                                width:{xs:100, sm:310, md:280},
-                                height:{xs:100, sm:250, md:250}
-                            }} 
-                            elevation={3} 
-                            key={index} 
-                            className='w-[310px] bg-white m-2 border-white'
+                                sx={{
+                                    width: { xs: 100, sm: 310, md: 280 },
+                                    height: { xs: 100, sm: 250, md: 250 },
+                                    display:'flex',
+                                    justifyContent:'center',
+                                    alignItems:'center',
+                                    marginTop:{xs:10, sm: 10, md:10}
+                                }}
+                                elevation={3}
+                                key={index}
+                                className='bg-white m-2 border-white'
                             >
-                                <img className=" w-[100%] m-[14px] h-[100%]" src={image} alt='roomImage' />
+                                <img className=" w-[91%] h-[89%]" src={image} alt='roomImage' />
                             </Paper>
                         ))
                     }
