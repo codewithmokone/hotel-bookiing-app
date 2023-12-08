@@ -50,7 +50,7 @@ export const Register = () => {
         >
             <Box  
             sx={{
-                width:{xs:400, sm:500, md:500},
+                width:{xs:400, sm:400, md:500},
                 height:{}
             }}
             className="modalContainer flex flex-col items-center justify-center rounded bg-white  w-[500px] h-[500px]">
