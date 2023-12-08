@@ -66,7 +66,7 @@ const Gallery = () => {
                 </div>
                 <Box
                     sx={{
-                        width: { sm: 786, md: 1024 },
+                        width: {xs: 400, sm: 600, md: 750 },
                         display: 'flex',
                         flexDirection: { sm: 'row', md: 'row' },
                         justifyContent:'center',
@@ -78,8 +78,16 @@ const Gallery = () => {
                 >
                     {
                         images.map((image, index) => (
-                            <Paper elevation={3} key={index} className='w-[310px] bg-white m-2 border-white'>
-                                <img className=" w-[280px] m-[14px] h-[250px]" src={image} alt='roomImage' />
+                            <Paper
+                            sx={{
+                                width:{xs:100, sm:310, md:280},
+                                height:{xs:100, sm:250, md:250}
+                            }} 
+                            elevation={3} 
+                            key={index} 
+                            className='w-[310px] bg-white m-2 border-white'
+                            >
+                                <img className=" w-[100%] m-[14px] h-[100%]" src={image} alt='roomImage' />
                             </Paper>
                         ))
                     }

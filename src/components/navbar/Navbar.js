@@ -123,8 +123,14 @@ const Navbar = () => {
                         </nav>
                     </Box>
                 </Hidden>
-                <Hidden xsDown implementation="css">
-                  <DrawerNavBar />
+                <Hidden smUp implementation="css">
+                    <Box
+                    sx={{
+                        width:{xs:400}
+                    }}
+                    >
+                        <DrawerNavBar />
+                    </Box>
                 </Hidden>
             </>
         )

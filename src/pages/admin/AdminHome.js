@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Material ui components
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 
 // Firebase imports
 import { signOut } from 'firebase/auth';
@@ -82,16 +82,16 @@ const AdminHome = () => {
     return (
         <>
             {/* {openViewModal && <EditRoom selectedRoom={selectedRoom} handleDelete={handleDelete} closeEdit={closeEdit} />} */}
-            <div className="home-container bg-[#F5F5F5] block h-auto m-auto">
+            <Box className="home-container bg-[#F5F5F5] block h-auto m-auto">
                 <header className='flex flex-col'>
                     <AdminNavbar />
                     <HeroSec />
                 </header>
                 <main className="w-[1024px] flex flex-col justify-center m-auto min-h-[50vh] bg-white">
-                    <div className='flex justify-center items-center'>
+                    <Box className='flex justify-center items-center'>
                         <h5 className='mt-6 font-bold text-[#0088a9]'>List of rooms</h5>
-                    </div>
-                    <div className='flex flex-col m-auto mb-[60px]'>
+                    </Box>
+                    <Box className='flex flex-col m-auto mb-[60px]'>
                         {rooms ? (
                             rooms.map((room, i) => (
                                 <Card elevation={5} key={i} sx={{ width: 800, height: 100, marginTop: 3, marginLeft: 2, display: 'flex', flexDirection: 'row' }}>
@@ -101,7 +101,7 @@ const AdminHome = () => {
                                         title={room.title}
                                     />
                                     <CardContent sx={{ width: '150%', height: 100, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                                        <Typography sx={{ width: '100%', borderBottom: 1, fontWeight: 700, marginTop: -1 }} gutterBottom variant="h6" component="div">{room.title}</Typography>
+                                        <Typography sx={{ width: '100%', borderBottom: 1, fontWeight: 700, marginTop: -1 }} gutterBottom variant="h6" component="Box">{room.title}</Typography>
                                         <Typography sx={{ width: '100%', marginBottom: 1 }} variant="body2" color="text.secondary">{room.introDescr}</Typography>
                                     </CardContent>
                                     <CardContent sx={{ width: '50%' }}>
@@ -118,12 +118,12 @@ const AdminHome = () => {
                                 <td colSpan={7}>Loading...</td>
                             </tr>
                         )}
-                    </div>
+                    </Box>
                 </main>
                 <footer className='m-auto'>
                     <Footer />
                 </footer>
-            </div>
+            </Box>
         </>
     )
 }

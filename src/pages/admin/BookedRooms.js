@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import HeroSec from '../../components/HeroSec'
 import Footer from '../../components/Footer'
 import AdminNavbar from '../../components/navbar/AdminNavbar'
-import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../config/firebase'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -26,17 +26,17 @@ function BookedRooms() {
 
 
   return (
-    <div className='min-h-screen m-auto bg-[#F3F5F5]'>
+    <Box className='min-h-screen m-auto bg-[#F3F5F5]'>
       <header className='flex flex-col'>
         <AdminNavbar />
         <HeroSec />
       </header>
       <main className='h-[50vh] w-[1024px] m-auto bg-white'>
-        <div>
-          <div className='flex justify-center items-center'>
+        <Box>
+          <Box className='flex justify-center items-center'>
             <h5 className='text-[#0088a9] font-bold mt-10 '>Booked Rooms</h5>
-          </div>
-          <div className='w-[900px] flex flex-col justify-center items-center m-auto'>
+          </Box>
+          <Box className='w-[900px] flex flex-col justify-center items-center m-auto'>
             {
               bookingList ? (bookingList.map((item, index) => (
                 <>
@@ -63,18 +63,18 @@ function BookedRooms() {
                 </>
               ))
               ) : (
-                <div>
+                <Box>
                   <p>No rooms have been booked yet.</p>
-                </div>
+                </Box>
               )
             }
-          </div>
-        </div>
+          </Box>
+        </Box>
       </main>
       <footer className='m-auto'>
         <Footer />
       </footer>
-    </div>
+    </Box>
   )
 }
 

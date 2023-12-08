@@ -8,7 +8,7 @@ import { storage } from '../../config/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
-import { Alert } from '@mui/material';
+import { Alert, Box } from '@mui/material';
 import AdminNavbar from '../../components/navbar/AdminNavbar';
 
 
@@ -88,16 +88,16 @@ export const AdminHome = () => {
     })
 
     return (
-        <div className='home-container min-h-screen m-auto bg-[#F4F5F5]'>
+        <Box className='home-container min-h-screen m-auto bg-[#F4F5F5]'>
             <header className='flex flex-col '>
                 <AdminNavbar />
                 <Header />
             </header>
-            <div className="admin-main-section  w-[1024px] h-full flex flex-col items-center bg-gray-300 m-auto">
+            <Box className="admin-main-section  w-[1024px] h-full flex flex-col items-center bg-gray-300 m-auto">
                 <h3 className="text-[#0088a9] text-2xl m-[20px]">Add New Room</h3>
                 <form className="flex flex-row justify-center items-center w-[600px]" onSubmit={handleAdd} >
-                    <div className="w-[450px] flex flex-col justify-center items-center ">
-                        <div className='flex flex-col justify-center items-center'>
+                    <Box className="w-[450px] flex flex-col justify-center items-center ">
+                        <Box className='flex flex-col justify-center items-center'>
                             <img className="image" src={imageUrl} alt="" required />
                             <input
                                 className="border w-[230px]"
@@ -106,7 +106,7 @@ export const AdminHome = () => {
                                 multiple
                                 onChange={(e) => { setFile(e.target.files[0]) }}
                             />
-                        </div>
+                        </Box>
                         <label className="label text-base font-medium mx-0 mt-4 mr-[30px]">Hotel</label>
                         <input
                             className='block border h-[40px] '
@@ -183,7 +183,7 @@ export const AdminHome = () => {
                             required
                         />
                         <label className="ml-[-140px] font-semibold m-[10px] w-[100%]">Facilities</label>
-                        <div className="border flex flex-col justify-start items-start w-[300px] mt-2 ">
+                        <Box className="border flex flex-col justify-start items-start w-[300px] mt-2 ">
                             <label className='ml-[-16px] flex flex-row w-[100px]'><input
                                 type="checkbox"
                                 checked={wifi}
@@ -199,7 +199,7 @@ export const AdminHome = () => {
                                 checked={airConditioning}
                                 onChange={() => setAirConditioning(!airConditioning)}
                             />Air Conditioning</label>
-                        </div>
+                        </Box>
                         <label className="label text-base font-medium mt-3">Room type:</label>
                         <select onChange={(e) => setRoomType(e.target.value)} required className="w-[600px] h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
                             <option>Family Deluxe</option>
@@ -214,13 +214,13 @@ export const AdminHome = () => {
                             <option>Queen Bed</option>
                         </select>
                         <button className=" text-white font-bold p-1 rounded-md bg-[#0088a9] w-[300px] mx-0 my-10" type='submit'>Send</button>
-                    </div>
+                    </Box>
                 </form>
-            </div>
+            </Box>
             <footer className='m-auto'>
                 <Footer />
             </footer>
-        </div>
+        </Box>
     )
 }
 

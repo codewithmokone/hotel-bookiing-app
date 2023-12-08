@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../../config/firebase'
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
+import { Box } from '@mui/material';
 
 const UpdateRoom = () => {
 
@@ -112,15 +113,15 @@ const UpdateRoom = () => {
     }, [id]);
 
     return (
-        <div className="w-screen bg-sky-950 flex items-center justify-center">
-            <div className="flex flex-col items-center justify-center">
+        <Box className="w-screen bg-sky-950 flex items-center justify-center">
+            <Box className="flex flex-col items-center justify-center">
                 <h3 className="text-2xl m-[30px] text-white ">Update Room</h3>
                 <form className="flex flex-col items-center justify-center bg-slate-300 m-auto" >
-                    <div className="w-[900px] flex flex-col justify-center items-center">
-                        <div className='w-[600px] flex flex-col justify-center items-center'>
+                    <Box className="w-[900px] flex flex-col justify-center items-center">
+                        <Box className='w-[600px] flex flex-col justify-center items-center'>
                             <img className="image" src={rooms.roomImage} alt="" />
                             <input className="w-[300px]" type="file" onChange={(e) => setRoomImage(e.target.files)} />
-                        </div>
+                        </Box>
                         <label className="text-base font-medium mx-0 my-2 mr-[30px] w-[600px]">Hotel</label>
                         <input
                             type="text"
@@ -216,14 +217,14 @@ const UpdateRoom = () => {
                             <option>King Bed</option>
                             <option>Queen Bed</option>
                         </select>
-                    </div>
-                    <div className="flex flex-row items-start w-[450px] mt-10 ">
+                    </Box>
+                    <Box className="flex flex-row items-start w-[450px] mt-10 ">
                         <button className=" font-bold rounded-md bg-[#0088a9] w-[300px] mr-20 text-white" onClick={updateRoom}>Update</button>
                         <button className=" font-bold rounded-md bg-[#0088a9] w-[300px] mb-10 text-white" onClick={closeUpdate}>Close</button>
-                    </div>
+                    </Box>
                 </form>
-            </div>
-        </div >
+            </Box>
+        </Box >
     )
 }
 
