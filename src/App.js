@@ -18,6 +18,7 @@ import Rooms from './pages/Rooms';
 import ContactUs from './pages/ContactUs';
 import Dashboard from './pages/admin/Dashboard';
 import RoomView from './pages/RoomView';
+import Profile from './pages/admin/Profile';
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
           <Route path='/roomview' element={<ProtectedRoute><ViewRoom/></ProtectedRoute>} />
           <Route path="/adminhome" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
           <Route path='/newroom' element={<ProtectedRoute><NewRoom /></ProtectedRoute>} />
+          <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path='/editroom/:id' element={<ProtectedRoute><UpdateRoom /></ProtectedRoute>} />
           <Route path='/bookedrooms' element={<BookedRooms />} />
           <Route path="*" element={<NoPage />} />

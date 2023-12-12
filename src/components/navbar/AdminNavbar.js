@@ -1,81 +1,121 @@
 import React, { useState } from 'react';
 import '../../styles/navbar.css';
-import { faBellConcierge } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase';
 import { useUserAuth } from '../context/UserAuthContext';
-import { Button, Menu, MenuItem } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Drawer from '@mui/material/Drawer';
+import CssBaseline from '@mui/material/CssBaseline';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
+import AddHomeIcon from '@mui/icons-material/AddHome';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import Divider from '@mui/material/Divider';
+import HomeIcon from '@mui/icons-material/Home';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+
+const drawerWidth = 180;
 
 function AdminNavbar() {
 
-    const [anchorEl, setAnchorEl] = useState(null);
-    const { logOut } = useUserAuth();
-    const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const { logOut } = useUserAuth();
+  const navigate = useNavigate();
 
-    const open = Boolean(anchorEl);
+  const open = Boolean(anchorEl);
 
-    // Opens user profile menu
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+  // Opens user profile menu
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    // Closes user profile menu
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+  // Closes user profile menu
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-    // Signs out the user
-    const signOut = async () => {
-        try {
-            await logOut(auth);
-            alert('Signed Out');
-            navigate("/");
-        } catch (err) {
-            console.error(err);
-        }
+  // Signs out the user
+  const signOut = async () => {
+    try {
+      await logOut(auth);
+      alert('Signed Out');
+      navigate("/");
+    } catch (err) {
+      console.error(err);
     }
+  }
 
-    return (
-        <div className="navbar w-[1024px] m-auto h-[70px] flex items-center justify-center">
-            <header className='navContainer w-[1024px] '>
-                <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
-                <nav className="flex flex-row justify-center items-center">
-                    <Link to="/adminhome" className="adminHome mr-2">Home</Link>
-                    <Link to="/newroom" className="adminNewRoom mr-2">New Room</Link>
-                    <Link to="/bookedrooms" className="adminBookings mr-8">Bookings</Link>
-                    <div>
-                        <Button
-                            className='adminProfile'
-                            id="basic-button"
-                            aria-controls={open ? 'basic-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? 'true' : undefined}
-                            onClick={handleClick}
-                            sx={{ marginLeft: -4, width: 35, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                            size='small'
-                        >
-                            <AccountCircleIcon sx={{width:35, height:35, color: "#0088a9"}} />
-                        </Button>
-                        <Menu
-                            id="basic-menu"
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleClose}
-                            MenuListProps={{
-                                'aria-labelledby': 'basic-button',
-                            }}
-                        >
-                            {/* <MenuItem onClick={signOut}>Profile</MenuItem>
-                            <MenuItem onClick={signOut}>Order History</MenuItem> */}
-                            <MenuItem onClick={signOut}>Logout</MenuItem>
-                        </Menu>
-                    </div>
-                </nav>
-            </header>
-        </div>
-    )
+  return (
+    <Box sx={{ backgroundColor: '#24252A' }}>
+      <Paper sx={{ backgroundColor: "#24252A" }}>
+        {/* <CssBaseline /> */}
+        {/* <AppBar
+          position="fixed"
+          sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        >
+          <Toolbar>
+            <Typography variant="h6" noWrap component="div">
+              Permanent drawer
+            </Typography>
+          </Toolbar>
+        </AppBar> */}
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+              boxSizing: 'border-box',
+            },
+            backgroundColor: "#24252A"
+          }}
+          variant="permanent"
+          anchor="left"
+        >
+          <Toolbar sx={{ backgroundColor: "#24252A", width:240 }} />
+          <Divider />
+          <List sx={{ backgroundColor: "#24252A", height: '100vh' }}>
+            <Box sx={{ width: 150, display: 'flex', flexDirection: 'column', marginLeft: 2 }}>
+              <Box>
+                <HomeIcon sx={{ color: 'white', marginLeft: -4 }}/>
+                <Link to="/adminhome" className="adminHome focus:text-[#0088A9] m-2">Home</Link>
+              </Box>
+              <Box sx={{display:'flex'}}>
+                <AddHomeIcon sx={{ color: 'white', marginLeft: 1 }}/>
+                <Link to="/newroom" className="galleryLink m-2">New Room</Link>
+              </Box>
+              <Box sx={{display:'flex'}}>
+                <MenuBookIcon sx={{ color: 'white' }} className="hover:text-[#0088A9]" />
+                <Link to="/bookedrooms" className="galleryLink m-2">Bookings</Link>
+              </Box>
+            </Box>
+            <Divider sx={{ backgroundColor: "gray" }} />
+            <Box
+              sx={{
+                width: 150,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'left'
+              }}
+            >
+              <Box sx={{ display: 'flex' }}>
+                <AccountCircleIcon sx={{ color: 'white', marginLeft: -2 }} />
+                <Link to="/profile" className='galleryLink m-2' >Profile</Link>
+              </Box>
+              <Box sx={{ display: 'flex' }} className="hover:text-[#0088A9]">
+                <ExitToAppIcon sx={{ color: 'white' }} />
+                <Link to="/login" className="contactus m-2" onClick={signOut}>Sign Out</Link>
+              </Box>
+
+            </Box>
+          </List>
+        </Drawer>
+      </Paper>
+    </Box>
+  )
 }
 
 export default AdminNavbar

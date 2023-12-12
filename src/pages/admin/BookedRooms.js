@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import HeroSec from '../../components/HeroSec'
-import Footer from '../../components/Footer'
 import AdminNavbar from '../../components/navbar/AdminNavbar'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material'
 import { collection, getDocs } from 'firebase/firestore'
@@ -26,17 +24,16 @@ function BookedRooms() {
 
 
   return (
-    <Box className='min-h-screen m-auto bg-[#F3F5F5]'>
-      <header className='flex flex-col'>
+    <Box className='min-h-screen'>
+      <header>
         <AdminNavbar />
-        <HeroSec />
       </header>
-      <main className='h-[50vh] w-[1024px] m-auto bg-white'>
+      <main className='h-[50vh] m-auto bg-white'>
         <Box>
           <Box className='flex justify-center items-center'>
             <h5 className='text-[#0088a9] font-bold mt-10 '>Booked Rooms</h5>
           </Box>
-          <Box className='w-[900px] flex flex-col justify-center items-center m-auto'>
+          <Box className=' flex flex-col justify-center items-center m-auto'>
             {
               bookingList ? (bookingList.map((item, index) => (
                 <>
@@ -71,9 +68,6 @@ function BookedRooms() {
           </Box>
         </Box>
       </main>
-      <footer className='m-auto'>
-        <Footer />
-      </footer>
     </Box>
   )
 }

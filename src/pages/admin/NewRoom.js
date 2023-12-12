@@ -88,12 +88,15 @@ export const AdminHome = () => {
     })
 
     return (
-        <Box className='home-container min-h-screen m-auto bg-[#F4F5F5]'>
+        <Box className='home-container min-h-screen m-auto bg-[#ececec]'>
             <header className='flex flex-col '>
-                <AdminNavbar />
-                <Header />
+              <AdminNavbar />
             </header>
-            <Box className="admin-main-section  w-[1024px] h-full flex flex-col items-center bg-gray-300 m-auto">
+            <Box 
+            sx={{
+                backgroundColor:'smokewhite'
+            }}
+            className="admin-main-section h-full flex flex-col items-center m-auto">
                 <h3 className="text-[#0088a9] text-2xl m-[20px]">Add New Room</h3>
                 <form className="flex flex-row justify-center items-center w-[600px]" onSubmit={handleAdd} >
                     <Box className="w-[450px] flex flex-col justify-center items-center ">
@@ -217,9 +220,6 @@ export const AdminHome = () => {
                     </Box>
                 </form>
             </Box>
-            <footer className='m-auto'>
-                <Footer />
-            </footer>
         </Box>
     )
 }
