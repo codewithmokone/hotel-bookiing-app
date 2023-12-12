@@ -39,9 +39,10 @@ function ContactUs() {
 
             if (response.ok) {
 
-                console.log('Email sent successfully!');
-                setSuccessMessage("Email sent successfully!");
-                setErrorMessage('');
+                // console.log('Email sent successfully!');
+                alert("Message sent successfully!")
+                // setSuccessMessage("Email sent successfully!");
+                // setErrorMessage('');
 
             } else {
                 // Handle errors, if any
