@@ -5,7 +5,8 @@ function InputComponent({ name, type, value, onChange, placeholder }) {
   return (
     <Box
       sx={{
-        width: { xs: 300, sm:500, md:750 },
+        width: { xs: 300, sm:150, md:750 },
+        marginLeft:2,
         borderWidth: 2,
       }}
     >
@@ -15,10 +16,10 @@ function InputComponent({ name, type, value, onChange, placeholder }) {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        className="w-[150px]"
         required
       />
     </Box>
-
   )
 }
 

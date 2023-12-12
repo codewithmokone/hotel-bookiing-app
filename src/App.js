@@ -17,6 +17,7 @@ import UpdateRoom from './pages/admin/UpdateRoom';
 import Rooms from './pages/Rooms';
 import ContactUs from './pages/ContactUs';
 import Dashboard from './pages/admin/Dashboard';
+import RoomView from './pages/RoomView';
 
 function App() {
 
@@ -36,7 +37,7 @@ function App() {
           {/* Protected Routes */}
           <Route path='/clienthome' element={<ProtectedRoute><ClientHome /></ProtectedRoute>} />
           <Route path='/bookings' element={<ProtectedRoute><Bookings /></ProtectedRoute>} />
-          <Route path='/roomview' element={<ProtectedRoute><ViewRoom /></ProtectedRoute>} />
+          <Route path='/roomview' element={<ProtectedRoute><ViewRoom/></ProtectedRoute>} />
           <Route path="/adminhome" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
           <Route path='/newroom' element={<ProtectedRoute><NewRoom /></ProtectedRoute>} />
           <Route path='/editroom/:id' element={<ProtectedRoute><UpdateRoom /></ProtectedRoute>} />

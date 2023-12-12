@@ -27,7 +27,6 @@ export const Cards = () => {
         try {
             let selectedRoom = room;
             setData(selectedRoom);
-            // navigate("/roomview")
         } catch (err) {
             console.log(err)
         }
