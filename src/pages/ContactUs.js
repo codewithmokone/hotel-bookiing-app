@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import Header from '../components/HeroSec'
 import Footer from '../components/Footer'
-import { Box, Button, Checkbox, FormControlLabel, Grid, Paper, TextField, Typography } from '@mui/material'
+import { Alert, Box, Button, Checkbox, FormControlLabel, Grid, Paper, TextField, Typography } from '@mui/material'
 import Navbar from '../components/navbar/Navbar'
-import InputComponent from '../components/InputComponent'
 
 
 function ContactUs() {
@@ -13,6 +12,47 @@ function ContactUs() {
     const [email, setEmail] = useState('')
     const [subject, setSubject] = useState('')
     const [message, setMessage] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
+    const [successMessage, setSuccessMessage] = useState('')
+
+    const handleSendEmail = async () => {
+        try {
+
+            if (!firstName || !lastName || !email || !subject || !message) {
+                setErrorMessage("Please fill all the fields.");
+                return;
+            }
+
+            const response = await fetch('https://hotel-booking-nodejs.onrender.com/send-contactus-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    email,
+                    subject,
+                    message,
+                }),
+            });
+
+            if (response.ok) {
+
+                console.log('Email sent successfully!');
+                setSuccessMessage("Email sent successfully!");
+                setErrorMessage('');
+
+            } else {
+                // Handle errors, if any
+                console.error('Error sending email:', response.statusText);
+                setSuccessMessage("");
+                setErrorMessage('Error sending email');
+            }
+        } catch (error) {
+            console.error('Error sending email:', error.message);
+        }
+    }
 
     return (
         <Box
@@ -61,24 +101,24 @@ function ContactUs() {
                         }}
                     >
                         <div>
-                            <h7 className="font-bold">Address:</h7>
+                            <h6 className="font-bold">Address:</h6>
                             <p className='text-sm'>486 Lynnwood</p>
                             <p className='text-sm mt-[-12px]'>Pretoria </p>
                         </div>
                         <div>
-                            <h7 className="font-bold">Contact:</h7>
+                            <h6 className="font-bold">Contact:</h6>
                             <p className='text-sm'>Bookins@mail.com</p>
                             <p className='text-sm mt-[-12px]'>+277 458 9658</p>
                         </div>
                         <div>
-                            <h7 className="font-bold">Follow Us:</h7>
+                            <h6 className="font-bold">Follow Us:</h6>
                             <p className='text-sm'>facebook</p>
                             <p className='text-sm mt-[-12px]'>twitter</p>
                         </div>
                     </Box>
                     <Box
                         sx={{
-                            width: {xs:400, sm: 786 },
+                            width: { xs: 400, sm: 786 },
                             display: 'flex',
                             flexDirection: "column",
                             alignItems: 'center',
@@ -88,29 +128,25 @@ function ContactUs() {
                     // className=' justify-center items-center mt-12 ml-[-140px]'
                     >
                         <form className='w-[900px] flex flex-col justify-center items-center'>
+                            {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+                            {successMessage && <Alert severity="success">{successMessage}</Alert>}
                             <Box
                                 sx={{
-                                    width: { xs: 400, sm:400, md: 400 },
-                                    display:'flex',
-                                    flexDirection:'column',
+                                    width: { xs: 400, sm: 400, md: 400 },
+                                    display: 'flex',
+                                    flexDirection: 'column',
                                 }}
                                 className="block my-2"
-                                >
+                            >
                                 <label className='block  my-1'>First Name:</label>
                                 <input
                                     required
                                     id="firstName"
                                     name="firstName"
+                                    type='text'
                                     className='w-[400px] border'
                                     onChange={(e) => setFirstName(e.target.value)}
                                 />
-                                {/* <InputComponent
-                                    required
-                                    id="firstName"
-                                    name="firstName"
-                                    className='w-[400px]'
-                                    onChange={(e) => setFirstName(e.target.value)}
-                                /> */}
                             </Box>
                             <Box className='block'>
                                 <label className='block  my-1'>Last Name:</label>
@@ -118,7 +154,8 @@ function ContactUs() {
                                     required
                                     id="lastName"
                                     name="lastName"
-                                    label="First name"
+                                    label="Last name"
+                                    type='text'
                                     className='w-[400px] border'
                                     onChange={(e) => setLastName(e.target.value)}
                                 />
@@ -127,9 +164,10 @@ function ContactUs() {
                                 <label className='block my-1'>Email:</label>
                                 <input
                                     required
-                                    id="firstName"
-                                    name="firstName"
-                                    label="First name"
+                                    id="email"
+                                    name="email"
+                                    label="Email"
+                                    type='email'
                                     className='w-[400px] border'
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
@@ -138,8 +176,9 @@ function ContactUs() {
                                 <label className='block my-1'>Subject:</label>
                                 <input
                                     required
-                                    id="firstName"
-                                    name="firstName"
+                                    id="subject"
+                                    name="subject"
+                                    type='text'
                                     className='w-[400px] border'
                                     onChange={(e) => setSubject(e.target.value)}
                                 />
@@ -148,13 +187,18 @@ function ContactUs() {
                                 <label className='block my-1'>Message:</label>
                                 <textarea
                                     required
-                                    id="firstName"
-                                    name="firstName"
+                                    id="message"
+                                    name="message"
+                                    type='text'
                                     className='w-[400px] border'
                                     onChange={(e) => setMessage(e.target.value)}
                                 />
                             </Box>
-                            <button className='w-[150px] h-[35px] bg-[#0088a9] rounded-xl text-white mt-6'>Send</button>
+                            <button
+                                onClick={handleSendEmail}
+                                className='w-[150px] h-[35px] bg-[#0088a9] rounded-xl text-white mt-6' >
+                                Send
+                            </button>
                         </form>
                     </Box>
                 </Box>

@@ -27,14 +27,20 @@ const Bookings = () => {
   const { user } = useUserAuth();
   const navigate = useNavigate()
 
-  const shoppingCartArray = shoppingCart[0];
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState(user.email);
   const [contact, setContact] = useState('');
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
-  const [file, setFile] = useState(shoppingCartArray.roomImage);
+  const [file, setFile] = useState();
+
+  const shoppingCartArray = shoppingCart[0];
+
+  if (!shoppingCartArray) {
+    <p>Please reserve a room.</p>
+  } else {
+    setFile(shoppingCartArray.roomImage)
+  }
 
 
   // Handles the booking function
@@ -77,24 +83,27 @@ const Bookings = () => {
         console.log("Error uploading an image. ", err)
       }
     } else {
-        {/* <alert variant="filled" severity="error">
+      {/* <alert variant="filled" severity="error">
           Please login or signup to continue.
         </alert> */}
-        alert("Please login or signup to continue.")
+      alert("Please login or signup to continue.")
     }
   }
 
   return (
-    <Box 
-    sx={{
-      width:{sm:786, md:1024}
-    }}
-    className="flex flex-col h-[100%] bg-[#F3F5F5] m-auto">
+    <Box
+      sx={{
+        width: { sm: 786, md: 1024 }
+      }}
+      className="flex flex-col h-[100%] bg-[#F3F5F5] m-auto">
       <header className='flex flex-col m-auto'>
         <Navbar />
         <HeroSec />
       </header>
       <main className="m-auto w-[1024px] h-auto flex flex-col bg-white">
+        {
+
+        }
         <div className='mt-10 flex justify-center items-center'>
           <h5>Please fill in your information</h5>
         </div>
@@ -130,7 +139,7 @@ const Bookings = () => {
               />
             </div>
           </Paper>
-          <Paper elevation={4} sx={{ width: 900, marginTop:2 }}>
+          <Paper elevation={4} sx={{ width: 900, marginTop: 2 }}>
             <div className=' flex flex-col w-[900px] h-[240px] justify-center items-center'>
               <label className="label text-base font-medium mx-0 my-2.5">Check-In Date</label>
               <TextField
@@ -161,31 +170,32 @@ const Bookings = () => {
                 <h6 className=' w-[600px] mt-4 '>Selected Room:</h6>
               </div>
               <div className='mt-4 flex justify-center items-center'>
-                {shoppingCart ? 
-                <div>
-                     {shoppingCart.map(cart => (
-                  <Paper elevation={5} sx={{ width: 600, height: 100, justifyContent: 'center', alignItems: 'center' }}>
-                    <div className="flex flex-row justify-center items-center mb-[20px] h-[100px] w-[600px]" key={cart.id}>
-                      <div>
-                        <img className="w-[160px] h-[100px]" src={cart.roomImage} alt="not found" />
-                      </div>
-                      <div className='w-[320px]'>
-                        <h5>{cart.title}</h5>
-                        <p>{cart.introDescr}</p>
-                      </div>
-                      <div className='w-[76px]  justify-center items-center'>
-                        <p>R {cart.price}.00</p>
-                      </div>
-                      <div>
-                        <button className="delete-btn mr-4" onClick={() => dispatch({ type: 'DELETE', id: cart.id, cart })}><FontAwesomeIcon icon={faDeleteLeft} className=" text-sky-600 text-lg font-bold" /></button>
-                      </div>
-                    </div>
-                  </Paper>
-                ))}
-                </div> 
-                : 
-                <div> Room is not selected</div>
-              }
+                {shoppingCart ? (
+                  <div>
+                    {shoppingCart.map(cart => (
+                      <Paper elevation={5} sx={{ width: 600, height: 100, justifyContent: 'center', alignItems: 'center' }}>
+                        <div className="flex flex-row justify-center items-center mb-[20px] h-[100px] w-[600px]" key={cart.id}>
+                          <div>
+                            <img className="w-[160px] h-[100px]" src={cart.roomImage} alt="not found" />
+                          </div>
+                          <div className='w-[320px]'>
+                            <h5>{cart.title}</h5>
+                            <p>{cart.introDescr}</p>
+                          </div>
+                          <div className='w-[76px]  justify-center items-center'>
+                            <p>R {cart.price}.00</p>
+                          </div>
+                          <div>
+                            <button className="delete-btn mr-4" onClick={() => dispatch({ type: 'DELETE', id: cart.id, cart })}><FontAwesomeIcon icon={faDeleteLeft} className=" text-sky-600 text-lg font-bold" /></button>
+                          </div>
+                        </div>
+                      </Paper>
+                    ))}
+                  </div>
+                ) : (
+                  <div> Please select a room.</div>
+                )
+                }
               </div>
             </div>
           </Paper>
@@ -194,9 +204,9 @@ const Bookings = () => {
           <span className="font-medium m-2">Amount: R{totalPrice}.00</span><br />
           <button className="border bg-sky-400 p-1" onClick={handleBookings}>Confirm Bookings</button>
         </Box>
-      </main>
-        <Footer />
-    </Box>
+      </main >
+      <Footer />
+    </Box >
   )
 }
 

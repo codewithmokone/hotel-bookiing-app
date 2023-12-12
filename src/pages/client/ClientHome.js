@@ -36,45 +36,32 @@ export const Home = () => {
     }
   };
 
-  // const searchRoom = async () => {
-  //   setIsLoading(true)
-
-  //   try {
-  //     const querySnapshot = await getDocs(query(collection(db, "hotelRooms"),
-  //       where('price', '>=', parseInt(minPrice)),
-  //       where('price', '<=', parseInt(maxPrice))
-  //     ));
-
-  //     const filteredData = querySnapshot.docs.map((doc) => doc.data());
-
-  //     console.log("filtered", filteredData)
-
-  //     setSearchResults(filteredData)
-  //   } catch (err) {
-  //     console.log("Error fetching data:", err)
-  //   } finally {
-  //     setIsLoading(false)
-  //   }
-  // };
-
   return (
     <Box className=' home-container bg-[#F2F5F5] block h-auto m-0'>
       <header className="flex flex-col w-[1024px] m-auto">
         <Navbar />
         <Header />
       </header>
-      <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center m-auto">
-        <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
-          <div>
+      <Box 
+      sx={{
+        width:{md:1024},
+        height:{md:60},
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        margin:'auto'
+      }}
+      className=" bg-gray-500">
+        <Box className="search-section rounded w-[500px] h-[40px] flex justify-center items-center border bg-white">
             <input
-              className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+              className=' ml-[50px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[400px]'
               type="number"
               value={minPrice}
               placeholder='Enter minimum amount'
               onChange={(e) => setMinPrice(e.target.value)}
             />
             <input
-              className='ml-[38px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+              className='ml-[15px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[400px]'
               type="number"
               value={maxPrice}
               placeholder='Enter maximum amount'
@@ -82,10 +69,10 @@ export const Home = () => {
             />
             <button
               className="bg-[#0088a9] text-white p-1 rounded ml-[40px] mr-10"
-              onClick={filterData}>Search</button>
-          </div>
-        </div>
-      </div>
+              onClick={filterData}>Search
+            </button>
+        </Box>
+      </Box>
       <main className="main bg-gray-300 flex flex-col w-[1024px] m-auto ">
         {/* <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
           <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
