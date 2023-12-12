@@ -75,7 +75,7 @@ function AdminNavbar() {
           variant="permanent"
           anchor="left"
         >
-          <Toolbar sx={{ backgroundColor: "#24252A", width:240 }} />
+          {/* <Toolbar sx={{ backgroundColor: "#24252A", width:240 }} /> */}
           <Divider />
           <List sx={{ backgroundColor: "#24252A", height: '100vh' }}>
             <Box sx={{ width: 150, display: 'flex', flexDirection: 'column', marginLeft: 2 }}>
