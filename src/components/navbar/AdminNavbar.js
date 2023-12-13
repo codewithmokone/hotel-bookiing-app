@@ -27,6 +27,10 @@ function AdminNavbar() {
   const { logOut } = useUserAuth();
   const navigate = useNavigate();
 
+  const { user } = useUserAuth();
+
+  console.log("Admin User: ", user)
+
   const open = Boolean(anchorEl);
 
   // Opens user profile menu
@@ -59,8 +63,8 @@ function AdminNavbar() {
           sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, backgroundColor: 'white' }}
         >
           <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', width: 1180 }}>
-            <Typography variant="h6" className='text-black' noWrap component="div">
-              Hi, Simon Lephoto
+            <Typography sx={{fontSize:18}} variant="h6" className='text-black' noWrap component="div">
+              Hi, {user.email}
             </Typography>
             <Typography variant="h6" className='text-black' noWrap component="div">
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
