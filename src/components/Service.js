@@ -27,7 +27,7 @@ const Service = () => {
                     display: 'flex',
                     flexDirection: {xs:'row', sm:'row', md:"row"},
                     flexWrap:{xs:"wrap"},
-                    justifyContent:'center'
+                    justifyContent:'space-evenly'
                 }}
             >
                 <Box 

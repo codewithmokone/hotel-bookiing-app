@@ -11,21 +11,23 @@ const FeaturedRooms = () => {
         <Box
             sx={{
                 width: { xs: 400, sm: 786, md: 1024 },
-                height: { sm: 500, md: 350 },
+                height: { sm: 500, md: 310 },
                 display: 'flex',
                 flexDirection: { sm: "column", md: 'column' },
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                backgroundColor:'white'
             }}
             className="flex flex-col justify-center items-center"
         >
             <Box className="heading flex justify-center">
-                <h2 className=" text-xl font-bold mt-2 text-[#0088a9] border-b-2 border-[#0088a9] mb-8">Featured Rooms</h2>
+                <h2 className=" text-xl font-bold mt-4 text-[#0088a9] border-b-2 border-[#0088a9] mb-8">Featured Rooms</h2>
             </Box>
             <Box
                 sx={{
                     width: { xs: 400, sm: 786, md: 1024 },
-                    height: { xs: 550, sm: 300, md: 300 }, display: 'flex',
+                    height: { xs: 550, sm: 300, md: 300 }, 
+                    display: 'flex',
                     flexDirection: { xs: 'column', sm: 'row', md: 'row' },
                     justifyContent: 'space-evenly',
                     alignItems: 'center',

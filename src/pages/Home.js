@@ -48,6 +48,7 @@ export const Home = () => {
         justifyContent: 'center',
         alignItems: 'center',
         margin: "auto",
+        backgroundColor:'whitesmoke'
       }}
       className='h-auto'
     >

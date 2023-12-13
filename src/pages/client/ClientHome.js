@@ -73,7 +73,7 @@ export const Home = () => {
             </button>
         </Box>
       </Box>
-      <main className="main bg-gray-300 flex flex-col w-[1024px] m-auto ">
+      <main className="main bg-white flex flex-col w-[1024px] m-auto ">
         {/* <div className=" bg-gray-500 w-[1024px] h-[60px] flex justify-center items-center">
           <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
             <div>

@@ -53,14 +53,14 @@ function AdminNavbar() {
   }
 
   return (
-    <Box sx={{ backgroundColor: '#24252A' }}>
+    <Box sx={{width:{sm:700, md:'100vw'}, backgroundColor: '#24252A' }}>
       <Paper sx={{ backgroundColor: "#24252A" }}>
         {/* <CssBaseline /> */}
         <AppBar
           position="sticky"
           sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, backgroundColor: 'white' }}
         >
-          <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', width: 1180 }}>
+          <Toolbar sx={{width:{sm:700, md:'100vw'}, display: 'flex', justifyContent: 'space-between', width: 1180 }}>
             <Typography sx={{fontSize:18}} variant="h6" className='text-black' noWrap component="div">
               Hi, {user.displayName}.
             </Typography>

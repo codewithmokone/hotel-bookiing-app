@@ -3,6 +3,7 @@ import { db } from '../../config/firebase'
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
 import { Box } from '@mui/material';
+import AdminNavbar from '../../components/navbar/AdminNavbar';
 
 const UpdateRoom = () => {
 
@@ -26,23 +27,6 @@ const UpdateRoom = () => {
     const [imageUrl, setImageUrl] = useState('');
 
     const navigate = useNavigate()
-
-    // const hotelRoomRef = doc(db, "hotelRooms");
-
-    // const getRooms = async () => {
-
-    //     try {
-
-    //         const data = await getDoc(collection(db, "hotelRooms"));
-    //         const filteredData = data.docs.map((doc) => ({
-    //             ...doc.data(), id: doc.id,
-    //         }));
-
-    //         setRooms(filteredData);
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // };
 
     const closeUpdate = () => {
         navigate('/adminhome')
@@ -113,11 +97,22 @@ const UpdateRoom = () => {
     }, [id]);
 
     return (
-        <Box className="w-screen bg-sky-950 flex items-center justify-center">
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                backgroundColor: 'whitesmoke'
+            }}
+        >
+            <Box>
+                <header>
+                    <AdminNavbar />
+                </header>
+            </Box>
             <Box className="flex flex-col items-center justify-center">
-                <h3 className="text-2xl m-[30px] text-white ">Update Room</h3>
-                <form className="flex flex-col items-center justify-center bg-slate-300 m-auto" >
-                    <Box className="w-[900px] flex flex-col justify-center items-center">
+                <h3 className="text-2xl text-white ">Update Room</h3>
+                <form className="flex flex-col items-center justify-center bg-slate-300" >
+                    <Box className="flex flex-col justify-center items-center ">
                         <Box className='w-[600px] flex flex-col justify-center items-center'>
                             <img className="image" src={rooms.roomImage} alt="" />
                             <input className="w-[300px]" type="file" onChange={(e) => setRoomImage(e.target.files)} />
@@ -220,7 +215,6 @@ const UpdateRoom = () => {
                     </Box>
                     <Box className="flex flex-row items-start w-[450px] mt-10 ">
                         <button className=" font-bold rounded-md bg-[#0088a9] w-[300px] mr-20 text-white" onClick={updateRoom}>Update</button>
-                        <button className=" font-bold rounded-md bg-[#0088a9] w-[300px] mb-10 text-white" onClick={closeUpdate}>Close</button>
                     </Box>
                 </form>
             </Box>

@@ -5,9 +5,9 @@ import { CartContext } from '../../src/components/context/CartContext';
 import { faBed, faUserGroup, faPhone, faHouse, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import { Box, Divider, Modal, TextField } from '@mui/material';
+import { Alert, Box, Divider, Modal, TextField } from '@mui/material';
 import { useUserAuth } from './context/UserAuthContext';
 import InputComponent from './InputComponent';
 
@@ -32,38 +32,62 @@ const ViewRoom = ({ data, setOpenModal }) => {
   const checkAvailability = async () => {
 
     try {
-      const docRef = query(collection(db, "bookings"), where("roomId", "==", room.id));
-      const querySnapshot = await getDocs(docRef);
 
-      if (querySnapshot.size === 1) {
-        querySnapshot.forEach((doc) => {
-          const roomDate = doc.data()
-          setCheckBookings(roomDate);
-        });
-      } else {
-        console.error('Room not found or multiple rooms found with the same roomId.');
-      }
-
-      if (checkBookings) {
-        const start = checkBookings.checkInDate;
-        const end = checkBookings.checkOutDate;
-        const checkIn = checkInDate;
-        const checkOut = checkOutDate;
-        // console.log("Booking start date: ", start)
-        // console.log("Booking end date: ", end)
-        // console.log("Checking: ", checkIn)
-        // console.log("Checking: ", checkOut)
-        // Check if the selected check-in and check-out dates are within the room's availability range
-        const isRoomAvailable = checkIn <= start && checkOut > end;
-
-        setIsAvailable(isRoomAvailable);
-
-        if (isRoomAvailable) {
-          alert('Room is available for the selected dates!');
+      if (room.id) {
+        const roomRef = doc(db, "hotelRooms", room.id); 
+        const docSnapshot = await getDoc(roomRef);
+      
+        if (docSnapshot.exists()) {
+          const roomData = docSnapshot.data();
+          const roomsLeft = roomData.numberOfRooms; // Assuming 'numberOfRooms' is the field indicating available rooms
+      
+          if (roomsLeft > 0) {
+            console.log("Rooms available:", roomsLeft);
+            // You can perform further actions here, such as booking the room
+          } else {
+            console.log("No rooms available.");
+          }
         } else {
-          alert('Room is not available for the selected dates.');
+          console.log("Room not found."); // Handling the case when the document doesn't exist
         }
       }
+
+
+
+      // const docRef = query(collection(db, "bookings"), where("roomId", "==", room.id));
+      // const querySnapshot = await getDocs(docRef);
+
+      // if (querySnapshot.size === 1) {
+      //   querySnapshot.forEach((doc) => {
+      //     const roomDate = doc.data()
+      //     setCheckBookings(roomDate);
+      //   });
+      // } else {
+      //   console.error('Room not found or multiple rooms found with the same roomId.');
+      //   // <Alert severity="info">Something went wrong.</Alert>
+      //   alert('Something went wrong.!');
+      // }
+
+      // if (checkBookings) {
+      //   const start = checkBookings.checkInDate;
+      //   const end = checkBookings.checkOutDate;
+      //   const checkIn = checkInDate;
+      //   const checkOut = checkOutDate;
+      //   // console.log("Booking start date: ", start)
+      //   // console.log("Booking end date: ", end)
+      //   // console.log("Checking: ", checkIn)
+      //   // console.log("Checking: ", checkOut)
+      //   // Check if the selected check-in and check-out dates are within the room's availability range
+      //   const isRoomAvailable = checkIn <= start && checkOut > end;
+
+      //   setIsAvailable(isRoomAvailable);
+
+      //   if (isRoomAvailable) {
+      //     alert('Room is available for the selected dates!');
+      //   } else {
+      //     alert('Room is not available for the selected dates.');
+      //   }
+      // }
     } catch (error) {
       console.error('Error checking room availability:', error);
     }
@@ -85,14 +109,14 @@ const ViewRoom = ({ data, setOpenModal }) => {
     <Box className="room-view-container m-auto fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center ">
       <Box
         sx={{
-          width: { xs: 400, sm: 720, md: 900 },
+          width: { xs: 400, sm: 720, md: 800 },
           height: { xs: 600, sm: 600, md: 630 }
         }}
         className="bg-white rounded flex flex-col justify-center items-center ">
         <div className='roomHearding flex flex-col '>
           <Box
             sx={{
-              width: { xs: 400, sm: 700, md: 900 }
+              width: { xs: 400, sm: 700, md: 800 }
             }}
             className='w-[960px] flex flex-row justify-between items-center '
           >
@@ -101,8 +125,8 @@ const ViewRoom = ({ data, setOpenModal }) => {
           </Box>
           <Box
             sx={{
-              width: { xs: 350, sm:700 },
-              fontSize: { xs: 11,sm: 14, }
+              width: { xs: 350, sm: 700 },
+              fontSize: { xs: 11, sm: 14, }
             }}
           >
             <p className='ml-8 mb-[-35px]'> <FontAwesomeIcon icon={faLocationDot} className=" text-[#0088a9] text-lg font-bold" /> {room.address}</p>
@@ -110,7 +134,7 @@ const ViewRoom = ({ data, setOpenModal }) => {
         </div>
         <Box
           sx={{
-            width: { xs: 200, sm: 400, md: 420 },
+            width: { xs: 200, sm: 400, md: 350 },
             height: { xs: 150, sm: 200, md: 200 },
             marginTop: { xs: 2, sm: 8, md: 8 }
           }}
@@ -141,7 +165,7 @@ const ViewRoom = ({ data, setOpenModal }) => {
           className="room-details flex border-b-2 w-[900px]">
           <Box
             sx={{
-              width:{xs:200,sm:680,md:900},
+              width: { xs: 200, sm: 680, md: 900 },
               display: 'flex',
               flexDirection: { xs: 'row', sm: 'row', md: 'row' }
             }}
@@ -158,45 +182,47 @@ const ViewRoom = ({ data, setOpenModal }) => {
           sx={{
             fontSize: { xs: 13, sm: 14, md: 16 },
             width: { xs: 350, sm: 680 },
-            display:'flex',
-            justifyContent:'center',
-            alignItems:'center'
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
           }}
           className='border-b-2 w-[900px] min-h-min flex justify-center items-center'>
           <p className='mt-3 ml-8 mb-3'>{room.description}</p>
         </Box>
         <Box
           sx={{
-            width: { xs: 350, sm:600, md:600 },
+            width: { xs: 350, sm: 600, md: 600 },
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row', md: 'row' },
             justifyContent: { xs: 'center', sm: 'space-between', md: 'center' },
-            alignItems:{ xs: 'center', sm: 'center', md: 'center' },
-            marginTop:{xs:-6, sm:0, md:0}
+            alignItems: { xs: 'center', sm: 'center', md: 'center' },
+            marginTop: { xs: -6, sm: 0, md: 0 }
           }} className=' m-auto '
         >
-           {/* Input Fields */}
+          {/* Input Fields */}
           <Box
             sx={{
-              width: { xs: 300, sm:200, md:400 },
+              width: { xs: 300, sm: 200, md: 400 },
               display: 'flex',
               flexDirection: { xs: 'row' },
-              justifyContent: { xs: 'center',sm:'center' },
-              alignItems:{ xs: 'center',sm:'center' },
-              marginTop:{xs:-3,sm:0,md:0},
+              justifyContent: { xs: 'center', sm: 'center' },
+              alignItems: { xs: 'center', sm: 'center' },
+              marginTop: { xs: -3, sm: 0, md: 0 },
               margin: 'auto'
             }}
           >
             <InputComponent
               type="date"
-              className='rounded outline focus:ring focus:ring-[#0088a9] w-[200px]'
+              width="180px"
+              className='rounded outline focus:ring focus:ring-[#0088a9] mr-10'
               placeholder=" Check out date..."
               onChange={(e) => setCheckInDate(e.target.value)}
               required
             />
             <InputComponent
               type="date"
-              className='rounded outline focus:ring focus:ring-[#0088a9] w-[200px]'
+              width="180px"
+              className='rounded outline focus:ring focus:ring-[#0088a9] ml-10'
               placeholder=" Check out date..."
               onChange={(e) => setCheckOutDate(e.target.value)}
               required
@@ -205,13 +231,13 @@ const ViewRoom = ({ data, setOpenModal }) => {
           {/* Buttons */}
           <Box
             sx={{
-              width:{xs: 400, sm:500, md:600},
-              display:'flex',
-              flexDirection:{xs:'row', sm:'row', md:'row'},
-              justifyContent:'center',
-              alignItems:'center',
-              marginTop:{xs:2,sm:0,md:0},
-              marginLeft:{xs:0, sm:12,md:0}
+              width: { xs: 400, sm: 500, md: 600 },
+              display: 'flex',
+              flexDirection: { xs: 'row', sm: 'row', md: 'row' },
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: { xs: 2, sm: 0, md: 0 },
+              marginLeft: { xs: 0, sm: 12, md: 8 }
             }}
           >
             <button className='bg-[#0088a9] text-white w-[140px] h-[30px] rounded ml-6' onClick={checkAvailability}>Check Availability</button>

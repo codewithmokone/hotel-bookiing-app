@@ -56,7 +56,13 @@ const AdminHome = () => {
     }, []);
 
     return (
-        < Box sx={{margin: 'auto' }} className="bg-[#ececec] min-h-screen">
+        < Box
+            sx={{
+                width:{sm: 700,md:'100vw'},
+                margin: 'auto'
+            }}
+            className="bg-[#ececec] min-h-screen"
+        >
             <header className=" block h-auto">
                 <AdminNavbar />
             </header>
@@ -67,16 +73,17 @@ const AdminHome = () => {
                 <Box className='flex flex-col m-auto mb-[60px]'>
                     {rooms ? (
                         rooms.map((room, i) => (
-                            <Card elevation={5} key={i} 
-                            sx={{ 
-                                width: 800, 
-                                height: 100, 
-                                marginTop: 3, 
-                                marginLeft: 2, 
-                                display: 'flex', 
-                                flexDirection: 'row',
-                                justifyContent:'center',
-                                alignItems:'center' }}>
+                            <Card elevation={5} key={i}
+                                sx={{
+                                    width: 800,
+                                    height: 100,
+                                    marginTop: 3,
+                                    marginLeft: 2,
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}>
                                 <CardMedia
                                     sx={{ height: 100, width: "100%" }}
                                     image={room.roomImage}
