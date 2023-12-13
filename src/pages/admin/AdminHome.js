@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Drawer, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import { signOut } from 'firebase/auth';
 import { auth, db } from '../../config/firebase';
 import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore';
@@ -70,7 +70,7 @@ const AdminHome = () => {
             <header className=" block h-auto">
                 <AdminNavbar />
             </header>
-            <main className=" flex flex-col justify-center items-center h-auto bg-[#ececec] w-[1024px]">
+            <main className=" flex flex-col justify-center items-center ml-60 h-auto bg-[#ececec] w-100vw">
                 <Box className='flex justify-center items-center'>
                     <h5 className='mt-6 font-bold text-[#0088a9]'>List of rooms</h5>
                 </Box>

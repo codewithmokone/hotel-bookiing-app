@@ -3,7 +3,7 @@ import '../../styles/navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase';
 import { useUserAuth } from '../context/UserAuthContext';
-import { Box, Paper } from '@mui/material';
+import { Avatar, Box, Paper } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -56,11 +56,14 @@ function AdminNavbar() {
         {/* <CssBaseline /> */}
         <AppBar
           position="sticky"
-          sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`,backgroundColor:'#24252A' }}
+          sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, backgroundColor: 'white' }}
         >
-          <Toolbar sx={{}}>
-            <Typography variant="h6" noWrap component="div">
-              Permanent drawer
+          <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', width: 1180 }}>
+            <Typography variant="h6" className='text-black' noWrap component="div">
+              Hi, Simon Lephoto
+            </Typography>
+            <Typography variant="h6" className='text-black' noWrap component="div">
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
             </Typography>
           </Toolbar>
         </AppBar>
@@ -78,25 +81,25 @@ function AdminNavbar() {
           anchor="left"
         >
           {/* Logo Section */}
-          <Toolbar sx={{ backgroundColor: "#24252A", width:179 }}>
-          <Typography sx={{fontSize:12}} noWrap component="div">
-          <span className='text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
+          <Toolbar sx={{ backgroundColor: "#24252A", width: 179 }}>
+            <Typography sx={{ fontSize: 12.3, fontWeight:600 }} noWrap component="div">
+              <span className='text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
             </Typography>
           </Toolbar>
-          <Divider sx={{ backgroundColor: "gray" }} />
+          {/* <Divider sx={{ backgroundColor: "gray" }} /> */}
           {/* Links Section */}
           <List sx={{ backgroundColor: "#24252A", height: '100vh' }}>
             <Box sx={{ width: 150, display: 'flex', flexDirection: 'column', marginLeft: 2 }}>
               <Box>
-                <HomeIcon sx={{ color: 'white', marginLeft: -6 }}/>
+                <HomeIcon sx={{ color: 'white', marginLeft: -6 }} />
                 <Link to="/adminhome" className="adminHome focus:text-[#0088A9] m-2">Home</Link>
               </Box>
-              <Box sx={{display:'flex'}}>
-                <AddHomeIcon sx={{ color: 'white', marginLeft: -1 }}/>
+              <Box sx={{ display: 'flex' }}>
+                <AddHomeIcon sx={{ color: 'white', marginLeft: -1 }} />
                 <Link to="/newroom" className="galleryLink m-2">New Room</Link>
               </Box>
-              <Box sx={{display:'flex'}}>
-                <MenuBookIcon sx={{ color: 'white',marginLeft: -2.5 }} className="hover:text-[#0088A9]" />
+              <Box sx={{ display: 'flex' }}>
+                <MenuBookIcon sx={{ color: 'white', marginLeft: -2.5 }} className="hover:text-[#0088A9]" />
                 <Link to="/bookedrooms" className="galleryLink m-2">Bookings</Link>
               </Box>
             </Box>
@@ -106,7 +109,7 @@ function AdminNavbar() {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'left',
-                marginTop:40
+                marginTop: 40
               }}
             >
               <Divider sx={{ backgroundColor: "gray", marginBottom: 2 }} />
