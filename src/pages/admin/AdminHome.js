@@ -6,7 +6,6 @@ import { auth, db } from '../../config/firebase';
 import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import AdminNavbar from '../../components/navbar/AdminNavbar';
-import { useUserAuth } from '../../components/context/UserAuthContext';
 
 const AdminHome = () => {
 
@@ -15,16 +14,6 @@ const AdminHome = () => {
 
     const navigate = useNavigate();
     const storage = getStorage();
-
-    // Handles login out the user
-    const logout = async () => {
-        try {
-            await signOut(auth)
-            alert('signed Out');
-        } catch (err) {
-            console.error(err);
-        }
-    }
 
     // handles getting data from firestore
     const getRooms = async () => {

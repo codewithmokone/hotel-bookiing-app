@@ -29,8 +29,6 @@ function AdminNavbar() {
 
   const { user } = useUserAuth();
 
-  console.log("Admin User: ", user)
-
   const open = Boolean(anchorEl);
 
   // Opens user profile menu
@@ -64,10 +62,10 @@ function AdminNavbar() {
         >
           <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', width: 1180 }}>
             <Typography sx={{fontSize:18}} variant="h6" className='text-black' noWrap component="div">
-              Hi, {user.email}
+              Hi, {user.displayName}.
             </Typography>
             <Typography variant="h6" className='text-black' noWrap component="div">
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar alt="Remy Sharp" src={user.photoURL} />
             </Typography>
           </Toolbar>
         </AppBar>
