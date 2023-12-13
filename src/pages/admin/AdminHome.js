@@ -66,11 +66,11 @@ const AdminHome = () => {
     }, []);
 
     return (
-        < Box sx={{ margin: 'auto' }} className="bg-[#ececec] block h-auto">
+        < Box sx={{margin: 'auto' }} className="bg-[#ececec] min-h-screen">
             <header className=" block h-auto">
                 <AdminNavbar />
             </header>
-            <main className=" flex flex-col justify-center m-auto min-h-[50vh] bg-white">
+            <main className=" flex flex-col justify-center items-center h-auto bg-[#ececec] w-[1024px]">
                 <Box className='flex justify-center items-center'>
                     <h5 className='mt-6 font-bold text-[#0088a9]'>List of rooms</h5>
                 </Box>

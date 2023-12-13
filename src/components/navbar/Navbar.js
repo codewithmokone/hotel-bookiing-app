@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase';
 import { useUserAuth } from '../context/UserAuthContext';
-import { Box, Button, Drawer, Hidden, Menu, MenuItem } from '@mui/material';
+import { Box, Button, Drawer, Hidden, Menu, MenuItem, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DrawerNavBar from './DrawerNavBar';
 
@@ -109,6 +109,7 @@ const Navbar = () => {
                         backgroundColor: "#24252A",
                         height: 80,
                         display: 'flex',
+                        justifyContent:'space-between',
                         alignItems: 'center'
                     }}
                     >

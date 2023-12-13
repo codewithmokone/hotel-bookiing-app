@@ -89,14 +89,14 @@ export const AdminHome = () => {
 
     return (
         <Box className='home-container min-h-screen m-auto bg-[#ececec]'>
-            <header className='flex flex-col '>
-              <AdminNavbar />
+            <header>
+                <AdminNavbar />
             </header>
-            <Box 
-            sx={{
-                backgroundColor:'smokewhite'
-            }}
-            className="admin-main-section h-full flex flex-col items-center m-auto">
+            <Box
+                sx={{
+                    backgroundColor: 'smokewhite'
+                }}
+                className="admin-main-section h-full flex flex-col items-center m-auto">
                 <h3 className="text-[#0088a9] text-2xl m-[20px]">Add New Room</h3>
                 <form className="flex flex-row justify-center items-center w-[600px]" onSubmit={handleAdd} >
                     <Box className="w-[450px] flex flex-col justify-center items-center ">
@@ -110,7 +110,7 @@ export const AdminHome = () => {
                                 onChange={(e) => { setFile(e.target.files[0]) }}
                             />
                         </Box>
-                        <label className="label text-base font-medium mx-0 mt-4 mr-[30px]">Hotel</label>
+                        <label className="block label text-base font-medium mx-0 mt-4 mr-[30px]">Hotel</label>
                         <input
                             className='block border h-[40px] '
                             onChange={(e) => setHotel(e.target.value)}
@@ -128,7 +128,7 @@ export const AdminHome = () => {
                             placeholder=' Title'
                             value={title}
                         />
-                        <label className="label text-base font-medium mt-3 ">Short Descr</label>
+                        <label className="block label text-base font-medium mt-3 ">Short Descr</label>
                         <input
                             className='block border h-[40px]'
                             onChange={(e) => setIntroDescr(e.target.value)}

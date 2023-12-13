@@ -42,7 +42,7 @@ export const Home = () => {
   return (
     <Box
       sx={{
-        width: { sm: 786 },
+        width: { sm: 786, md:1024 },
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

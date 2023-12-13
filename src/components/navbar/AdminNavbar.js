@@ -16,6 +16,8 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import Divider from '@mui/material/Divider';
 import HomeIcon from '@mui/icons-material/Home';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { faBellConcierge } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const drawerWidth = 180;
 
@@ -52,16 +54,16 @@ function AdminNavbar() {
     <Box sx={{ backgroundColor: '#24252A' }}>
       <Paper sx={{ backgroundColor: "#24252A" }}>
         {/* <CssBaseline /> */}
-        {/* <AppBar
-          position="fixed"
-          sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        <AppBar
+          position="sticky"
+          sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`,backgroundColor:'#24252A' }}
         >
-          <Toolbar>
+          <Toolbar sx={{}}>
             <Typography variant="h6" noWrap component="div">
               Permanent drawer
             </Typography>
           </Toolbar>
-        </AppBar> */}
+        </AppBar>
         <Drawer
           sx={{
             width: drawerWidth,
@@ -75,38 +77,45 @@ function AdminNavbar() {
           variant="permanent"
           anchor="left"
         >
-          {/* <Toolbar sx={{ backgroundColor: "#24252A", width:240 }} /> */}
-          <Divider />
+          {/* Logo Section */}
+          <Toolbar sx={{ backgroundColor: "#24252A", width:179 }}>
+          <Typography sx={{fontSize:12}} noWrap component="div">
+          <span className='text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
+            </Typography>
+          </Toolbar>
+          <Divider sx={{ backgroundColor: "gray" }} />
+          {/* Links Section */}
           <List sx={{ backgroundColor: "#24252A", height: '100vh' }}>
             <Box sx={{ width: 150, display: 'flex', flexDirection: 'column', marginLeft: 2 }}>
               <Box>
-                <HomeIcon sx={{ color: 'white', marginLeft: -4 }}/>
+                <HomeIcon sx={{ color: 'white', marginLeft: -6 }}/>
                 <Link to="/adminhome" className="adminHome focus:text-[#0088A9] m-2">Home</Link>
               </Box>
               <Box sx={{display:'flex'}}>
-                <AddHomeIcon sx={{ color: 'white', marginLeft: 1 }}/>
+                <AddHomeIcon sx={{ color: 'white', marginLeft: -1 }}/>
                 <Link to="/newroom" className="galleryLink m-2">New Room</Link>
               </Box>
               <Box sx={{display:'flex'}}>
-                <MenuBookIcon sx={{ color: 'white' }} className="hover:text-[#0088A9]" />
+                <MenuBookIcon sx={{ color: 'white',marginLeft: -2.5 }} className="hover:text-[#0088A9]" />
                 <Link to="/bookedrooms" className="galleryLink m-2">Bookings</Link>
               </Box>
             </Box>
-            <Divider sx={{ backgroundColor: "gray" }} />
             <Box
               sx={{
                 width: 150,
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'left'
+                justifyContent: 'left',
+                marginTop:40
               }}
             >
+              <Divider sx={{ backgroundColor: "gray", marginBottom: 2 }} />
               <Box sx={{ display: 'flex' }}>
-                <AccountCircleIcon sx={{ color: 'white', marginLeft: -2 }} />
+                <AccountCircleIcon sx={{ color: 'white', marginLeft: -5 }} />
                 <Link to="/profile" className='galleryLink m-2' >Profile</Link>
               </Box>
               <Box sx={{ display: 'flex' }} className="hover:text-[#0088A9]">
-                <ExitToAppIcon sx={{ color: 'white' }} />
+                <ExitToAppIcon sx={{ color: 'white', marginLeft: -3 }} />
                 <Link to="/login" className="contactus m-2" onClick={signOut}>Sign Out</Link>
               </Box>
 

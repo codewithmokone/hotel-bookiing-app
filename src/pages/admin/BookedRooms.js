@@ -22,13 +22,18 @@ function BookedRooms() {
     fetchBookingData();
   }, [])
 
+  console.log(bookingList)
 
   return (
-    <Box className='min-h-screen'>
+    <Box 
+    sx={{
+      backgroundColor: 'whitesmoke'
+    }}
+    className='min-h-screen'>
       <header>
         <AdminNavbar />
       </header>
-      <main className='h-[50vh] m-auto bg-white'>
+      <main className='h-[50vh] m-auto'>
         <Box>
           <Box className='flex justify-center items-center'>
             <h5 className='text-[#0088a9] font-bold mt-10 '>Booked Rooms</h5>
@@ -37,15 +42,17 @@ function BookedRooms() {
             {
               bookingList ? (bookingList.map((item, index) => (
                 <>
-                  <Accordion sx={{ width: 800 }}>
+                  <Accordion sx={{ width: 800, marginTop:5 }}>
                     <AccordionSummary
                       key={index}
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
-                      <Typography sx={{ fontSize: 20, marginRight: 5, fontWeight: 600 }}>{item.title}</Typography>
-                      <Typography sx={{ fontSize: 20 }}>R{item.price}.00</Typography>
+                      <Typography sx={{ fontSize: 16, marginRight: 4, fontWeight: 600 }}>{item.hotel}</Typography>
+                      <Typography sx={{ fontSize: 16, marginRight: 5, fontWeight: 600 }}>{item.title}</Typography>
+                      <Typography sx={{ fontSize: 16, marginRight: 5 }}>{item.roomType}</Typography>
+                      <Typography sx={{ fontSize: 16 }}>R{item.price}.00</Typography>
                       {/* <Typography>{item.title}</Typography> */}
                     </AccordionSummary>
                     <AccordionDetails>
