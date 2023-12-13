@@ -8,6 +8,7 @@ import { v4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { Alert, Box } from '@mui/material';
 import AdminNavbar from '../../components/navbar/AdminNavbar';
+import InputComponent from '../../components/InputComponent';
 
 
 export const AdminHome = () => {
@@ -93,12 +94,12 @@ export const AdminHome = () => {
             <Box
                 sx={{
                     backgroundColor: 'smokewhite',
-                    marginLeft:30,
+                    marginLeft: 30,
                 }}
                 className="admin-main-section h-full flex flex-col items-center">
                 <h3 className="text-[#0088a9] text-2xl m-[20px]">Add New Room</h3>
-                <form className="flex flex-row justify-center items-center w-[600px]" onSubmit={handleAdd} >
-                    <Box className="w-[450px] flex flex-col justify-center items-center ">
+                <form className="flex border justify-center items-center w-[600px]" onSubmit={handleAdd} >
+                    <Box className="flex flex-col justify-center items-center ">
                         <Box className='flex flex-col justify-center items-center'>
                             <img className="image" src={imageUrl} alt="" required />
                             <input
@@ -109,79 +110,82 @@ export const AdminHome = () => {
                                 onChange={(e) => { setFile(e.target.files[0]) }}
                             />
                         </Box>
-                        <label className="block label text-base font-medium mx-0 mt-4 mr-[30px]">Hotel</label>
-                        <input
-                            className='block border h-[40px] '
+                        <label className="text-base font-medium mt-4">Hotel</label>
+                        <InputComponent
                             onChange={(e) => setHotel(e.target.value)}
                             required
                             type="text"
-                            placeholder=' Hotel'
+                            placeholder='Hotel'
+                            width="560px"
                             value={hotel}
                         />
                         <label className="label text-base font-medium mx-0 mt-3 mr-[30px]">Title</label>
-                        <input
-                            className='border h-[40px]'
-                            onChange={(e) => setTitle(e.target.value)}
+                        <InputComponent
+                            value={title}
                             required
                             type="text"
-                            placeholder=' Title'
-                            value={title}
+                            width="560px"
+                            placeholder='Title'
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                         <label className="block label text-base font-medium mt-3 ">Short Descr</label>
-                        <input
+                        <InputComponent
                             className='block border h-[40px]'
                             onChange={(e) => setIntroDescr(e.target.value)}
                             required
                             type="text"
+                            width="560px"
                             placeholder=' Intro Description'
                             value={introDescr}
                         />
                         <label className="label text-base font-medium mt-3">Description</label>
-                        <input
+                        <InputComponent
+                            value={description}
                             type="text"
-                            className='block border h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
-                            placeholder=" Enter description"
+                            width="560px"
+                            placeholder="Enter description"
                             onChange={(e) => setDescription(e.target.value)}
                             required
                         />
                         <label className="label text-base font-medium mt-3">Address</label>
-                        <input
+                        <InputComponent
                             type="text"
+                            width="560px"
                             className='block border h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                             placeholder=" Enter address"
                             onChange={(e) => setAddress(e.target.value)}
                             required
                         />
                         <label className="mt-3 label text-base font-medium">Price</label>
-                        <input
+                        <InputComponent
                             type="number"
-                            className='border h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                             placeholder=" Enter price..."
                             onChange={(e) => setPrice(e.target.value)}
+                            width="560px"
                             required
                         />
                         <label className="label text-base font-medium mt-3">Max People</label>
-                        <input
-                            type="text"
-                            className='border h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
+                        <InputComponent
+                            type="number"
                             placeholder=" Enter number of people"
                             onChange={(e) => setNumberOfPeople(e.target.value)}
+                            width="560px"
                             required
                         />
                         <label className="label text-base font-medium mt-3">Contact</label>
-                        <input
+                        <InputComponent
                             type="number"
-                            className='border h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                             placeholder=" Enter contact details..."
                             onChange={(e) => setContact(e.target.value)}
+                            width="560px"
                             required
                         />
                         <label className="label text-base font-medium mt-3">Number of rooms</label>
-                        <input
+                        <InputComponent
                             type="number"
-                            className='block border h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                             placeholder=" Enter number of rooms..."
                             onChange={(e) => setNumberOfRooms(e.target.value)}
+                            width="560px"
                             required
                         />
                         <label className="ml-[-140px] font-semibold m-[10px] w-[100%]">Facilities</label>
@@ -203,13 +207,13 @@ export const AdminHome = () => {
                             />Air Conditioning</label>
                         </Box>
                         <label className="label text-base font-medium mt-3">Room type:</label>
-                        <select onChange={(e) => setRoomType(e.target.value)} required className="w-[600px] h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
+                        <select onChange={(e) => setRoomType(e.target.value)} required className="w-[560px] h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
                             <option>Family Deluxe</option>
                             <option>Singles Deluxe</option>
                             <option>Couples Deluxe</option>
                         </select>
                         <label className="label text-base font-medium mt-3">Bed type:</label>
-                        <select onChange={(e) => setBedType(e.target.value)} required className="w-[600px] h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
+                        <select onChange={(e) => setBedType(e.target.value)} required className="w-[560px] h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
                             <option>2 Single Beds</option>
                             <option>Double Bed</option>
                             <option>King Bed</option>

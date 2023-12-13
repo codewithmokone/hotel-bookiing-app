@@ -33,7 +33,7 @@ function BookedRooms() {
       <header>
         <AdminNavbar />
       </header>
-      <main className='h-[50vh] m-auto'>
+      <main className='h-[50vh] ml-60'>
         <Box>
           <Box className='flex justify-center items-center'>
             <h5 className='text-[#0088a9] font-bold mt-10 '>Booked Rooms</h5>

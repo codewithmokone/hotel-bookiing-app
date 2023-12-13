@@ -1,11 +1,21 @@
 import { Box } from '@mui/material'
 import React from 'react'
 
-function InputComponent({ name, type, value, onChange, placeholder }) {
+function InputComponent({ name, type, value, onChange, placeholder,width }) {
+
+  const inputStyle = {
+    width: width || '200px', // Default width if not provided
+    height: "40px",
+    padding: '8px',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
+    // Add any other styles here
+  };
+
   return (
     <Box
       sx={{
-        width: { xs: 300, sm:150, md:750 },
+        width: { xs: 300, sm:150, md:width },
         marginLeft:2,
         borderWidth: 2,
       }}
@@ -16,7 +26,7 @@ function InputComponent({ name, type, value, onChange, placeholder }) {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-[150px]"
+        style={inputStyle}
         required
       />
     </Box>
