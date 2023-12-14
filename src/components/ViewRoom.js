@@ -2,6 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import CarouselImage from './CarouselImage';
 import HomeIcon from '@mui/icons-material/Home';
+import BedroomParentIcon from '@mui/icons-material/BedroomParent';
+import PeopleIcon from '@mui/icons-material/People';
+import PhoneIcon from '@mui/icons-material/Phone';
 import { CartContext } from '../../src/components/context/CartContext';
 import { faBed, faUserGroup, faPhone, faHouse, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -202,10 +205,10 @@ const ViewRoom = ({ data, setOpenModal }) => {
               <Typography sx={{ fontSize: { xs: 10 } }}><HomeIcon sx={{ fontSize: { xs: 20 } }} /> : {room.roomType}</Typography>
             </Box>
             <Box sx={{ display: 'flex' }}>
-              <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6'><FontAwesomeIcon icon={faBed} className=" text-[#0088a9]" /> : {room.bedType}</Typography>
+              <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6'><BedroomParentIcon sx={{ fontSize: { xs: 20 } }}  className=" text-[#0088a9]" /> : {room.bedType}</Typography>
             </Box>
             <Box sx={{ display: 'flex' }}>
-            <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6'><FontAwesomeIcon icon={faUserGroup} className=" text-[#0088a9]" /> : {room.numberOfPeople}</Typography>
+            <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6'><PeopleIcon sx={{ fontSize: { xs: 'small' } }}   className=" text-[#0088a9]" /> : {room.numberOfPeople}</Typography>
             </Box>
             <Box sx={{ display: 'flex' }}>
             <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6'><FontAwesomeIcon icon={faPhone} className=" text-[#0088a9]" /> : {room.contact}</Typography>
