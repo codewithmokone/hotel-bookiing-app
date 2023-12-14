@@ -52,7 +52,7 @@ const Service = () => {
                 <Box
                     sx={{
                         width: { xs: 130 },
-                        marginTop:{xs:3}
+                        marginTop:{xs:3,sm:0,md:0}
                     }}
                     className="flex flex-col items-center justify-center w-[200px]  mx-3">
                     <span className="  text-xl font-semibold mb-2 text-[#0088a9]"><FontAwesomeIcon icon={faVanShuttle} /></span>
@@ -62,7 +62,7 @@ const Service = () => {
                     </Typography>
                 </Box>
                 <Box
-                    sx={{ width: { xs: 130 },marginTop:{xs:3} }}
+                    sx={{ width: { xs: 130 },marginTop:{xs:3,xs:0,md:0} }}
                     className="flex flex-col items-center justify-center w-[200px] mx-3">
                     <span className=" text-xl font-semibold mb-2 text-[#0088a9]"><FontAwesomeIcon icon={faPersonBiking} /></span>
                     <Typography sx={{fontSize:{xs:14},fontWeight:600,color:"#0088a9"}} variant="h6" component="h2" >Free Biking</Typography>

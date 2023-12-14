@@ -11,7 +11,7 @@ const FeaturedRooms = () => {
         <Box
             sx={{
                 width: { xs: 400, sm: 786, md: 1024 },
-                height: { sm: 500, md: 310 },
+                height: { sm: 310, md: 310 },
                 display: 'flex',
                 flexDirection: { sm: "column", md: 'column' },
                 justifyContent: 'center',

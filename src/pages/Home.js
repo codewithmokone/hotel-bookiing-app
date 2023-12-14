@@ -42,13 +42,13 @@ export const Home = () => {
   return (
     <Box
       sx={{
-        width: { sm: 786, md:1024 },
+        width: { sm: 786, md: 1024 },
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         margin: "auto",
-        backgroundColor:'whitesmoke'
+        backgroundColor: 'whitesmoke'
       }}
       className='h-auto'
     >
@@ -114,13 +114,13 @@ export const Home = () => {
         </Box>
         <Box
           sx={{
-            height: { sm: 'auto', md:'auto' }
+            height: { sm: 'auto', md: 'auto' }
           }}
           className='bg-white'>
           <Box
-             sx={{
-              height: { sm: 'auto', md:'auto' },
-              marginTop: {sm: -6, md:0}
+            sx={{
+              height: { sm: 'auto', md: 'auto' },
+              marginTop: { sm: -6, md: 0 }
             }}
           >
             <FeaturedRooms />
@@ -128,52 +128,50 @@ export const Home = () => {
           <Box
             sx={{
               width: { xs: 400, sm: 786, md: 1024 },
-              height: { xs: 800,md:'auto' },
+              height: { xs: 800,sm:'auto' ,md: 'auto' },
               display: 'flex',
               flexDirection: { xs: 'column', sm: 'column', md: 'row' },
               margin: "auto",
-              marginTop: {sm: -15, md: 0},
-              marginBottom:{md:6}
+              marginTop: { sm: -2, md: 0 },
+              marginBottom: { sm: 6, md: 6 }
             }}
           >
-            
-              <Box
-                sx={{
-                  width: { xs: 400, sm: '100%', md: 350 },
-                  height: { xs: 200, sm: 400, },
-                  marginLeft:{sm:0, md: 0}
-                }}
-                className='border'>
-                <div class="mapouter my-5 mt-4">
-                  <div className="gmap_canvas">
-                    <iframe className="gmap_iframe"
-                      width="100%"
-                      height="100%"
-                      frameborder="0"
-                      scrolling="no"
-                      marginheight="0"
-                      marginwidth="0"
-                      src="https://maps.google.com/maps?width=307&amp;height=600&amp;hl=en&amp;q=pretoria cbd&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
-                    </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
-                  </div>
+            <Box
+              sx={{
+                width: { xs: 400, sm: '100%', md: 350 },
+                height: { xs: 200, sm: 400, },
+                marginLeft: { sm: 0, md: 0 }
+              }}
+            >
+              <div class="mapouter my-5 mt-4">
+                <div className="gmap_canvas">
+                  <iframe className="gmap_iframe"
+                    width="100%"
+                    height="100%"
+                    frameborder="0"
+                    scrolling="no"
+                    marginheight="0"
+                    marginwidth="0"
+                    src="https://maps.google.com/maps?width=307&amp;height=600&amp;hl=en&amp;q=pretoria cbd&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                  </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
                 </div>
-              </Box>
-              <Box
-                sx={{
-                  width: { sm: '100%', md: 700 },
-                  display: 'flex',
-                  flexDirection: { xs: 'column', sm: 'column', md: 'column' },
-                  marginRight:{xs: 0, sm:0 , md:0}
-                }}
-                className='border'
-              >
-                {searchResults.length ?
-                  <SearchCard searchResults={searchResults} />
-                  :
-                  <Cards />
-                }
-              </Box>
-          
+              </div>
+            </Box>
+            <Box
+              sx={{
+                width: { sm: '100%', md: 700 },
+                display: 'flex',
+                flexDirection: { xs: 'column', sm: 'column', md: 'column' },
+                marginRight: { xs: 0, sm: 0, md: 0 }
+              }}
+            >
+              {searchResults.length ?
+                <SearchCard searchResults={searchResults} />
+                :
+                <Cards />
+              }
+            </Box>
+
             {/* <Hidden smUp>
               <Box
                 sx={{

@@ -156,26 +156,23 @@ export const Cards = () => {
                             <Box
                                 sx={{
                                     width: { xs: 380, sm: 640, md: 640 },
-                                    height: { xs: 200, sm: 240, md: 180 }
+                                    height: { xs: 180, sm: 180, md: 180 }
                                 }}
                                 className="flex flex-row justify-center bg-white " key={id}
                             >
                                 <Box
-                                    sx={{
-
-                                    }}
                                     className="w-[40%] h-full">
                                     <img className="w-[100%] h-full" src={room.roomImage} alt='roomImage' />
                                 </Box>
 
-                                <Box className="w-[56%] justify-center items-center ml-6 mt-1">
+                                <Box className="w-[56%] justify-center items-center ml-2 mt-1">
                                     <Box>
                                         <Box>
                                             <Typography
-                                                sx={{ 
-                                                    fontSize: { xs: 12, md: 16 }, 
-                                                    fontWeight: 600, 
-                                                    color: "#0088a9" 
+                                                sx={{
+                                                    fontSize: { xs: 14, sm: 16, md: 16 },
+                                                    fontWeight: 600,
+                                                    color: "#0088a9"
                                                 }}
                                                 variant="h6"
                                                 component="h2"
@@ -186,7 +183,7 @@ export const Cards = () => {
                                         <Box>
                                             <Typography
                                                 sx={{
-                                                    fontSize: { xs: 12, md: 14 },
+                                                    fontSize: { xs: 12.5, sm: 14, md: 14 },
                                                     marginTop: { xs: 1, md: 0.5 },
                                                 }}
                                             >{room.introDescr}
@@ -195,21 +192,21 @@ export const Cards = () => {
                                         <Box>
                                             <Typography
                                                 sx={{
-                                                    fontSize: { xs: 12, md: 14 },
+                                                    fontSize: { xs: 12.5, sm: 14, md: 14 },
                                                     marginTop: { xs: 1, md: 0.5 },
                                                 }}
                                             >Room Type: {room.roomType}
                                             </Typography>
                                         </Box>
-                                        <Box sx={{ display: 'flex',width: { xs: 240, md:280 },justifyContent:'space-between',marginLeft:{md:-0.1} }}>
+                                        <Box sx={{ display: 'flex', width: { xs: 195, sm: 280, md: 280 }, justifyContent: 'space-between', marginLeft: { sm: -0.1, md: -0.1 } }}>
                                             <Typography
-                                                sx={{ fontSize: { xs: 12, md: 14 }, marginTop: { xs: 1, md: 0.5 },}}
+                                                sx={{ fontSize: { xs: 12.5, sm: 14, md: 14 }, marginTop: { xs: 1, md: 0.5 }, }}
                                             ><FontAwesomeIcon icon={faBed} className=" text-sky-600 text-lg font-bold" /> : {room.bedType}
                                             </Typography>
                                             <Typography
                                                 sx={{
-                                                    fontSize: { xs: 12, md: 14 },
-                                                    marginTop: { xs: 1, md: 0.5 },
+                                                    fontSize: { xs: 12.5, sm: 14, md: 14 },
+                                                    marginTop: { xs: 1, sm: 0.5, md: 0.5 },
                                                 }}
                                             >
                                                 <FontAwesomeIcon icon={faUserGroup} className=" text-sky-600 text-sm font-medium" /> : {room.numberOfPeople}
@@ -218,8 +215,8 @@ export const Cards = () => {
                                         <Box>
                                             {/* <Typography sx={{ fontSize: { xs: 12,md:14 }, marginTop: { xs: 1 }}}>Price: R {room.price}.00</Typography> */}
                                         </Box>
-                                        <Box sx={{ width: { xs: 240, md:300 }, display: 'flex', justifyContent: 'space-between',marginLeft:{md:-0.1} }}>
-                                            <Typography sx={{ fontSize: { xs: 12, md: 14 }, marginTop: { xs: 1 } }}>Price: R {room.price}.00</Typography>
+                                        <Box sx={{ width: { xs: 200, sm: 300, md: 300 }, display: 'flex', justifyContent: 'space-between', marginLeft: { sm: -0.1, md: -0.1 } }}>
+                                            <Typography sx={{ fontSize: { xs: 12.5, sm: 14, md: 14 }, marginTop: { xs: 1 } }}>Price: R {room.price}.00</Typography>
                                             <button className=" text-sky-600 p-1" onClick={() => handleView(room)}>View More</button>
                                         </Box>
                                     </Box>
