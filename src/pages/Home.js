@@ -167,9 +167,9 @@ export const Home = () => {
                 }}
               >
                 {searchResults.length ?
-                  <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
+                  <SearchCard searchResults={searchResults} />
                   :
-                  <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
+                  <Cards />
                 }
               </Box>
           

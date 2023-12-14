@@ -6,7 +6,7 @@ import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 
-function DrawerNavBar() {
+function ClientDrawerNavBar({signout}) {
 
     const [state, setState] = React.useState({
         top: false,
@@ -25,12 +25,12 @@ function DrawerNavBar() {
 
     const list = (anchor) => (
         <Box
-            sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250, backgroundColor: "#24252A", height:'100vh' }}
+            sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250, backgroundColor: "#24252A", height: '100vh' }}
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <Box sx={{ width: 150, display: 'flex', flexDirection: 'column',marginLeft:2, marginTop:2 }}>
+            <Box sx={{ width: 150, display: 'flex', flexDirection: 'column', marginLeft: 2, marginTop: 2 }}>
                 <Link to="/" className="galleryLink m-2">Home</Link>
                 <Link to="/gallery" className="galleryLink m-2">Gallery</Link>
                 <Link to="/rooms" className="galleryLink m-2">Rooms</Link>
@@ -40,9 +40,10 @@ function DrawerNavBar() {
             </Box>
             <Divider SX={{ backgroundColor: "#gray", }} />
 
-            <Box sx={{ width: 150, display: 'flex', flexDirection: 'column', marginLeft:2 }} >
-                <Link to="/register" className='galleryLink m-2' >Register</Link>
-                <Link to="/login" className="contactus m-2">Login</Link>
+            <Box sx={{ width: 150, display: 'flex', flexDirection: 'column', marginLeft: 2 }} >
+                <Link to="/register" className='galleryLink m-2' >Profile</Link>
+                <Link onClick={signout} className="contactus m-2">Sign Out</Link>
+                {/* <button onClick={signOut}>Sign Out</button> */}
             </Box>
         </Box>
     );
@@ -51,9 +52,9 @@ function DrawerNavBar() {
         <Box
             sx={{
                 backgroundColor: "#24252A",
-                height:40,
-                display:'flex',
-                alignItems:'center'
+                height: 40,
+                display: 'flex',
+                alignItems: 'center'
             }}
         >
             {['left'].map((anchor) => (
@@ -72,4 +73,4 @@ function DrawerNavBar() {
     )
 }
 
-export default DrawerNavBar
+export default ClientDrawerNavBar

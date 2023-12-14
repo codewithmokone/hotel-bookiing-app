@@ -8,6 +8,7 @@ import { useUserAuth } from '../context/UserAuthContext';
 import { Box, Button, Drawer, Hidden, Menu, MenuItem, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DrawerNavBar from './DrawerNavBar';
+import ClientDrawerNavBar from './ClientDrawerNavBar';
 
 
 const Navbar = () => {
@@ -108,7 +109,7 @@ const Navbar = () => {
                             width: { xs: 400 }
                         }}
                     >
-                        <DrawerNavBar />
+                        <ClientDrawerNavBar signout={signOut} />
                     </Box>
                 </Hidden>
             </>
