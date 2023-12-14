@@ -50,15 +50,13 @@ const Gallery = () => {
                 alignItems:'center',
                 margin: 'auto'
             }}
-        //   className=' h-auto m-auto'
         >
-            {/* className="bg-[#F5F5F5] m-auto" > */}
             <Navbar />
             <HeroSec />
             <Box
                 sx={{
                     width: {xs:400, sm: 786, md: 1024 },
-                    height: {xs:400, sm: "100%" }
+                    height: {xs:"auto", sm: "100%" }
                 }}
                 className=" flex flex-col m-auto bg-white  items-center justify-center h-screen"
             >
@@ -84,8 +82,8 @@ const Gallery = () => {
                         images.map((image, index) => (
                             <Paper
                                 sx={{
-                                    width: { xs: 100, sm: 310, md: 280 },
-                                    height: { xs: 100, sm: 250, md: 250 },
+                                    width: { xs: 180, sm: 310, md: 280 },
+                                    height: { xs: 150, sm: 250, md: 250 },
                                     display:'flex',
                                     justifyContent:'center',
                                     alignItems:'center',

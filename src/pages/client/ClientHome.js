@@ -42,40 +42,40 @@ export const Home = () => {
         <Navbar />
         <Header />
       </header>
-      <Box 
-      sx={{
-        width:{xs:390 ,md:1024},
-        height:{md:60},
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-        margin:'auto'
-      }}
-      className=" bg-gray-500"
-      >
-        <Box 
+      <Box
         sx={{
-          width:{xs:300, sm:500, md:500}
+          width: { xs: 390, md: 1024 },
+          height: { md: 60 },
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: 'auto'
         }}
-        className="search-section rounded h-[40px] flex justify-center items-center border bg-white">
-            <input
-              className=' ml-[50px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[400px]'
-              type="number"
-              value={minPrice}
-              placeholder='Enter minimum amount'
-              onChange={(e) => setMinPrice(e.target.value)}
-            />
-            <input
-              className='ml-[15px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[400px]'
-              type="number"
-              value={maxPrice}
-              placeholder='Enter maximum amount'
-              onChange={(e) => setMaxPrice(e.target.value)}
-            />
-            <button
-              className="bg-[#0088a9] text-white p-1 rounded ml-[40px] mr-10"
-              onClick={filterData}>Search
-            </button>
+        className=" bg-gray-500"
+      >
+        <Box
+          sx={{
+            width: { xs: 300, sm: 500, md: 500 }
+          }}
+          className="search-section rounded h-[40px] flex justify-center items-center border bg-white">
+          <input
+            className=' ml-[50px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[400px]'
+            type="number"
+            value={minPrice}
+            placeholder='Enter minimum amount'
+            onChange={(e) => setMinPrice(e.target.value)}
+          />
+          <input
+            className='ml-[15px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[400px]'
+            type="number"
+            value={maxPrice}
+            placeholder='Enter maximum amount'
+            onChange={(e) => setMaxPrice(e.target.value)}
+          />
+          <button
+            className="bg-[#0088a9] text-white p-1 rounded ml-[40px] mr-10"
+            onClick={filterData}>Search
+          </button>
         </Box>
       </Box>
       <main className="main bg-white flex flex-col w-[1024px] m-auto ">
@@ -106,20 +106,18 @@ export const Home = () => {
           <FeaturedRooms />
         </div>
         <Box
-          sx={{
-            width: {xs:390, sm: 786, md: 1024 },
-            display: 'flex',
-            // flexDirection: { sm: 786, md: 1024 },
-            justifyContent:'space-between',
-            // alignItems:'center'
+          sx={{ 
+            width: { xs: 400, sm: 786, md: 1024 }, 
+            display: 'flex', 
+            flexDirection: { xs: 'column', sm: 'column', md: 'row' }, 
+            justifyContent: 'center', alignItems: 'center', margin:'auto' 
           }}
-          className="bg-gray"
         >
-          <Box 
-          sx={{
-            width:{xs:360,sm:500, md:900}
-          }}
-          className="w-[40%]">
+          <Box
+            sx={{
+              width: { xs: 400, sm: 500, md: 900 }
+            }}
+            className="w-[40%]">
             <div className="gmap_canvas">
               <iframe className="gmap_iframe"
                 width="100%"
@@ -130,22 +128,22 @@ export const Home = () => {
                 src="https://maps.google.com/maps?width=307&amp;height=400&amp;hl=en&amp;q=pretoria cbd&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
               </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
             </div>
+            
           </Box>
           <Box
-          sx={{
-            width:{xs:390},
-            display:"flex",
-            flexDirection:"column",
-            justifyContent:'center',
-            alignItems:'center',
-            marginLeft:{xs:-50}
-          }}
-          className="border"
+            sx={{
+              width: { xs: 400 },
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop:40
+            }}
           >
             {filteredResults.length ?
               <SearchCard filteredResults={filteredResults} />
               :
-              <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
+              <Cards />
             }
           </Box>
         </Box>

@@ -79,7 +79,7 @@ export const Cards = () => {
                                 <img className="w-max h-[200px]" src={room.roomImage} alt='roomImage' />
                             </Box>
 
-                            <Box className="w-[55%] justify-center items-center ml-6 mt-1">
+                            <Box className="w-[56%] justify-center items-center ml-6 mt-1">
                                 <Box>
                                     <Box>
                                         <Typography

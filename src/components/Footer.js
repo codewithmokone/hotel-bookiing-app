@@ -9,7 +9,7 @@ export const Footer = () => {
         <Box
             sx={{
                 height: 250,
-                width: { xs:390,sm: 786, md: 1024 },
+                width: { xs:400,sm: 786, md: 1024 },
                 display:'flex',
                 flexDirection:'column',
                 justifyContent:'center',
