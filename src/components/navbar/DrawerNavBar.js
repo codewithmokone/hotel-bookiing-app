@@ -51,6 +51,9 @@ function DrawerNavBar() {
         <Box
             sx={{
                 backgroundColor: "#24252A",
+                height:40,
+                display:'flex',
+                alignItems:'center'
             }}
         >
             {['left'].map((anchor) => (

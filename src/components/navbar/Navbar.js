@@ -105,7 +105,7 @@ const Navbar = () => {
                 <Hidden smUp implementation="css">
                     <Box
                         sx={{
-                            width: { xs: 400 }
+                            width: { xs: 320 }
                         }}
                     >
                         <DrawerNavBar />
