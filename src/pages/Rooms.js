@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-// Firebase imports
 import { db } from '../config/firebase';
-import { Query, collection, getDocs, query, where } from 'firebase/firestore';
-
-// Components imports
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import Navbar from '../components/navbar/Navbar';
 import Header from '../components/HeroSec';
 import Footer from '../components/Footer';
 import Service from '../components/Service';
 import ViewRoom from '../components/ViewRoom';
 import SearchCard from '../components/cards/SearchCard';
-import ButtonComponent from '../components/ButtonComponent';
-
-// Material ui imports
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, TextField, Typography } from '@mui/material';
 
 const Rooms = () => {
@@ -26,18 +18,6 @@ const Rooms = () => {
     const [maxPrice, setMaxPrice] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [openModal, setOpenModal] = useState(false)
-
-    const navigate = useNavigate()
-
-    // Opens the login page
-    const login = () => {
-        navigate("/login")
-    }
-
-    // Opens the register page
-    const register = () => {
-        navigate("/register");
-    }
 
     const searchRoom = async () => {
         setIsLoading(true)
@@ -100,25 +80,24 @@ const Rooms = () => {
     return (
         <Box
             sx={{
-                width: {xs:400, sm: 786, md: 1024 },
+                width: { xs: 400, sm: 786, md: '100vw' },
                 margin: 'auto',
+                backgroundColor: 'whitesmoke'
             }}
-            className='bg-[#F5F5F5]'
         >
-
             <Navbar />
             <Header />
             <Box
                 sx={{
-                    width:{xs: 400, sm:786, md:1024},
-                    height:60
+                    width: { xs: 400, sm: 786, md: 1024 },
+                    height: 60
                 }}
                 className=" bg-gray-500 flex justify-center items-center"
             >
                 <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
                     <div>
                         <input
-                            sx={{width:{xs:50}}}
+                            sx={{ width: { xs: 50 } }}
                             className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
                             type="number"
                             value={minPrice}
@@ -139,19 +118,22 @@ const Rooms = () => {
                 </div>
             </Box>
             <Box
-            sx={{
-                width:{xs:400, sm:786, md:1024},
-                display:'flex',
-                flexDirection:{xs:'column'},
-                justifyContent:{xs:'center'},
-                marginBottom:{xs: 10}
-            }}
-            className='bg-white justify-center items-center m-auto'
-            
+                sx={{
+                    width: { xs: 400, sm: 786, md: 1024 },
+                    display: 'flex',
+                    flexDirection: { xs: 'column' },
+                    justifyContent: { xs: 'center' },
+                    backgroundColor: "white",
+                    marginBottom: { xs: 10 }
+                }}
+                className=' justify-center items-center m-auto'
+
             >
                 <Box
-                sx={{marginBotton:{xs:10}}} 
-                className="flex flex-col min-h-[600px] justify-center items-center mr-4">
+                    sx={{ 
+                        marginBotton: { xs: 10 }, 
+                    }}
+                    className="flex flex-col min-h-[600px] justify-center items-center mr-4 m-auto">
                     <h3 className='mt-6'>Our Rooms</h3>
                     {searchResults.length ?
                         <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>

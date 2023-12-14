@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import CarouselImage from './CarouselImage';
 import { CartContext } from '../../src/components/context/CartContext';
@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import { Alert, Box, Divider, Modal, TextField } from '@mui/material';
+import { Alert, Box, Divider, TextField } from '@mui/material';
 import { useUserAuth } from './context/UserAuthContext';
 import InputComponent from './InputComponent';
 
@@ -22,6 +22,35 @@ const ViewRoom = ({ data, setOpenModal }) => {
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [isAvailable, setIsAvailable] = useState(true);
+  const [message, setMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    // Checks if the selected room has available room
+    const numberOfRoomsAvailable = async () => {
+      if (room.id) {
+        const roomRef = doc(db, "hotelRooms", room.id);
+        const docSnapshot = await getDoc(roomRef);
+
+        if (docSnapshot.exists()) {
+          const roomData = docSnapshot.data();
+          const roomsLeft = roomData.numberOfRooms;
+
+          if (roomsLeft > 0) {
+            setMessage(`Rooms left: ${roomsLeft}`);
+            setErrorMessage('');
+          } else {
+            setErrorMessage("All rooms are currently booked.");
+            setMessage('');
+          }
+        } else {
+          console.log("Room not found.");
+        }
+      }
+      return;
+    }
+    numberOfRoomsAvailable();
+  }, [message])
 
   // Handles closing the view room modal
   const closeModal = () => {
@@ -29,45 +58,36 @@ const ViewRoom = ({ data, setOpenModal }) => {
   }
 
   // Function to check room availability
-  const checkAvailability = async () => {
+  const checkAvailability = async (e) => {
+    e.preventDefault()
+
+    // Assigns the current date and replaces the / with -
+    const currentDate = new Date().toLocaleDateString().split('/').join('-');;
 
     try {
 
-      if (room.id) {
-        const roomRef = doc(db, "hotelRooms", room.id); 
-        const docSnapshot = await getDoc(roomRef);
-      
-        if (docSnapshot.exists()) {
-          const roomData = docSnapshot.data();
-          const roomsLeft = roomData.numberOfRooms; // Assuming 'numberOfRooms' is the field indicating available rooms
-      
-          if (roomsLeft > 0) {
-            console.log("Rooms available:", roomsLeft);
-            // You can perform further actions here, such as booking the room
-          } else {
-            console.log("No rooms available.");
-          }
-        } else {
-          console.log("Room not found."); // Handling the case when the document doesn't exist
-        }
+      const docRef = query(collection(db, "bookings"), where("roomId", "==", room.id));
+      const querySnapshot = await getDocs(docRef);
+
+      if (querySnapshot.size === 1) {
+        querySnapshot.forEach((doc) => {
+          const roomDate = doc.data()
+          setCheckBookings(roomDate);
+        });
+      } else {
+        console.error('Room not found or multiple rooms found with the same roomId.');
+        alert('Something went wrong.!');
       }
 
-
-
-      // const docRef = query(collection(db, "bookings"), where("roomId", "==", room.id));
-      // const querySnapshot = await getDocs(docRef);
-
-      // if (querySnapshot.size === 1) {
-      //   querySnapshot.forEach((doc) => {
-      //     const roomDate = doc.data()
-      //     setCheckBookings(roomDate);
-      //   });
-      // } else {
-      //   console.error('Room not found or multiple rooms found with the same roomId.');
-      //   // <Alert severity="info">Something went wrong.</Alert>
-      //   alert('Something went wrong.!');
-      // }
-
+      if(checkInDate >= currentDate){
+        if(checkInDate >= checkBookings.checkInDate && checkInDate <= checkBookings.checkOutDate ){
+          alert("Room is not available.")
+        }else if(checkInDate > checkBookings.checkOutDate && checkOutDate > checkBookings.checkOutDate ){
+          alert("Room is available.")
+        }else{
+          alert("Room is available.")
+        }
+      }
       // if (checkBookings) {
       //   const start = checkBookings.checkInDate;
       //   const end = checkBookings.checkOutDate;
@@ -88,6 +108,8 @@ const ViewRoom = ({ data, setOpenModal }) => {
       //     alert('Room is not available for the selected dates.');
       //   }
       // }
+      setCheckInDate(null);
+      setCheckOutDate(null);
     } catch (error) {
       console.error('Error checking room availability:', error);
     }
@@ -121,6 +143,8 @@ const ViewRoom = ({ data, setOpenModal }) => {
             className='w-[960px] flex flex-row justify-between items-center '
           >
             <p className='mt-2 ml-8 mb-[5px] font-extrabold text-lg'>{room.title}</p>
+            {message && <Alert>{message}</Alert>}
+            {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
             <button className='bg-[#0088a9] text-white w-[35px] h-[30px] rounded mt-2 mr-7' onClick={closeModal}>X</button>
           </Box>
           <Box

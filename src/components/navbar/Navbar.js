@@ -55,50 +55,63 @@ const Navbar = () => {
     // Renders the navbar ui according to the logged in user
     if (user) {
         return (
-            <Box sx={{
-                width: { xs: 400, sm: 786, md: 1024 },
-                backgroundColor: "#24252A",
-                height: 80,
-                display: 'flex',
-                alignItems: 'center'
-            }}
-            >
-                <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
-                <nav className="navItems">
-                    <Link to="/" className="galleryLink ">Home</Link>
-                    <Link to="/gallery" className="galleryLink ">Gallery</Link>
-                    <Link to="/rooms" className="roomsLink ">Rooms</Link>
-                    <Link to="/bookings" className="roomsLink ">Bookings</Link>
-                    <Link to="/contactus" className="contactus w-[100px] ">Contact Us</Link>
-                    <div>
-                        <Button
-                            id="basic-button"
-                            aria-controls={open ? 'basic-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? 'true' : undefined}
-                            onClick={handleClick}
-                            sx={{ marginRight: -3, marginLeft: -3, width: 20, borderWidth: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                            size='small'
-                        >
-                            <AccountCircleIcon sx={{ width: 35, height: 35, color: "#0088a9" }} />
-                        </Button>
-                        <Menu
-                            id="basic-menu"
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleClose}
-                            MenuListProps={{
-                                'aria-labelledby': 'basic-button',
-                            }}
-                        >
-                            {/* <MenuItem onClick={signOut}>Profile</MenuItem>
+            <>
+                <Hidden smDown implementation="css">
+                    <Box sx={{
+                        width: { xs: 400, sm: 786, md: 1024 },
+                        backgroundColor: "#24252A",
+                        height: 80,
+                        display: 'flex',
+                        alignItems: 'center'
+                    }}
+                    >
+                        <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
+                        <nav className="navItems">
+                            <Link to="/" className="galleryLink ">Home</Link>
+                            <Link to="/gallery" className="galleryLink ">Gallery</Link>
+                            <Link to="/rooms" className="roomsLink ">Rooms</Link>
+                            <Link to="/bookings" className="roomsLink ">Bookings</Link>
+                            <Link to="/contactus" className="contactus w-[100px] ">Contact Us</Link>
+                            <div>
+                                <Button
+                                    id="basic-button"
+                                    aria-controls={open ? 'basic-menu' : undefined}
+                                    aria-haspopup="true"
+                                    aria-expanded={open ? 'true' : undefined}
+                                    onClick={handleClick}
+                                    sx={{ marginRight: -3, marginLeft: -3, width: 20, borderWidth: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                                    size='small'
+                                >
+                                    <AccountCircleIcon sx={{ width: 35, height: 35, color: "#0088a9" }} />
+                                </Button>
+                                <Menu
+                                    id="basic-menu"
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={handleClose}
+                                    MenuListProps={{
+                                        'aria-labelledby': 'basic-button',
+                                    }}
+                                >
+                                    {/* <MenuItem onClick={signOut}>Profile</MenuItem>
                                 <MenuItem onClick={signOut}>Order History</MenuItem> */}
-                            <MenuItem onClick={signOut}>Logout</MenuItem>
-                        </Menu>
-                    </div>
+                                    <MenuItem onClick={signOut}>Logout</MenuItem>
+                                </Menu>
+                            </div>
 
-                </nav>
-            </Box>
+                        </nav>
+                    </Box>
+                </Hidden>
+                <Hidden smUp implementation="css">
+                    <Box
+                        sx={{
+                            width: { xs: 400 }
+                        }}
+                    >
+                        <DrawerNavBar />
+                    </Box>
+                </Hidden>
+            </>
         )
     } else {
         return (
@@ -109,7 +122,7 @@ const Navbar = () => {
                         backgroundColor: "#24252A",
                         height: 80,
                         display: 'flex',
-                        justifyContent:'space-between',
+                        justifyContent: 'space-between',
                         alignItems: 'center'
                     }}
                     >
@@ -126,9 +139,9 @@ const Navbar = () => {
                 </Hidden>
                 <Hidden smUp implementation="css">
                     <Box
-                    sx={{
-                        width:{xs:400}
-                    }}
+                        sx={{
+                            width: { xs: 400 }
+                        }}
                     >
                         <DrawerNavBar />
                     </Box>
