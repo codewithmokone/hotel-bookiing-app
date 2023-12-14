@@ -19,6 +19,7 @@ import ContactUs from './pages/ContactUs';
 import Dashboard from './pages/admin/Dashboard';
 import RoomView from './pages/RoomView';
 import Profile from './pages/admin/Profile';
+import ClientProfile from './pages/client/ClientProfile';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
 
           {/* Protected Routes */}
           <Route path='/clienthome' element={<ProtectedRoute><ClientHome /></ProtectedRoute>} />
+          <Route path='/clientprofile' element={<ProtectedRoute><ClientProfile /></ProtectedRoute>} />
           <Route path='/bookings' element={<ProtectedRoute><Bookings /></ProtectedRoute>} />
           <Route path='/roomview' element={<ProtectedRoute><ViewRoom/></ProtectedRoute>} />
           <Route path="/adminhome" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />

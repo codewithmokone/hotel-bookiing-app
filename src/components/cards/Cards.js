@@ -67,23 +67,24 @@ export const Cards = () => {
                         <Box
                             sx={{
                                 width: { xs: 380, sm: 640, md: 640 },
-                                height: { xs: 200, sm: 240, md: 250 }
+                                height: { xs: 180, sm: 180, md: 180 }
                             }}
-                            className=" overflow-hidden flex flex-row justify-center border bg-white mb-1 " key={id}
+                            className=" overflow-hidden flex flex-row justify-center bg-white mb-1 " key={id}
                         >
+                            {/* Image section */}
                             <Box
                                 sx={{
 
                                 }}
-                                className="image-container w-[40%] h-[200px]">
-                                <img className="w-max h-[200px]" src={room.roomImage} alt='roomImage' />
+                                className=" w-[40%] h-full">
+                                <img className="w-[100%] h-full" src={room.roomImage} alt='roomImage' />
                             </Box>
-
+                            {/* Details section */}
                             <Box className="w-[56%] justify-center items-center ml-6 mt-1">
                                 <Box>
                                     <Box>
                                         <Typography
-                                            sx={{ fontSize: { xs: 15 }, fontWeight: 600, color: "#0088a9" }}
+                                            sx={{ fontSize: { xs: 16 }, fontWeight: 600, color: "#0088a9" }}
                                             variant="h6"
                                             component="h2"
                                             className=" text-sky-60"
@@ -159,11 +160,12 @@ export const Cards = () => {
                                 }}
                                 className="flex flex-row justify-center bg-white " key={id}
                             >
+                                {/* Image section */}
                                 <Box
                                     className="w-[40%] h-full">
                                     <img className="w-[100%] h-full" src={room.roomImage} alt='roomImage' />
                                 </Box>
-
+                                {/* Details section */}
                                 <Box className="w-[56%] justify-center items-center ml-2 mt-1">
                                     <Box>
                                         <Box>

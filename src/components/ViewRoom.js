@@ -1,13 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import CarouselImage from './CarouselImage';
+import HomeIcon from '@mui/icons-material/Home';
 import { CartContext } from '../../src/components/context/CartContext';
 import { faBed, faUserGroup, faPhone, faHouse, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import { Alert, Box, Divider, TextField } from '@mui/material';
+import { Alert, Box, Divider, Typography } from '@mui/material';
 import { useUserAuth } from './context/UserAuthContext';
 import InputComponent from './InputComponent';
 
@@ -79,12 +80,12 @@ const ViewRoom = ({ data, setOpenModal }) => {
         alert('Something went wrong.!');
       }
 
-      if(checkInDate >= currentDate){
-        if(checkInDate >= checkBookings.checkInDate && checkInDate <= checkBookings.checkOutDate ){
+      if (checkInDate >= currentDate) {
+        if (checkInDate >= checkBookings.checkInDate && checkInDate <= checkBookings.checkOutDate) {
           alert("Room is not available.")
-        }else if(checkInDate > checkBookings.checkOutDate && checkOutDate > checkBookings.checkOutDate ){
+        } else if (checkInDate > checkBookings.checkOutDate && checkOutDate > checkBookings.checkOutDate) {
           alert("Room is available.")
-        }else{
+        } else {
           alert("Room is available.")
         }
       }
@@ -138,22 +139,24 @@ const ViewRoom = ({ data, setOpenModal }) => {
         <div className='roomHearding flex flex-col '>
           <Box
             sx={{
-              width: { xs: 400, sm: 700, md: 800 }
+              width: { xs: 400, sm: 700, md: 800 },
             }}
-            className='w-[960px] flex flex-row justify-between items-center '
+            className='flex flex-row justify-between items-center'
           >
-            <p className='mt-2 ml-8 mb-[5px] font-extrabold text-lg'>{room.title}</p>
+            <Typography sx={{ fontSize: { xs: 14, sm: 14, } }} className='mt-2 ml-8 mb-[5px] font-extrabold text-lg'>{room.title}</Typography>
             {message && <Alert>{message}</Alert>}
-            {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+            {errorMessage && <Alert sx={{ fontSize: { xs: 10 } }} severity="error">{errorMessage}</Alert>}
             <button className='bg-[#0088a9] text-white w-[35px] h-[30px] rounded mt-2 mr-7' onClick={closeModal}>X</button>
           </Box>
           <Box
             sx={{
-              width: { xs: 350, sm: 700 },
-              fontSize: { xs: 11, sm: 14, }
+              width: { xs: 380, sm: 700 },
+              fontSize: { xs: 12, sm: 14, }
             }}
           >
-            <p className='ml-8 mb-[-35px]'> <FontAwesomeIcon icon={faLocationDot} className=" text-[#0088a9] text-lg font-bold" /> {room.address}</p>
+            <Typography sx={{
+              width: { xs: 380, sm: 700 }, fontSize: { xs: 12, sm: 14, }
+            }}><FontAwesomeIcon icon={faLocationDot} className=" text-[#0088a9] text-lg font-bold" /> {room.address}</Typography>
           </Box>
         </div>
         <Box
@@ -183,35 +186,46 @@ const ViewRoom = ({ data, setOpenModal }) => {
         <Box
           sx={{
             width: { xs: 380, sm: 680, md: 750 },
-            fontSize: { xs: 10, sm: 14, md: 16 },
-            marginTop: { xs: -3, sm: 6, md: 4 }
+            marginTop: { xs: 0, sm: 6, md: 4 }
           }}
-          className="room-details flex border-b-2 w-[900px]">
+        >
           <Box
             sx={{
-              width: { xs: 200, sm: 680, md: 900 },
+              width: { xs: 360, sm: 680, md: 900 },
               display: 'flex',
-              flexDirection: { xs: 'row', sm: 'row', md: 'row' }
+              flexDirection: { xs: 'row', sm: 'row', md: 'row' },
+              alignItems:'center'
             }}
-            className='flex flex-row justify-center items-center m-auto'>
-            <p className='ml-8 mt-6'><FontAwesomeIcon icon={faHouse} className=" text-[#0088a9] text-lg font-bold" /> : {room.roomType}</p>
-            <p className='ml-8 mt-6'><FontAwesomeIcon icon={faBed} className=" text-[#0088a9] text-lg font-bold" /> : {room.bedType}</p>
-            <p className='ml-8 mt-6'><FontAwesomeIcon icon={faUserGroup} className=" text-[#0088a9] text-lg font-bold" /> : {room.numberOfPeople}</p>
-            <p className='ml-8 mt-6'><FontAwesomeIcon icon={faPhone} className=" text-[#0088a9] text-lg font-bold" /> : {room.contact}</p>
-            <p className='ml-8 mt-6 font-bold '>R{room.price}</p>
+            className='justify-center border items-center m-auto'
+          >
+            <Box sx={{ display: 'flex', justifyContent:'center',alignItems:'center' }}>
+              <Typography sx={{ fontSize: { xs: 10 } }}><HomeIcon sx={{ fontSize: { xs: 20 } }} /> : {room.roomType}</Typography>
+            </Box>
+            <Box sx={{ display: 'flex' }}>
+              <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6'><FontAwesomeIcon icon={faBed} className=" text-[#0088a9]" /> : {room.bedType}</Typography>
+            </Box>
+            <Box sx={{ display: 'flex' }}>
+            <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6'><FontAwesomeIcon icon={faUserGroup} className=" text-[#0088a9]" /> : {room.numberOfPeople}</Typography>
+            </Box>
+            <Box sx={{ display: 'flex' }}>
+            <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6'><FontAwesomeIcon icon={faPhone} className=" text-[#0088a9]" /> : {room.contact}</Typography>
+            </Box>
+            <Box sx={{ display: 'flex' }}>
+            <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6 font-bold '>R{room.price}</Typography>
+            </Box>
           </Box>
           <Divider variant="middle" />
         </Box>
         <Box
           sx={{
             fontSize: { xs: 13, sm: 14, md: 16 },
-            width: { xs: 350, sm: 680 },
+            width: { xs: 380, sm: 680 },
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center'
           }}
           className='border-b-2 w-[900px] min-h-min flex justify-center items-center'>
-          <p className='mt-3 ml-8 mb-3'>{room.description}</p>
+          <p className=' mb-3'>{room.description}</p>
         </Box>
         <Box
           sx={{

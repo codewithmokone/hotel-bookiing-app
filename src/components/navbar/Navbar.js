@@ -94,8 +94,7 @@ const Navbar = () => {
                                         'aria-labelledby': 'basic-button',
                                     }}
                                 >
-                                    {/* <MenuItem onClick={signOut}>Profile</MenuItem>
-                                <MenuItem onClick={signOut}>Order History</MenuItem> */}
+                                    <MenuItem onClick={()=> navigate("/clientprofile")}>Profile</MenuItem>
                                     <MenuItem onClick={signOut}>Logout</MenuItem>
                                 </Menu>
                             </div>

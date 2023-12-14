@@ -45,7 +45,7 @@ export const Home = () => {
       <Box
         sx={{
           width: { xs: 390, md: 1024 },
-          height: { md: 60 },
+          height: {xs:'auto', sm:'auto', md: 60 },
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -108,12 +108,12 @@ export const Home = () => {
         <Box
           sx={{
             width: { xs: 400, sm: 786, md: 1024 },
+            height:{sm:'auto',md:'auto'},
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'column', md: 'row' },
             justifyContent: 'center', alignItems: 'center', margin: 'auto',
-            backgroundColor:'pink'
+            backgroundColor:'white'
           }}
-          className="border"
         >
           {/* Map Section */}
           <Box
@@ -142,7 +142,6 @@ export const Home = () => {
               // alignItems: 'center',
               marginTop: 40
             }}
-            className='border'
           >
             {filteredResults.length ?
               <SearchCard filteredResults={filteredResults} />
