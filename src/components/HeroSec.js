@@ -6,11 +6,11 @@ import { Box } from '@mui/material';
 
 const Header = () => {
     return (
-        <Box sx={{ width: { xs: 380, sm: 786, md: 1024 } }} className=" flex flex-col justify-center items-center ">
-            <Box sx={{ width: { xs: 380, sm: 786, md: 1024 } }} className=" bg-[pink] h-[4px] "></Box>
+        <Box sx={{ width: { xs: 390, sm: 786, md: 1024 } }} className=" flex flex-col justify-center items-center ">
+            <Box sx={{ width: { xs: 390, sm: 786, md: 1024 } }} className=" bg-[#24252A] h-[4px] "></Box>
             <Box
                 sx={{
-                    width: { xs: 380, sm: 786, md: 1024 },
+                    width: { xs: 390, sm: 786, md: 1024 },
                     height:{xs:200,  sm:350, md: 350}
                 }}
                 className=" flex flex-col justify-center items-center"

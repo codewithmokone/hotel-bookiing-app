@@ -44,7 +44,7 @@ export const Home = () => {
       </header>
       <Box 
       sx={{
-        width:{xs:380 ,md:1024},
+        width:{xs:390 ,md:1024},
         height:{md:60},
         display:'flex',
         justifyContent:'center',
@@ -107,9 +107,9 @@ export const Home = () => {
         </div>
         <Box
           sx={{
-            width: { sm: 786, md: 1024 },
+            width: {xs:390, sm: 786, md: 1024 },
             display: 'flex',
-            flexDirection: { sm: 786, md: 1024 },
+            // flexDirection: { sm: 786, md: 1024 },
             justifyContent:'space-between',
             // alignItems:'center'
           }}
@@ -117,7 +117,7 @@ export const Home = () => {
         >
           <Box 
           sx={{
-            width:{xs:320,sm:500, md:900}
+            width:{xs:360,sm:500, md:900}
           }}
           className="w-[40%]">
             <div className="gmap_canvas">
@@ -131,13 +131,17 @@ export const Home = () => {
               </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
             </div>
           </Box>
-          <div className="card-list flex flex-col justify-center items-center ml-2 my-3 mr-5">
+          <Box
+          sx={{
+            width:{xs:390}
+          }}
+          className="card-list flex flex-col justify-center items-center ml-2 my-3 mr-5">
             {filteredResults.length ?
               <ul className="flex flex-col justify-between"><li><SearchCard filteredResults={filteredResults} /></li></ul>
               :
               <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
             }
-          </div>
+          </Box>
         </Box>
         <div className="m-auto">
           <Service />
