@@ -44,15 +44,20 @@ export const Home = () => {
       </header>
       <Box 
       sx={{
-        width:{md:1024},
+        width:{xs:380 ,md:1024},
         height:{md:60},
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
         margin:'auto'
       }}
-      className=" bg-gray-500">
-        <Box className="search-section rounded w-[500px] h-[40px] flex justify-center items-center border bg-white">
+      className=" bg-gray-500"
+      >
+        <Box 
+        sx={{
+          width:{xs:300}
+        }}
+        className="search-section rounded w-[500px] h-[40px] flex justify-center items-center border bg-white">
             <input
               className=' ml-[50px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[400px]'
               type="number"
