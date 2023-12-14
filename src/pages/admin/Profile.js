@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import '../../styles/adminhome.css';
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../../config/firebase';
 import { storage } from '../../config/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';

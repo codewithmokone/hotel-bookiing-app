@@ -4,13 +4,13 @@ import { useUserAuth } from '../components/context/UserAuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { auth, db } from '../config/firebase';
 import { addDoc, collection } from 'firebase/firestore';
-import { Box } from '@mui/material';
+import { Alert, Box } from '@mui/material';
 
 export const Register = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const { signUp } = useUserAuth();
     const navigate = useNavigate();
@@ -19,12 +19,14 @@ export const Register = () => {
     const handleSignUp = async (e) => {
         e.preventDefault()
 
-        setError('');
+        if(!email || !password){
+            setErrorMessage('Email and password is required');
+        }
 
         try {
             await signUp(email, password);
             navigate("/login");
-           
+
             const docRef = await addDoc(collection(db, "userRole"), {
                 userId: auth.currentUser.uid,
                 role: "Client",
@@ -33,9 +35,9 @@ export const Register = () => {
             alert("Signed up successfully");
 
         } catch (e) {
-            setError(e.message);
+            setErrorMessage("email and password is required.");
             console.log(e.message);
-        } 
+        }
     }
 
     // Handles closing the register modal
@@ -44,37 +46,39 @@ export const Register = () => {
     }
 
     return (
-        <Box 
-        sx={{}}
-        className="modalBackground w-screen h-screen bg-[#24252A] fixed flex justify-center items-center"
-        >
-            <Box  
-            sx={{
-                width:{xs:400, sm:400, md:500},
-                height:{}
-            }}
-            className="modalContainer flex flex-col items-center justify-center rounded bg-white  w-[500px] h-[500px]">
-                <p>{error}</p>
-                <div className='flex justify-end items-end mt-[-14px] mb-10 mr-[30px] w-[100%]'>
-                <button className="rounded-xl font-bold text-2xl text-[#0088a9] w-[20]" onClick={handleClose}> X </button>
-                </div>
+        <Box className="modalBackground w-screen h-screen bg-[#24252A] fixed flex justify-center items-center">
+            <Box
+                sx={{
+                    width: { xs: 340, sm: 400, md: 500 },
+                    height: { xs: 400, md: 520 }
+                }}
+                className=" flex flex-col items-center justify-center rounded bg-white">
+                <Box 
+                sx={{
+                    marginTop:{md:2},
+                    width:{md:480}
+                }}
+                className='flex justify-end items-end mb-10 w-[100%]'>
+                    <button className="rounded-xl font-bold text-2xl text-[#0088a9] w-[20]" onClick={handleClose}> X </button>
+                </Box>
                 <h2 className="font-black text-2xl mt-4 mb-4 text-[#0088a9] ">Register</h2>
+                {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
                 <form className="adminLogin-form flex flex-col items-center justify-center w-80" onSubmit={handleSignUp}>
-                    <label  className="block w-80 m-1 font-medium" for="email">Email:</label>
-                    <input 
+                    <label className="block w-80 m-1 font-medium" for="email">Email:</label>
+                    <input
                         className="mb-3 h-10 w-80 rounded border focus:outline-none focus:ring focus:ring-[#0088a9]"
-                        type="email" 
+                        type="email"
                         placeholder=" Enter email"
                         onChange={(e) => setEmail(e.target.value)}
-                        required
+                        // required
                     />
-                    <label  className="w-80 m-1 font-medium" for="password">Password:</label>
+                    <label className="w-80 m-1 font-medium" for="password">Password:</label>
                     <input
                         className="mb-5 border h-10 w-80 rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
-                        type="password" 
+                        type="password"
                         placeholder=" Enter password"
                         onChange={(e) => setPassword(e.target.value)}
-                        required
+                        // required
                     />
                     <button className="text-white rounded-md h-8 mt-1 bg-[#0088a9] font-bold w-56 ">Register</button>
                 </form>

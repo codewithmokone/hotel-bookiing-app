@@ -1,7 +1,4 @@
 import React, { useContext } from 'react';
-import { useState, useEffect } from 'react'; // React Hooks
-import { db } from '../../config/firebase'; // importing database from config file
-import { collection, getDocs } from 'firebase/firestore'; // Firebase functions
 import { faBed, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CartContext } from '../context/CartContext';
@@ -12,36 +9,13 @@ import { Paper } from '@mui/material';
 
 export const SearchCard = ({ searchResults }) => {
 
-    // const hotelRoomsRef = collection(db, "hotelRooms");
-    // const [rooms, setRooms] = useState(searchResults);
-    const [rating, setRating] = useState(null);
-
     const navigate = useNavigate();
 
     const { dispatch } = useContext(CartContext);
 
-    // const getRooms = async () => {
-    //     try {
-    //         const data = await getDocs(hotelRoomsRef);
-
-    //         const filteredData = data.docs.map((doc) => ({
-    //             ...doc.data(), id: doc.id,
-    //         }));
-
-    //         setRooms(filteredData);
-
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // };
-
     const nav = () => {
         navigate("/viewroomdetails")
     }
-
-    // useEffect(() => {
-    //     getRooms();
-    // }, []);
 
     return (
         <>

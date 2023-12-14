@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CartContext } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import ViewRoom from '../ViewRoom';
-import { Box, Hidden, Paper, Typography } from '@mui/material';
+import { Box, Paper, Typography } from '@mui/material';
 import { useUserAuth } from '../context/UserAuthContext';
 
 export const Cards = () => {
@@ -20,7 +20,6 @@ export const Cards = () => {
     const { dispatch } = useContext(CartContext);
     const { user } = useUserAuth();
 
-    const navigate = useNavigate();
 
     // Handles viewing the room details
     const handleView = (room) => {

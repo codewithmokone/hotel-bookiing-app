@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Header from '../components/HeroSec'
 import Footer from '../components/Footer'
-import { Alert, Box, Button, Checkbox, FormControlLabel, Grid, Paper, TextField, Typography } from '@mui/material'
+import { Alert, Box } from '@mui/material'
 import Navbar from '../components/navbar/Navbar'
 
 

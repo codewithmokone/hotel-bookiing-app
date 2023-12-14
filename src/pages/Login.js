@@ -5,13 +5,13 @@ import { db } from '../config/firebase';
 import { collection, getDocs, where, query } from 'firebase/firestore';
 import { useUserAuth } from '../components/context/UserAuthContext';
 import { auth } from '../config/firebase';
-import { Box } from '@mui/material';
+import { Alert, Box } from '@mui/material';
 
 const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const { logIn } = useUserAuth(); // Importing login logic from useContext
 
@@ -26,7 +26,9 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault()
 
-        setError("");
+        if(!email || !password){
+            setErrorMessage("email and passord required.")
+        }
 
         try {
             let uid = await logIn(email, password);
@@ -49,7 +51,7 @@ const Login = () => {
             } else if (userRole === "Client") {
                 navigate("/clienthome")
             } else {
-                alert("Please enter the correct email/password")
+                setErrorMessage("Please enter the correct email/password")
             }
 
         } catch (err) {
@@ -63,9 +65,9 @@ const Login = () => {
             <Box
                 sx={{
                     width: { xs: 340, sm: 400, md: 500 },
-                    height: { xs: 400 }
+                    height: { xs: 400,md:500 }
                 }}
-                className="flex flex-col items-center justify-center rounded bg-white w-[500px] h-[500px]">
+                className="flex flex-col items-center justify-center rounded bg-white">
                 <Box
                     sx={{
                         wdith:{xs:240},
@@ -80,7 +82,8 @@ const Login = () => {
                 >
                     <h1 className=" text-center font-black text-2xl mb-4 text-[#0088a9] mt-[60px]" >Login</h1>
                 </Box>
-
+                <Box>
+                    {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
                 <form className=" flex flex-col items-center justify-center w-80" onSubmit={handleLogin}>
                     <label
                         htmlFor="email"
@@ -91,10 +94,8 @@ const Login = () => {
                         type="email"
                         placeholder=" Enter email"
                         onChange={(e) => setEmail(e.target.value)}
-                        required
+                        // required
                     />
-
-
                     <label
                         className="w-80 font-medium m-1 "
                         htmlFor="password"
@@ -104,7 +105,7 @@ const Login = () => {
                         type="password"
                         placeholder=" Enter password"
                         onChange={(e) => setPassword(e.target.value)}
-                        required
+                        // required
                     />
                     <Box
                         sx={{
@@ -114,7 +115,7 @@ const Login = () => {
                         <button className="text-white rounded-md h-8 mt-2 font-extrabold w-56 bg-[#0088a9] hover:bg-[]">Login</button>
                     </Box>
                 </form>
-                {error && <span className=" text-red-600 ">{error}</span>}
+                </Box>
                 <p className="mt-2 mb-10 ">Don't have an account? <Link to="/register"><span className="text-[#0088a9] no-underline font-semibold">Register</span></Link></p>
             </Box >
         </Box >

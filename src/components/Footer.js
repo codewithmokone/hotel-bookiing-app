@@ -19,7 +19,6 @@ export const Footer = () => {
                 borderColor: 'rgba(0,136,169,1)',
                 marginBottom:-20
             }}
-            // className="footerContainer"
         >
             <div className="socialIcons">
                 <a href=""> <AiFillFacebook /></a>

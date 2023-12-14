@@ -4,7 +4,7 @@ import React from 'react'
 import fimage1 from '../images/home-images/Feat-room1.jpg'
 import fimage2 from '../images/home-images/Feat-room2.jpg'
 import fimage3 from '../images/home-images/Feat-room3.jpg'
-import { Box, Hidden } from '@mui/material'
+import { Box } from '@mui/material'
 
 const FeaturedRooms = () => {
     return (

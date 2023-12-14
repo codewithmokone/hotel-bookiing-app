@@ -4,7 +4,7 @@ import HeroSec from '../../components/HeroSec';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/navbar/Navbar';
 import { db, storage } from '../../config/firebase';
-import { Transaction, addDoc, collection, doc, getDoc, runTransaction, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { CartContext } from '../../components/context/CartContext';
 // import { UserAuthContext } from '../../components/context/UserAuthContext';
@@ -121,6 +121,7 @@ const Bookings = () => {
               <div className=' flex flex-col w-[900px] h-[280px] justify-center items-center mt-6'>
                 <label className='w-[600px] mt-4'>Name</label>
                 <TextField
+                  value={name}
                   size='small'
                   sx={{ width: 600, height: 40 }}
                   onChange={(e) => setName(e.target.value)}
@@ -138,6 +139,7 @@ const Bookings = () => {
                 />
                 <label className='w-[600px]'>Contact</label>
                 <TextField
+                  value={contact}
                   size='small'
                   sx={{ width: 600, height: 40 }}
                   onChange={(e) => setContact(e.target.value)}

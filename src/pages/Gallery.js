@@ -3,7 +3,6 @@ import HeroSec from '../components/HeroSec';
 import Footer from '../components/Footer';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { storage } from '../config/firebase';
-import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
 import { Box, Paper } from '@mui/material';
 
