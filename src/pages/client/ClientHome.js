@@ -55,9 +55,9 @@ export const Home = () => {
       >
         <Box 
         sx={{
-          width:{xs:300}
+          width:{xs:300, sm:500, md:500}
         }}
-        className="search-section rounded w-[500px] h-[40px] flex justify-center items-center border bg-white">
+        className="search-section rounded h-[40px] flex justify-center items-center border bg-white">
             <input
               className=' ml-[50px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[400px]'
               type="number"
