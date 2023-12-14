@@ -128,17 +128,10 @@ function ContactUs() {
                         }}
                     // className=' justify-center items-center mt-12 ml-[-140px]'
                     >
-                        <form className='w-[900px] flex flex-col justify-center items-center'>
+                        <form className='flex flex-col justify-center items-center'>
                             {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
                             {successMessage && <Alert severity="success">{successMessage}</Alert>}
-                            <Box
-                                sx={{
-                                    width: { xs: 400, sm: 400, md: 400 },
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                }}
-                                className="block my-2"
-                            >
+                            <Box className="block my-2">
                                 <label className='block  my-1'>First Name:</label>
                                 <input
                                     required
@@ -191,7 +184,7 @@ function ContactUs() {
                                     id="message"
                                     name="message"
                                     type='text'
-                                    className='w-[400px] border'
+                                    className='w-[400px] border h-[80px]'
                                     onChange={(e) => setMessage(e.target.value)}
                                 />
                             </Box>
