@@ -143,7 +143,7 @@ export const Home = () => {
           className="border"
           >
             {filteredResults.length ?
-              <ul className="flex flex-col justify-between"><li><SearchCard filteredResults={filteredResults} /></li></ul>
+              <SearchCard filteredResults={filteredResults} />
               :
               <ul className="flex flex-col justify-between"><li><Cards /></li></ul>
             }

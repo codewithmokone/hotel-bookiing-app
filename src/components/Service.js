@@ -10,7 +10,7 @@ const Service = () => {
     return (
         <Box
             sx={{
-                width: { xs:390 ,sm: 786, md: 1024 },
+                width: { xs:400 ,sm: 786, md: 1024 },
                 height: {xs:500, sm: 300, md: 300 },
                 display: 'flex',
                 flexDirection: 'column'
@@ -22,7 +22,7 @@ const Service = () => {
             </div>
             <Box
                 sx={{
-                    width: {xs:390, sm: 786, md: 1024 },
+                    width: {xs:400, sm: 786, md: 1024 },
                     height: {xs:300, sm: 300, md: 300 },
                     display: 'flex',
                     flexDirection: {xs:'row', sm:'row', md:"row"},
