@@ -18,7 +18,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     // Handles closing the login modal
-    const closeLoginPage =() => {
+    const closeLoginPage = () => {
         navigate('/')
     }
 
@@ -44,11 +44,11 @@ const Login = () => {
 
             console.log({ uid: auth.currentUser.uid, userRole })
 
-            if(userRole === "Admin"){
+            if (userRole === "Admin") {
                 navigate("/adminhome")
-            }else if(userRole === "Client"){
+            } else if (userRole === "Client") {
                 navigate("/clienthome")
-            }else{
+            } else {
                 alert("Please enter the correct email/password")
             }
 
@@ -60,15 +60,27 @@ const Login = () => {
 
     return (
         <Box className="w-screen h-screen bg-[#24252A] fixed flex flex-col items-center justify-center">
-            <Box 
-            sx={{
-                width:{xs:400, sm:400, md:500},
-            }}
-            className="flex flex-col items-center justify-center rounded bg-white w-[500px] h-[500px]">
-                <Box className="flex justify-end items-end mt-[-10px] mb-2 mr-2 w-[99%]">
-                <button className="rounded-xl font-bold text-2xl text-[#0088a9] w-[20]" onClick={closeLoginPage}> X </button>
+            <Box
+                sx={{
+                    width: { xs: 340, sm: 400, md: 500 },
+                    height: { xs: 400 }
+                }}
+                className="flex flex-col items-center justify-center rounded bg-white w-[500px] h-[500px]">
+                <Box
+                    sx={{
+                        wdith:{xs:240},
+                        marginTop: { xs: 2 },
+                        // marginRight: { xs: 20 }
+                    }}
+                    className="flex justify-end items-end mt-[-10px] mb-2 mr-2 w-[99%]">
+                    <button className="rounded-xl font-bold text-2xl text-[#0088a9] w-[20]" onClick={closeLoginPage}> X </button>
                 </Box>
-                <h1 className=" text-center font-black text-2xl mb-4 text-[#0088a9] mt-[60px]" >Login</h1>
+                <Box
+                sx={{ marginTop:{xs:-6}}}
+                >
+                    <h1 className=" text-center font-black text-2xl mb-4 text-[#0088a9] mt-[60px]" >Login</h1>
+                </Box>
+
                 <form className=" flex flex-col items-center justify-center w-80" onSubmit={handleLogin}>
                     <label
                         htmlFor="email"
@@ -81,6 +93,8 @@ const Login = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
+
+
                     <label
                         className="w-80 font-medium m-1 "
                         htmlFor="password"
@@ -92,12 +106,18 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                    <button className="text-white rounded-md h-8 mt-2 font-extrabold w-56 bg-[#0088a9] hover:bg-[]">Login</button>
+                    <Box
+                        sx={{
+                            marginTop: { xs: -4 }
+                        }}
+                    >
+                        <button className="text-white rounded-md h-8 mt-2 font-extrabold w-56 bg-[#0088a9] hover:bg-[]">Login</button>
+                    </Box>
                 </form>
                 {error && <span className=" text-red-600 ">{error}</span>}
                 <p className="mt-2 mb-10 ">Don't have an account? <Link to="/register"><span className="text-[#0088a9] no-underline font-semibold">Register</span></Link></p>
-            </Box>
-        </Box>
+            </Box >
+        </Box >
     )
 }
 

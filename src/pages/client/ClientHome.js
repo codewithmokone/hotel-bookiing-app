@@ -133,9 +133,15 @@ export const Home = () => {
           </Box>
           <Box
           sx={{
-            width:{xs:390}
+            width:{xs:390},
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:'center',
+            alignItems:'center',
+            marginLeft:{xs:-50}
           }}
-          className="card-list flex flex-col justify-center items-center ml-2 my-3 mr-5">
+          className="border"
+          >
             {filteredResults.length ?
               <ul className="flex flex-col justify-between"><li><SearchCard filteredResults={filteredResults} /></li></ul>
               :

@@ -68,11 +68,15 @@ export const Cards = () => {
                         <Box
                             sx={{
                                 width: { xs: 300, sm: 640, md: 640 },
-                                height: { xs: 240, sm: 240, md: 250 }
+                                height: { xs: 200, sm: 240, md: 250 }
                             }}
-                            className=" overflow-hidden flex flex-row justify-center my-4 border bg-white mb-1 " key={id}>
-                            <Box className="image-container w-[40%] h-[200px] m-[10px]">
-                                <img className="w-[300px] m-[10px] h-[200px]" src={room.roomImage} alt='roomImage' />
+                            className=" overflow-hidden flex flex-row justify-center border bg-white mb-1 " key={id}>
+                            <Box 
+                            sx={{
+                                
+                            }}
+                            className="image-container w-[40%] h-[200px] m-[10px]">
+                                <img className="w-max m-[10px] h-[200px]" src={room.roomImage} alt='roomImage' />
                             </Box>
                             <Box className="w-[55%] justify-center items-center ml-6 mt-1">
                                 <table className=" w-[250px]" >
