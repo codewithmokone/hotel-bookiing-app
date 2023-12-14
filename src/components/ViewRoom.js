@@ -5,6 +5,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import BedroomParentIcon from '@mui/icons-material/BedroomParent';
 import PeopleIcon from '@mui/icons-material/People';
 import PhoneIcon from '@mui/icons-material/Phone';
+import RoomIcon from '@mui/icons-material/Room';
 import { CartContext } from '../../src/components/context/CartContext';
 import { faBed, faUserGroup, faPhone, faHouse, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -188,47 +189,47 @@ const ViewRoom = ({ data, setOpenModal }) => {
         </Box>
         <Box
           sx={{
-            width: { xs: 380, sm: 680, md: 750 },
+            width: { xs: 360, sm: 680, md: 750 },
             marginTop: { xs: 0, sm: 6, md: 4 }
           }}
         >
           <Box
             sx={{
-              width: { xs: 360, sm: 680, md: 900 },
+              width: { xs: 340, sm: 680, md: 900 },
               display: 'flex',
               flexDirection: { xs: 'row', sm: 'row', md: 'row' },
               alignItems:'center'
             }}
-            className='justify-center border items-center m-auto'
+            className='justify-center items-center m-auto'
           >
             <Box sx={{ display: 'flex', justifyContent:'center',alignItems:'center' }}>
-              <Typography sx={{ fontSize: { xs: 10 } }}><HomeIcon sx={{ fontSize: { xs: 20 } }} /> : {room.roomType}</Typography>
+              <Typography sx={{ fontSize: { xs: 11 } }}><HomeIcon sx={{ fontSize: { xs: 'medium' } }}  className=" text-[#0088a9]" /> : {room.roomType}</Typography>
             </Box>
             <Box sx={{ display: 'flex' }}>
-              <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6'><BedroomParentIcon sx={{ fontSize: { xs: 20 } }}  className=" text-[#0088a9]" /> : {room.bedType}</Typography>
+              <Typography sx={{ fontSize: { xs: 11 } }} className='ml-8 mt-6'><BedroomParentIcon sx={{ fontSize: { xs: 'medium' } }}  className=" text-[#0088a9]" /> : {room.bedType}</Typography>
             </Box>
             <Box sx={{ display: 'flex' }}>
-            <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6'><PeopleIcon sx={{ fontSize: { xs: 'small' } }}   className=" text-[#0088a9]" /> : {room.numberOfPeople}</Typography>
+            <Typography sx={{ fontSize: { xs: 11 } }} className='ml-8 mt-6'><PeopleIcon sx={{ fontSize: { xs: 'medium' } }}   className=" text-[#0088a9]" /> : {room.numberOfPeople}</Typography>
             </Box>
             <Box sx={{ display: 'flex' }}>
-            <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6'><FontAwesomeIcon icon={faPhone} className=" text-[#0088a9]" /> : {room.contact}</Typography>
+            <Typography sx={{ fontSize: { xs: 11 } }} className='ml-8 mt-6'><PhoneIcon sx={{ fontSize: { xs: 'medium' } }} className=" text-[#0088a9]" /> : {room.contact}</Typography>
             </Box>
             <Box sx={{ display: 'flex' }}>
-            <Typography sx={{ fontSize: { xs: 10 } }} className='ml-8 mt-6 font-bold '>R{room.price}</Typography>
+            <Typography sx={{ fontSize: { xs: 11 } }} className='ml-8 mt-6 font-bold '>R{room.price}</Typography>
             </Box>
           </Box>
-          <Divider variant="middle" />
+          <Divider className='mt-2' />
         </Box>
         <Box
           sx={{
-            fontSize: { xs: 13, sm: 14, md: 16 },
-            width: { xs: 380, sm: 680 },
+            fontSize: { xs: 11, sm: 14, md: 16 },
+            width: { xs: 350, sm: 680 },
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center'
           }}
-          className='border-b-2 w-[900px] min-h-min flex justify-center items-center'>
-          <p className=' mb-3'>{room.description}</p>
+          className=' flex justify-center items-center'>
+          <Typography sx={{ fontSize: { xs: 11 } }} >{room.description}</Typography>
         </Box>
         <Box
           sx={{
