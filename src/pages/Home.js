@@ -114,12 +114,12 @@ export const Home = () => {
         </Box>
         <Box
           sx={{
-            height: { sm: 'auto' }
+            height: { sm: 'auto', md:'auto' }
           }}
           className='bg-white'>
           <Box
              sx={{
-              height: { sm: 'auto' },
+              height: { sm: 'auto', md:'auto' },
               marginTop: {sm: -6, md:0}
             }}
           >
@@ -128,22 +128,22 @@ export const Home = () => {
           <Box
             sx={{
               width: { xs: 400, sm: 786, md: 1024 },
-              height: { xs: 800 },
+              height: { xs: 800,md:'auto' },
               display: 'flex',
               flexDirection: { xs: 'column', sm: 'column', md: 'row' },
               margin: "auto",
-              marginTop: {sm: -15, md: 0}
+              marginTop: {sm: -15, md: 0},
+              marginBottom:{md:6}
             }}
           >
             
               <Box
                 sx={{
-                  width: { xs: 400, sm: '100%', md: "30%" },
-                  height: { xs: 200, sm: 400 },
-                  marginLeft:{sm:0, md: 6}
-                  // borderWidth: 4
+                  width: { xs: 400, sm: '100%', md: 350 },
+                  height: { xs: 200, sm: 400, },
+                  marginLeft:{sm:0, md: 0}
                 }}
-                className=''>
+                className='border'>
                 <div class="mapouter my-5 mt-4">
                   <div className="gmap_canvas">
                     <iframe className="gmap_iframe"
@@ -160,11 +160,12 @@ export const Home = () => {
               </Box>
               <Box
                 sx={{
-                  width: { sm: '100%', md: 680 },
+                  width: { sm: '100%', md: 700 },
                   display: 'flex',
-                  flexDirection: { xs: 'column', sm: 'column', md: 'row' },
-                  marginRight:{xs: 0, sm:0 , md:4}
+                  flexDirection: { xs: 'column', sm: 'column', md: 'column' },
+                  marginRight:{xs: 0, sm:0 , md:0}
                 }}
+                className='border'
               >
                 {searchResults.length ?
                   <SearchCard searchResults={searchResults} />

@@ -64,13 +64,14 @@ export const Cards = () => {
         return (
             <>
                 {rooms.map((room, id) => (
-                    <Paper sx={{marginTop:2}} elevation={5}>
+                    <Paper sx={{ marginTop: 2 }} elevation={5}>
                         <Box
                             sx={{
                                 width: { xs: 380, sm: 640, md: 640 },
                                 height: { xs: 200, sm: 240, md: 250 }
                             }}
-                            className=" overflow-hidden flex flex-row justify-center border bg-white mb-1 " key={id}>
+                            className=" overflow-hidden flex flex-row justify-center border bg-white mb-1 " key={id}
+                        >
                             <Box
                                 sx={{
 
@@ -83,10 +84,10 @@ export const Cards = () => {
                                 <Box>
                                     <Box>
                                         <Typography
-                                            sx={{ fontSize: { xs: 15 }, fontWeight: 600, color: "#0088a9"}}
+                                            sx={{ fontSize: { xs: 15 }, fontWeight: 600, color: "#0088a9" }}
                                             variant="h6"
                                             component="h2"
-                                            className=" text-sky-60" 
+                                            className=" text-sky-60"
                                         >{room.title}
                                         </Typography>
                                     </Box>
@@ -134,7 +135,7 @@ export const Cards = () => {
                                         >Price: R {room.price}.00
                                         </Typography>
                                     </Box>
-                                    <Box sx={{width:{xs:240}, display:'flex',justifyContent:'space-between'}}>
+                                    <Box sx={{ width: { xs: 240 }, display: 'flex', justifyContent: 'space-between' }}>
                                         <button className=" text-sky-600 p-1" onClick={() => handleView(room)}>View More</button>
                                         <button className=" text-sky-600 p-1 mr-[40px]" onClick={() => reserveRoom(room)}>Reserve</button>
                                     </Box>
@@ -151,86 +152,81 @@ export const Cards = () => {
             <>
                 {rooms.map((room, id) => (
                     <>
-                        <Hidden smDown>
-                            <Paper elevation={5}>
-                                <div className=" overflow-hidden flex flex-row justify-center my-4 w-[620px] h-[240px]  m-2" key={id}>
-                                    <div className="image-container w-[40%] h-[190px] m-[10px]">
-                                        <img className="w-[300px] m-[10px] h-[200px]" src={room.roomImage} alt='roomImage' />
-                                    </div>
-                                    <div className="w-[55%] justify-center items-center ml-6 mt-2">
-                                        <table className=" w-[250px] h-[100%]" >
-                                            <tbody>
-                                                <tr>
-                                                    {/* <th className="mb-4"><h3 className="font-bold text-xl text-sky-600 mt-2 mb-1 mx-0 " >{room.hotel}</h3></th> */}
-                                                </tr>
-                                                <tr>
-                                                    <th className="mb-4"><h6 className="font-bold text-xl mt-1 mb-1" >{room.title}</h6></th>
-                                                </tr>
-                                                <tr>
-                                                    <td><p className=" font-medium mb-1 ">{room.introDescr}</p></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><p className="text-xs font-bold mb-2">Room Type: {room.roomType}</p></td>
-                                                </tr>
-                                                <tr className='flex justify-between'>
-                                                    <td><p><FontAwesomeIcon icon={faBed} className=" text-sky-600 text-lg font-bold" /> : {room.bedType}</p></td>
-                                                    <td><p><FontAwesomeIcon icon={faUserGroup} className=" text-sky-600 text-sm font-medium" /> : {room.numberOfPeople}</p></td>
-                                                </tr>
-                                                <tr className='flex justify-between items-center'>
-                                                    <td><p className="text-xs font-bold my-1">Price: R {room.price}.00</p></td>
-                                                    <td><button className=" text-sky-600 p-1 ml-50" onClick={() => handleView(room)}>View More</button></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </Paper>
-                        </Hidden>
-                        <Hidden smUp>
-                            <Paper
+                        <Paper sx={{ marginTop: 2 }} elevation={5}>
+                            <Box
                                 sx={{
-                                    width: { xs: 380 },
-                                    height: { xs: 200 }
-
+                                    width: { xs: 380, sm: 640, md: 640 },
+                                    height: { xs: 200, sm: 240, md: 180 }
                                 }}
+                                className="flex flex-row justify-center bg-white " key={id}
+                            >
+                                <Box
+                                    sx={{
 
-                                elevation={5}>
-                                <Box className=" overflow-hidden flex flex-row justify-center my-4 h-[260px]  m-2" key={id}>
-                                    <Box className="image-container w-[40%] h-[190px] m-[10px]">
-                                        <img className="w-[150px] m-[10px] h-[150px]" src={room.roomImage} alt='roomImage' />
-                                    </Box>
-                                    <Box className="w-[55%] justify-center items-center mt-2 ml-2">
-                                        <table className=" w-[250px] h-[100%]" >
-                                            <tbody>
-                                                <tr>
-                                                    {/* <th className="mb-4"><h3 className="font-bold text-xl text-sky-600 mt-2 mb-1 mx-0 " >{room.hotel}</h3></th> */}
-                                                </tr>
-                                                <tr>
-                                                    <th className="mb-2"><h6 className="font-bold text-xl mt-[-12px]" >{room.title}</h6></th>
-                                                </tr>
-                                                <tr>
-                                                    <td><Typography sx={{ width: { xs: 180 }, fontSize: { xs: 14 }, marginTop: -4 }} >{room.introDescr}</Typography ></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><Typography sx={{ fontSize: { xs: 12 }, marginTop: -2 }} className="text-xs font-bold">Room Type: {room.roomType}</Typography></td>
-                                                </tr>
-                                                <tr className='flex items-center'>
-                                                    <td><Typography sx={{ fontSize: { xs: 12 }, }}><FontAwesomeIcon icon={faBed} className=" text-sky-600 text-lg font-bold" /> : {room.bedType}</Typography></td>
-                                                    <td><Typography sx={{ fontSize: { xs: 12 }, marginLeft: 6 }}><FontAwesomeIcon icon={faUserGroup} className=" text-sky-600 text-sm font-medium" /> : {room.numberOfPeople}</Typography></td>
-                                                </tr>
-                                                <tr className='flex items-center'>
-                                                    <td><Typography sx={{ fontSize: { xs: 12, sm: 14, md: 16 }, }} className="text-xs font-bold my-1">Price: R {room.price}.00</Typography></td>
-                                                    <td><button className=" text-sky-600 p-1 ml-[30px]" onClick={() => handleView(room)}>View More</button></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    }}
+                                    className="w-[40%] h-full">
+                                    <img className="w-[100%] h-full" src={room.roomImage} alt='roomImage' />
+                                </Box>
+
+                                <Box className="w-[56%] justify-center items-center ml-6 mt-1">
+                                    <Box>
+                                        <Box>
+                                            <Typography
+                                                sx={{ 
+                                                    fontSize: { xs: 12, md: 16 }, 
+                                                    fontWeight: 600, 
+                                                    color: "#0088a9" 
+                                                }}
+                                                variant="h6"
+                                                component="h2"
+                                                className=" text-sky-60"
+                                            >{room.title}
+                                            </Typography>
+                                        </Box>
+                                        <Box>
+                                            <Typography
+                                                sx={{
+                                                    fontSize: { xs: 12, md: 14 },
+                                                    marginTop: { xs: 1, md: 0.5 },
+                                                }}
+                                            >{room.introDescr}
+                                            </Typography>
+                                        </Box>
+                                        <Box>
+                                            <Typography
+                                                sx={{
+                                                    fontSize: { xs: 12, md: 14 },
+                                                    marginTop: { xs: 1, md: 0.5 },
+                                                }}
+                                            >Room Type: {room.roomType}
+                                            </Typography>
+                                        </Box>
+                                        <Box sx={{ display: 'flex',width: { xs: 240, md:280 },justifyContent:'space-between',marginLeft:{md:-0.1} }}>
+                                            <Typography
+                                                sx={{ fontSize: { xs: 12, md: 14 }, marginTop: { xs: 1, md: 0.5 },}}
+                                            ><FontAwesomeIcon icon={faBed} className=" text-sky-600 text-lg font-bold" /> : {room.bedType}
+                                            </Typography>
+                                            <Typography
+                                                sx={{
+                                                    fontSize: { xs: 12, md: 14 },
+                                                    marginTop: { xs: 1, md: 0.5 },
+                                                }}
+                                            >
+                                                <FontAwesomeIcon icon={faUserGroup} className=" text-sky-600 text-sm font-medium" /> : {room.numberOfPeople}
+                                            </Typography>
+                                        </Box>
+                                        <Box>
+                                            {/* <Typography sx={{ fontSize: { xs: 12,md:14 }, marginTop: { xs: 1 }}}>Price: R {room.price}.00</Typography> */}
+                                        </Box>
+                                        <Box sx={{ width: { xs: 240, md:300 }, display: 'flex', justifyContent: 'space-between',marginLeft:{md:-0.1} }}>
+                                            <Typography sx={{ fontSize: { xs: 12, md: 14 }, marginTop: { xs: 1 } }}>Price: R {room.price}.00</Typography>
+                                            <button className=" text-sky-600 p-1" onClick={() => handleView(room)}>View More</button>
+                                        </Box>
                                     </Box>
                                 </Box>
-                            </Paper>
-                        </Hidden>
+                            </Box>
+                        </Paper>
                     </>
-
-
                 ))
                 }
                 {openModal && <ViewRoom data={data} setOpenModal={setOpenModal} />}

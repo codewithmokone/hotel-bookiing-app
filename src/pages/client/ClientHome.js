@@ -106,18 +106,21 @@ export const Home = () => {
           <FeaturedRooms />
         </div>
         <Box
-          sx={{ 
-            width: { xs: 400, sm: 786, md: 1024 }, 
-            display: 'flex', 
-            flexDirection: { xs: 'column', sm: 'column', md: 'row' }, 
-            justifyContent: 'center', alignItems: 'center', margin:'auto' 
+          sx={{
+            width: { xs: 400, sm: 786, md: 1024 },
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'column', md: 'row' },
+            justifyContent: 'center', alignItems: 'center', margin: 'auto',
+            backgroundColor:'pink'
           }}
+          className="border"
         >
+          {/* Map Section */}
           <Box
             sx={{
-              width: { xs: 400, sm: 500, md: 900 }
+              width: { xs: 400, sm: 500, md: 200 }
             }}
-            className="w-[40%]">
+          >
             <div className="gmap_canvas">
               <iframe className="gmap_iframe"
                 width="100%"
@@ -128,22 +131,25 @@ export const Home = () => {
                 src="https://maps.google.com/maps?width=307&amp;height=400&amp;hl=en&amp;q=pretoria cbd&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
               </iframe><a href="https://embed-googlemap.com" className='border-none'></a>
             </div>
-            
           </Box>
           <Box
             sx={{
-              width: { xs: 400 },
+              width: { xs: 400, sm: 500, md:824 },
+              height: { md: 'auto' },
               display: "flex",
               flexDirection: "column",
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop:40
+              // justifyContent: 'center',
+              // alignItems: 'center',
+              marginTop: 40
             }}
+            className='border'
           >
             {filteredResults.length ?
               <SearchCard filteredResults={filteredResults} />
               :
-              <Cards />
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Cards />
+              </Box>
             }
           </Box>
         </Box>
