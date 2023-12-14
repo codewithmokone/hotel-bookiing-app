@@ -110,7 +110,11 @@ export const Home = () => {
           }}
           className="bg-gray"
         >
-          <Box className="w-[40%]">
+          <Box 
+          sx={{
+            width:{xs:320,sm:500, md:900}
+          }}
+          className="w-[40%]">
             <div className="gmap_canvas">
               <iframe className="gmap_iframe"
                 width="100%"
