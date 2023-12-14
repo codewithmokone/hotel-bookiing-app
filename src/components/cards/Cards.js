@@ -65,11 +65,16 @@ export const Cards = () => {
             <>
                 {rooms.map((room, id) => (
                     <Paper elevation={5}>
-                        <div className=" overflow-hidden flex flex-row justify-center my-4 border w-[640px] h-[240px] bg-white mb-1 " key={id}>
-                            <div className="image-container w-[40%] h-[200px] m-[10px]">
+                        <Box
+                            sx={{
+                                width: { xs: 300, sm: 640, md: 640 },
+                                height: { xs: 240, sm: 240, md: 250 }
+                            }}
+                            className=" overflow-hidden flex flex-row justify-center my-4 border bg-white mb-1 " key={id}>
+                            <Box className="image-container w-[40%] h-[200px] m-[10px]">
                                 <img className="w-[300px] m-[10px] h-[200px]" src={room.roomImage} alt='roomImage' />
-                            </div>
-                            <div className="w-[55%] justify-center items-center ml-6 mt-1">
+                            </Box>
+                            <Box className="w-[55%] justify-center items-center ml-6 mt-1">
                                 <table className=" w-[250px]" >
                                     <tbody>
                                         <tr>
@@ -94,8 +99,8 @@ export const Cards = () => {
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
+                            </Box>
+                        </Box>
                     </Paper>
                 ))}
                 {openModal && <ViewRoom data={data} setOpenModal={setOpenModal} />}
@@ -145,7 +150,7 @@ export const Cards = () => {
                             <Paper
                                 sx={{
                                     width: { xs: 380 },
-                                    height:{xs:200}
+                                    height: { xs: 200 }
 
                                 }}
 
@@ -164,17 +169,17 @@ export const Cards = () => {
                                                     <th className="mb-2"><h6 className="font-bold text-xl mt-[-12px]" >{room.title}</h6></th>
                                                 </tr>
                                                 <tr>
-                                                    <td><Typography sx={{width:{xs:180}, fontSize: {xs:14 },marginTop:-4 }} >{room.introDescr}</Typography ></td>
+                                                    <td><Typography sx={{ width: { xs: 180 }, fontSize: { xs: 14 }, marginTop: -4 }} >{room.introDescr}</Typography ></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><Typography sx={{ fontSize: {xs:12 },marginTop:-2}} className="text-xs font-bold">Room Type: {room.roomType}</Typography></td>
+                                                    <td><Typography sx={{ fontSize: { xs: 12 }, marginTop: -2 }} className="text-xs font-bold">Room Type: {room.roomType}</Typography></td>
                                                 </tr>
                                                 <tr className='flex items-center'>
-                                                    <td><Typography sx={{ fontSize: {xs:12},}}><FontAwesomeIcon icon={faBed} className=" text-sky-600 text-lg font-bold" /> : {room.bedType}</Typography></td>
-                                                    <td><Typography sx={{ fontSize: {xs:12},marginLeft:6}}><FontAwesomeIcon icon={faUserGroup} className=" text-sky-600 text-sm font-medium" /> : {room.numberOfPeople}</Typography></td>
+                                                    <td><Typography sx={{ fontSize: { xs: 12 }, }}><FontAwesomeIcon icon={faBed} className=" text-sky-600 text-lg font-bold" /> : {room.bedType}</Typography></td>
+                                                    <td><Typography sx={{ fontSize: { xs: 12 }, marginLeft: 6 }}><FontAwesomeIcon icon={faUserGroup} className=" text-sky-600 text-sm font-medium" /> : {room.numberOfPeople}</Typography></td>
                                                 </tr>
                                                 <tr className='flex items-center'>
-                                                    <td><Typography sx={{ fontSize: {xs:12, sm: 14, md: 16 },}} className="text-xs font-bold my-1">Price: R {room.price}.00</Typography></td>
+                                                    <td><Typography sx={{ fontSize: { xs: 12, sm: 14, md: 16 }, }} className="text-xs font-bold my-1">Price: R {room.price}.00</Typography></td>
                                                     <td><button className=" text-sky-600 p-1 ml-[30px]" onClick={() => handleView(room)}>View More</button></td>
                                                 </tr>
                                             </tbody>
