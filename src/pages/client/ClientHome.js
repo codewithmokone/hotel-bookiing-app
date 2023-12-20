@@ -15,11 +15,10 @@ export const Home = () => {
 
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
-  // const [isLoading, setIsLoading] = useState(false);
   const [filteredResults, setFilteredResults] = useState([]);
 
+  // function for filtering the room by price
   const filterData = async () => {
-
     try {
       const querySnapshot = await getDocs(query(collection(db, "hotelRooms"),
         where('price', '>=', parseInt(minPrice)),
@@ -37,7 +36,11 @@ export const Home = () => {
   };
 
   return (
-    <Box className=' home-container bg-[#F2F5F5] block h-auto m-0'>
+    <Box
+      sx={{
+        width: { xs: 400, sm: 768, md: 1024 }
+      }}
+      className=' home-container bg-[#F2F5F5] block h-auto m-0'>
       <header className="flex flex-col w-[1024px] m-auto">
         <Navbar />
         <Header />
@@ -45,7 +48,7 @@ export const Home = () => {
       <Box
         sx={{
           width: { xs: 390, md: 1024 },
-          height: {xs:'auto', sm:'auto', md: 60 },
+          height: { xs: 'auto', sm: 'auto', md: 60 },
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -108,11 +111,11 @@ export const Home = () => {
         <Box
           sx={{
             width: { xs: 400, sm: 786, md: 1024 },
-            height:{sm:'auto',md:'auto'},
+            height: { sm: 'auto', md: 'auto' },
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'column', md: 'row' },
             justifyContent: 'center', alignItems: 'center', margin: 'auto',
-            backgroundColor:'white'
+            backgroundColor: 'white'
           }}
         >
           {/* Map Section */}
@@ -134,7 +137,7 @@ export const Home = () => {
           </Box>
           <Box
             sx={{
-              width: { xs: 400, sm: 500, md:824 },
+              width: { xs: 400, sm: 500, md: 824 },
               height: { md: 'auto' },
               display: "flex",
               flexDirection: "column",

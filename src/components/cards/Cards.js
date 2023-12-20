@@ -15,7 +15,6 @@ export const Cards = () => {
     const [data, setData] = useState('')
     const [openModal, setOpenModal] = useState(false)
 
-
     const hotelRoomsRef = collection(db, "hotelRooms");
     const { dispatch } = useContext(CartContext);
     const { user } = useUserAuth();

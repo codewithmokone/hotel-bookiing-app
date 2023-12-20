@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase';
 import { useUserAuth } from '../context/UserAuthContext';
-import { Box, Button, Drawer, Hidden, Menu, MenuItem, Typography } from '@mui/material';
+import { Box, Button, Drawer, Hidden, Menu, MenuItem } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DrawerNavBar from './DrawerNavBar';
 import ClientDrawerNavBar from './ClientDrawerNavBar';
@@ -59,7 +59,7 @@ const Navbar = () => {
             <>
                 <Hidden smDown implementation="css">
                     <Box sx={{
-                        width: { xs: 400, sm: 786, md: 1024 },
+                        width: { xs: 400, sm: 768, md: 1024 },
                         backgroundColor: "#24252A",
                         height: 80,
                         display: 'flex',
