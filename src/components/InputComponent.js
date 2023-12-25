@@ -1,11 +1,11 @@
-import { Box } from '@mui/material'
+import { Box, TextField } from '@mui/material'
 import React from 'react'
 
 function InputComponent({ name, type, value, onChange, placeholder,width }) {
 
   const inputStyle = {
     width: width || '200px', // Default width if not provided
-    height: "40px",
+    // height: "40px",
     // padding: '8px',
     border: '1px solid #ccc',
     borderRadius: '4px',
@@ -15,12 +15,12 @@ function InputComponent({ name, type, value, onChange, placeholder,width }) {
   return (
     <Box
       sx={{
-        width: { xs: width, sm:width, md:width },
         marginLeft:2,
-        borderWidth: 2,
+        backgroundColor:'white',
       }}
     >
-      <input
+      <TextField 
+        fullWidth
         name={name}
         type={type}
         value={value}
@@ -28,7 +28,17 @@ function InputComponent({ name, type, value, onChange, placeholder,width }) {
         placeholder={placeholder}
         style={inputStyle}
         required
+        size='small'
       />
+      {/* <input
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        style={inputStyle}
+        required
+      /> */}
     </Box>
   )
 }

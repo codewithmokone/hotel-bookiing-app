@@ -4,10 +4,9 @@ import { db } from '../config/firebase';
 import Header from '../components/HeroSec';
 import Footer from '../components/Footer';
 import Cards from '../components/cards/Cards';
-import SearchCard from '../components/cards/SearchCard'
+import SearchCard from '../components/cards/SearchCard';
 import Service from '../components/Service';
 import FeaturedRooms from '../components/FeaturedRooms';
-import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
 import { Box, Hidden } from '@mui/material';
 
@@ -42,22 +41,20 @@ export const Home = () => {
   return (
     <Box
       sx={{
-        width: { sm: 786, md: 1024 },
+        width: { xs: 400, sm: 786, md: 1024 },
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         margin: "auto",
-        backgroundColor: 'whitesmoke'
       }}
       className='h-auto'
     >
-      {/* <div className='home-container bg-[#F4F4F4] block h-auto m-auto'> */}
-      <Box sx={{ width: { sm: 786, md: 1024 } }}>
+      <Box sx={{ width: { xs: 400, sm: 786, md: 1024 } }}>
         <Navbar />
         <Header />
       </Box>
-      <Box sx={{ width: { xs: 400, sm: 786, md: 1024 } }}
+      <Box sx={{ width: { xs: 400, sm: 786, md: 1024 }, backgroundColor: 'whitesmoke' }}
         className=" flex flex-col justify-center items-center">
         <Box sx={{
           width: { xs: 400, sm: 786, md: 1024 },
@@ -107,7 +104,7 @@ export const Home = () => {
                 onChange={(e) => setMaxPrice(e.target.value)}
               />
               <button
-                className="bg-[#0088a9] text-white p-1 rounded ml-[10px]"
+                className="bg-[#0088a9] text-white p-1 rounded ml-[6px]"
                 onClick={filterRoom}>Search</button>
             </Box>
           </Hidden>
@@ -128,7 +125,7 @@ export const Home = () => {
           <Box
             sx={{
               width: { xs: 400, sm: 786, md: 1024 },
-              height: { xs: 800,sm:'auto' ,md: 'auto' },
+              height: { xs: 800, sm: 'auto', md: 'auto' },
               display: 'flex',
               flexDirection: { xs: 'column', sm: 'column', md: 'row' },
               margin: "auto",
@@ -162,7 +159,8 @@ export const Home = () => {
                 width: { sm: '100%', md: 700 },
                 display: 'flex',
                 flexDirection: { xs: 'column', sm: 'column', md: 'column' },
-                marginRight: { xs: 0, sm: 0, md: 0 }
+                marginRight: { xs: 0, sm: 0, md: 0 },
+                marginTop: { xs: 0, sm: -20, md: 0 }
               }}
             >
               {searchResults.length ?

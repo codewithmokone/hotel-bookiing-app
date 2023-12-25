@@ -149,7 +149,7 @@ const ViewRoom = ({ data, setOpenModal }) => {
               sx={{
                 fontSize: { xs: 14, sm: 16, md: 16 },
                 marginLeft: { xs: 0, sm: 0, md: 5 },
-                fontWeight: { xs: 0, sm: 0, md: 600 }
+                fontWeight: { xs: 0, sm: 600, md: 600 }
               }}
               className='mt-2 ml-8 mb-[5px] font-extrabold text-lg'
             >{room.title}</Typography>
@@ -160,14 +160,18 @@ const ViewRoom = ({ data, setOpenModal }) => {
           <Box
             sx={{
               width: { xs: 380, sm: 700 },
-              fontSize: { xs: 12, sm: 14, }
+              fontSize: { xs: 12, sm: 14, },
+              display:'flex',
+              justifyContent:'center',
+              alignItems:'center'
             }}
           >
             <Typography
               sx={{
-                width: { xs: 360, sm: 700 },
+                width: { xs: 360, sm: 600 },
                 fontSize: { xs: 10, sm: 12, md: 12 },
-                marginTop: { xs: 0, sm: 0, md: 2 }
+                marginTop: { xs: 0, sm: 2, md: 2 },
+                textAlign:'center'
               }}
             >
               <FontAwesomeIcon icon={faLocationDot} className=" text-[#0088a9] text-lg font-bold" /> {room.address}
@@ -209,49 +213,51 @@ const ViewRoom = ({ data, setOpenModal }) => {
               width: { xs: 360, sm: 680, md: 900 },
               display: 'flex',
               flexDirection: { xs: 'row', sm: 'row', md: 'row' },
-              alignItems: 'center'
+              alignItems: 'center',
+              marginTop: { xs: 0, sm: -10, md: 0 },
             }}
             className='justify-center items-center m-auto'
           >
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Typography sx={{ fontSize: { xs: 11, sm: 11, md: 13 } }}><HomeIcon sx={{ fontSize: { xs: 'medium', sm: 'medium', md: 'large' } }} className=" text-[#0088a9]" /> : {room.roomType}</Typography>
+              <Typography sx={{ fontSize: { xs: 11, sm: 12, md: 13 } }}><HomeIcon sx={{ fontSize: { xs: 'medium', sm: 'medium', md: 'large' } }} className=" text-[#0088a9]" /> : {room.roomType}</Typography>
             </Box>
             <Box sx={{ display: 'flex' }}>
-              <Typography sx={{ fontSize: { xs: 11, sm: 11, md: 13 } }} className='ml-8 mt-6'><BedroomParentIcon sx={{ fontSize: { xs: 'medium', md: 'large' } }} className=" text-[#0088a9]" /> : {room.bedType}</Typography>
+              <Typography sx={{ fontSize: { xs: 11, sm: 12, md: 13 } }} className='ml-8 mt-6'><BedroomParentIcon sx={{ fontSize: { xs: 'medium', md: 'large' } }} className=" text-[#0088a9]" /> : {room.bedType}</Typography>
             </Box>
             <Box sx={{ display: 'flex' }}>
-              <Typography sx={{ fontSize: { xs: 11, sm: 11, md: 13 } }} className='ml-8 mt-6'><PeopleIcon sx={{ fontSize: { xs: 'medium', md: 'large' } }} className=" text-[#0088a9]" /> : {room.numberOfPeople}</Typography>
+              <Typography sx={{ fontSize: { xs: 11, sm: 12, md: 13 } }} className='ml-8 mt-6'><PeopleIcon sx={{ fontSize: { xs: 'medium', md: 'large' } }} className=" text-[#0088a9]" /> : {room.numberOfPeople}</Typography>
             </Box>
             <Box sx={{ display: 'flex' }}>
-              <Typography sx={{ fontSize: { xs: 11, sm: 11, md: 13 } }} className='ml-8 mt-6'><PhoneIcon sx={{ fontSize: { xs: 'medium', md: 'large' } }} className=" text-[#0088a9]" /> : {room.contact}</Typography>
+              <Typography sx={{ fontSize: { xs: 11, sm: 12, md: 13 } }} className='ml-8 mt-6'><PhoneIcon sx={{ fontSize: { xs: 'medium', md: 'large' } }} className=" text-[#0088a9]" /> : {room.contact}</Typography>
             </Box>
             <Box sx={{ display: 'flex' }}>
-              <Typography sx={{ fontSize: { xs: 11, sm: 11, md: 13 }, fontWeight: 600 }} className='ml-8 mt-6 font-bold '>R{room.price}</Typography>
+              <Typography sx={{ fontSize: { xs: 11, sm: 12, md: 13 }, fontWeight: 600 }} className='ml-8 mt-6 font-bold '>R{room.price}</Typography>
             </Box>
           </Box>
           <Divider className='mt-2' />
         </Box>
+        {/* Description Section */}
         <Box
           sx={{
             fontSize: { xs: 11, sm: 14, md: 16 },
             width: { xs: 350, sm: 680 },
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
           className=' flex justify-center items-center'>
           <Typography
-            sx={{ fontSize: { xs: 11, sm: 11, md: 13 } }}
+            sx={{ fontSize: { xs: 11, sm: 12, md: 13 } }}
           >{room.description}</Typography>
         </Box>
         <Box
           sx={{
-            width: { xs: 380, sm: 600, md: 600 },
+            width: { xs: 380, sm: 680, md: 600 },
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row', md: 'row' },
             justifyContent: { xs: 'center', sm: 'space-between', md: 'center' },
             alignItems: { xs: 'center', sm: 'center', md: 'center' },
-            marginTop: { xs: -6, sm: 0, md: -6 }
+            marginTop: { xs: -6, sm: 0, md: -6 },
           }} className=' m-auto '
         >
           {/* Input Fields */}
@@ -284,17 +290,18 @@ const ViewRoom = ({ data, setOpenModal }) => {
           {/* Buttons */}
           <Box
             sx={{
-              width: { xs: 380, sm: 500, md: 600 },
+              width: { xs: 380, sm: 300, md: 600 },
               display: 'flex',
               flexDirection: { xs: 'row', sm: 'row', md: 'row' },
-              justifyContent:{xs: 'space-evenly',sm:'space-evenly',md:'space-between'},
+              justifyContent: { xs: 'space-evenly', sm: 'space-between', md: 'space-between' },
               alignItems: 'center',
               marginTop: { xs: 2, sm: 0, md: 0 },
-              marginLeft: { xs: 0, sm: 12, md: 8 }
+              marginLeft: { xs: 0, sm: 0, md: 8 },
+              marginRight: { xs: 0, sm: 2, md: 0 }
             }}
           >
             <button className='bg-[#0088a9] text-white w-[140px] h-[30px] rounded' onClick={checkAvailability}>Check Availability</button>
-            <button className='bg-[#0088a9] text-white w-[140px] h-[30px] rounded ' onClick={handleReservation}>Reserve Room</button>
+            <button className='bg-[#0088a9] text-white w-[140px] h-[30px] rounded m-2 ' onClick={handleReservation}>Reserve Room</button>
           </Box>
         </Box>
       </Box>

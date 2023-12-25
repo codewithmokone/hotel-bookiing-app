@@ -55,9 +55,10 @@ const Gallery = () => {
             <Box
                 sx={{
                     width: {xs:400, sm: 786, md: 1024 },
-                    height: {xs:"auto", sm: "100%" }
+                    height: {xs:"auto", sm: "100%" },
+                    backgroundColor: 'whitesmoke'
                 }}
-                className=" flex flex-col m-auto bg-white  items-center justify-center h-screen"
+                className=" flex flex-col m-auto  items-center justify-center h-screen"
             >
                 <Box
                     sx={{

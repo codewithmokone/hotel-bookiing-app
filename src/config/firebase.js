@@ -13,7 +13,7 @@ import { getStorage } from 'firebase/storage';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-   apiKey: "AIzaSyC4cuh01cJpmXnAv49VIm8kCI7CaE99C48",
+  apiKey: process.env.APIKEY,
   authDomain: "hotel-booking-app-9ad18.firebaseapp.com",
   projectId: "hotel-booking-app-9ad18",
   storageBucket: "hotel-booking-app-9ad18.appspot.com",

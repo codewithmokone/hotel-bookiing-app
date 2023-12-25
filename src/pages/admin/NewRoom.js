@@ -6,7 +6,7 @@ import { storage } from '../../config/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
-import { Alert, Box } from '@mui/material';
+import { Alert, Box, Paper, Typography } from '@mui/material';
 import AdminNavbar from '../../components/navbar/AdminNavbar';
 import InputComponent from '../../components/InputComponent';
 
@@ -97,8 +97,9 @@ export const AdminHome = () => {
                     marginLeft: 30,
                 }}
                 className="admin-main-section h-full flex flex-col items-center">
-                <h3 className="text-[#0088a9] text-2xl m-[20px]">Add New Room</h3>
-                <form className="flex border justify-center items-center w-[600px]" onSubmit={handleAdd} >
+                <Typography sx={{ marginTop: 4 }} variant='h5' component="h5" className="text-[#0088a9] text-2xl m-[20px]">Add New Room</Typography>
+                {/* <Paper> */}
+                <form className="flex justify-center items-center w-[600px]" onSubmit={handleAdd} >
                     <Box className="flex flex-col justify-center items-center ">
                         <Box className='flex flex-col justify-center items-center'>
                             <img className="image" src={imageUrl} alt="" required />
@@ -110,7 +111,7 @@ export const AdminHome = () => {
                                 onChange={(e) => { setFile(e.target.files[0]) }}
                             />
                         </Box>
-                        <label className="text-base font-medium mt-4">Hotel</label>
+                        <label className="label text-base font-medium mt-4">Hotel</label>
                         <InputComponent
                             onChange={(e) => setHotel(e.target.value)}
                             required
@@ -188,8 +189,14 @@ export const AdminHome = () => {
                             width="560px"
                             required
                         />
-                        <label className="ml-[-140px] font-semibold m-[10px] w-[100%]">Facilities</label>
-                        <Box className="border flex flex-col justify-start items-start w-[300px] mt-2 ">
+                        <Box
+                            sx={{ width: 550 }}
+                            className=" flex flex-col justify-start items-start mt-2 "
+                        >
+                            <Box sx={{ width: 250 }}>
+                            <label className="ml-[-140px] m-[20px] w-[100%]">Facilities</label>
+                            </Box>
+                            
                             <label className='ml-[-16px] flex flex-row w-[100px]'><input
                                 type="checkbox"
                                 checked={wifi}
@@ -207,13 +214,13 @@ export const AdminHome = () => {
                             />Air Conditioning</label>
                         </Box>
                         <label className="label text-base font-medium mt-3">Room type:</label>
-                        <select onChange={(e) => setRoomType(e.target.value)} required className="w-[560px] h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
+                        <select onChange={(e) => setRoomType(e.target.value)} required className="w-[560px] h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9] bg-white">
                             <option>Family Deluxe</option>
                             <option>Singles Deluxe</option>
                             <option>Couples Deluxe</option>
                         </select>
                         <label className="label text-base font-medium mt-3">Bed type:</label>
-                        <select onChange={(e) => setBedType(e.target.value)} required className="w-[560px] h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]">
+                        <select onChange={(e) => setBedType(e.target.value)} required className="w-[560px] h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9] bg-white">
                             <option>2 Single Beds</option>
                             <option>Double Bed</option>
                             <option>King Bed</option>
@@ -222,6 +229,7 @@ export const AdminHome = () => {
                         <button className=" text-white font-bold p-1 rounded-md bg-[#0088a9] w-[300px] mx-0 my-10" type='submit'>Send</button>
                     </Box>
                 </form>
+                {/* </Paper> */}
             </Box>
         </Box>
     )

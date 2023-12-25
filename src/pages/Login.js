@@ -5,7 +5,7 @@ import { db } from '../config/firebase';
 import { collection, getDocs, where, query } from 'firebase/firestore';
 import { useUserAuth } from '../components/context/UserAuthContext';
 import { auth } from '../config/firebase';
-import { Alert, Box } from '@mui/material';
+import { Alert, Box, Typography } from '@mui/material';
 
 const Login = () => {
 
@@ -26,7 +26,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault()
 
-        if(!email || !password){
+        if (!email || !password) {
             setErrorMessage("email and passord required.")
         }
 
@@ -61,64 +61,52 @@ const Login = () => {
     }
 
     return (
-        <Box className="w-screen h-screen bg-[#24252A] fixed flex flex-col items-center justify-center">
+     
+        <Box className="modalBackground w-screen h-screen bg-[#24252A] fixed flex justify-center items-center">
             <Box
                 sx={{
                     width: { xs: 340, sm: 400, md: 500 },
-                    height: { xs: 400,md:500 }
+                    height: { xs: 440, md: 500 }
                 }}
-                className="flex flex-col items-center justify-center rounded bg-white">
+                className=" flex flex-col items-center justify-center rounded bg-white">
                 <Box
                     sx={{
-                        wdith:{xs:240},
-                        marginTop: { xs: 2 },
-                        // marginRight: { xs: 20 }
+                        marginTop: {xs:-0.2, sm: 1, md: 2 },
+                        width: {xs:320, sm: 380, md: 480 },
                     }}
-                    className="flex justify-end items-end mt-[-10px] mb-2 mr-2 w-[99%]">
+                    className='flex justify-end items-end mb-10 w-[100%]'>
                     <button className="rounded-xl font-bold text-2xl text-[#0088a9] w-[20]" onClick={closeLoginPage}> X </button>
                 </Box>
-                <Box
-                sx={{ marginTop:{xs:-6}}}
-                >
-                    <h1 className=" text-center font-black text-2xl mb-4 text-[#0088a9] mt-[60px]" >Login</h1>
+                <Box sx={{ marginTop: { xs: -1, sm: -4, md: 0 } }}>
+                    <h2 className="font-black text-2xl text-[#0088a9] ">Login</h2>
                 </Box>
-                <Box>
+                <Box sx={{ marginTop: { xs: -8, sm: -6, md: -6 } }}>
                     {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
-                <form className=" flex flex-col items-center justify-center w-80" onSubmit={handleLogin}>
-                    <label
-                        htmlFor="email"
-                        className="w-80 font-medium m-1"
-                    >Email:</label>
-                    <input
-                        className="mb-2 w-80 h-10 border rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
-                        type="email"
-                        placeholder=" Enter email"
-                        onChange={(e) => setEmail(e.target.value)}
+                    <form className="adminLogin-form flex flex-col items-center justify-center w-80" onSubmit={handleLogin}>
+                        <label className="block w-80 m-1 font-medium" for="email">Email:</label>
+                        <input
+                            className="mb-3 h-10 w-80 rounded border focus:outline-none focus:ring focus:ring-[#0088a9]"
+                            type="email"
+                            placeholder=" Enter email"
+                            onChange={(e) => setEmail(e.target.value)}
                         // required
-                    />
-                    <label
-                        className="w-80 font-medium m-1 "
-                        htmlFor="password"
-                    >Password:</label>
-                    <input
-                        className="mb-5 h-10 w-80 border rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
-                        type="password"
-                        placeholder=" Enter password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <label className="w-80 m-1 font-medium" for="password">Password:</label>
+                        <input
+                            className="mb-5 border h-10 w-80 rounded focus:outline-none focus:ring focus:ring-[#0088a9]"
+                            type="password"
+                            placeholder=" Enter password"
+                            onChange={(e) => setPassword(e.target.value)}
                         // required
-                    />
-                    <Box
-                        sx={{
-                            marginTop: { xs: -4 }
-                        }}
-                    >
-                        <button className="text-white rounded-md h-8 mt-2 font-extrabold w-56 bg-[#0088a9] hover:bg-[]">Login</button>
-                    </Box>
-                </form>
+                        />
+                        <Box sx={{ marginTop: { xs: -2, sm: -2, md: 0 } }}>
+                            <button className="text-white rounded-md h-8 bg-[#0088a9] font-bold w-56 ">Login</button>
+                        </Box>
+                    </form>
                 </Box>
-                <p className="mt-2 mb-10 ">Don't have an account? <Link to="/register"><span className="text-[#0088a9] no-underline font-semibold">Register</span></Link></p>
-            </Box >
-        </Box >
+                <Typography sx={{ marginTop: { xs: -6, sm: -6, md: 0 }, marginBottom: { xs: 6, sm: 6, md: 8 } }} className=" mb-[60px]">Already have an account? <Link to="/Register" ><span className="text-[#0088a9] font-semibold mt-[-10px]">Sign Up</span></Link></Typography>
+            </Box>
+        </Box>
     )
 }
 
