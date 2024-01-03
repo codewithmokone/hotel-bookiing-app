@@ -52,6 +52,17 @@ const Gallery = () => {
         >
             <Navbar />
             <HeroSec />
+            <Box sx={{
+                width: { xs: 400, sm: 786, md: 1024 },
+                height: 60,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#24252A',
+            }}
+            >
+            </Box>
             <Box
                 sx={{
                     width: {xs:400, sm: 786, md: 1024 },

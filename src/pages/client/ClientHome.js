@@ -40,7 +40,7 @@ export const Home = () => {
       sx={{
         width: { xs: 400, sm: 768, md: 1024 }
       }}
-      className=' home-container bg-[#F2F5F5] block h-auto m-0'>
+      className=' home-container bg-[#F2F5F5] block h-auto m-auto'>
       <header className="flex flex-col w-[1024px] m-auto">
         <Navbar />
         <Header />

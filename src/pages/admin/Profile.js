@@ -23,7 +23,7 @@ function Profile() {
 
   const navigate = useNavigate()
 
-  // handle for adding a room
+  // Function for updarting the admin profile
   const handlesProfileUpdate = (async (e) => {
     e.preventDefault()
 

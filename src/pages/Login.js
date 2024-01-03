@@ -54,9 +54,16 @@ const Login = () => {
                 setErrorMessage("Please enter the correct email/password")
             }
 
-        } catch (err) {
+        } catch (error) {
             // setError()
-            console.log(err.message);
+            console.log(error.message);
+            const errorCode = error.code
+            // Handle the error code
+            if(errorCode === 'auth/wrong-password') {
+                setErrorMessage("Please enter the correct email/password")
+            }else if(errorCode === 'auth/user-not-found'){
+                setErrorMessage("User doesn't exist.")
+            }
         }
     }
 
@@ -80,8 +87,8 @@ const Login = () => {
                 <Box sx={{ marginTop: { xs: -1, sm: -4, md: 0 } }}>
                     <h2 className="font-black text-2xl text-[#0088a9] ">Login</h2>
                 </Box>
-                <Box sx={{ marginTop: { xs: -8, sm: -6, md: -6 } }}>
-                    {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+                <Box sx={{ marginTop: { xs: -8, sm: -6, md: -4 } }}>
+                    {errorMessage && <Box sx={{ marginTop: { xs: 8, sm: 6, md: 4 } }}><Alert severity="error">{errorMessage}</Alert></Box> }
                     <form className="adminLogin-form flex flex-col items-center justify-center w-80" onSubmit={handleLogin}>
                         <label className="block w-80 m-1 font-medium" for="email">Email:</label>
                         <input
