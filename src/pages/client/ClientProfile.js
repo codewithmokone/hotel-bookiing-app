@@ -9,7 +9,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import Navbar from '../../components/navbar/Navbar';
 import SearchCard from '../../components/cards/SearchCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Alert, Avatar, Box, Typography } from '@mui/material';
+import { Alert, Avatar, Box, Button, Typography } from '@mui/material';
 import { useUserAuth } from '../../components/context/UserAuthContext';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { getAuth, updateProfile } from 'firebase/auth';
@@ -93,12 +93,9 @@ function ClientProfile() {
                     }}
                     className="border"
                 >
-
-
                     <Box
                         sx={{
                             backgroundColor: 'smokewhite',
-                            marginLeft: 30,
                         }}
                         className="admin-main-section h-full flex flex-col items-center">
                         <h3 className="text-[#0088a9] text-2xl m-[20px]">Update Profile</h3>
@@ -139,7 +136,8 @@ function ClientProfile() {
                                     width="560px"
                                     required
                                 />
-                                <button className=" text-white font-bold p-1 rounded-md bg-[#0088a9] w-[300px] mx-0 my-10" type='submit'>Update</button>
+                                <Button sx={{ backgroundColor: '#0088a9', marginTop: 5, marginBottom: 5 }} variant="contained" type='submit'>Update</Button>
+                                {/* <button className=" text-white font-bold p-1 rounded-md bg-[#0088a9] w-[300px] mx-0 my-10" type='submit'>Update</button> */}
                             </Box>
                         </form>
                     </Box>

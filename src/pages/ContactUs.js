@@ -87,12 +87,12 @@ function ContactUs() {
                     flexDirection: { xs: 'column', sm: 'column', md: 'column' },
                     justifyContent: 'center',
                     alignItems: 'center',
-                    backgroundColor: 'whitesmoke'
+                    backgroundColor: 'smokewhite'
                 }}
-                className=' h-full'
+                className='h-full'
             >
                 <Box className='mt-6'>
-                    <h3 className='text-center font-semibold text-["green"]'>Let's get in touch.</h3>
+                    <h3 className='text-center font-semibold text-[#0088a9]'>Let's get in touch.</h3>
                 </Box>
                 <Box
                     sx={{

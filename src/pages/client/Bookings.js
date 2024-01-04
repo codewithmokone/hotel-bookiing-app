@@ -10,7 +10,7 @@ import { CartContext } from '../../components/context/CartContext';
 // import { UserAuthContext } from '../../components/context/UserAuthContext';
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, Paper, TextField } from '@mui/material';
+import { Box, Button, Paper, TextField } from '@mui/material';
 import { useUserAuth } from '../../components/context/UserAuthContext';
 
 const Bookings = () => {
@@ -100,7 +100,8 @@ const Bookings = () => {
   return (
     <Box
       sx={{
-        width: { sm: 786, md: 1024 }
+        width: { sm: 786, md: 1024 },
+        backgroundColor:'snow'
       }}
       className="flex flex-col h-[100%] bg-[#F3F5F5] m-auto">
       <header className='flex flex-col m-auto'>
@@ -112,7 +113,7 @@ const Bookings = () => {
 
         }
         <div className='mt-10 flex justify-center items-center'>
-          <h5>Please fill in your information</h5>
+          <h5 className='text-[#0088a9]'>Please fill in your information</h5>
         </div>
         {/* <form action="http://localhost:4000/payment" method="post"> */}
         <form>
@@ -205,11 +206,16 @@ const Bookings = () => {
               </div>
             </Paper>
           </Box>
-          <Box className="my-10 flex flex-row justify-center items-center ">
+          <Box 
+          sx={{display:'flex', flexDirection:'column'}}
+          className="my-10 flex justify-center items-center "
+          >
             <span className="font-medium m-2">Amount: R{totalPrice}.00</span><br />
-            <button
-              onClick={handleBookings}
-              className="border bg-sky-400 p-1">Confirm Bookings</button>
+            {/* <button
+             
+              className="border bg-sky-400 p-1">Confirm Bookings
+            </button> */}
+            <Button sx={{backgroundColor:'#0088a9'}} variant="contained" onClick={handleBookings}>Confirm Bookings</Button>
           </Box>
         </form>
 

@@ -47,6 +47,7 @@ export const Home = () => {
         justifyContent: 'center',
         alignItems: 'center',
         margin: "auto",
+        backgroundColor: 'snow'
       }}
       className='h-auto'
     >
@@ -54,8 +55,12 @@ export const Home = () => {
         <Navbar />
         <Header />
       </Box>
-      <Box sx={{ width: { xs: 400, sm: 786, md: 1024 }, backgroundColor: 'whitesmoke' }}
-        className=" flex flex-col justify-center items-center">
+      <Box
+        sx={{
+          width: { xs: 400, sm: 786, md: 1024 },
+          backgroundColor: 'whitesmoke'
+        }}
+        className=" flex flex-col justify-center items-center bg-gray-500">
         <Box sx={{
           width: { xs: 400, sm: 786, md: 1024 },
           height: 60,
@@ -63,8 +68,8 @@ export const Home = () => {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
+          backgroundColor: '#24252A'
         }}
-          className=" bg-gray-500 "
         >
           <Hidden smDown>
             <Box sx={{ width: { sm: 600 }, height: 40, display: 'flex', flexDirection: { sm: "row", md: 'row' } }} className="search-section rounded flex justify-between items-center border bg-white">

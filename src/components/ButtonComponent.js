@@ -10,7 +10,7 @@ function ButtonComponent({label, theme}) {
                 height: 55, 
                 marginTop: 5, 
                 borderRadius: 10, 
-                backgroundColor: 'green', 
+                backgroundColor: '#38BDF8', 
                 color: 'white' 
               }}
               

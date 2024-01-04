@@ -63,43 +63,49 @@ const Navbar = () => {
                         backgroundColor: "#24252A",
                         height: 80,
                         display: 'flex',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        justifyContent:'space-between'
                     }}
                     >
-                        <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
-                        <nav className="navItems">
-                            <Link to="/" className="galleryLink ">Home</Link>
-                            <Link to="/gallery" className="galleryLink ">Gallery</Link>
-                            <Link to="/rooms" className="roomsLink ">Rooms</Link>
-                            <Link to="/bookings" className="roomsLink ">Bookings</Link>
-                            <Link to="/contactus" className="contactus w-[100px] ">Contact Us</Link>
-                            <div>
-                                <Button
-                                    id="basic-button"
-                                    aria-controls={open ? 'basic-menu' : undefined}
-                                    aria-haspopup="true"
-                                    aria-expanded={open ? 'true' : undefined}
-                                    onClick={handleClick}
-                                    sx={{ marginRight: -3, marginLeft: -3, width: 20, borderWidth: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                                    size='small'
-                                >
-                                    <AccountCircleIcon sx={{ width: 35, height: 35, color: "#0088a9" }} />
-                                </Button>
-                                <Menu
-                                    id="basic-menu"
-                                    anchorEl={anchorEl}
-                                    open={open}
-                                    onClose={handleClose}
-                                    MenuListProps={{
-                                        'aria-labelledby': 'basic-button',
-                                    }}
-                                >
-                                    <MenuItem onClick={()=> navigate("/clientprofile")}>Profile</MenuItem>
-                                    <MenuItem onClick={signOut}>Logout</MenuItem>
-                                </Menu>
-                            </div>
+                        <Box sx={{width:'46%'}}>
+                            <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
+                        </Box>
+                        <Box sx={{width:'50%'}}>
+                            <nav className="navItems">
+                                <Link to="/" className="galleryLink ">Home</Link>
+                                <Link to="/gallery" className="galleryLink ">Gallery</Link>
+                                <Link to="/rooms" className="roomsLink ">Rooms</Link>
+                                <Link to="/bookings" className="roomsLink ">Bookings</Link>
+                                <Link to="/contactus" className="contactus w-[100px] ">Contact Us</Link>
+                                <div>
+                                    <Button
+                                        id="basic-button"
+                                        aria-controls={open ? 'basic-menu' : undefined}
+                                        aria-haspopup="true"
+                                        aria-expanded={open ? 'true' : undefined}
+                                        onClick={handleClick}
+                                        sx={{ marginRight: -3, marginLeft: -3, width: 20, borderWidth: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                                        size='small'
+                                    >
+                                        <AccountCircleIcon sx={{ width: 35, height: 35, color: "#0088a9" }} />
+                                    </Button>
+                                    <Menu
+                                        id="basic-menu"
+                                        anchorEl={anchorEl}
+                                        open={open}
+                                        onClose={handleClose}
+                                        MenuListProps={{
+                                            'aria-labelledby': 'basic-button',
+                                        }}
+                                    >
+                                        <MenuItem onClick={() => navigate("/clientprofile")}>Profile</MenuItem>
+                                        <MenuItem onClick={signOut}>Logout</MenuItem>
+                                    </Menu>
+                                </div>
 
-                        </nav>
+                            </nav>
+                        </Box>
+
                     </Box>
                 </Hidden>
                 <Hidden smUp implementation="css">
