@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../../config/firebase'
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
-import { Box } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import AdminNavbar from '../../components/navbar/AdminNavbar';
+import CustomTypography from '../../components/CustomTypography';
+import CustomButton from '../../components/CustomButton';
 
 const UpdateRoom = () => {
 
@@ -101,7 +103,8 @@ const UpdateRoom = () => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                backgroundColor: 'whitesmoke'
+                backgroundColor: 'whitesmoke',
+                margin: 'auto'
             }}
         >
             <Box>
@@ -109,8 +112,10 @@ const UpdateRoom = () => {
                     <AdminNavbar />
                 </header>
             </Box>
-            <Box className="flex flex-col items-center justify-center">
-                <h3 className="text-2xl text-white ">Update Room</h3>
+            <Box
+                className="flex flex-col items-center justify-center m-auto"
+            >
+                <CustomTypography variant='h6' component="h6" text="Update Room" />
                 <form className="flex flex-col items-center justify-center bg-slate-300" >
                     <Box className="flex flex-col justify-center items-center ">
                         <Box className='w-[600px] flex flex-col justify-center items-center'>
@@ -214,7 +219,7 @@ const UpdateRoom = () => {
                         </select>
                     </Box>
                     <Box className="flex flex-row items-start w-[450px] mt-10 ">
-                        <button className=" font-bold rounded-md bg-[#0088a9] w-[300px] mr-20 text-white" onClick={updateRoom}>Update</button>
+                        <CustomButton variant="contained" type='submit'>Update</CustomButton>
                     </Box>
                 </form>
             </Box>

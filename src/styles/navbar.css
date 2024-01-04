@@ -25,7 +25,7 @@
     margin-right: 30px;
 }
 
-.galleryLink, .roomsLink, .registerBtn,.contactusLink, .loginBtn, .home, .newRoom, .bookings, .logout-link, .contactus {
+.links, .roomsLink, .registerBtn,.contactusLink, .loginBtn, .home, .newRoom, .bookings, .logout-link, .contactus {
     display: flex;
     flex-direction: row;
     padding: 0px 2px;
@@ -60,7 +60,11 @@
     color: rgba(0,136,169,0.8);
 }
 
-.galleryLink:hover, .roomsLink:hover, .registerBtn:hover, .home:hover, .newRoom:hover, .bookings:hover, .logout-link:hover {
+.links:hover, .roomsLink:hover, .registerBtn:hover, .home:hover, .newRoom:hover, .bookings:hover, .logout-link:hover {
+    color: rgba(0,136,169,0.8);
+}
+
+.links:active, .roomsLink:hover, .registerBtn:hover, .home:hover, .newRoom:hover, .bookings:hover, .logout-link:hover {
     color: rgba(0,136,169,0.8);
 }
 

@@ -4,6 +4,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../config/firebase'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CustomTypography from '../../components/CustomTypography'
 
 function BookedRooms() {
 
@@ -25,24 +26,24 @@ function BookedRooms() {
   console.log(bookingList)
 
   return (
-    <Box 
-    sx={{
-      backgroundColor: 'whitesmoke'
-    }}
-    className='min-h-screen'>
+    <Box
+      sx={{
+        backgroundColor: 'whitesmoke'
+      }}
+      className='min-h-screen'>
       <header>
         <AdminNavbar />
       </header>
       <main className='h-[50vh] ml-60'>
         <Box>
           <Box className='flex justify-center items-center'>
-            <h5 className='text-[#0088a9] font-bold mt-10 '>Booked Rooms</h5>
+            <CustomTypography variant='h6' component="h6" text="Booked Rooms" />
           </Box>
           <Box className=' flex flex-col justify-center items-center m-auto'>
             {
               bookingList ? (bookingList.map((item, index) => (
                 <>
-                  <Accordion sx={{ width: 800, marginTop:5 }}>
+                  <Accordion sx={{ width: 800, marginTop: 5 }}>
                     <AccordionSummary
                       key={index}
                       expandIcon={<ExpandMoreIcon />}

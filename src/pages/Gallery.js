@@ -43,31 +43,33 @@ const Gallery = () => {
     return (
         <Box
             sx={{
-                width: {xs:400, sm: 786, md: 1024 },
+                width: { xs: 400, sm: 786, md: 1024 },
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems:'center',
-                margin: 'auto'
+                alignItems: 'center',
+                margin: 'auto',
+                backgroundColor: 'blue'
             }}
         >
             <Navbar />
             <HeroSec />
-            <Box sx={{
-                width: { xs: 400, sm: 786, md: 1024 },
-                height: 60,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: '#24252A',
-            }}
+            <Box
+                sx={{
+                    width: { xs: 400, sm: 786, md: 1024 },
+                    height: 60,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: '#24252A',
+                }}
             >
             </Box>
             <Box
                 sx={{
-                    width: {xs:400, sm: 786, md: 1024 },
-                    height: {xs:"auto", sm: "100%" },
-                    backgroundColor: 'whitesmoke'
+                    width: { xs: 400, sm: 786, md: 1024 },
+                    height: { xs: "auto", sm: "100%" },
+                    backgroundColor: 'white'
                 }}
                 className=" flex flex-col m-auto  items-center justify-center h-screen"
             >
@@ -76,13 +78,13 @@ const Gallery = () => {
                         marginTop: 4,
                     }}
                 >
-                    <h2 className="font-bold text-[#0088a9]">Gallery</h2>
+                    <h3 className="font-bold text-[#0088a9]">Gallery</h3>
                 </Box>
                 <Box
                     sx={{
                         width: { xs: 400, sm: 700, md: 1024 },
                         display: 'flex',
-                        flexWrap:'wrap',
+                        flexWrap: 'wrap',
                         justifyContent: 'center',
                         alignItems: 'center',
                         // marginBottom: 10,
@@ -95,10 +97,10 @@ const Gallery = () => {
                                 sx={{
                                     width: { xs: 180, sm: 310, md: 280 },
                                     height: { xs: 150, sm: 250, md: 250 },
-                                    display:'flex',
-                                    justifyContent:'center',
-                                    alignItems:'center',
-                                    marginTop:{xs:10, sm: 10, md:10}
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    marginTop: { xs: 10, sm: 10, md: 10 }
                                 }}
                                 elevation={3}
                                 key={index}

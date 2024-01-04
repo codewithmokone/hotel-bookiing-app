@@ -4,11 +4,13 @@ import { storage } from '../../config/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
-import { Alert, Avatar, Box } from '@mui/material';
+import { Alert, Avatar, Box, Button } from '@mui/material';
 import AdminNavbar from '../../components/navbar/AdminNavbar';
 import InputComponent from '../../components/InputComponent';
 import { getAuth, updateProfile } from "firebase/auth";
 import { useUserAuth } from '../../components/context/UserAuthContext';
+import CustomTypography from '../../components/CustomTypography';
+import CustomButton from '../../components/CustomButton';
 
 function Profile() {
 
@@ -77,8 +79,9 @@ function Profile() {
           backgroundColor: 'smokewhite',
           marginLeft: 30,
         }}
-        className="admin-main-section h-full flex flex-col items-center">
-        <h3 className="text-[#0088a9] text-2xl m-[20px]">Update Profile</h3>
+        className="admin-main-section h-full flex flex-col items-center"
+      >
+        <CustomTypography variant='h6' component="h6" text="Update Profile" />
         <form className="flex justify-center items-center w-[600px]" onSubmit={handlesProfileUpdate} >
           <Box className="flex flex-col justify-center items-center ">
             <Box className='flex flex-col justify-center items-center'>
@@ -117,7 +120,7 @@ function Profile() {
               width="560px"
               required
             />
-            <button className=" text-white font-bold p-1 rounded-md bg-[#0088a9] w-[300px] mx-0 my-10" type='submit'>Update</button>
+            <CustomButton variant="contained" type='submit'>Update</CustomButton>
           </Box>
         </form>
       </Box>

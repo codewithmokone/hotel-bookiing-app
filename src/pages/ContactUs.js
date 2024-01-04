@@ -4,7 +4,6 @@ import Footer from '../components/Footer'
 import { Alert, Box } from '@mui/material'
 import Navbar from '../components/navbar/Navbar'
 
-
 function ContactUs() {
 
     const [firstName, setFirstName] = useState('')

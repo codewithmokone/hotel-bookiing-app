@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import Header from '../../components/HeroSec';
 import Footer from '../../components/Footer';
-import Cards from '../../components/cards/Cards';
-import Service from '../../components/Service';
 import { db, storage } from '../../config/firebase';
-import FeaturedRooms from '../../components/FeaturedRooms';
-import { collection, getDocs, query, where } from 'firebase/firestore';
 import Navbar from '../../components/navbar/Navbar';
-import SearchCard from '../../components/cards/SearchCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Alert, Avatar, Box, Button, Typography } from '@mui/material';
+import { Alert, Avatar, Box, Button } from '@mui/material';
 import { useUserAuth } from '../../components/context/UserAuthContext';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { getAuth, updateProfile } from 'firebase/auth';
@@ -21,7 +16,7 @@ function ClientProfile() {
 
     const { user } = useUserAuth();
 
-    console.log("User profile: ", user);
+    // console.log("User profile: ", user);
 
     const [fullName, setFullName] = useState(user.displayName)
     const [address, setAddress] = useState('');
@@ -76,7 +71,7 @@ function ClientProfile() {
     })
 
     return (
-        <Box className=' home-container bg-[#F2F5F5] block h-auto m-0'>
+        <Box className=' home-container bg-[gray] block h-auto m-0'>
             <header className="flex flex-col w-[1024px] m-auto">
                 <Navbar />
                 <Header />
@@ -89,7 +84,7 @@ function ClientProfile() {
                         display: 'flex',
                         flexDirection: { xs: 'column', sm: 'column', md: 'row' },
                         justifyContent: 'center', alignItems: 'center', margin: 'auto',
-                        backgroundColor: 'white'
+                        backgroundColor: 'smokewhite'
                     }}
                     className="border"
                 >

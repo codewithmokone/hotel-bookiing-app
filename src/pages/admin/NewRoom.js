@@ -6,9 +6,11 @@ import { storage } from '../../config/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
-import { Alert, Box, Paper, Typography } from '@mui/material';
+import { Alert, Box, Button, Paper, Typography } from '@mui/material';
 import AdminNavbar from '../../components/navbar/AdminNavbar';
 import InputComponent from '../../components/InputComponent';
+import CustomTypography from '../../components/CustomTypography';
+import CustomButton from '../../components/CustomButton';
 
 
 export const AdminHome = () => {
@@ -97,7 +99,7 @@ export const AdminHome = () => {
                     marginLeft: 30,
                 }}
                 className="admin-main-section h-full flex flex-col items-center">
-                <Typography sx={{ marginTop: 4 }} variant='h5' component="h5" className="text-[#0088a9] text-2xl m-[20px]">Add New Room</Typography>
+                <CustomTypography variant='h6' component="h6" text="Add New Room" />
                 {/* <Paper> */}
                 <form className="flex justify-center items-center w-[600px]" onSubmit={handleAdd} >
                     <Box className="flex flex-col justify-center items-center ">
@@ -136,7 +138,7 @@ export const AdminHome = () => {
                             required
                             type="text"
                             width="560px"
-                            placeholder=' Intro Description'
+                            placeholder='Intro Description'
                             value={introDescr}
                         />
                         <label className="label text-base font-medium mt-3">Description</label>
@@ -153,14 +155,14 @@ export const AdminHome = () => {
                             type="text"
                             width="560px"
                             className='block border h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
-                            placeholder=" Enter address"
+                            placeholder="Enter address"
                             onChange={(e) => setAddress(e.target.value)}
                             required
                         />
                         <label className="mt-3 label text-base font-medium">Price</label>
                         <InputComponent
                             type="number"
-                            placeholder=" Enter price..."
+                            placeholder="Enter price..."
                             onChange={(e) => setPrice(e.target.value)}
                             width="560px"
                             required
@@ -168,7 +170,7 @@ export const AdminHome = () => {
                         <label className="label text-base font-medium mt-3">Max People</label>
                         <InputComponent
                             type="number"
-                            placeholder=" Enter number of people"
+                            placeholder="Enter number of people"
                             onChange={(e) => setNumberOfPeople(e.target.value)}
                             width="560px"
                             required
@@ -176,7 +178,7 @@ export const AdminHome = () => {
                         <label className="label text-base font-medium mt-3">Contact</label>
                         <InputComponent
                             type="number"
-                            placeholder=" Enter contact details..."
+                            placeholder="Enter contact details..."
                             onChange={(e) => setContact(e.target.value)}
                             width="560px"
                             required
@@ -184,7 +186,7 @@ export const AdminHome = () => {
                         <label className="label text-base font-medium mt-3">Number of rooms</label>
                         <InputComponent
                             type="number"
-                            placeholder=" Enter number of rooms..."
+                            placeholder="Enter number of rooms..."
                             onChange={(e) => setNumberOfRooms(e.target.value)}
                             width="560px"
                             required
@@ -226,7 +228,8 @@ export const AdminHome = () => {
                             <option>King Bed</option>
                             <option>Queen Bed</option>
                         </select>
-                        <button className=" text-white font-bold p-1 rounded-md bg-[#0088a9] w-[300px] mx-0 my-10" type='submit'>Send</button>
+                        <CustomButton variant="contained" type='submit'>Add Room</CustomButton>
+                        {/* <Button sx={{ backgroundColor: '#0088a9', marginTop: 5, marginBottom: 5 }} variant="contained" type='submit'>Add</Button> */}
                     </Box>
                 </form>
                 {/* </Paper> */}

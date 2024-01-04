@@ -64,19 +64,19 @@ const Navbar = () => {
                         height: 80,
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent:'space-between'
+                        justifyContent: 'space-between'
                     }}
                     >
-                        <Box sx={{width:'46%'}}>
+                        <Box sx={{ width: '46%' }}>
                             <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                         </Box>
-                        <Box sx={{width:'50%'}}>
+                        <Box sx={{ width: '50%' }}>
                             <nav className="navItems">
-                                <Link to="/" className="galleryLink ">Home</Link>
-                                <Link to="/gallery" className="galleryLink ">Gallery</Link>
+                                <Link to="/" className="links ">Home</Link>
+                                <Link to="/gallery" className="links ">Gallery</Link>
                                 <Link to="/rooms" className="roomsLink ">Rooms</Link>
                                 <Link to="/bookings" className="roomsLink ">Bookings</Link>
-                                <Link to="/contactus" className="contactus w-[100px] ">Contact Us</Link>
+                                <Link to="/contactus" className="contactus roomsLink w-[100px] ">Contact Us</Link>
                                 <div>
                                     <Button
                                         id="basic-button"
@@ -102,10 +102,8 @@ const Navbar = () => {
                                         <MenuItem onClick={signOut}>Logout</MenuItem>
                                     </Menu>
                                 </div>
-
                             </nav>
                         </Box>
-
                     </Box>
                 </Hidden>
                 <Hidden smUp implementation="css">
@@ -132,15 +130,20 @@ const Navbar = () => {
                         alignItems: 'center'
                     }}
                     >
-                        <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
-                        <nav className="navItems topnav" id="myTopnav" >
-                            <Link to="/" className="home">Home</Link>
-                            <Link to="/gallery" className="galleryLink">Gallery</Link>
-                            <Link to="/rooms" className="roomsLink">Rooms</Link>
-                            <Link to="/contactus" className="contactusLink">Contact Us</Link>
-                            <button className="registerBtn" onClick={() => { register(true) }}>Register</button>
-                            <button className="loginBtn " onClick={() => { login(true) }}>Login</button>
-                        </nav>
+                        <Box sx={{ width: '40%' }}>
+                            <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
+                        </Box>
+                        <Box sx={{width:'56%'}}>
+                            <nav className="navItems topnav" id="myTopnav" >
+                                <Link to="/" className="links">Home</Link>
+                                <Link to="/gallery" className="links">Gallery</Link>
+                                <Link to="/rooms" className="roomsLink">Rooms</Link>
+                                <Link to="/contactus" className="links">Contact Us</Link>
+                                <button className="registerBtn" onClick={() => { register(true) }}>Register</button>
+                                <button className="loginBtn " onClick={() => { login(true) }}>Login</button>
+                            </nav>
+                        </Box>
+
                     </Box>
                 </Hidden>
                 <Hidden smUp implementation="css">

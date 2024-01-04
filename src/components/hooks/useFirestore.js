@@ -6,7 +6,6 @@ const useFirestore = (collection) => {
 
     const [docs, setDocs] = useState([]);
 
-
     const allImages = async () => {
 
         try {

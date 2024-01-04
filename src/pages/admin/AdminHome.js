@@ -6,6 +6,7 @@ import { auth, db } from '../../config/firebase';
 import { getDocs, collection, deleteDoc, doc } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import AdminNavbar from '../../components/navbar/AdminNavbar';
+import CustomTypography from '../../components/CustomTypography';
 
 const AdminHome = () => {
 
@@ -58,7 +59,7 @@ const AdminHome = () => {
     return (
         < Box
             sx={{
-                width:{sm: 700,md:'100vw'},
+                width: { sm: 700, md: '100vw' },
                 margin: 'auto'
             }}
             className="bg-[#ececec] min-h-screen"
@@ -68,7 +69,7 @@ const AdminHome = () => {
             </header>
             <main className=" flex flex-col justify-center items-center ml-60 h-auto bg-[#ececec] w-100vw">
                 <Box className='flex justify-center items-center'>
-                    <h5 className='mt-6 font-bold text-[#0088a9]'>List of rooms</h5>
+                    <CustomTypography variant='h6' component="h6" text="List of rooms" />
                 </Box>
                 <Box className='flex flex-col m-auto mb-[60px]'>
                     {rooms ? (
