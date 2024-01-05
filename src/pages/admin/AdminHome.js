@@ -67,7 +67,7 @@ const AdminHome = () => {
             <header className=" block h-auto">
                 <AdminNavbar />
             </header>
-            <main className=" flex flex-col justify-center items-center ml-60 h-auto bg-[#ececec] w-100vw">
+            <main className=" flex flex-col justify-center items-center ml-56 h-auto bg-[#ececec] w-100vw">
                 <Box className='flex justify-center items-center'>
                     <CustomTypography variant='h6' component="h6" text="List of rooms" />
                 </Box>

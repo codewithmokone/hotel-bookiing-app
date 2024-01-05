@@ -196,7 +196,7 @@ export const AdminHome = () => {
                             className=" flex flex-col justify-start items-start mt-2 "
                         >
                             <Box sx={{ width: 250 }}>
-                            <label className="ml-[-140px] m-[20px] w-[100%]">Facilities</label>
+                            <label className="label text-base font-medium mt-3 ml-[-140px] m-[20px] w-[100%]">Facilities</label>
                             </Box>
                             
                             <label className='ml-[-16px] flex flex-row w-[100px]'><input
@@ -209,7 +209,7 @@ export const AdminHome = () => {
                                 checked={tv}
                                 onChange={() => setTv(!tv)}
                             />TV</label>
-                            <label className='border flex flex-row ml-[-8px] mt-2 w-[150px]'><input
+                            <label className=' flex flex-row ml-[-8px] mt-2 w-[150px]'><input
                                 type="checkbox"
                                 checked={airConditioning}
                                 onChange={() => setAirConditioning(!airConditioning)}

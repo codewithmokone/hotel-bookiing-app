@@ -6,6 +6,7 @@ import { Box, Button, Typography } from '@mui/material';
 import AdminNavbar from '../../components/navbar/AdminNavbar';
 import CustomTypography from '../../components/CustomTypography';
 import CustomButton from '../../components/CustomButton';
+import InputComponent from '../../components/InputComponent';
 
 const UpdateRoom = () => {
 
@@ -13,7 +14,6 @@ const UpdateRoom = () => {
 
     const [rooms, setRooms] = useState([]);
     const [formData, setFormData] = useState('')
-    const [imageUpload, setImageUpload] = useState();
     const [hotel, setHotel] = useState(rooms.hotel);
     const [title, setTitle] = useState('');
     const [introDescr, setIntroDescr] = useState('')
@@ -26,7 +26,6 @@ const UpdateRoom = () => {
     const [roomType, setRoomType] = useState('');
     const [bedType, setBedType] = useState('');
     const [roomImage, setRoomImage] = useState('')
-    const [imageUrl, setImageUrl] = useState('');
 
     const navigate = useNavigate()
 
@@ -113,15 +112,23 @@ const UpdateRoom = () => {
                 </header>
             </Box>
             <Box
-                className="flex flex-col items-center justify-center m-auto"
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginLeft: 60
+                }}
+            // className="m-auto"
             >
-                <CustomTypography variant='h6' component="h6" text="Update Room" />
-                <form className="flex flex-col items-center justify-center bg-slate-300" >
+                <CustomTypography variant='h6' component="h6" text="Update Room" color='#0088a9' />
+                <form className="flex flex-col items-center justify-center" onSubmit={updateRoom}>
                     <Box className="flex flex-col justify-center items-center ">
                         <Box className='w-[600px] flex flex-col justify-center items-center'>
                             <img className="image" src={rooms.roomImage} alt="" />
                             <input className="w-[300px]" type="file" onChange={(e) => setRoomImage(e.target.files)} />
                         </Box>
+                        {/* <CustomTypography variant='subtitle2' component="subtitle2" text="Update Room" /> */}
                         <label className="text-base font-medium mx-0 my-2 mr-[30px] w-[600px]">Hotel</label>
                         <input
                             type="text"
@@ -139,9 +146,9 @@ const UpdateRoom = () => {
                             value={rooms.title}
                             onChange={(e) => setTitle(e.target.value)}
                             required
-                            className='h-[40px]'
+                            width="560px"
                         />
-                        <label className="label text-base font-medium mx-0 my-2.5 w-[900px]">Short Description</label>
+                        <label className=" text-base font-medium mx-0 mr-[30px] my-2.5 w-[600px]">Short Description</label>
                         <input
                             type="text"
                             className='h-[40px] w-[900px]rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
@@ -218,7 +225,7 @@ const UpdateRoom = () => {
                             <option>Queen Bed</option>
                         </select>
                     </Box>
-                    <Box className="flex flex-row items-start w-[450px] mt-10 ">
+                    <Box className="flex flex-row items-center ">
                         <CustomButton variant="contained" type='submit'>Update</CustomButton>
                     </Box>
                 </form>
