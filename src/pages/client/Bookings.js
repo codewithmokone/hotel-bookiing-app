@@ -200,7 +200,7 @@ const Bookings = () => {
             </div>
           </div>
         </Paper>
-        <form action="http://localhost:4000/payment" method="post">
+        <form action="https://hotel-booking-nodejs.onrender.com/payment" method="post">
           <Box className=' flex flex-col justify-center items-center mt-4'>
             {/* <Paper elevation={4} sx={{ width: 900 }}>
               <div className=' flex flex-col w-[900px] h-[280px] justify-center items-center mt-6'>
