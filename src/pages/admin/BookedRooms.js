@@ -37,7 +37,7 @@ function BookedRooms() {
       <main className='h-[50vh] ml-60'>
         <Box>
           <Box className='flex justify-center items-center'>
-            <CustomTypography variant='h6' component="h6" text="Booked Rooms" />
+            <CustomTypography theme="heading" text="Booked Rooms" />
           </Box>
           <Box className=' flex flex-col justify-center items-center m-auto'>
             {

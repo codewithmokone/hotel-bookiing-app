@@ -99,7 +99,7 @@ export const AdminHome = () => {
                     marginLeft: 30,
                 }}
                 className="admin-main-section h-full flex flex-col items-center">
-                <CustomTypography variant='h6' component="h6" text="Add New Room" />
+                <CustomTypography theme="heading" text="Add New Room" />
                 {/* <Paper> */}
                 <form className="flex justify-center items-center w-[600px]" onSubmit={handleAdd} >
                     <Box className="flex flex-col justify-center items-center ">

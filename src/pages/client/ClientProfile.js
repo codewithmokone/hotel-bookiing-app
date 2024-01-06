@@ -11,6 +11,7 @@ import { getAuth, updateProfile } from 'firebase/auth';
 import { v4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import InputComponent from '../../components/InputComponent';
+import CustomTypography from '../../components/CustomTypography';
 
 function ClientProfile() {
 
@@ -93,7 +94,8 @@ function ClientProfile() {
                             backgroundColor: 'smokewhite',
                         }}
                         className="admin-main-section h-full flex flex-col items-center">
-                        <h3 className="text-[#0088a9] text-2xl m-[20px]">Update Profile</h3>
+                        <CustomTypography theme="heading" text="Update Profile" />
+                        {/* <h3 className="text-[#0088a9] text-2xl m-[20px]">Update Profile</h3> */}
                         <form className="flex justify-center items-center w-[600px]" onSubmit={handlesProfileUpdate} >
                             <Box className="flex flex-col justify-center items-center ">
                                 <Box className='flex flex-col justify-center items-center'>

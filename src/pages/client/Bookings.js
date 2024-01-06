@@ -44,52 +44,23 @@ const Bookings = () => {
       return;
     }
 
+    const amount = (totalPrice + 0.00).toFixed(2);
+
+    console.log("Price", amount);
+
     try {
+      const paymentResponse = await fetch('http://localhost:4000/payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount
+        }),
+      });
 
-      // Image upload logic
-      const imageRef = ref(storage, `BookingImages/${file}`)
-      await uploadBytes(imageRef, file)
-      const url = await getDownloadURL(imageRef);
-      console.log('Image Url: ', url);
-      
-      // Update number of rooms available
-      const docId = shoppingCartArray.id
-      const bookedRoomRef = doc(db, "hotelRooms", docId);
-
-      // Get the current room details
-      const roomSnapshot = await getDoc(bookedRoomRef);
-      const roomData = roomSnapshot.data();
-      console.log(roomData)
-      if (roomData.numberOfRooms > 0) {
-        // Update the number of available rooms
-        await updateDoc(bookedRoomRef, {
-          numberOfRooms: roomData.numberOfRooms - 1 // Decrement by 1
-        });
-      
-        // Add room to bookings firestore database.
-        const docRef = await addDoc(collection(db, "bookings"), {
-          userId: user.uid,
-          roomId: docId,
-          hotel: shoppingCartArray.hotel,
-          title: shoppingCartArray.title,
-          introDescr: shoppingCartArray.introDescr,
-          description: shoppingCartArray.description,
-          address: shoppingCartArray.address,
-          contact: shoppingCartArray.contact,
-          price: shoppingCartArray.price,
-          numberOfPeople: shoppingCartArray.numberOfPeople,
-          numberOfRooms: shoppingCartArray.numberOfRooms,
-          roomType: shoppingCartArray.roomType,
-          bedType: shoppingCartArray.bedType,
-          checkInDate: checkInDate,
-          checkOutDate: checkOutDate,
-          roomImage: url
-        });
-
-        alert('Booking Successful');
-        navigate('/clienthome');
-      } else {
-        alert('No rooms available for booking.');
+      if (!paymentResponse.ok) {
+        throw new Error('Failed to initiate payment.', paymentResponse);
       }
 
     } catch (error) {
@@ -97,11 +68,91 @@ const Bookings = () => {
     }
   }
 
+  // const handleBookings = async (e) => {
+  //   e.preventDefault()
+
+  //   const formData = {
+  //     "amount": `${totalPrice}`,
+  //   }
+
+  //   if (!user) {
+  //     alert("Please login or signup to continue.");
+  //     return;
+  //   }
+
+  //   try {
+
+  //     const paymentResponse = await fetch('http://localhost:4000/payment', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+
+  //     if (!paymentResponse.ok) {
+  //       throw new Error('Failed to initiate payment.');
+  //     }
+
+
+
+  //     // Image upload logic
+  //     const imageRef = ref(storage, `BookingImages/${file}`)
+  //     await uploadBytes(imageRef, file)
+  //     const url = await getDownloadURL(imageRef);
+  //     console.log('Image Url: ', url);
+
+  //     // Update number of rooms available
+  //     const docId = shoppingCartArray.id
+  //     const bookedRoomRef = doc(db, "hotelRooms", docId);
+
+  //     // Get the current room details
+  //     const roomSnapshot = await getDoc(bookedRoomRef);
+  //     const roomData = roomSnapshot.data();
+  //     console.log(roomData)
+  //     if (roomData.numberOfRooms > 0) {
+  //       // Update the number of available rooms
+  //       await updateDoc(bookedRoomRef, {
+  //         numberOfRooms: roomData.numberOfRooms - 1 // Decrement by 1
+  //       });
+
+  //       // Add room to bookings firestore database.
+  //       const docRef = await addDoc(collection(db, "bookings"), {
+  //         userId: user.uid,
+  //         roomId: docId,
+  //         hotel: shoppingCartArray.hotel,
+  //         title: shoppingCartArray.title,
+  //         introDescr: shoppingCartArray.introDescr,
+  //         description: shoppingCartArray.description,
+  //         address: shoppingCartArray.address,
+  //         contact: shoppingCartArray.contact,
+  //         price: shoppingCartArray.price,
+  //         numberOfPeople: shoppingCartArray.numberOfPeople,
+  //         numberOfRooms: shoppingCartArray.numberOfRooms,
+  //         roomType: shoppingCartArray.roomType,
+  //         bedType: shoppingCartArray.bedType,
+  //         checkInDate: checkInDate,
+  //         checkOutDate: checkOutDate,
+  //         roomImage: url
+  //       });
+
+  //       alert('Booking Successful');
+  //       navigate('/clienthome');
+  //     } else {
+  //       alert('No rooms available for booking.');
+  //     }
+
+  //   } catch (error) {
+  //     console.log("Error booking the room: ", error)
+  //   }
+  // }
+  const amount = (totalPrice + 0.00).toFixed(2);
+  console.log(amount)
   return (
     <Box
       sx={{
         width: { sm: 786, md: 1024 },
-        backgroundColor:'snow'
+        backgroundColor: 'snow'
       }}
       className="flex flex-col h-[100%] bg-[#F3F5F5] m-auto">
       <header className='flex flex-col m-auto'>
@@ -109,16 +160,49 @@ const Bookings = () => {
         <HeroSec />
       </header>
       <main className="m-auto w-[1024px] h-auto flex flex-col bg-white">
-        {
-
-        }
         <div className='mt-10 flex justify-center items-center'>
-          <h5 className='text-[#0088a9]'>Please fill in your information</h5>
+          <h5 className='text-[#0088a9]'>Bookings</h5>
         </div>
         {/* <form action="http://localhost:4000/payment" method="post"> */}
-        <form>
+        {/* Selected Room */}
+        <Paper elevation={4} sx={{ width: 900, marginTop: 2, height: 200 }}>
+          <div className=' h-[200px]'>
+            <div className='w-[900px] flex justify-center items-center'>
+              <h6 className=' w-[600px] mt-4 '>Selected Room:</h6>
+            </div>
+            <div className='mt-4 flex justify-center items-center'>
+              {shoppingCart ? (
+                <div>
+                  {shoppingCart.map(cart => (
+                    <Paper elevation={5} sx={{ width: 600, height: 100, justifyContent: 'center', alignItems: 'center' }}>
+                      <div className="flex flex-row justify-center items-center mb-[20px] h-[100px] w-[600px]" key={cart.id}>
+                        <div>
+                          <img className="w-[160px] h-[100px]" src={cart.roomImage} alt="not found" />
+                        </div>
+                        <div className='w-[320px]'>
+                          <h5>{cart.title}</h5>
+                          <p>{cart.introDescr}</p>
+                        </div>
+                        <div className='w-[76px]  justify-center items-center'>
+                          <p>R {cart.price}.00</p>
+                        </div>
+                        <div>
+                          <button className="delete-btn mr-4" onClick={() => dispatch({ type: 'DELETE', id: cart.id, cart })}><FontAwesomeIcon icon={faDeleteLeft} className=" text-sky-600 text-lg font-bold" /></button>
+                        </div>
+                      </div>
+                    </Paper>
+                  ))}
+                </div>
+              ) : (
+                <div> Please select a room.</div>
+              )
+              }
+            </div>
+          </div>
+        </Paper>
+        <form action="http://localhost:4000/payment" method="post">
           <Box className=' flex flex-col justify-center items-center mt-4'>
-            <Paper elevation={4} sx={{ width: 900 }}>
+            {/* <Paper elevation={4} sx={{ width: 900 }}>
               <div className=' flex flex-col w-[900px] h-[280px] justify-center items-center mt-6'>
                 <label className='w-[600px] mt-4'>Name</label>
                 <TextField
@@ -168,57 +252,25 @@ const Bookings = () => {
                   fullWidth
                 />
               </div>
-            </Paper>
-            {/* Selected Room */}
-            <Paper elevation={4} sx={{ width: 900, marginTop: 2, height: 200 }}>
-              <div className=' h-[200px]'>
-                <div className='w-[900px] flex justify-center items-center'>
-                  <h6 className=' w-[600px] mt-4 '>Selected Room:</h6>
-                </div>
-                <div className='mt-4 flex justify-center items-center'>
-                  {shoppingCart ? (
-                    <div>
-                      {shoppingCart.map(cart => (
-                        <Paper elevation={5} sx={{ width: 600, height: 100, justifyContent: 'center', alignItems: 'center' }}>
-                          <div className="flex flex-row justify-center items-center mb-[20px] h-[100px] w-[600px]" key={cart.id}>
-                            <div>
-                              <img className="w-[160px] h-[100px]" src={cart.roomImage} alt="not found" />
-                            </div>
-                            <div className='w-[320px]'>
-                              <h5>{cart.title}</h5>
-                              <p>{cart.introDescr}</p>
-                            </div>
-                            <div className='w-[76px]  justify-center items-center'>
-                              <p>R {cart.price}.00</p>
-                            </div>
-                            <div>
-                              <button className="delete-btn mr-4" onClick={() => dispatch({ type: 'DELETE', id: cart.id, cart })}><FontAwesomeIcon icon={faDeleteLeft} className=" text-sky-600 text-lg font-bold" /></button>
-                            </div>
-                          </div>
-                        </Paper>
-                      ))}
-                    </div>
-                  ) : (
-                    <div> Please select a room.</div>
-                  )
-                  }
-                </div>
-              </div>
-            </Paper>
+            </Paper> */}
           </Box>
-          <Box 
-          sx={{display:'flex', flexDirection:'column'}}
-          className="my-10 flex justify-center items-center "
+          <Box
+            sx={{ display: 'flex', flexDirection: 'column' }}
+            className="my-10 flex justify-center items-center "
           >
             <span className="font-medium m-2">Amount: R{totalPrice}.00</span><br />
-            {/* <button
-             
-              className="border bg-sky-400 p-1">Confirm Bookings
-            </button> */}
-            <Button sx={{backgroundColor:'#0088a9'}} variant="contained" onClick={handleBookings}>Confirm Bookings</Button>
+            <input type="hidden" name="amount" value={amount} />
+            <Button sx={{ backgroundColor: '#0088a9' }} variant="contained" type='submit'>Confirm Bookings</Button>
           </Box>
         </form>
-
+        {/* <form action="https://sandbox.payfast.co.za/eng/process" method="post">
+          <input type="hidden" name="merchant_id" value="10000100" />
+          <input type="hidden" name="merchant_key" value="46f0cd694581a" />
+          <input type="hidden" name="amount" value={amount} />
+          <input type="hidden" name="item_name" value="Test Product" />
+          <input type="submit" />
+          <button type="submit">Pay</button>
+        </form> */}
       </main >
       <Footer />
     </Box >

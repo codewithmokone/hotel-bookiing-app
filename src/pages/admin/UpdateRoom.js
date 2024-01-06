@@ -121,7 +121,7 @@ const UpdateRoom = () => {
                 }}
             // className="m-auto"
             >
-                <CustomTypography variant='h6' component="h6" text="Update Room" color='#0088a9' />
+                <CustomTypography variant='h6' component="h6" text="Update Room" />
                 <form className="flex flex-col items-center justify-center" onSubmit={updateRoom}>
                     <Box className="flex flex-col justify-center items-center ">
                         <Box className='w-[600px] flex flex-col justify-center items-center'>

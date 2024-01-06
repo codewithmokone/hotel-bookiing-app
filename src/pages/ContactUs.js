@@ -3,6 +3,7 @@ import Header from '../components/HeroSec'
 import Footer from '../components/Footer'
 import { Alert, Box } from '@mui/material'
 import Navbar from '../components/navbar/Navbar'
+import CustomTypography from '../components/CustomTypography'
 
 function ContactUs() {
 
@@ -91,7 +92,7 @@ function ContactUs() {
                 className='h-full'
             >
                 <Box className='mt-6'>
-                    <h3 className='text-center font-semibold text-[#0088a9]'>Let's get in touch.</h3>
+                <CustomTypography theme="heading" text="Let's get in touch." />
                 </Box>
                 <Box
                     sx={{

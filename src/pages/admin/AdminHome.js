@@ -69,7 +69,7 @@ const AdminHome = () => {
             </header>
             <main className=" flex flex-col justify-center items-center ml-56 h-auto bg-[#ececec] w-100vw">
                 <Box className='flex justify-center items-center'>
-                    <CustomTypography variant='h6' component="h6" text="List of rooms" />
+                    <CustomTypography theme="heading" text="List of rooms" />
                 </Box>
                 <Box className='flex flex-col m-auto mb-[60px]'>
                     {rooms ? (

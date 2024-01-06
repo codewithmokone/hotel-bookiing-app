@@ -61,7 +61,7 @@ const Navbar = () => {
                     <Box sx={{
                         width: { xs: 400, sm: 768, md: 1024 },
                         backgroundColor: "#24252A",
-                        height: 80,
+                        height: 60,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between'
@@ -124,7 +124,7 @@ const Navbar = () => {
                     <Box sx={{
                         width: { xs: 400, sm: 786, md: 1024 },
                         backgroundColor: "#24252A",
-                        height: 80,
+                        height: 60,
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center'

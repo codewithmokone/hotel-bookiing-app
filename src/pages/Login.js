@@ -6,6 +6,7 @@ import { collection, getDocs, where, query } from 'firebase/firestore';
 import { useUserAuth } from '../components/context/UserAuthContext';
 import { auth } from '../config/firebase';
 import { Alert, Box, Typography } from '@mui/material';
+import CustomTypography from '../components/CustomTypography';
 
 const Login = () => {
 
@@ -85,7 +86,7 @@ const Login = () => {
                     <button className="rounded-xl font-bold text-2xl text-[#0088a9] w-[20]" onClick={closeLoginPage}> X </button>
                 </Box>
                 <Box sx={{ marginTop: { xs: -1, sm: -4, md: 0 } }}>
-                    <h2 className="font-black text-2xl text-[#0088a9] ">Login</h2>
+                <CustomTypography theme="heading" text="Login" />
                 </Box>
                 <Box sx={{ marginTop: { xs: -8, sm: -6, md: -4 } }}>
                     {errorMessage && <Box sx={{ marginTop: { xs: 8, sm: 6, md: 4 } }}><Alert severity="error">{errorMessage}</Alert></Box> }

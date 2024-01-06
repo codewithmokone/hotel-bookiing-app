@@ -18,7 +18,6 @@ function Profile() {
   console.log("User profile: ", user);
 
   const [fullName, setFullName] = useState(user.displayName)
-  const [address, setAddress] = useState('');
   const [contact, setContact] = useState(user.phoneNumber);
   const [file, setFile] = useState('');
   const [imageUrl, setImageUrl] = useState([]);
@@ -55,7 +54,6 @@ function Profile() {
       //  });
 
       setFullName('')
-      setAddress('')
       setContact('')
       setImageUrl('')
 
@@ -81,7 +79,7 @@ function Profile() {
         }}
         className="admin-main-section h-full flex flex-col items-center"
       >
-        <CustomTypography variant='h6' component="h6" text="Update Profile" />
+        <CustomTypography theme="heading" text="Update Profile" />
         <form className="flex justify-center items-center w-[600px]" onSubmit={handlesProfileUpdate} >
           <Box className="flex flex-col justify-center items-center ">
             <Box className='flex flex-col justify-center items-center'>
@@ -95,6 +93,7 @@ function Profile() {
               />
             </Box>
             <label className="label text-base font-medium mt-4">Full Name</label>
+            {/* <CustomTypography text='Full Name' className='label text-base font-medium' /> */}
             <InputComponent
               onChange={(e) => setFullName(e.target.value)}
               required
@@ -102,15 +101,6 @@ function Profile() {
               placeholder='Full Name'
               width="560px"
               value={fullName}
-            />
-            <label className="label text-base font-medium mt-3">Address</label>
-            <InputComponent
-              type="text"
-              width="560px"
-              className='block border h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
-              placeholder=" Enter address"
-              onChange={(e) => setAddress(e.target.value)}
-              required
             />
             <label className="label text-base font-medium mt-3">Contact No.</label>
             <InputComponent

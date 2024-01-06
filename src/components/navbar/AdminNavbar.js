@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../styles/navbar.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase';
 import { useUserAuth } from '../context/UserAuthContext';
 import { Avatar, Box, Paper } from '@mui/material';
@@ -100,10 +100,21 @@ function AdminNavbar() {
               }}
             >
               <Box sx={{ marginLeft: -0.5 }}>
-                <Link to="/adminhome" className="adminHome focus:text-[#0088A9] m-2">
-                  <HomeIcon sx={{ color: 'white', marginRight: 1 }}  className="hover:text-[#0088A9]"/>
+                <NavLink
+                  to="/adminhome"
+                  className="adminHome m-2"
+                  activeClassName="activeLink"
+                  style={(isActive) => {
+                    return {
+                      width: isActive ? 130 : "",
+                      height: isActive ? 30 : "",
+                      color: isActive ? 30 : "",
+                    };
+                  }}
+                >
+                  <HomeIcon sx={{ color: 'white', marginRight: 1 }} className="hover:text-[#0088A9]" />
                   Home
-                </Link>
+                </NavLink>
               </Box>
               <Box sx={{ display: 'flex', marginLeft: -0.5 }}>
                 <Link to="/newroom" className="links m-2">
@@ -128,14 +139,14 @@ function AdminNavbar() {
               }}
             >
               <Divider sx={{ backgroundColor: "gray", marginBottom: 2 }} />
-              <Box sx={{ display: 'flex',marginLeft: -0.5 }} className='active'>
+              <Box sx={{ display: 'flex', marginLeft: -0.5 }} className='active'>
                 <Link to="/profile" className='links m-2' >
                   <AccountCircleIcon sx={{ color: 'white', marginRight: 1 }} className="hover:text-[#0088A9]" ></AccountCircleIcon>
                   Profile
                 </Link>
               </Box>
-              <Box sx={{ display: 'flex',marginLeft: -0.5 }} className="hover:text-[#0088A9]">
-                <Link to="/login" className="contactus links m-2" onClick={signOut}>
+              <Box sx={{ display: 'flex', marginLeft: -0.5 }} className="hover:text-[#0088A9]">
+                <Link to="/login" className="links m-2 hover:text-[#0088A9]" onClick={signOut} >
                   <ExitToAppIcon sx={{ color: 'white', marginRight: 1 }} className="hover:text-[#0088A9]" />
                   Sign Out
                 </Link>

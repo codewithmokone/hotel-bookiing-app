@@ -5,6 +5,7 @@ import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { storage } from '../config/firebase';
 import Navbar from '../components/navbar/Navbar';
 import { Box, Paper } from '@mui/material';
+import CustomTypography from '../components/CustomTypography';
 
 const Gallery = () => {
 
@@ -74,11 +75,9 @@ const Gallery = () => {
                 className=" flex flex-col m-auto  items-center justify-center h-screen"
             >
                 <Box
-                    sx={{
-                        marginTop: 4,
-                    }}
                 >
-                    <h3 className="font-bold text-[#0088a9]">Gallery</h3>
+                    <CustomTypography theme="heading" text='Gallery' />
+                    {/* <h3 className="font-bold text-[#0088a9]">Gallery</h3> */}
                 </Box>
                 <Box
                     sx={{

@@ -82,6 +82,9 @@
     background-color: rgba(0,136,169,0.8);
 }
 
+.activeLink {
+    background-color: #0088A9;
+}
 
 @media screen and (min-width: 480px) {
     #leftsidebar {

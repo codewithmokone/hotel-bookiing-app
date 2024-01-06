@@ -5,6 +5,7 @@ import fimage1 from '../images/home-images/Feat-room1.jpg'
 import fimage2 from '../images/home-images/Feat-room2.jpg'
 import fimage3 from '../images/home-images/Feat-room3.jpg'
 import { Box } from '@mui/material'
+import CustomTypography from './CustomTypography'
 
 const FeaturedRooms = () => {
     return (
@@ -21,7 +22,8 @@ const FeaturedRooms = () => {
             className="flex flex-col justify-center items-center"
         >
             <Box className="heading flex justify-center">
-                <h2 className=" text-xl font-bold mt-4 text-[#0088a9] border-b-2 border-[#0088a9] mb-8">Featured Rooms</h2>
+                <CustomTypography theme="heading" text='Featured Rooms' />
+                {/* <h2 className=" text-xl font-bold mt-4 text-[#0088a9] border-b-2 border-[#0088a9] mb-8">Featured Rooms</h2> */}
             </Box>
             <Box
                 sx={{

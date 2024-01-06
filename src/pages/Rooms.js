@@ -8,6 +8,7 @@ import Service from '../components/Service';
 import ViewRoom from '../components/ViewRoom';
 import SearchCard from '../components/cards/SearchCard';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, TextField, Typography } from '@mui/material';
+import CustomTypography from '../components/CustomTypography';
 
 const Rooms = () => {
 
@@ -127,14 +128,13 @@ const Rooms = () => {
                     marginBottom: { xs: 10 }
                 }}
                 className=' justify-center items-center m-auto'
-
             >
                 <Box
                     sx={{ 
                         marginBotton: { xs: 10 }, 
                     }}
                     className="flex flex-col min-h-[600px] justify-center items-center mr-4 m-auto">
-                    <h3 className='mt-6'>Our Rooms</h3>
+                    <CustomTypography theme="heading" text='Our Rooms' />
                     {searchResults.length ?
                         <ul className="flex flex-col justify-between"><li><SearchCard searchResults={searchResults} /></li></ul>
                         :

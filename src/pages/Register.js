@@ -6,6 +6,7 @@ import { auth, db } from '../config/firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import { Alert, Box, Typography } from '@mui/material';
 import InputComponent from '../components/InputComponent';
+import CustomTypography from '../components/CustomTypography';
 
 export const Register = () => {
 
@@ -56,14 +57,14 @@ export const Register = () => {
                 className=" flex flex-col items-center justify-center rounded bg-white">
                 <Box
                     sx={{
-                        marginTop: {xs:-0.2, sm: 1, md: 2 },
-                        width: {xs:320, sm: 380, md: 480 },
+                        marginTop: { xs: -0.2, sm: 1, md: 2 },
+                        width: { xs: 320, sm: 380, md: 480 },
                     }}
                     className='flex justify-end items-end mb-10 w-[100%]'>
                     <button className="rounded-xl font-bold text-2xl text-[#0088a9] w-[20]" onClick={handleClose}> X </button>
                 </Box>
                 <Box sx={{ marginTop: { xs: -1, sm: -4, md: 0 } }}>
-                    <h2 className="font-black text-2xl text-[#0088a9] ">Register</h2>
+                    <CustomTypography theme="heading" text="Register" />
                 </Box>
                 <Box sx={{ marginTop: { xs: -8, sm: -6, md: -6 } }}>
                     {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
