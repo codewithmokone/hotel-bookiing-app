@@ -12,6 +12,7 @@ import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Button, Paper, TextField } from '@mui/material';
 import { useUserAuth } from '../../components/context/UserAuthContext';
+import CustomTypography from '../../components/CustomTypography'
 
 const Bookings = () => {
 
@@ -26,7 +27,7 @@ const Bookings = () => {
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [file, setFile] = useState(null);
 
-  console.log("Email: ",email)
+  console.log("Email: ", email)
 
   const shoppingCartArray = shoppingCart[0];
 
@@ -149,7 +150,7 @@ const Bookings = () => {
   //   }
   // }
   const amount = (totalPrice + 0.00).toFixed(2);
-  
+
   return (
     <Box
       sx={{
@@ -161,11 +162,22 @@ const Bookings = () => {
         <Navbar />
         <HeroSec />
       </header>
+      <Box
+        sx={{
+          width: { xs: 400, sm: 786, md: 1024 },
+          height: 60,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#24252A',
+        }}
+      >
+      </Box>
       <main className="m-auto w-[1024px] h-auto flex flex-col bg-white">
-        <div className='mt-10 flex justify-center items-center'>
-          <h5 className='text-[#0088a9]'>Bookings</h5>
-        </div>
-        {/* <form action="http://localhost:4000/payment" method="post"> */}
+        <Box className='flex justify-center items-center'>
+          <CustomTypography theme="heading" text="Bookings"/>
+        </Box>
         {/* Selected Room */}
         <Paper elevation={4} sx={{ width: 900, marginTop: 2, height: 200 }}>
           <div className=' h-[200px]'>
@@ -266,14 +278,6 @@ const Bookings = () => {
             <Button sx={{ backgroundColor: '#0088a9' }} variant="contained" type='submit'>Confirm Bookings</Button>
           </Box>
         </form>
-        {/* <form action="https://sandbox.payfast.co.za/eng/process" method="post">
-          <input type="hidden" name="merchant_id" value="10000100" />
-          <input type="hidden" name="merchant_key" value="46f0cd694581a" />
-          <input type="hidden" name="amount" value={amount} />
-          <input type="hidden" name="item_name" value="Test Product" />
-          <input type="submit" />
-          <button type="submit">Pay</button>
-        </form> */}
       </main >
       <Footer />
     </Box >

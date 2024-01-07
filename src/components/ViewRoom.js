@@ -210,7 +210,7 @@ const ViewRoom = ({ data, setOpenModal }) => {
         >
           <Box
             sx={{
-              width: { xs: 360, sm: 680, md: 900 },
+              width: { xs: 360, sm: 680, md: 600 },
               display: 'flex',
               flexDirection: { xs: 'row', sm: 'row', md: 'row' },
               alignItems: 'center',

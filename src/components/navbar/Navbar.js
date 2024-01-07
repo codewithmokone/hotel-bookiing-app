@@ -59,7 +59,7 @@ const Navbar = () => {
             <>
                 <Hidden smDown implementation="css">
                     <Box sx={{
-                        width: { xs: 400, sm: 768, md: 1024 },
+                        width: { xs: 400, sm: 786, md: 1024 },
                         backgroundColor: "#24252A",
                         height: 60,
                         display: 'flex',
@@ -67,10 +67,10 @@ const Navbar = () => {
                         justifyContent: 'space-between'
                     }}
                     >
-                        <Box sx={{ width: '46%' }}>
+                        <Box sx={{ width:{sm:'34%',md:'46%'} }}>
                             <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                         </Box>
-                        <Box sx={{ width: '50%' }}>
+                        <Box sx={{ width: {sm:'65%',md:'50%'} }}>
                             <nav className="navItems">
                                 <Link to="/" className="links ">Home</Link>
                                 <Link to="/gallery" className="links ">Gallery</Link>

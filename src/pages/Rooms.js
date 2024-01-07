@@ -91,9 +91,10 @@ const Rooms = () => {
             <Box
                 sx={{
                     width: { xs: 400, sm: 786, md: 1024 },
-                    height: 60
+                    height: 60,
+                    backgroundColor: '#24252A',
                 }}
-                className=" bg-gray-500 flex justify-center items-center"
+                className="flex justify-center items-center"
             >
                 <div className="search-section rounded w-[600px] h-[40px] flex justify-between items-center border bg-white">
                     <div>
@@ -131,7 +132,7 @@ const Rooms = () => {
             >
                 <Box
                     sx={{ 
-                        marginBotton: { xs: 10 }, 
+                        marginBotton: { xs: 10 },
                     }}
                     className="flex flex-col min-h-[600px] justify-center items-center mr-4 m-auto">
                     <CustomTypography theme="heading" text='Our Rooms' />

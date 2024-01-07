@@ -144,11 +144,12 @@ function RoomView() {
                         </Box>
                         <Box
                             sx={{
-                                width: { xs: 380, sm: 750, md: 750 },
+                                width: { xs: 380, sm: 750, md: 600 },
                                 fontSize: { xs: 10, sm: 14, md: 16 },
                                 marginTop: { xs: -3, sm: 6, md: 4 }
                             }}
-                            className="room-details flex border-b-2 w-[900px]">
+                            className="room-details flex border-b-2"
+                        >
                             <Box
                                 sx={{
                                     display: 'flex',

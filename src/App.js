@@ -21,6 +21,7 @@ import RoomView from './pages/RoomView';
 import Profile from './pages/admin/Profile';
 import ClientProfile from './pages/client/ClientProfile';
 import PaymentSuccessful from './pages/client/PaymentSuccessful';
+import Notify from './pages/client/Notify';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
           <Route path='/clientprofile' element={<ProtectedRoute><ClientProfile /></ProtectedRoute>} />
           <Route path='/bookings' element={<ProtectedRoute><Bookings /></ProtectedRoute>} />
           <Route path='/payment' element={<ProtectedRoute><PaymentSuccessful /></ProtectedRoute>} />
+          <Route path='/notify' element={<ProtectedRoute><Notify /></ProtectedRoute>} />
           <Route path='/roomview' element={<ProtectedRoute><ViewRoom/></ProtectedRoute>} />
           <Route path="/adminhome" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
           <Route path='/newroom' element={<ProtectedRoute><NewRoom /></ProtectedRoute>} />

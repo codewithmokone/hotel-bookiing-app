@@ -13,7 +13,7 @@ import { Box} from '@mui/material';
 import { useUserAuth } from '../../components/context/UserAuthContext';
 import CustomTypography from '../../components/CustomTypography';
 
-function PaymentSuccessful() {
+function Notify() {
 
     const { shoppingCart, dispatch, totalPrice } = useContext(CartContext);
     const { user } = useUserAuth();
@@ -90,36 +90,12 @@ function PaymentSuccessful() {
         }
     }
 
-    return (
-        <Box
-            sx={{
-                width: { xs: 400, sm: 786, md: '100vw' },
-                margin: 'auto',
-                backgroundColor: 'whitesmoke'
-            }}
-        >
-            <Navbar />
-            <Header />
 
-            <Box
-                sx={{
-                    width: { xs: 400, sm: 786, md: 1024 },
-                    display: 'flex',
-                    flexDirection: { xs: 'column' },
-                    justifyContent: { xs: 'center' },
-                    backgroundColor: "white",
-                    marginBottom: { xs: 10 }
-                }}
-                className=' justify-center items-center m-auto'
-            >
-                <main>
-                <h4>Payment Successful.</h4>
-                </main>
-            </Box>
-            <Service />
-            <Footer />
-        </Box>
-    )
+  return (
+    <div>
+      
+    </div>
+  )
 }
 
-export default PaymentSuccessful
+export default Notify
