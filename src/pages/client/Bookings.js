@@ -26,6 +26,8 @@ const Bookings = () => {
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [file, setFile] = useState(null);
 
+  console.log("Email: ",email)
+
   const shoppingCartArray = shoppingCart[0];
 
   useEffect(() => {
@@ -147,7 +149,7 @@ const Bookings = () => {
   //   }
   // }
   const amount = (totalPrice + 0.00).toFixed(2);
-  console.log(amount)
+  
   return (
     <Box
       sx={{
@@ -259,6 +261,7 @@ const Bookings = () => {
             className="my-10 flex justify-center items-center "
           >
             <span className="font-medium m-2">Amount: R{totalPrice}.00</span><br />
+            <input type="hidden" name="email_address" value={email}></input>
             <input type="hidden" name="amount" value={amount} />
             <Button sx={{ backgroundColor: '#0088a9' }} variant="contained" type='submit'>Confirm Bookings</Button>
           </Box>

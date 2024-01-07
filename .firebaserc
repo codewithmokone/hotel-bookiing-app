@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "hotel-booking-c2270"
-  }
+    "default": "hotel-booking-app-9ad18",
+    "hosting": "hotel-booking-app-9ad18",
+    "build": "hotel-booking-app-9ad18"
+  },
+  "targets": {},
+  "etags": {}
 }
