@@ -81,7 +81,7 @@ const ViewRoom = ({ data, setOpenModal }) => {
         });
       } else {
         console.error('Room not found or multiple rooms found with the same roomId.');
-        alert('Something went wrong.!');
+        // alert('Something went wrong.!');
       }
 
       if (checkInDate >= currentDate) {
