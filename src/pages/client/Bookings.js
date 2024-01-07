@@ -27,7 +27,7 @@ const Bookings = () => {
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [file, setFile] = useState(null);
 
-  console.log("Email: ", email)
+  // console.log("Email: ", email)
 
   const shoppingCartArray = shoppingCart[0];
 
@@ -47,23 +47,52 @@ const Bookings = () => {
       return;
     }
 
-    const amount = (totalPrice + 0.00).toFixed(2);
-
-    console.log("Price", amount);
-
     try {
-      const paymentResponse = await fetch('http://localhost:4000/payment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          amount
-        }),
-      });
 
-      if (!paymentResponse.ok) {
-        throw new Error('Failed to initiate payment.', paymentResponse);
+      // Image upload logic
+      const imageRef = ref(storage, `BookingImages/${file}`)
+      await uploadBytes(imageRef, file)
+      const url = await getDownloadURL(imageRef);
+      console.log('Image Url: ', url);
+
+      // Update number of rooms available
+      const docId = shoppingCartArray.id
+      const bookedRoomRef = doc(db, "hotelRooms", docId);
+
+      // Get the current room details
+      const roomSnapshot = await getDoc(bookedRoomRef);
+      const roomData = roomSnapshot.data();
+      console.log(roomData)
+      if (roomData.numberOfRooms > 0) {
+        // Update the number of available rooms
+        await updateDoc(bookedRoomRef, {
+          numberOfRooms: roomData.numberOfRooms - 1 // Decrement by 1
+        });
+
+        // Add room to bookings firestore database.
+        const docRef = await addDoc(collection(db, "bookings"), {
+          userId: user.uid,
+          roomId: docId,
+          hotel: shoppingCartArray.hotel,
+          title: shoppingCartArray.title,
+          introDescr: shoppingCartArray.introDescr,
+          description: shoppingCartArray.description,
+          address: shoppingCartArray.address,
+          contact: shoppingCartArray.contact,
+          price: shoppingCartArray.price,
+          numberOfPeople: shoppingCartArray.numberOfPeople,
+          numberOfRooms: shoppingCartArray.numberOfRooms,
+          roomType: shoppingCartArray.roomType,
+          bedType: shoppingCartArray.bedType,
+          checkInDate: checkInDate,
+          checkOutDate: checkOutDate,
+          roomImage: url
+        });
+
+        alert('Booking Successful');
+        navigate('/clienthome');
+      } else {
+        alert('No rooms available for booking.');
       }
 
     } catch (error) {
@@ -71,85 +100,7 @@ const Bookings = () => {
     }
   }
 
-  // const handleBookings = async (e) => {
-  //   e.preventDefault()
-
-  //   const formData = {
-  //     "amount": `${totalPrice}`,
-  //   }
-
-  //   if (!user) {
-  //     alert("Please login or signup to continue.");
-  //     return;
-  //   }
-
-  //   try {
-
-  //     const paymentResponse = await fetch('http://localhost:4000/payment', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(formData),
-  //     });
-
-  //     if (!paymentResponse.ok) {
-  //       throw new Error('Failed to initiate payment.');
-  //     }
-
-
-
-  //     // Image upload logic
-  //     const imageRef = ref(storage, `BookingImages/${file}`)
-  //     await uploadBytes(imageRef, file)
-  //     const url = await getDownloadURL(imageRef);
-  //     console.log('Image Url: ', url);
-
-  //     // Update number of rooms available
-  //     const docId = shoppingCartArray.id
-  //     const bookedRoomRef = doc(db, "hotelRooms", docId);
-
-  //     // Get the current room details
-  //     const roomSnapshot = await getDoc(bookedRoomRef);
-  //     const roomData = roomSnapshot.data();
-  //     console.log(roomData)
-  //     if (roomData.numberOfRooms > 0) {
-  //       // Update the number of available rooms
-  //       await updateDoc(bookedRoomRef, {
-  //         numberOfRooms: roomData.numberOfRooms - 1 // Decrement by 1
-  //       });
-
-  //       // Add room to bookings firestore database.
-  //       const docRef = await addDoc(collection(db, "bookings"), {
-  //         userId: user.uid,
-  //         roomId: docId,
-  //         hotel: shoppingCartArray.hotel,
-  //         title: shoppingCartArray.title,
-  //         introDescr: shoppingCartArray.introDescr,
-  //         description: shoppingCartArray.description,
-  //         address: shoppingCartArray.address,
-  //         contact: shoppingCartArray.contact,
-  //         price: shoppingCartArray.price,
-  //         numberOfPeople: shoppingCartArray.numberOfPeople,
-  //         numberOfRooms: shoppingCartArray.numberOfRooms,
-  //         roomType: shoppingCartArray.roomType,
-  //         bedType: shoppingCartArray.bedType,
-  //         checkInDate: checkInDate,
-  //         checkOutDate: checkOutDate,
-  //         roomImage: url
-  //       });
-
-  //       alert('Booking Successful');
-  //       navigate('/clienthome');
-  //     } else {
-  //       alert('No rooms available for booking.');
-  //     }
-
-  //   } catch (error) {
-  //     console.log("Error booking the room: ", error)
-  //   }
-  // }
-  const amount = (totalPrice + 0.00).toFixed(2);
+  // const amount = (totalPrice + 0.00).toFixed(2);
 
   return (
     <Box
@@ -214,9 +165,11 @@ const Bookings = () => {
             </div>
           </div>
         </Paper>
-        <form action="https://hotel-booking-nodejs.onrender.com/payment" method="post">
+        {/* <form action="https://hotel-booking-nodejs.onrender.com/payment" method="post"> */}
+        <form onSubmit={handleBookings}>
+        {/* <form action="http://localhost:4000/payment" method="post"> */}
           <Box className=' flex flex-col justify-center items-center mt-4'>
-            {/* <Paper elevation={4} sx={{ width: 900 }}>
+            <Paper elevation={4} sx={{ width: 900 }}>
               <div className=' flex flex-col w-[900px] h-[280px] justify-center items-center mt-6'>
                 <label className='w-[600px] mt-4'>Name</label>
                 <TextField
@@ -224,7 +177,7 @@ const Bookings = () => {
                   size='small'
                   sx={{ width: 600, height: 40 }}
                   onChange={(e) => setName(e.target.value)}
-                  // required
+                  required
                   fullWidth
                 />
                 <label className='w-[600px]'>Email</label>
@@ -233,7 +186,7 @@ const Bookings = () => {
                   size='small'
                   sx={{ width: 600, height: 40 }}
                   onChange={(e) => setEmail(e.target.value)}
-                  // required
+                  required
                   fullWidth
                 />
                 <label className='w-[600px]'>Contact</label>
@@ -253,7 +206,7 @@ const Bookings = () => {
                   size='small'
                   sx={{ width: 600, height: 40, marginTop: -1 }}
                   onChange={(e) => setCheckInDate(e.target.value)}
-                  // required
+                  required
                   fullWidth
                 />
                 <label className="label text-base font-medium mx-0 my-2.5">Check-Out Date</label>
@@ -262,19 +215,19 @@ const Bookings = () => {
                   size='small'
                   sx={{ width: 600, height: 40, marginTop: -1 }}
                   onChange={(e) => setCheckOutDate(e.target.value)}
-                  // required
+                  required
                   fullWidth
                 />
               </div>
-            </Paper> */}
+            </Paper>
           </Box>
           <Box
             sx={{ display: 'flex', flexDirection: 'column' }}
             className="my-10 flex justify-center items-center "
           >
             <span className="font-medium m-2">Amount: R{totalPrice}.00</span><br />
-            <input type="hidden" name="email_address" value={email}></input>
-            <input type="hidden" name="amount" value={amount} />
+            {/* <input type="hidden" name="email_address" value={email}></input>
+            <input type="hidden" name="amount" value={amount} /> */}
             <Button sx={{ backgroundColor: '#0088a9' }} variant="contained" type='submit'>Confirm Bookings</Button>
           </Box>
         </form>

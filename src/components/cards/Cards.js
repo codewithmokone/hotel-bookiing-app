@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { db } from '../../config/firebase'; // importing database from config file
-import { collection, getDocs } from 'firebase/firestore'; // Firebase functions
+import { collection, getDocs, query, where } from 'firebase/firestore'; // Firebase functions
 import { faBed, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CartContext } from '../context/CartContext';
@@ -32,10 +32,26 @@ export const Cards = () => {
     }
 
     // Handles reserve room function
-    const reserveRoom = (room) => {
+    const reserveRoom = async (room) => {
 
         dispatch({ type: 'ADD_TO_CART', id: room.id, room })
         alert("room added to bookings")
+
+        // try {
+        //     const docRef = query(collection(db, "hotelRooms", room.id));
+        //     const querySnapshot = await getDocs(docRef);
+
+        //     if (querySnapshot.size === 1) {
+        //         console.log("Room Info: ", querySnapshot)
+        //         dispatch({ type: 'ADD_TO_CART', id: room.id, room })
+        //         alert("room added to bookings")
+        //     } else {
+        //         console.error('Room not found or multiple rooms found with the same roomId.');
+        //         alert('Something went wrong.!');
+        //     }
+        // } catch (error) {
+        //     console.log("Error reserving a room: ", error);
+        // }
     }
 
     // Handles fetching the rooms from firestore 
