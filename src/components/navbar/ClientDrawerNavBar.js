@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../styles/navbar.css'
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -31,17 +32,17 @@ function ClientDrawerNavBar({signout}) {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <Box sx={{ width: 150, display: 'flex', flexDirection: 'column', marginLeft: 2, marginTop: 2 }}>
-                <Link to="/" className="galleryLink m-2">Home</Link>
-                <Link to="/gallery" className="galleryLink m-2">Gallery</Link>
-                <Link to="/rooms" className="galleryLink m-2">Rooms</Link>
-                <Link to="/bookings" className="galleryLink m-2">Bookings</Link>
-                <Link to="/contactus" className="galleryLink m-2">Contact Us</Link>
+                <Link to="/" className="links m-2">Home</Link>
+                <Link to="/gallery" className="links m-2">Gallery</Link>
+                <Link to="/rooms" className="links m-2">Rooms</Link>
+                <Link to="/bookings" className="links m-2">Bookings</Link>
+                <Link to="/contactus" className="links m-2">Contact Us</Link>
                 <Divider SX={{ backgroundColor: "#gray", }} />
             </Box>
             <Divider SX={{ backgroundColor: "#gray", }} />
 
             <Box sx={{ width: 150, display: 'flex', flexDirection: 'column', marginLeft: 2 }} >
-                <Link to="/register" className='galleryLink m-2' >Profile</Link>
+                <Link to="/clientprofile" className='links m-2' >Profile</Link>
                 <Link onClick={signout} className="contactus m-2">Sign Out</Link>
                 {/* <button onClick={signOut}>Sign Out</button> */}
             </Box>

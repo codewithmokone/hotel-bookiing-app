@@ -10,13 +10,13 @@ function CustomTypography({ variant, text, color,theme }) {
         )
     }else if(theme === 'subheading'){
         return (
-            <Typography sx={{ marginTop: 5, marginBottom: 3, color:'#0088a9', fontWeight:'bold' }} variant='subtitle1' color={color}>
+            <Typography sx={{ color:'#0088a9', fontWeight:'bold' }} variant='subtitle1' color={color}>
                 {text}
             </Typography>
         )
     }else{
         return (
-            <Typography sx={{ marginTop: 5, marginBottom: 3 }} variant='subtitle1' color={color}>
+            <Typography sx={{ marginBottom: 1, fontSize:12 }} variant='body2' color={color}>
                 {text}
             </Typography>
         )

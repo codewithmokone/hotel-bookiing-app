@@ -72,77 +72,104 @@ function ClientProfile() {
     })
 
     return (
-        <Box className=' home-container bg-[gray] block h-auto m-0'>
-            <header className="flex flex-col w-[1024px] m-auto">
-                <Navbar />
-                <Header />
-            </header>
-            <main className="main bg-white flex flex-col w-[1024px] m-auto ">
-                <Box
-                    sx={{
-                        width: { xs: 400, sm: 786, md: 1024 },
-                        height: { sm: 'auto', md: 'auto' },
-                        display: 'flex',
-                        flexDirection: { xs: 'column', sm: 'column', md: 'row' },
-                        justifyContent: 'center', alignItems: 'center', margin: 'auto',
-                        backgroundColor: 'smokewhite'
-                    }}
-                    className="border"
-                >
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor:'white',
+                margin: 'auto'
+            }}
+            className='h-auto'
+        >
+            <Box>
+                <header className="flex flex-col m-auto">
+                    <Navbar />
+                    <Header />
+                </header>
+            </Box>
+            <Box
+                sx={{
+                    width: { xs: 400, sm: 786, md: 1024 },
+                    backgroundColor: 'smokewhite',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    margin: 'auto'
+                }}>
+                <main className="flex flex-col ">
                     <Box
                         sx={{
-                            backgroundColor: 'smokewhite',
+                            width: { xs: 400, sm: 786, md: 1024 },
+                            height: { sm: 'auto', md: 'auto' },
+                            display: 'flex',
+                            flexDirection: { xs: 'column', sm: 'column', md: 'row' },
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor: 'smokewhite'
                         }}
-                        className="admin-main-section h-full flex flex-col items-center">
-                        <CustomTypography theme="heading" text="Update Profile" />
-                        {/* <h3 className="text-[#0088a9] text-2xl m-[20px]">Update Profile</h3> */}
-                        <form className="flex justify-center items-center w-[600px]" onSubmit={handlesProfileUpdate} >
-                            <Box className="flex flex-col justify-center items-center ">
-                                <Box className='flex flex-col justify-center items-center'>
-                                    <Avatar alt={user.displayName} src={user.photoURL} sx={{ width: 200, height: 200 }} />
-                                    <input
-                                        className="border w-[230px] mt-4"
-                                        type="file"
-                                        multiple
-                                        onChange={(e) => { setFile(e.target.files[0]) }}
-                                    />
+                        className="border"
+                    >
+                        <Box
+                            sx={{
+                                backgroundColor: 'smokewhite',
+                            }}
+                            className="h-full flex flex-col items-center"
+                        >
+                            <CustomTypography theme="heading" text="Update Profile" />
+                            {/* <h3 className="text-[#0088a9] text-2xl m-[20px]">Update Profile</h3> */}
+                            <form className="flex justify-center items-center" onSubmit={handlesProfileUpdate} >
+                                <Box className="flex flex-col justify-center items-center ">
+                                    <Box
+                                        sx={{
+                                            width: { xs: 150, sm: 260, md: 260 }
+                                        }}
+                                        className='flex flex-col justify-center items-center'
+                                    >
+                                        <Avatar alt={user.displayName} src={user.photoURL} sx={{ width: 150, height: 150 }} />
+                                        <input
+                                            className="border w-[230px] mt-4"
+                                            type="file"
+                                            multiple
+                                            onChange={(e) => { setFile(e.target.files[0]) }}
+                                        />
+                                    </Box>
+                                    <Box
+                                        sx={{
+                                            width: { xs: 350, sm: 560, md: 560 },
+                                        }}
+                                    >
+                                        <label className="block text-base font-medium mt-4 ml-4">Full Name</label>
+                                        <InputComponent
+                                            onChange={(e) => setFullName(e.target.value)}
+                                            required
+                                            type="text"
+                                            placeholder='Full Name'
+                                            value={fullName}
+                                        />
+                                    </Box>
+                                    <Box sx={{ width: { xs: 350, sm: 560, md: 560 } }}>
+                                        <label className="block text-base font-medium mt-4 ml-4">Contact No.</label>
+                                        <InputComponent
+                                            type="number"
+                                            placeholder="Enter contact details..."
+                                            onChange={(e) => setContact(e.target.value)}
+                                            required
+                                        />
+                                    </Box>
+                                    <Button sx={{ backgroundColor: '#0088a9', marginTop: 5, marginBottom: 5 }} variant="contained" type='submit'>Update</Button>
                                 </Box>
-                                <label className="label text-base font-medium mt-4">Full Name</label>
-                                <InputComponent
-                                    onChange={(e) => setFullName(e.target.value)}
-                                    required
-                                    type="text"
-                                    placeholder='Full Name'
-                                    width="560px"
-                                    value={fullName}
-                                />
-                                <label className="label text-base font-medium mt-3">Address</label>
-                                <InputComponent
-                                    type="text"
-                                    width="560px"
-                                    className='block border h-[40px] rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
-                                    placeholder=" Enter address"
-                                    onChange={(e) => setAddress(e.target.value)}
-                                    required
-                                />
-                                <label className="label text-base font-medium mt-3">Contact No.</label>
-                                <InputComponent
-                                    type="number"
-                                    placeholder=" Enter contact details..."
-                                    onChange={(e) => setContact(e.target.value)}
-                                    width="560px"
-                                    required
-                                />
-                                <Button sx={{ backgroundColor: '#0088a9', marginTop: 5, marginBottom: 5 }} variant="contained" type='submit'>Update</Button>
-                                {/* <button className=" text-white font-bold p-1 rounded-md bg-[#0088a9] w-[300px] mx-0 my-10" type='submit'>Update</button> */}
-                            </Box>
-                        </form>
+                            </form>
+                        </Box>
                     </Box>
-                </Box>
-            </main>
-            <footer className='m-auto'>
+                </main>
+            </Box>
+            <Box
+                sx={{
+                    width: { xs: 400,sm:786,md:1024 },
+                }} >
                 <Footer />
-            </footer>
+            </Box>
         </Box>
     )
 }

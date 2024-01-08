@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../styles/navbar.css'
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -32,7 +33,7 @@ function DrawerNavBar() {
         >
             <Box sx={{ width: 150, display: 'flex', flexDirection: 'column',marginLeft:2, marginTop:2 }}>
                 <Link to="/" className="galleryLink m-2">Home</Link>
-                <Link to="/gallery" className="galleryLink m-2">Gallery</Link>
+                <Link to="/gallery" className="Links m-2">Gallery</Link>
                 <Link to="/rooms" className="galleryLink m-2">Rooms</Link>
                 <Link to="/bookings" className="galleryLink m-2">Bookings</Link>
                 <Link to="/contactus" className="galleryLink m-2">Contact Us</Link>

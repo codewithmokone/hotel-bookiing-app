@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 import Service from '../components/Service';
 import ViewRoom from '../components/ViewRoom';
 import SearchCard from '../components/cards/SearchCard';
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Hidden, TextField, Typography } from '@mui/material';
 import CustomTypography from '../components/CustomTypography';
 
 const Rooms = () => {
@@ -88,7 +88,7 @@ const Rooms = () => {
         >
             <Navbar />
             <Header />
-            <Box
+            {/* <Box
                 sx={{
                     width: { xs: 400, sm: 786, md: 1024 },
                     height: 60,
@@ -118,6 +118,95 @@ const Rooms = () => {
                             onClick={searchRoom}>Search</button>
                     </div>
                 </div>
+            </Box> */}
+            {/* <Box
+                sx={{
+                    width: { xs: 390, md: 1024 },
+                    height: { xs: 'auto', sm: 'auto', md: 60 },
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: '#24252A',
+                    margin: 'auto'
+                }}
+            >
+                <Box
+                    sx={{
+                        width: { xs: 300, sm: 500, md: 500 }
+                    }}
+                    className="search-section rounded h-[40px] flex justify-center items-center border bg-white">
+                    <input
+                        className=' ml-[50px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[400px]'
+                        type="number"
+                        value={minPrice}
+                        placeholder='Enter minimum amount'
+                        onChange={(e) => setMinPrice(e.target.value)}
+                    />
+                    <input
+                        className='ml-[15px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[400px]'
+                        type="number"
+                        value={maxPrice}
+                        placeholder='Enter maximum amount'
+                        onChange={(e) => setMaxPrice(e.target.value)}
+                    />
+                    <button
+                        className="bg-[#0088a9] text-white p-1 rounded ml-[40px] mr-10"
+                        onClick={searchRoom}>Search
+                    </button>
+                </Box>
+            </Box> */}
+            <Box sx={{
+                width: { xs: 400, sm: 786, md: 1024 },
+                height: 60,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#24252A'
+            }}
+            >
+                <Hidden smDown>
+                    <Box sx={{ width: {xs:400, sm: 600 }, height: 40, display: 'flex', flexDirection: { sm: "row", md: 'row' } }} className="search-section rounded flex justify-between items-center border bg-white">
+                        <input
+                            className=' ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+                            type="number"
+                            value={minPrice}
+                            placeholder='Enter minimum amount'
+                            onChange={(e) => setMinPrice(e.target.value)}
+                        />
+                        <input
+                            className='ml-[40px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[205px]'
+                            type="number"
+                            value={maxPrice}
+                            placeholder='Enter maximum amount'
+                            onChange={(e) => setMaxPrice(e.target.value)}
+                        />
+                        <button
+                            className="bg-[#0088a9] text-white p-1 rounded ml-[45px]"
+                            onClick={searchRoom}>Search</button>
+                    </Box>
+                </Hidden>
+                <Hidden smUp>
+                    <Box sx={{ width: { xs: 400 }, height: 40, display: 'flex', flexDirection: { sm: "row", md: 'row' }, alignItems: 'center', justifyContent: "center" }} className="search-section rounded flex justify-between items-center">
+                        <input
+                            className=' border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[150px]'
+                            type="number"
+                            value={minPrice}
+                            placeholder=' Minimum amount'
+                            onChange={(e) => setMinPrice(e.target.value)}
+                        />
+                        <input
+                            className='ml-[10px] border-[#0088a9] rounded focus:outline-none focus:ring focus:ring-[#0088a9] w-[150px]'
+                            type="number"
+                            value={maxPrice}
+                            placeholder=' Maximum amount'
+                            onChange={(e) => setMaxPrice(e.target.value)}
+                        />
+                        <button
+                            className="bg-[#0088a9] text-white p-1 rounded ml-[6px]"
+                            onClick={searchRoom}>Search</button>
+                    </Box>
+                </Hidden>
             </Box>
             <Box
                 sx={{
@@ -131,7 +220,7 @@ const Rooms = () => {
                 className=' justify-center items-center m-auto'
             >
                 <Box
-                    sx={{ 
+                    sx={{
                         marginBotton: { xs: 10 },
                     }}
                     className="flex flex-col min-h-[600px] justify-center items-center mr-4 m-auto">

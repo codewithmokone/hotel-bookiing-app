@@ -67,10 +67,10 @@ const Navbar = () => {
                         justifyContent: 'space-between'
                     }}
                     >
-                        <Box sx={{ width:{sm:'34%',md:'46%'} }}>
+                        <Box sx={{ width: { sm: '34%', md: '46%' } }}>
                             <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                         </Box>
-                        <Box sx={{ width: {sm:'65%',md:'50%'} }}>
+                        <Box sx={{ width: { sm: '65%', md: '50%' } }}>
                             <nav className="navItems">
                                 <Link to="/" className="links ">Home</Link>
                                 <Link to="/gallery" className="links ">Gallery</Link>
@@ -109,10 +109,19 @@ const Navbar = () => {
                 <Hidden smUp implementation="css">
                     <Box
                         sx={{
-                            width: { xs: 400 }
+                            width: { xs: 400 },
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems:'center',
+                            backgroundColor:'#24252A'
                         }}
                     >
-                        <ClientDrawerNavBar signout={signOut} />
+                        <Box sx={{marginLeft: 3}}>
+                            <span className='font-bold text-[#0088a9] text-xs '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
+                        </Box>
+                        <Box sx={{marginRight: 1}}>
+                            <ClientDrawerNavBar signout={signOut} />
+                        </Box>
                     </Box>
                 </Hidden>
             </>
@@ -133,7 +142,7 @@ const Navbar = () => {
                         <Box sx={{ width: '40%' }}>
                             <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                         </Box>
-                        <Box sx={{width:'56%'}}>
+                        <Box sx={{ width: '56%' }}>
                             <nav className="navItems topnav" id="myTopnav" >
                                 <Link to="/" className="links">Home</Link>
                                 <Link to="/gallery" className="links">Gallery</Link>
