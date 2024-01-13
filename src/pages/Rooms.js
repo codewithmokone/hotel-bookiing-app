@@ -9,6 +9,7 @@ import ViewRoom from '../components/ViewRoom';
 import SearchCard from '../components/cards/SearchCard';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Hidden, TextField, Typography } from '@mui/material';
 import CustomTypography from '../components/CustomTypography';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Rooms = () => {
 
@@ -20,6 +21,7 @@ const Rooms = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [openModal, setOpenModal] = useState(false)
 
+    // Function for filtering room by price
     const searchRoom = async () => {
         setIsLoading(true)
 
@@ -44,6 +46,7 @@ const Rooms = () => {
         }
     };
 
+    // Function for viewing a spwcific room
     const handleView = (room) => {
 
         try {
@@ -70,10 +73,12 @@ const Rooms = () => {
         fetchRooms();
     }, []);
 
+
+    // Handles the loader logic
     if (isLoading) {
         return (
             <div className='flex flex-col h-[100vh] justify-center items-center '>
-                <p>Loading...</p>
+                <CircularProgress />
             </div>
         )
     }

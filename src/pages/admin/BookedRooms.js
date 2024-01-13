@@ -28,13 +28,13 @@ function BookedRooms() {
   return (
     <Box
       sx={{
-        backgroundColor: 'whitesmoke'
+        backgroundColor: '#ececec'
       }}
       className='min-h-screen'>
       <header>
         <AdminNavbar />
       </header>
-      <main className='h-[50vh] ml-60'>
+      <main className='h-[50vh] ml-60 bg-["smokewhite"]'>
         <Box>
           <Box className='flex justify-center items-center'>
             <CustomTypography theme="heading" text="Booked Rooms" />

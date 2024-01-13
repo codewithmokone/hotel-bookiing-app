@@ -5,6 +5,7 @@ import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { storage } from '../config/firebase';
 import Navbar from '../components/navbar/Navbar';
 import { Box, Paper } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 import CustomTypography from '../components/CustomTypography';
 
 const Gallery = () => {
@@ -36,7 +37,8 @@ const Gallery = () => {
     if (images.length === 0) {
         return (
             <div className='flex flex-col h-[100vh] justify-center items-center '>
-                <p>Loading...</p>
+                {/* <p>Loading...</p> */}
+                <CircularProgress />
             </div>
         )
     }
@@ -57,7 +59,7 @@ const Gallery = () => {
             <Box
                 sx={{
                     width: { xs: 400, sm: 786, md: 1024 },
-                    height: 60,
+                    height: { xs: 40, sm: 60, md: 60 },
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',

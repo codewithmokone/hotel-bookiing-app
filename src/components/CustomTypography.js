@@ -16,7 +16,7 @@ function CustomTypography({ variant, text, color,theme }) {
         )
     }else{
         return (
-            <Typography sx={{ marginBottom: 1, fontSize:12 }} variant='body2' color={color}>
+            <Typography sx={{ marginBottom: 0.5, fontSize:15, textAlign:'left' }} variant='body2' color={color}>
                 {text}
             </Typography>
         )

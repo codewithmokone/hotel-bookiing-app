@@ -15,6 +15,7 @@ function ContactUs() {
     const [errorMessage, setErrorMessage] = useState('')
     const [successMessage, setSuccessMessage] = useState('')
 
+    // Function for sending email to info desk
     const handleSendEmail = async () => {
         try {
 
@@ -38,12 +39,8 @@ function ContactUs() {
             });
 
             if (response.ok) {
-
-                // console.log('Email sent successfully!');
                 alert("Message sent successfully!")
                 // setSuccessMessage("Email sent successfully!");
-                // setErrorMessage('');
-
             } else {
                 // Handle errors, if any
                 console.error('Error sending email:', response.statusText);
@@ -58,14 +55,13 @@ function ContactUs() {
     return (
         <Box
             sx={{
-
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
+                backgroundColor: 'whitesmoke',
                 margin: 'auto',
             }}
-            className='h-fit'
         >
             <Navbar />
             <Header />
@@ -87,12 +83,12 @@ function ContactUs() {
                     flexDirection: { xs: 'column', sm: 'column', md: 'column' },
                     justifyContent: 'center',
                     alignItems: 'center',
-                    backgroundColor: 'smokewhite'
+                    backgroundColor: 'white',
                 }}
                 className='h-full'
             >
-                <Box className='mt-6'>
-                <CustomTypography theme="heading" text="Let's get in touch." />
+                <Box>
+                    <CustomTypography theme="heading" text="Let's get in touch." />
                 </Box>
                 <Box
                     sx={{
@@ -102,7 +98,7 @@ function ContactUs() {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
-                    className='flex items-center mb-10'>
+                    className='flex items-center mb-4'>
                     <Box
                         sx={{
                             width: { xs: 400, sm: 786, md: 1024 },

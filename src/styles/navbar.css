@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap');
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -11,12 +11,12 @@
     width: 35%;
     font-size: large;
     font-weight: bold;
-    color: rgba(0,136,169,5);
+    color: rgba(0, 136, 169, 5);
     cursor: pointer;
     margin-left: 30px;
 }
 
-.navItems{
+.navItems {
     width: 80%;
     display: flex;
     flex-direction: row;
@@ -25,7 +25,16 @@
     margin-right: 30px;
 }
 
-.links, .roomsLink, .registerBtn,.contactusLink, .loginBtn, .home, .newRoom, .bookings, .logout-link, .contactus {
+.links,
+.roomsLink,
+.registerBtn,
+.contactusLink,
+.loginBtn,
+.home,
+.newRoom,
+.bookings,
+.logout-link,
+.contactus {
     display: flex;
     flex-direction: row;
     padding: 0px 2px;
@@ -36,7 +45,7 @@
     text-decoration: none;
 }
 
-.adminNavItems{
+.adminNavItems {
     width: 65%;
     display: flex;
     flex-direction: row;
@@ -47,7 +56,10 @@
     border: solid 2 green;
 }
 
-.adminHome, .adminProfile, .adminNewRoom, .adminBookings{
+.adminHome,
+.adminProfile,
+.adminNewRoom,
+.adminBookings {
     display: inline-block;
     padding: 0px 2px;
     font-weight: 500;
@@ -56,21 +68,36 @@
     text-decoration: none;
 }
 
-.adminHome:hover, .adminProfile.hover, .adminNewRoom.hover, .adminBookings.hover{
-    color: rgba(0,136,169,0.8);
+.adminHome:hover,
+.adminProfile.hover,
+.adminNewRoom.hover,
+.adminBookings.hover {
+    color: rgba(0, 136, 169, 0.8);
 }
 
-.links:hover, .roomsLink:hover, .registerBtn:hover, .home:hover, .newRoom:hover, .bookings:hover, .logout-link:hover {
-    color: rgba(0,136,169,0.8);
+.links:hover,
+.roomsLink:hover,
+.registerBtn:hover,
+.home:hover,
+.newRoom:hover,
+.bookings:hover,
+.logout-link:hover {
+    color: rgba(0, 136, 169, 0.8);
 }
 
-.links:active, .roomsLink:hover, .registerBtn:hover, .home:hover, .newRoom:hover, .bookings:hover, .logout-link:hover {
-    color: rgba(0,136,169,0.8);
+.links:active,
+.roomsLink:hover,
+.registerBtn:hover,
+.home:hover,
+.newRoom:hover,
+.bookings:hover,
+.logout-link:hover {
+    color: rgba(0, 136, 169, 0.8);
 }
 
 .loginBtn {
     padding: 5px 12px;
-    background-color: rgba(0,136,169,1);
+    background-color: rgba(0, 136, 169, 1);
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -79,20 +106,25 @@
 }
 
 .loginBtn:hover {
-    background-color: rgba(0,136,169,0.8);
+    background-color: rgba(0, 136, 169, 0.8);
 }
 
 .activeLink {
     background-color: #0088A9;
 }
 
+
+.bottomli:hover {
+    color: '#0088A9'
+}
+
 @media screen and (min-width: 480px) {
     #leftsidebar {
-        width: 200px; 
+        width: 200px;
         float: left;
     }
 
     #main {
         margin-left: 216px;
     }
-  }
+}

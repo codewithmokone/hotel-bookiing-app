@@ -67,10 +67,10 @@ const Navbar = () => {
                         justifyContent: 'space-between'
                     }}
                     >
-                        <Box sx={{ width: { sm: '34%', md: '46%' } }}>
+                        <Box sx={{ width: { sm: '34%', sm:'34%' ,md: '46%' } }}>
                             <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                         </Box>
-                        <Box sx={{ width: { sm: '65%', md: '50%' } }}>
+                        <Box sx={{ width: { sm: '65%', sm:'65%',md: '50%' } }}>
                             <nav className="navItems">
                                 <Link to="/" className="links ">Home</Link>
                                 <Link to="/gallery" className="links ">Gallery</Link>
@@ -139,10 +139,10 @@ const Navbar = () => {
                         alignItems: 'center'
                     }}
                     >
-                        <Box sx={{ width: '40%' }}>
+                        <Box sx={{ width: { sx: '34%', sm:'27%' ,md: '46%' } }}>
                             <span className='logo font-bold text-[#0088a9] '>HOTEL <FontAwesomeIcon icon={faBellConcierge} /> BOOKINGS</span>
                         </Box>
-                        <Box sx={{ width: '56%' }}>
+                        <Box sx={{ width: { sx: '65%', sm:'73%',md: '65%' } }}>
                             <nav className="navItems topnav" id="myTopnav" >
                                 <Link to="/" className="links">Home</Link>
                                 <Link to="/gallery" className="links">Gallery</Link>

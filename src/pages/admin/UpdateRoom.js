@@ -2,78 +2,42 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../../config/firebase'
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
-import { Box, Button, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import AdminNavbar from '../../components/navbar/AdminNavbar';
 import CustomTypography from '../../components/CustomTypography';
 import CustomButton from '../../components/CustomButton';
-import InputComponent from '../../components/InputComponent';
 
 const UpdateRoom = () => {
 
     const { id } = useParams(); // Get the room ID from the URL
 
-    const [rooms, setRooms] = useState([]);
-    const [formData, setFormData] = useState('')
-    const [hotel, setHotel] = useState(rooms.hotel);
-    const [title, setTitle] = useState('');
-    const [introDescr, setIntroDescr] = useState('')
-    const [description, setDescription] = useState('');
-    const [address, setAddress] = useState('');
-    const [price, setPrice] = useState('');
-    const [numberOfPeople, setNumberOfPeople] = useState('');
-    const [contact, setContact] = useState('');
-    const [numberOfRooms, setNumberOfRooms] = useState('');
-    const [roomType, setRoomType] = useState('');
-    const [bedType, setBedType] = useState('');
-    const [roomImage, setRoomImage] = useState('')
-
     const navigate = useNavigate()
 
-    const closeUpdate = () => {
-        navigate('/adminhome')
-    }
+    // const [rooms, setRooms] = useState([]);
+    const [roomImage, setRoomImage] = useState();
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...rooms,
-            [name]: value,
-        });
-    };
+    const [formData, setFormData] = useState({
+        hotel: '',
+        title: '',
+        introDescr: '',
+        description: '',
+        address: '',
+        price: '',
+        numberOfPeople: '',
+        contact: '',
+        numberOfRooms: '',
+        roomType: '',
+        bedType: ''
+    });
+  
 
-    // Update room  function
-    const updateRoom = async (e) => {
-        e.preventDefault();
+    console.log(formData);
 
-        const room = {
-            hotel,
-            title,
-            description,
-            address,
-            price,
-            numberOfPeople,
-            contact,
-            numberOfRooms,
-            roomType,
-            bedType,
-            roomImage
-        }
+    // console.log(hotel);
 
-        try {
-            // Update room in collection
-            await updateDoc(doc(db, "hotelRooms", id), room);
-            console.log("Room updated")
-
-        } catch (error) {
-            console.log(id)
-            // console.log(rooms)
-            console.log("Error updating room: ", error)
-        }
-
-        // await updateDoc(hotelRoomRef, {
-        //     ...room
-        // })
-    }
+    useEffect(() => {
+        fetchRoomData();
+    }, [id]);
 
     // Fetching data from firebase firestore
     const fetchRoomData = async () => {
@@ -83,7 +47,6 @@ const UpdateRoom = () => {
 
             if (roomDocSnapshot.exists()) {
                 const roomData = { id: roomDocSnapshot.id, ...roomDocSnapshot.data() };
-                setRooms(roomData)
                 setFormData(roomData)
             } else {
                 console.error('Room not found');
@@ -93,132 +56,143 @@ const UpdateRoom = () => {
         }
     }
 
-    useEffect(() => {
-        fetchRoomData();
-    }, [id]);
+    // Function for updating firebase firestore DB: "hotelRooms" with room ID.
+    const updateRoom = async (e) => {
+        e.preventDefault()
+
+        try {
+            const roomDocRef = doc(db, 'hotelRooms', id);
+            await updateDoc(roomDocRef, formData);
+            alert("Room has been updated.");
+            navigate('/adminHome');
+        } catch (err) {
+            console.error('Error updating room:', err);
+        }
+    };
 
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                backgroundColor: 'whitesmoke',
-                margin: 'auto'
-            }}
+        <Box className='home-container min-h-screen m-auto bg-[#ececec]'
         >
-            <Box>
-                <header>
-                    <AdminNavbar />
-                </header>
-            </Box>
+            <header>
+                <AdminNavbar />
+            </header>
             <Box
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    marginLeft: 60
+                    marginLeft: 30
                 }}
-            // className="m-auto"
             >
-                <CustomTypography variant='h6' component="h6" text="Update Room" />
-                <form className="flex flex-col items-center justify-center" onSubmit={updateRoom}>
+                <Box sx={{ marginTop: 4 }}>
+                    <CustomTypography theme='heading' text="Update Room" />
+                </Box>
+                <form className="flex flex-col items-center justify-center">
                     <Box className="flex flex-col justify-center items-center ">
                         <Box className='w-[600px] flex flex-col justify-center items-center'>
-                            <img className="image" src={rooms.roomImage} alt="" />
+                            <img className="image" src={formData.roomImage} alt="" />
                             <input className="w-[300px]" type="file" onChange={(e) => setRoomImage(e.target.files)} />
                         </Box>
-                        {/* <CustomTypography variant='subtitle2' component="subtitle2" text="Update Room" /> */}
                         <label className="text-base font-medium mx-0 my-2 mr-[30px] w-[600px]">Hotel</label>
                         <input
                             type="text"
-                            placeholder=" Enter title..."
+                            placeholder=" Enter hotel..."
                             name='hotel'
                             value={formData.hotel}
-                            onChange={handleChange}
+                            onChange={(e) => setFormData({ ...formData, hotel: e.target.value })}
                             required
                             className='h-[40px]'
                         />
                         <label className="text-base font-medium mx-0 my-2 mr-[30px] w-[600px]">Title</label>
                         <input
                             type="text"
+                            name='Title'
                             placeholder=" Enter title..."
-                            value={rooms.title}
-                            onChange={(e) => setTitle(e.target.value)}
+                            value={formData.title}
+                            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                             required
                             width="560px"
                         />
                         <label className=" text-base font-medium mx-0 mr-[30px] my-2.5 w-[600px]">Short Description</label>
                         <input
                             type="text"
+                            name='Short Description'
+                            value={formData.introDescr}
                             className='h-[40px] w-[900px]rounded focus:outline-none focus:ring focus:ring-[#0088a9]'
                             placeholder=" Enter description"
-                            onChange={(e) => setIntroDescr(e.target.value)}
+                            onChange={(e) => setFormData({ ...formData, introDescr: e.target.value })}
                             required
                         />
                         <label className="text-base font-medium mx-0 my-2.5 w-[600px]">Description</label>
                         <input
                             type="text"
+                            name='Description'
                             placeholder=" Enter description"
-                            value={rooms.description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            value={formData.description}
+                            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                             required
                             className='h-[40px]'
                         />
                         <label className="text-base font-medium mx-0 my-2.5 w-[600px]">Address</label>
                         <input
                             type="text"
+                            name='Address'
                             placeholder=" Enter address"
-                            value={rooms.address}
-                            onChange={(e) => setAddress(e.target.value)}
+                            value={formData.address}
+                            onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                             required
                             className='h-[40px]'
                         />
                         <label className="text-base font-medium mx-0 my-2.5 w-[600px]">Price</label>
                         <input
                             type="text"
+                            name='Price'
                             placeholder=" Enter price..."
-                            value={rooms.price}
-                            onChange={(e) => setPrice(e.target.value)}
+                            value={formData.price}
+                            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                             required
                             className='h-[40px]'
                         />
                         <label className="text-base font-medium mx-0 my-2.5 w-[600px]">Max People</label>
                         <input
                             type="text"
+                            name='Max People'
                             placeholder=" Enter number of people"
-                            value={rooms.numberOfPeople}
-                            onChange={(e) => setNumberOfPeople(e.target.value)}
+                            value={formData.numberOfPeople}
+                            onChange={(e) => setFormData({ ...formData, numberOfPeople: e.target.value })}
                             required
                             className='h-[40px]'
                         />
                         <label className="text-base font-medium mx-0 my-2.5 w-[600px]">Contact</label>
                         <input
                             type="text"
+                            name='Contact'
                             placeholder=" Enter contact details..."
-                            value={rooms.contact}
-                            onChange={(e) => setContact(e.target.value)}
+                            value={formData.contact}
+                            onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                             required
                             className='h-[40px]'
                         />
                         <label className="text-base font-medium mx-0 my-2.5 w-[600px]">Number of rooms</label>
                         <input
                             type="number"
+                            name='Number of rooms'
                             placeholder=" Enter contact details..."
-                            value={rooms.numberOfRooms}
-                            onChange={(e) => setNumberOfRooms(e.target.value)}
+                            value={formData.numberOfRooms}
+                            onChange={(e) => setFormData({ ...formData, numberOfRooms: e.target.value })}
                             required
                             className='h-[40px]'
                         />
                         <label className="text-base font-medium mx-0 my-2.5 w-[600px]" >Room type:</label>
-                        <select onChange={(e) => setRoomType(e.target.value)} value={rooms.roomType} className="w-[600px] h-[40px]">
+                        <select name='Room type:' onChange={(e) => setFormData({ ...formData, roomType: e.target.value })} value={formData.roomType} className="w-[600px] h-[40px] bg-white">
                             <option>Standard Double Room</option>
                             <option>Suite</option>
                             <option>Deluxe Room</option>
                             <option>Accessible Room</option>
                         </select>
                         <label className="text-base font-medium mx-0 my-2.5 w-[600px]">Bed type:</label>
-                        <select onChange={(e) => setBedType(e.target.value)} value={rooms.bedType} className="w-[600px] h-[40px]">
+                        <select name='Bed type:' onChange={(e) => setFormData({ ...formData, bedType: e.target.value })} value={formData.bedType} className="w-[600px] h-[40px] bg-white">
                             <option>Double Bed</option>
                             <option>2 Beds</option>
                             <option>King Bed</option>
@@ -226,7 +200,7 @@ const UpdateRoom = () => {
                         </select>
                     </Box>
                     <Box className="flex flex-row items-center ">
-                        <CustomButton variant="contained" type='submit'>Update</CustomButton>
+                        <CustomButton variant="contained" text="Update" onClick={updateRoom}/>
                     </Box>
                 </form>
             </Box>

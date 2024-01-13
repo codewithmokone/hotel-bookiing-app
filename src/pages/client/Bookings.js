@@ -10,7 +10,7 @@ import { CartContext } from '../../components/context/CartContext';
 // import { UserAuthContext } from '../../components/context/UserAuthContext';
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, Button, Paper, TextField } from '@mui/material';
+import { Box, Button, Paper } from '@mui/material';
 import { useUserAuth } from '../../components/context/UserAuthContext';
 import CustomTypography from '../../components/CustomTypography'
 import InputComponent from '../../components/InputComponent';
@@ -244,7 +244,7 @@ const Bookings = () => {
                     >
                       <label className="text-base font-medium ml-4">Check-Out Date</label>
                       <InputComponent
-                        onChange={(e) => setCheckInDate(e.target.value)}
+                        onChange={(e) => setCheckOutDate(e.target.value)}
                         required
                         type="date"
                       />

@@ -53,14 +53,14 @@ function AdminNavbar() {
   }
 
   return (
-    <Box sx={{ width: { sm: 700, md: '100vw' }, backgroundColor: '#24252A' }}>
+    <Box sx={{ width: { sm: 700, md: '100%' }, height: '100%', backgroundColor: '#24252A' }}>
       <Paper sx={{ backgroundColor: "#24252A" }}>
         {/* <CssBaseline /> */}
         <AppBar
           position="sticky"
           sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, backgroundColor: 'white' }}
         >
-          <Toolbar sx={{ width: { sm: 700, md: '100vw' }, display: 'flex', justifyContent: 'space-between', width: 1180 }}>
+          <Toolbar sx={{ width: { sm: 700, md: '100%' }, display: 'flex', justifyContent: 'space-between' }}>
             <Typography sx={{ fontSize: 18 }} variant="h2" className='text-black' noWrap component="div">
               Hi, {user.displayName}.
             </Typography>
@@ -90,15 +90,8 @@ function AdminNavbar() {
           </Toolbar>
           {/* <Divider sx={{ backgroundColor: "gray" }} /> */}
           {/* Links Section */}
-          <List sx={{ backgroundColor: "#24252A", height: '100vh' }}>
-            <Box
-              sx={{
-                width: 150,
-                display: 'flex',
-                flexDirection: 'column',
-                marginLeft: 2,
-              }}
-            >
+          <List sx={{ backgroundColor: "#24252A", height: '100%', flex: 1, }}>
+            <Box sx={{ width: 150, display: 'flex', flexDirection: 'column', marginLeft: 2 }}>
               <Box sx={{ marginLeft: -0.5 }}>
                 <NavLink
                   to="/adminhome"
@@ -132,10 +125,14 @@ function AdminNavbar() {
             <Box
               sx={{
                 width: 150,
+                flex: 1,
+                // height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'left',
-                marginTop: 40,
+                marginTop: { md: 40 },
+                // position:'absolute',
+                // bottom:0
               }}
             >
               <Divider sx={{ backgroundColor: "gray", marginBottom: 2 }} />

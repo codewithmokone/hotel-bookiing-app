@@ -10,11 +10,14 @@ import { CartContext } from '../../src/components/context/CartContext';
 import { faBed, faUserGroup, faPhone, faHouse, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
-import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import { Alert, Box, Divider, Typography } from '@mui/material';
+import { Alert, Box, Button, Divider, Typography } from '@mui/material';
 import { useUserAuth } from './context/UserAuthContext';
 import InputComponent from './InputComponent';
+import RatingPopup from './RatingPopup';
+import StarRating from './StarRating';
+import CustomButton from './CustomButton';
 
 const ViewRoom = ({ data, setOpenModal }) => {
 
@@ -29,6 +32,10 @@ const ViewRoom = ({ data, setOpenModal }) => {
   const [isAvailable, setIsAvailable] = useState(true);
   const [message, setMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  const [showRatingPopup, setShowRatingPopup] = useState(false);
+  const [totalRatings, setTotalRatings] = useState(data.totalRatings)
+
+  const roomId = room.id
 
   useEffect(() => {
     // Checks if the selected room has available room
@@ -55,7 +62,44 @@ const ViewRoom = ({ data, setOpenModal }) => {
       return;
     }
     numberOfRoomsAvailable();
-  }, [message])
+  }, [message, totalRatings])
+
+  const openRatingPopup = () => {
+    setShowRatingPopup(true);
+  };
+
+  const closeRatingPopup = () => {
+    setShowRatingPopup(false);
+  };
+
+  const submitRating = async (roomId, rating) => {
+
+    try {
+      const roomRef = doc(db, 'hotelRooms', roomId);
+
+      // Get the current room data
+      const roomSnapshot = await getDoc(roomRef);
+      const roomData = roomSnapshot.data();
+
+      // Calculate the new average rating
+      const currentRating = roomData.rating || 0;
+      const currentTotalRatings = roomData.totalRatings || 0;
+      const newTotalRatings = currentTotalRatings + 1;
+      const newAverageRating = ((currentRating * currentTotalRatings) + rating) / newTotalRatings;
+
+      // Update the room document with the new rating
+      await updateDoc(roomRef, {
+        rating: newAverageRating,
+        totalRatings: newTotalRatings
+      });
+
+      console.log('Rating submitted successfully!');
+      // Optionally, update local state or UI after successful submission
+    } catch (error) {
+      console.error('Error submitting rating:', error);
+      // Handle error scenarios
+    }
+  };
 
   // Handles closing the view room modal
   const closeModal = () => {
@@ -128,7 +172,7 @@ const ViewRoom = ({ data, setOpenModal }) => {
       navigate('/clienthome')
     } else {
       alert('Please login or register to continue.')
-      navigate('login')
+      // navigate('login')
     }
   }
 
@@ -161,9 +205,9 @@ const ViewRoom = ({ data, setOpenModal }) => {
             sx={{
               width: { xs: 380, sm: 700 },
               fontSize: { xs: 12, sm: 14, },
-              display:'flex',
-              justifyContent:'center',
-              alignItems:'center'
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
             }}
           >
             <Typography
@@ -171,7 +215,7 @@ const ViewRoom = ({ data, setOpenModal }) => {
                 width: { xs: 360, sm: 600 },
                 fontSize: { xs: 10, sm: 12, md: 12 },
                 marginTop: { xs: 0, sm: 2, md: 2 },
-                textAlign:'center'
+                textAlign: 'center'
               }}
             >
               <FontAwesomeIcon icon={faLocationDot} className=" text-[#0088a9] text-lg font-bold" /> {room.address}
@@ -182,7 +226,7 @@ const ViewRoom = ({ data, setOpenModal }) => {
           sx={{
             width: { xs: 200, sm: 400, md: 350 },
             height: { xs: 150, sm: 200, md: 200 },
-            marginTop: { xs: 2, sm: 8, md: 8 }
+            marginTop: { xs: 2, sm: 4, md: 4 }
           }}
           className="carousel flex flex-row justify-center items-center"
         >
@@ -202,10 +246,22 @@ const ViewRoom = ({ data, setOpenModal }) => {
           </Carousel> */}
           <img className='w-[100%] h-full' src={room.roomImage} />
         </Box>
+        {/* Rating Section */}
+        <Box sx={{width:300, display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'center'}}>
+          <Box>
+            {showRatingPopup && (
+              <RatingPopup onClose={closeRatingPopup} onSubmit={submitRating} onOpen={openRatingPopup} roomId={roomId} />
+            )}
+            <Button sx={{ fontWeight: 'bold',fontSize: { xs: 12, sm: 12, md: 13 },color:'#0088a9'}} onClick={openRatingPopup} variant="text">Rate this room</Button>
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: 'center', alignItems: 'center' }}>
+            <Box><Typography sx={{ fontSize: { xs: 12, sm: 12, md: 13 } }}>Rating: </Typography></Box>
+            <Box><StarRating rating={totalRatings} /></Box>
+          </Box>
+        </Box>
         <Box
           sx={{
-            width: { xs: 360, sm: 680, md: 750 },
-            marginTop: { xs: 0, sm: 6, md: 4 }
+            width: { xs: 360, sm: 680, md: 750 }, marginTop: { xs: 0, sm: 2, md: 4 }
           }}
         >
           <Box
@@ -245,7 +301,7 @@ const ViewRoom = ({ data, setOpenModal }) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}
-          className=' flex justify-center items-center'>
+        >
           <Typography
             sx={{ fontSize: { xs: 11, sm: 12, md: 13 } }}
           >{room.description}</Typography>

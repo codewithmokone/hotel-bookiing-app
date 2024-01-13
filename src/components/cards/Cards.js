@@ -8,16 +8,25 @@ import { useNavigate } from 'react-router-dom';
 import ViewRoom from '../ViewRoom';
 import { Box, Paper, Typography } from '@mui/material';
 import { useUserAuth } from '../context/UserAuthContext';
+import StarRating from '../StarRating';
 
 export const Cards = () => {
 
     const [rooms, setRooms] = useState([]);
     const [data, setData] = useState('')
     const [openModal, setOpenModal] = useState(false)
+    const [ratings, setRatings] = useState(new Array(rooms.length).fill(0));
 
     const hotelRoomsRef = collection(db, "hotelRooms");
     const { dispatch } = useContext(CartContext);
     const { user } = useUserAuth();
+
+
+    const handleRating = (index, rating) => {
+        const newRatings = [...ratings];
+        newRatings[index] = rating;
+        setRatings(newRatings);
+    };
 
 
     // Handles viewing the room details
@@ -95,7 +104,10 @@ export const Cards = () => {
                                 <img className="w-[100%] h-full" src={room.roomImage} alt='roomImage' />
                             </Box>
                             {/* Details section */}
-                            <Box className="w-[56%] justify-center items-center ml-6 mt-1">
+                            <Box 
+                            sx={{marginLeft:{xs:1}}}
+                            className="w-[56%] justify-center items-center"
+                            >
                                 <Box>
                                     <Box>
                                         <Typography
@@ -109,8 +121,8 @@ export const Cards = () => {
                                     <Box>
                                         <Typography
                                             sx={{
-                                                fontSize: { xs: 12 },
-                                                marginTop: { xs: 1 },
+                                                fontSize: { xs: 11 },
+                                                marginTop: { xs:0.6 },
                                             }}
                                         >{room.introDescr}
                                         </Typography>
@@ -118,8 +130,8 @@ export const Cards = () => {
                                     <Box>
                                         <Typography
                                             sx={{
-                                                fontSize: { xs: 12 },
-                                                marginTop: { xs: 1 },
+                                                fontSize: { xs: 11 },
+                                                marginTop: { xs: 0.6 },
                                             }}
                                         >Room Type: {room.roomType}
                                         </Typography>
@@ -127,30 +139,68 @@ export const Cards = () => {
                                     <Box sx={{ display: 'flex' }}>
                                         <Typography
                                             sx={{
-                                                fontSize: { xs: 12 },
-                                                marginTop: { xs: 1 },
+                                                fontSize: { xs: 11 },
+                                                marginTop: { xs: 0.6 },
                                             }}
                                         ><FontAwesomeIcon icon={faBed} className=" text-sky-600 text-lg font-bold" /> : {room.bedType}
                                         </Typography>
-                                        <Typography
+                                        <Box>
+                                            <Typography
+                                                sx={{
+                                                    fontSize: { xs: 11 },
+                                                    marginTop: { xs: 0.6 },
+                                                }}
+                                            >
+                                                <FontAwesomeIcon icon={faUserGroup} className=" text-sky-600 text-sm font-medium" /> : {room.numberOfPeople}
+                                            </Typography>
+                                        </Box>
+                                        <Box
                                             sx={{
-                                                fontSize: { xs: 12 },
-                                                marginTop: { xs: 1 },
+                                                display: 'flex',
+                                                flexDirection: "row",
+                                                justifyContent: 'center',
+                                                alignItems: 'center'
                                             }}
                                         >
-                                            <FontAwesomeIcon icon={faUserGroup} className=" text-sky-600 text-sm font-medium" /> : {room.numberOfPeople}
-                                        </Typography>
+                                            <Box><Typography sx={{ fontSize: { xs: 11 }, marginTop: { xs: 0.6 }, }}>Rating:</Typography></Box>
+                                            <Box><StarRating rating={room.totalRatings} /></Box>
+                                        </Box>
                                     </Box>
+
+                                    {/* <Box className="w-[4%] justify-center items-center ml-6 mt-1">
+                                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                            <Typography
+                                                sx={{
+                                                    fontSize: { xs: 12 },
+                                                    marginTop: { xs: 1 },
+                                                }}
+                                            >
+                                                Rating:
+                                            </Typography>
+                                            <div>
+                                                {[1, 2, 3, 4, 5].map((star, index) => (
+                                                    <span
+                                                        key={index}
+                                                        role="button"
+                                                        onClick={() => handleRating(id, star)}
+                                                        style={{ cursor: 'pointer', color: star <= ratings[id] ? '#FFD700' : '#C0C0C0' }}
+                                                    >
+                                                        ★
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </Box>
+                                    </Box> */}
                                     <Box>
                                         <Typography
                                             sx={{
-                                                fontSize: { xs: 12 },
-                                                marginTop: { xs: 1 },
+                                                fontSize: { xs: 11 },
+                                                marginTop: { xs: 0.6 },
                                             }}
                                         >Price: R {room.price}.00
                                         </Typography>
                                     </Box>
-                                    <Box sx={{ width: { xs: 240 }, display: 'flex', justifyContent: 'space-between' }}>
+                                    <Box sx={{ width: { xs: 245 }, display: 'flex', justifyContent: 'space-between' }}>
                                         <button className=" text-sky-600 p-1" onClick={() => handleView(room)}>View More</button>
                                         <button className=" text-sky-600 p-1 mr-[40px]" onClick={() => reserveRoom(room)}>Reserve</button>
                                     </Box>

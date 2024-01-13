@@ -10,8 +10,13 @@ import Navbar from '../../components/navbar/Navbar';
 import SearchCard from '../../components/cards/SearchCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Box } from '@mui/material';
+import { useUserAuth } from '../../components/context/UserAuthContext';
 
 export const Home = () => {
+
+  const { user } = useUserAuth();
+
+  console.log(user);
 
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');

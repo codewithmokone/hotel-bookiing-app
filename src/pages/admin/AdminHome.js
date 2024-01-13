@@ -26,6 +26,7 @@ const AdminHome = () => {
     // Handles the edit function
     const handleEdit = id => {
         const [room] = rooms.filter(room => room.id === id);
+        console.log("rrrrrrrrrrrrr",room);
         setSelectedRoom(room);
         navigate(`/editroom/${id}`);
     };
@@ -108,6 +109,9 @@ const AdminHome = () => {
                             <td colSpan={7}>Loading...</td>
                         </tr>
                     )}
+                </Box>
+                <Box>
+
                 </Box>
             </main>
         </Box >

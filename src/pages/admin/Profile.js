@@ -81,36 +81,38 @@ function Profile() {
       >
         <CustomTypography theme="heading" text="Update Profile" />
         <form className="flex justify-center items-center w-[600px]" onSubmit={handlesProfileUpdate} >
-          <Box className="flex flex-col justify-center items-center ">
-            <Box className='flex flex-col justify-center items-center'>
+          <Box
+            sx={{ width: 600, borderWidth: 1 }}
+            className="flex flex-col justify-center items-center "
+          >
+            <Box className='flex flex-col justify-center items-center mb-8'>
               <Avatar alt={user.displayName} src={user.photoURL} sx={{ width: 200, height: 200 }} />
               <input
                 className="border w-[230px] mt-4"
-                required
                 type="file"
-                multiple
                 onChange={(e) => { setFile(e.target.files[0]) }}
               />
             </Box>
-            <label className="label text-base font-medium mt-4">Full Name</label>
-            {/* <CustomTypography text='Full Name' className='label text-base font-medium' /> */}
-            <InputComponent
-              onChange={(e) => setFullName(e.target.value)}
-              required
-              type="text"
-              placeholder='Full Name'
-              width="560px"
-              value={fullName}
-            />
-            <label className="label text-base font-medium mt-3">Contact No.</label>
-            <InputComponent
-              type="number"
-              placeholder=" Enter contact details..."
-              onChange={(e) => setContact(e.target.value)}
-              width="560px"
-              required
-            />
-            <CustomButton variant="contained" type='submit'>Update</CustomButton>
+            <Box sx={{ width: 580}}>
+              <CustomTypography text="Full Name" />
+              <InputComponent
+                onChange={(e) => setFullName(e.target.value)}
+                type="text"
+                placeholder='Full Name'
+                theme='primary'
+                value={fullName}
+              />
+              <CustomTypography text="Contact No." />
+              <InputComponent
+                type="number"
+                placeholder=" Enter contact details..."
+                onChange={(e) => setContact(e.target.value)}
+                theme='primary'
+              />
+              <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <CustomButton variant="contained" type='submit' text='Update'>Update</CustomButton>
+              </Box>
+            </Box>
           </Box>
         </form>
       </Box>
